@@ -74,6 +74,7 @@ function First() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
                 Transforming Ideas into <span className="text-blue-500">Digital Reality</span>
               </h1>
+              
               <p className="text-lg text-slate-600 max-w-[600px]">
                 GFirst delivers cutting-edge technology solutions that help businesses innovate, scale, and succeed in
                 the digital landscape.
