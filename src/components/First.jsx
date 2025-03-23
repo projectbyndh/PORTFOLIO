@@ -5,7 +5,7 @@ import grapphics from '../assets/grapphics.png';
 import markeyting from '../assets/markeyting.png';
 import web from '../assets/web-design.png';
 import wordpress from '../assets/wordpress.png';
-import logo from '../assets/logo.jpg'
+import logo from '../assets/logo.png'
 import React from "react";
 import { useEffect, useRef } from "react";
 
@@ -146,38 +146,6 @@ function First() {
           </div>
         </main>
 
-        {/* Footer */}
-        <footer className="py-12 border-t border-slate-200">
-          <div className="flex items-center justify-center gap-2 mb-8">
-            <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
-              G
-            </div>
-            <span className="text-xl font-bold">GFirst</span>
-          </div>
-          <div className="flex flex-wrap justify-center gap-8 mb-8">
-            <a href="#" className="text-sm font-medium hover:text-blue-500">
-              Services
-            </a>
-            <a href="#" className="text-sm font-medium hover:text-blue-500">
-              About Us
-            </a>
-            <a href="#" className="text-sm font-medium hover:text-blue-500">
-              Our Work
-            </a>
-            <a href="#" className="text-sm font-medium hover:text-blue-500">
-              Blog
-            </a>
-            <a href="#" className="text-sm font-medium hover:text-blue-500">
-              Contact
-            </a>
-          </div>
-          <div className="flex justify-center gap-6 mb-8">
-            {/* Social Media Icons */}
-          </div>
-          <div className="text-center text-sm text-slate-600">
-            <p>© {new Date().getFullYear()} GFirst. All rights reserved.</p>
-          </div>
-        </footer>
       </div>
     </div>
   );
