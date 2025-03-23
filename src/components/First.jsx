@@ -74,7 +74,6 @@ function First() {
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter">
                 Transforming Ideas into <span className="text-blue-500">Digital Reality</span>
               </h1>
-              
               <p className="text-lg text-slate-600 max-w-[600px]">
                 GFirst delivers cutting-edge technology solutions that help businesses innovate, scale, and succeed in
                 the digital landscape.
@@ -105,12 +104,12 @@ function First() {
             </div>
             <div className="relative flex items-center justify-center">
               <div className="absolute w-72 h-72 md:w-96 md:h-96 bg-blue-200/30 rounded-full blur-3xl"></div>
-
+              "के हरेको घर जानु भाई"
               {/* Tech Ring */}
               <div className="relative w-80 h-80 md:w-96 md:h-96 flex items-center justify-center z-10">
                 {/* Center circle with glow effect */}
                 <div className="absolute w-24 h-24 rounded-full bg-blue-500/20 backdrop-blur-md flex items-center justify-center z-10">
-                  <div className="w-16 h-16 rounded-full bg-blue-500 flex items-center justify-center text-white text-2xl font-bold">
+                  <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center text-white text-2xl font-bold">
                   <img
                           src={logo || "/placeholder.svg"}
                           alt={logo}
