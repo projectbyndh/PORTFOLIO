@@ -34,7 +34,6 @@ export default function Services() {
     <div className="w-full bg-white">
       {/* Logo Section */}
       <div className="w-full flex justify-center py-8">
-
       </div>
 
       {/* Header Section */}
