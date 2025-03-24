@@ -1,15 +1,15 @@
 import First from "../First";
 import Testimonails from "../Testimonails";
 import Services from "../Services";
+import NepalMap from "../NepalMap";
 import React from "react";
-import Index from '../Routing/Index'
 function Home() {
   return (
     <>
     <First />
     <Testimonails />
     <Services />
-    <Index />
+    <NepalMap/>
     </>
   )
 }
