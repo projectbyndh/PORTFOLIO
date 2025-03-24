@@ -3,7 +3,7 @@ import React from 'react';
 function Refer() {
   return (
     <main className="flex-grow flex items-center justify-center bg-gray-50 py-16">
-      <div className="min-h-[24rem] w-full md:w-10/12 lg:w-8/12 mx-auto flex flex-col items-center justify-center text-white bg-gradient-to-br from-[#1A2A44] via-[#2B4066] to-[#3B5488] p-8 rounded-xl shadow-2xl relative overflow-hidden">
+      <div className="min-h-[18rem] w-full md:w-10/12 lg:w-8/12 mx-auto flex flex-col items-center justify-center text-white bg-gradient-to-br from-[#1A2A44] via-[#2B4066] to-[#3B5488] p-8 rounded-xl shadow-2xl relative overflow-hidden">
         
         {/* Tech-inspired background elements */}
         <div className="absolute inset-0 opacity-10">
