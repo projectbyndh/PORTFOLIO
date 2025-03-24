@@ -5,6 +5,7 @@ import NepalMap from "../NepalMap";
 import WWW from "../WWW";
 import React from "react";
 import Footer from "../Footer";
+import Refer from "../Refer";
 function Home() {
   return (
     <>
@@ -13,7 +14,9 @@ function Home() {
     <Services />
     <NepalMap/>
     <WWW />
+    <Refer />
     <Footer/>
+
     </>
   )
 }

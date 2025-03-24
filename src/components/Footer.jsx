@@ -4,13 +4,12 @@ import { Mail, Phone, MapPin, Globe, Facebook, Instagram, Twitter, Linkedin, Che
 const Index = () => {
   const currentYear = new Date().getFullYear();
 
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <main className="flex-grow flex items-center justify-center bg-gray-100">
+    <div className=" flex flex-col">
 
-      </main>
 
-      <footer className="relative bg-gradient-to-b from-[#2A4B7C] via-[#3B6D9C] to-[#4A8EBC] pt-16 pb-8 px-6">
+      <footer className="relative bg-gradient-to-b from-[#2A4B7C] via-[#3B6D9C] to-[#4A8EBC] pt-16 mb-2 px-6">
         <div className="absolute inset-0 opacity-10 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJ3aGl0ZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cGF0aCBkPSJNMzYgMzRoLTJ2LTRoMnY0em0wLTZ2LTRoLTJ2NGgyek0yNCAzNGgtMnYtNGgydjR6bTAtNnYtNGgtMnY0aDJ6Ii8+PC9nPjwvc3ZnPg==')]"></div>
         
         <div className="container mx-auto relative grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
