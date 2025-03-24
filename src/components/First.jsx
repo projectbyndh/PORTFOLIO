@@ -104,7 +104,6 @@ function First() {
             </div>
             <div className="relative flex items-center justify-center">
               <div className="absolute w-72 h-72 md:w-96 md:h-96 bg-blue-200/30 rounded-full blur-3xl"></div>
-              "के हरेको घर जानु भाई"
               {/* Tech Ring */}
               <div className="relative w-80 h-80 md:w-96 md:h-96 flex items-center justify-center z-10">
                 {/* Center circle with glow effect */}
