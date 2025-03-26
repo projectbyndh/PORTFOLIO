@@ -1,10 +1,12 @@
+'use client';
+
 import React from 'react';
 
 const ReferralPage = () => {
   // Reusable Form Field Component
   const FormField = ({ label, id, type = 'text', placeholder, required = false }) => (
     <div className="relative group">
-      <label htmlFor={id} className="block text-sm font-medium text-blue-700 mb-2 transition-all duration-300 group-focus-within:text-blue-800">
+      <label htmlFor={id} className="block text-sm font-medium text-[#1A2A44] mb-2 transition-all duration-300 group-focus-within:text-[#4A8EBC]">
         {label}
       </label>
       <input
@@ -12,13 +14,13 @@ const ReferralPage = () => {
         id={id}
         placeholder={placeholder}
         required={required}
-        className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded-xl 
-                  focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 
-                  transition-all duration-300 text-gray-700 placeholder-gray-400 
-                  peer hover:border-blue-300"
+        className="w-full px-4 py-3 bg-white/80 backdrop-blur-sm border border-[#4A8EBC]/20 rounded-xl 
+                  focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] 
+                  transition-all duration-300 text-[#2B4066] placeholder-[#2B4066]/50 
+                  peer hover:border-[#4A8EBC]/40 shadow-sm"
       />
       <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none opacity-0 peer-focus:opacity-100 transition-opacity duration-300">
-        <svg className="h-5 w-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="h-5 w-5 text-[#4A8EBC]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
         </svg>
       </div>
@@ -27,32 +29,51 @@ const ReferralPage = () => {
 
   // Reusable Benefit Item Component
   const BenefitItem = ({ text, icon }) => (
-    <li className="flex items-center space-x-4 bg-white p-4 rounded-xl shadow-md hover:shadow-lg 
-                  transition-all duration-300 transform hover:-translate-y-1">
-      <span className="text-blue-500 text-2xl flex-shrink-0">{icon}</span>
-      <span className="text-gray-700 text-sm font-medium">{text}</span>
+    <li className="flex items-center space-x-4 bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-md hover:shadow-lg 
+                  transition-all duration-300 transform hover:-translate-y-1 border border-[#4A8EBC]/10">
+      <span className="text-[#4A8EBC] text-2xl flex-shrink-0">{icon}</span>
+      <span className="text-[#2B4066] text-sm font-medium">{text}</span>
     </li>
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 flex items-center justify-center p-4 sm:p-8">
-      <div className="w-full max-w-4xl">
+    <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] via-white to-[#E0F0FF] flex items-center justify-center p-4 sm:p-8 relative overflow-hidden">
+      {/* Decorative elements with low opacity */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Circles */}
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow"></div>
+        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow"></div>
+        
+        {/* Grid pattern */}
+        <div 
+          className="absolute inset-0 opacity-5" 
+          style={{
+            backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
+            backgroundSize: '30px 30px'
+          }}
+        ></div>
+      </div>
+      
+      <div className="w-full max-w-4xl relative z-10">
         {/* Main Card */}
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-500 hover:shadow-3xl">
+        <div className="bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden transform transition-all duration-500 hover:shadow-2xl border border-[#4A8EBC]/10">
           {/* Header with Gradient Banner */}
-          <div className="bg-gradient-to-r from-blue-600 to-blue-400 p-10 text-center relative">
+          <div className="bg-gradient-to-r from-[#3B5488] to-[#4A8EBC] p-10 text-center relative">
+            <div className="absolute top-5 left-5 w-12 h-12 rounded-full bg-white/10 animate-pulse-slow"></div>
+            <div className="absolute bottom-5 right-5 w-16 h-16 rounded-full bg-white/10 animate-pulse-slow"></div>
+            
             <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-4 animate-fade-in-down 
-                          drop-shadow-md">
+                          drop-shadow-md relative z-10">
               Refer & Thrive
             </h1>
-            <p className="text-lg text-blue-100 max-w-md mx-auto font-light">
-              Invite friends to [Your IT Company] and enjoy exclusive perks together!
+            <p className="text-lg text-white/90 max-w-md mx-auto font-light">
+              Invite friends to Nepal Digital Heights and enjoy exclusive perks together!
             </p>
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-blue-700 opacity-40 animate-pulse" />
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-white/20 animate-pulse" />
           </div>
 
           {/* Form Section */}
-          <div className="p-8 sm:p-12 bg-gradient-to-b from-blue-50/20 to-white">
+          <div className="p-8 sm:p-12 bg-gradient-to-b from-[#F5FAFF]/50 to-white/50">
             <form className="space-y-8">
               <div className="grid sm:grid-cols-2 gap-6">
                 <FormField
@@ -87,23 +108,23 @@ const ReferralPage = () => {
               </div>
 
               <div className="relative">
-                <label htmlFor="message" className="block text-sm font-medium text-blue-700 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-[#1A2A44] mb-2">
                   Personal Message (Optional)
                 </label>
                 <textarea
                   id="message"
                   placeholder="Share why your friend will love our IT solutions..."
-                  className="w-full px-4 py-3 bg-blue-50 border border-blue-200 rounded-xl 
-                            focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 
-                            transition-all duration-300 text-gray-700 placeholder-gray-400 
-                            min-h-[140px] resize-y hover:border-blue-300"
+                  className="w-full px-4 py-3 bg-white/80 backdrop-blur-sm border border-[#4A8EBC]/20 rounded-xl 
+                            focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] 
+                            transition-all duration-300 text-[#2B4066] placeholder-[#2B4066]/50 
+                            min-h-[140px] resize-y hover:border-[#4A8EBC]/40 shadow-sm"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-4 px-8 rounded-xl 
-                          font-semibold shadow-lg hover:bg-blue-700 hover:shadow-xl 
+                className="w-full bg-gradient-to-r from-[#3B5488] to-[#4A8EBC] text-white py-4 px-8 rounded-xl 
+                          font-semibold shadow-lg hover:shadow-xl 
                           transition-all duration-300 transform hover:-translate-y-1 
                           flex items-center justify-center gap-2"
               >
@@ -115,9 +136,9 @@ const ReferralPage = () => {
             </form>
 
             {/* Benefits Section */}
-            <div className="mt-12 bg-blue-50/50 p-8 rounded-2xl">
-              <h3 className="text-2xl font-semibold text-blue-700 mb-6 flex items-center gap-3">
-                <svg className="w-7 h-7 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="mt-12 bg-[#E0F0FF]/50 p-8 rounded-2xl border border-[#4A8EBC]/10 shadow-inner">
+              <h3 className="text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-6 flex items-center gap-3">
+                <svg className="w-7 h-7 text-[#4A8EBC]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
                 </svg>
                 Your Exclusive Rewards
@@ -133,8 +154,8 @@ const ReferralPage = () => {
         </div>
 
         {/* Footer */}
-        <footer className="text-center text-sm text-gray-500 mt-8">
-          © {new Date().getFullYear()} [Your IT Company]. Crafted with <span className="text-blue-500">💙</span> for our community.
+        <footer className="text-center text-sm text-[#2B4066]/70 mt-8">
+          © {new Date().getFullYear()} Nepal Digital Heights. Crafted with <span className="text-[#4A8EBC]">💙</span> for our community.
         </footer>
       </div>
 
@@ -166,4 +187,3 @@ const ReferralPage = () => {
 };
 
 export default ReferralPage;
-

@@ -1,167 +1,239 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import React from "react"
-// Testimonial data
-const testimonials = [
+// Sample testimonial data
+const TESTIMONIALS = [
   {
     id: 1,
-    name: "TrailBlazers",
-    position: "CTO, TechSolutions Inc.",
-    image: "/placeholder.svg?height=100&width=100",
-    text: "Working with this team has transformed our digital infrastructure. Their expertise in cloud solutions saved us countless hours and resources.",
+    name: "Sarah Johnson",
+    position: "CEO, TechVision",
+    image: "/images/testimonial-1.jpg",
+    rating: 5,
+    text: "Nepal Digital Heights transformed our online presence completely. Their team delivered a stunning website that perfectly captures our brand identity and has significantly increased our conversion rates.",
   },
   {
     id: 2,
     name: "Michael Chen",
-    position: "Product Manager, InnovateTech",
-    image: "/placeholder.svg?height=100&width=100",
-    text: "The cybersecurity services provided exceeded our expectations. We now have peace of mind knowing our data is protected by the best in the industry.",
+    position: "Marketing Director, GrowthHub",
+    image: "/images/testimonial-2.jpg",
+    rating: 5,
+    text: "Working with Nepal Digital Heights on our digital marketing strategy has been a game-changer. Their expertise in SEO and social media marketing has helped us reach new audiences and grow our business.",
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
-    position: "CEO, DataDrive Systems",
-    image: "/placeholder.svg?height=100&width=100",
-    text: "Their software development team delivered our project ahead of schedule and with exceptional quality. The attention to detail was impressive.",
+    name: "Priya Sharma",
+    position: "Founder, EcoSolutions",
+    image: "/images/testimonial-3.jpg",
+    rating: 5,
+    text: "The mobile app developed by Nepal Digital Heights exceeded our expectations. The user interface is intuitive, and the performance is outstanding. Our customers love it!",
   },
   {
     id: 4,
     name: "David Wilson",
-    position: "IT Director, Global Enterprises",
-    image: "/placeholder.svg?height=100&width=100",
-    text: "The managed IT services have been a game-changer for our organization. Response times are quick and the technical knowledge is outstanding.",
+    position: "CTO, InnovateTech",
+    image: "/images/testimonial-4.jpg",
+    rating: 4,
+    text: "Their IT consulting services helped us streamline our operations and implement more efficient systems. The team is knowledgeable, responsive, and a pleasure to work with.",
+  },
+  {
+    id: 5,
+    name: "Anita Gurung",
+    position: "Owner, Mountain Crafts",
+    image: "/images/testimonial-5.jpg",
+    rating: 5,
+    text: "As a small business owner, I needed an affordable yet professional e-commerce solution. Nepal Digital Heights delivered exactly what I needed, and their ongoing support has been exceptional.",
   },
 ]
 
-export default function Testimonails() {
+export default function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true)
-  const autoPlayRef = useRef(null)  // Changed from NodeJS.Timeout to null
+  const [animatedItems, setAnimatedItems] = useState([])
+  const testimonialsRef = useRef(null)
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimonials.length)
-  }
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimonials.length) % testimonials.length)
-  }
-
-  const goToSlide = (index) => {
-    setCurrentIndex(index)
-  }
-
-  // Pause auto-play on hover
-  const pauseAutoPlay = () => {
-    setIsAutoPlaying(false)
-  }
-
-  // Resume auto-play when not hovering
-  const resumeAutoPlay = () => {
-    setIsAutoPlaying(true)
-  }
-
-  // Auto-play functionality
   useEffect(() => {
-    if (isAutoPlaying) {
-      autoPlayRef.current = window.setInterval(() => {
-        nextSlide()
-      }, 5000) // Change slide every 5 seconds
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = Number.parseInt(entry.target.id.split("-")[1])
+            setAnimatedItems((prev) => [...prev, id])
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    document.querySelectorAll(".animate-on-scroll").forEach((item) => observer.observe(item))
+    return () => observer.disconnect()
+  }, [])
+
+  const isAnimated = (id) => animatedItems.includes(id)
+
+  const nextTestimonial = () => setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length)
+  const prevTestimonial = () => setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
+
+  const getVisibleTestimonials = () => {
+    if (typeof window !== "undefined" && window.innerWidth < 768) {
+      return [TESTIMONIALS[currentIndex]]
     }
 
-    return () => {
-      if (autoPlayRef.current) {
-        clearInterval(autoPlayRef.current)
-      }
+    const visibleCount = 3
+    const testimonials = []
+    for (let i = 0; i < visibleCount; i++) {
+      testimonials.push(TESTIMONIALS[(currentIndex + i) % TESTIMONIALS.length])
     }
-  }, [isAutoPlaying, currentIndex])
+    return testimonials
+  }
 
   return (
-    <div
-      className="w-full bg-white py-16 px-4 sm:px-6 lg:px-8"
-      onMouseEnter={pauseAutoPlay}
-      onMouseLeave={resumeAutoPlay}
-    >
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl mb-2">What Our Clients Say</h2>
-          <div className="w-24 h-1 bg-blue-500 mx-auto rounded-full"></div>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            Hear from our satisfied clients about their experience working with our team.
+    <div className="w-full bg-[#F5FAFF] relative overflow-hidden py-16 md:py-24">
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow" />
+        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow" />
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
+            backgroundSize: "30px 30px",
+          }}
+        />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div
+          id="testimonial-1"
+          className={`text-center mb-16 animate-on-scroll transition-all duration-500 ${
+            isAnimated(1) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <div className="inline-block relative">
+            <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow" />
+            <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow" />
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
+              Client Testimonials
+            </h2>
+          </div>
+          <p className="mt-4 text-lg text-[#2B4066]/80 max-w-2xl mx-auto">
+            Don&apos;t just take our word for it. Here&apos;s what our clients have to say about working with Nepal Digital Heights.
           </p>
         </div>
 
-        {/* Testimonial Slider */}
-        <div className="relative max-w-4xl mx-auto">
-          {/* Main Testimonial */}
-          <div
-            className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-2xl shadow-lg p-8 transition-all duration-500 ease-in-out"
-            style={{ minHeight: "300px" }}
-          >
-            <div className="flex flex-col md:flex-row items-center">
-              <div className="mb-6 md:mb-0 md:mr-8 flex-shrink-0">
-                <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-md mx-auto">
-                  <img
-                    src={testimonials[currentIndex].image || "/placeholder.svg"}
-                    alt={testimonials[currentIndex].name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-              <div className="flex-1">
-                <div className="relative">
-                  <svg
-                    className="absolute -top-6 -left-6 w-12 h-12 text-blue-300 opacity-50"
-                    fill="currentColor"
-                    viewBox="0 0 32 32"
-                    aria-hidden="true"
-                  >
-                    <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                  </svg>
-                  <p className="text-gray-700 text-lg italic leading-relaxed mb-4">{testimonials[currentIndex].text}</p>
-                  <div className="mt-4">
-                    <h4 className="font-bold text-gray-900 text-xl">{testimonials[currentIndex].name}</h4>
-                    <p className="text-blue-600 italic">{testimonials[currentIndex].position}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+        <div
+          id="testimonial-2"
+          className={`relative animate-on-scroll transition-all duration-700 ${
+            isAnimated(2) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+          ref={testimonialsRef}
+        >
+          <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 text-[#4A8EBC]/10 z-0">
+            <Quote size={120} />
           </div>
 
-          {/* Navigation Arrows */}
-          <button
-            onClick={prevSlide}
-            className="absolute top-1/2 left-0 -translate-y-1/2 -translate-x-1/2 bg-white rounded-full p-2 shadow-lg text-blue-600 hover:text-blue-800 focus:outline-none transition-colors duration-300 z-10"
-            aria-label="Previous testimonial"
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-1/2 bg-white rounded-full p-2 shadow-lg text-blue-600 hover:text-blue-800 focus:outline-none transition-colors duration-300 z-10"
-            aria-label="Next testimonial"
-          >
-            <ChevronRight className="w-6 h-6" />
-          </button>
-
-          {/* Dots Navigation */}
-          <div className="flex justify-center mt-8 space-x-2">
-            {testimonials.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`w-3 h-3 rounded-full focus:outline-none transition-colors duration-300 ${
-                  index === currentIndex ? "bg-blue-600" : "bg-blue-200 hover:bg-blue-400"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+            {getVisibleTestimonials().map((testimonial, index) => (
+              <div
+                key={testimonial.id}
+                className={`bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-[#4A8EBC]/10 transition-all duration-500 hover:shadow-xl hover:bg-white/90 ${
+                  index === 0 ? "md:transform md:scale-105 md:shadow-xl" : ""
                 }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
+              >
+                <div className="flex items-center mb-4">
+                  <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#4A8EBC]/30 mr-4 shadow-md">
+                    <img
+                      src={testimonial.image || "/placeholder.svg?height=56&width=56"}
+                      alt={testimonial.name}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        if (e.target instanceof HTMLImageElement) {
+                          e.target.src = "/placeholder.svg?height=56&width=56"
+                        }
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-[#1A2A44]">{testimonial.name}</h3>
+                    <p className="text-sm text-[#2B4066]/70">{testimonial.position}</p>
+                  </div>
+                </div>
+
+                <div className="flex mb-3">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      className={i < testimonial.rating ? "text-[#FFD700] fill-[#FFD700]" : "text-gray-300"}
+                    />
+                  ))}
+                </div>
+
+                <p className="text-[#2B4066]/80 italic relative">
+                  <span className="absolute -top-2 -left-2 text-[#4A8EBC]/20">&quot;</span>
+                  {testimonial.text}
+                  <span className="absolute -bottom-4 -right-2 text-[#4A8EBC]/20">&quot;</span>
+                </p>
+              </div>
             ))}
+          </div>
+
+          <div className="flex justify-center mt-8 space-x-4">
+            <button
+              onClick={prevTestimonial}
+              className="p-2 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300"
+              aria-label="Previous testimonial"
+            >
+              <ChevronLeft size={24} />
+            </button>
+            <button
+              onClick={nextTestimonial}
+              className="p-2 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300"
+              aria-label="Next testimonial"
+            >
+              <ChevronRight size={24} />
+            </button>
           </div>
         </div>
 
+        <div
+          id="testimonial-3"
+          className={`mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 animate-on-scroll transition-all duration-900 ${
+            isAnimated(3) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <div className="bg-gradient-to-br from-[#E0F0FF] to-[#D8EBFF] rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
+            <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-2">
+              98%
+            </div>
+            <p className="text-[#2B4066]/80">Client Satisfaction Rate</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#E0F0FF] to-[#D8EBFF] rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
+            <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-2">
+              200+
+            </div>
+            <p className="text-[#2B4066]/80">Happy Clients</p>
+          </div>
+          <div className="bg-gradient-to-br from-[#E0F0FF] to-[#D8EBFF] rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
+            <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-2">
+              4.9/5
+            </div>
+            <p className="text-[#2B4066]/80">Average Rating</p>
+          </div>
+        </div>
 
+        <div
+          id="testimonial-4"
+          className={`mt-16 text-center animate-on-scroll transition-all duration-1000 ${
+            isAnimated(4) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+          }`}
+        >
+          <p className="text-lg text-[#2B4066]/80 mb-6 max-w-2xl mx-auto">
+            Join our growing list of satisfied clients and experience the Nepal Digital Heights difference.
+          </p>
+          <button className="px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            Get Started Today
+          </button>
+        </div>
       </div>
     </div>
   )
