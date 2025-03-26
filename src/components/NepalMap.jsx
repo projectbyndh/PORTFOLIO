@@ -1,27 +1,28 @@
 "use client"
-import React from "react"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
+import React from "react"
 
-// Define sample alumni locations
+// Define sample locations
 const locations = [
-  { name: "Rupandehi, Nepal", lat: 27.6264, lng: 83.3789, color: "#FF3366", isHighlighted: true },
-  { name: "New York", lat: 40.7128, lng: -74.006, color: "#FF5733" },
-  { name: "London", lat: 51.5074, lng: -0.1278, color: "#33FF57" },
-  { name: "Tokyo", lat: 35.6762, lng: 139.6503, color: "#3357FF" },
-  { name: "Sydney", lat: -33.8688, lng: 151.2093, color: "#F033FF" },
-  { name: "Cape Town", lat: -33.9249, lng: 18.4241, color: "#FF9933" },
-  { name: "Rio de Janeiro", lat: -22.9068, lng: -43.1729, color: "#33FFF9" },
-  { name: "Moscow", lat: 55.7558, lng: 37.6173, color: "#FFFF33" },
-  { name: "Dubai", lat: 25.2048, lng: 55.2708, color: "#FF9966" },
-  { name: "Singapore", lat: 1.3521, lng: 103.8198, color: "#66FFCC" },
+  { name: "Rupandehi, Nepal", lat: 27.6264, lng: 83.3789, color: "#4A8EBC", isHighlighted: true },
+  { name: "New York", lat: 40.7128, lng: -74.006, color: "#3B5488" },
+  { name: "London", lat: 51.5074, lng: -0.1278, color: "#5A9ECC" },
+  { name: "Tokyo", lat: 35.6762, lng: 139.6503, color: "#6AAEDC" },
+  { name: "Sydney", lat: -33.8688, lng: 151.2093, color: "#7ABCEC" },
+  { name: "Cape Town", lat: -33.9249, lng: 18.4241, color: "#8ACAFC" },
+  { name: "Rio de Janeiro", lat: -22.9068, lng: -43.1729, color: "#5A9ECC" },
+  { name: "Moscow", lat: 55.7558, lng: 37.6173, color: "#6AAEDC" },
+  { name: "Dubai", lat: 25.2048, lng: 55.2708, color: "#7ABCEC" },
+  { name: "Singapore", lat: 1.3521, lng: 103.8198, color: "#8ACAFC" },
 ]
 
 export default function WorldMap() {
   const mapRef = useRef(null)
   const leafletMap = useRef(null)
+  const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
     if (typeof window !== "undefined" && mapRef.current && !leafletMap.current) {
@@ -35,7 +36,7 @@ export default function WorldMap() {
         attributionControl: false,
       })
 
-      // Add a custom dark styled map
+      // Add a custom styled map
       L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
         attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
       }).addTo(leafletMap.current)
@@ -106,6 +107,8 @@ export default function WorldMap() {
           }
         }
       }
+
+      setIsLoaded(true)
     }
 
     // Cleanup
@@ -144,68 +147,197 @@ export default function WorldMap() {
   }
 
   return (
-    <div 
-      className="map-container"
-      style={{
-        width: '100%',
-        height: '600px',
-        overflow: 'hidden',
-        borderRadius: '8px',
-        border: '1px solid #333',
-        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
-      }}
-    >
-      <div 
-        ref={mapRef} 
-        style={{ 
-          width: '100%', 
-          height: '100%', 
-          background: '#0a1a2d' 
-        }} 
-      />
+    <div className="w-full bg-[#F5FAFF] py-16 md:py-24 relative overflow-hidden">
+      {/* Decorative elements with low opacity */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Circles */}
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow"></div>
+        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow"></div>
+
+        {/* Grid pattern */}
+        <div
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
+            backgroundSize: "30px 30px",
+          }}
+        ></div>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <div className="inline-block relative">
+            <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
+            <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow"></div>
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
+              Global Presence
+            </h2>
+          </div>
+          <p className="mt-4 text-lg text-[#2B4066]/80 max-w-2xl mx-auto">
+            Connecting businesses across the world with innovative digital solutions.
+          </p>
+        </div>
+
+        {/* Map Container */}
+        <div className="relative">
+          <div
+            className="map-container bg-[#0a1a2d] rounded-2xl overflow-hidden shadow-xl border border-[#4A8EBC]/20"
+            style={{
+              width: "100%",
+              height: "600px",
+              position: "relative",
+            }}
+          >
+            {/* Loading overlay */}
+            {!isLoaded && (
+              <div className="absolute inset-0 bg-[#0a1a2d] flex items-center justify-center z-20">
+                <div className="w-16 h-16 border-4 border-[#4A8EBC]/20 border-t-[#4A8EBC] rounded-full animate-spin"></div>
+              </div>
+            )}
+
+            {/* Map */}
+            <div
+              ref={mapRef}
+              style={{
+                width: "100%",
+                height: "100%",
+                background: "#0a1a2d",
+                borderRadius: "1rem",
+              }}
+            />
+
+            {/* Map overlay decorations */}
+            <div className="absolute top-4 left-4 bg-[#1A2A44]/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg border border-[#4A8EBC]/30 z-10">
+              <div className="flex items-center">
+                <div className="w-3 h-3 rounded-full bg-[#4A8EBC] mr-2 animate-pulse"></div>
+                <span className="text-sm font-medium">Nepal Digital Heights</span>
+              </div>
+            </div>
+
+            <div className="absolute bottom-4 right-4 bg-[#1A2A44]/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg border border-[#4A8EBC]/30 z-10 text-xs">
+              Serving clients in 10+ countries
+            </div>
+          </div>
+
+          {/* Map Legend */}
+          <div className="mt-8 bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-md border border-[#4A8EBC]/10">
+            <h3 className="text-xl font-semibold text-[#1A2A44] mb-4">Our Global Network</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="flex items-center">
+                <div className="w-4 h-4 rounded-full bg-[#4A8EBC] mr-3 shadow-[0_0_10px_#4A8EBC]"></div>
+                <span className="text-[#2B4066]">Headquarters (Nepal)</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-3 h-3 rounded-full bg-[#3B5488] mr-3 shadow-[0_0_6px_#3B5488]"></div>
+                <span className="text-[#2B4066]">Regional Offices</span>
+              </div>
+              <div className="flex items-center">
+                <div className="w-3 h-3 rounded-full bg-[#5A9ECC] mr-3 shadow-[0_0_6px_#5A9ECC]"></div>
+                <span className="text-[#2B4066]">Partner Locations</span>
+              </div>
+              <div className="flex items-center">
+                <div className="h-0.5 w-8 bg-[#4A8EBC] mr-3 rounded-full"></div>
+                <span className="text-[#2B4066]">Primary Connections</span>
+              </div>
+              <div className="flex items-center">
+                <div className="h-0.5 w-8 bg-[#5A9ECC] opacity-50 mr-3 rounded-full"></div>
+                <span className="text-[#2B4066]">Secondary Networks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-12 text-center">
+          <p className="text-lg text-[#2B4066]/80 mb-6 max-w-2xl mx-auto">
+            Ready to expand your business globally? Partner with Nepal Digital Heights for seamless digital
+            transformation.
+          </p>
+          <button className="px-8 py-4 bg-gradient-to-r from-[#3B5488] to-[#4A8EBC] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            Contact Our Global Team
+          </button>
+        </div>
+      </div>
+
       <style jsx global>{`
         .leaflet-container {
           background-color: #0a1a2d;
+          font-family: inherit;
+          border-radius: 1rem;
         }
+        
+        .leaflet-control-zoom {
+          border: none !important;
+          margin: 15px !important;
+        }
+        
+        .leaflet-control-zoom a {
+          background-color: rgba(26, 42, 68, 0.8) !important;
+          color: white !important;
+          border: 1px solid rgba(74, 142, 188, 0.3) !important;
+          backdrop-filter: blur(4px);
+          transition: all 0.3s ease;
+        }
+        
+        .leaflet-control-zoom a:hover {
+          background-color: rgba(74, 142, 188, 0.8) !important;
+        }
+        
         .location-tooltip {
-          background-color: rgba(0, 0, 0, 0.7);
-          border: none;
+          background-color: rgba(26, 42, 68, 0.8);
+          border: 1px solid rgba(74, 142, 188, 0.3);
           color: white;
           font-size: 12px;
-          padding: 4px 8px;
-          border-radius: 4px;
+          padding: 6px 10px;
+          border-radius: 6px;
+          backdrop-filter: blur(4px);
+          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+          font-family: inherit;
         }
+        
         .custom-marker {
           transition: transform 0.3s ease;
         }
+        
         .custom-marker:hover {
           transform: scale(1.5);
           z-index: 1000 !important;
         }
+        
         .flight-path {
           animation: glow 3s infinite alternate;
         }
+        
         @keyframes glow {
           from {
             opacity: 0.3;
+            stroke-width: 1px;
           }
           to {
             opacity: 0.8;
+            stroke-width: 1.5px;
           }
         }
+        
         .highlighted-tooltip {
-          background-color: rgba(0, 0, 0, 0.8);
-          border: 1px solid #FF3366;
+          background-color: rgba(26, 42, 68, 0.9);
+          border: 1px solid #4A8EBC;
           color: white;
           font-size: 14px;
           font-weight: bold;
-          padding: 6px 10px;
-          border-radius: 4px;
+          padding: 8px 12px;
+          border-radius: 8px;
+          box-shadow: 0 4px 15px rgba(74, 142, 188, 0.3);
+          backdrop-filter: blur(4px);
+          font-family: inherit;
         }
+        
         .nepal-flight-path {
           animation: nepalGlow 2s infinite alternate;
           stroke-dasharray: 5, 5;
         }
+        
         @keyframes nepalGlow {
           from {
             opacity: 0.6;
@@ -216,7 +348,23 @@ export default function WorldMap() {
             stroke-width: 3px;
           }
         }
+        
+        @keyframes pulse-slow {
+          0%, 100% {
+            opacity: 0.5;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.7;
+            transform: scale(1.05);
+          }
+        }
+        
+        .animate-pulse-slow {
+          animation: pulse-slow 4s ease-in-out infinite;
+        }
       `}</style>
     </div>
   )
 }
+
