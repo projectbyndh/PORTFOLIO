@@ -90,7 +90,7 @@ const Footer = () => {
               { name: "About Us", url: "/about" },
               { name: "Services", url: "#services" },
               { name: "Case Studies", url: "/casestudy" },
-              { name: "Testimonials", url: "#testimonials" },
+              { name: "Carrers", url: "/carrers" },
               { name: "Contact", url: "/contact" },
             ].map((link) => (
               <li key={link.name}>

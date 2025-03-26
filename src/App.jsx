@@ -4,6 +4,7 @@ import Home from './components/Routing/Home';
 import AboutUs from './components/Aboutus';
 import CaseStudies from './components/Case';
 import Contact from './components/Contact';
+import Carrers from '../src/components/Carrers'
 function App() {
   return (
     <Router>
@@ -15,6 +16,8 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/casestudy" element={<CaseStudies />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/carrers" element={<Carrers />} />
+
 
         </Routes>
       </div>
