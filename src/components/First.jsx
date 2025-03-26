@@ -1,17 +1,22 @@
 "use client" // Next.js client-side component directive
-
+import androidIcon from '../assets/android.png'
+import wordpressIcon from '../assets/wordpress.png'
+import iosIcon from '../assets/app-store.png'
+import graphicsIcon from '../assets/grapphics.png'
+import marketingIcon from '../assets/markeyting.png'
+import webIcon from '../assets/web-design.png'
+import logo from '../assets/logo.png'
 import { useEffect, useRef } from "react"
 import React from "react"
 // Tech stack data with paths using public directory
 const TECH_STACK = [
-  { name: "Android Development", icon: "/images/android.png" },
-  { name: "WordPress", icon: "/images/wordpress.png" },
-  { name: "iOS Development", icon: "/images/app-store.png" },
-  { name: "Graphics Design", icon: "/images/grapphics.png" },
-  { name: "Digital Marketing", icon: "/images/markeyting.png" },
-  { name: "Web Development", icon: "/images/web-design.png" },
+  { name: "Android Development", icon: androidIcon },
+  { name: "WordPress", icon: wordpressIcon },
+  { name: "iOS Development", icon: iosIcon },
+  { name: "Graphics Design", icon: graphicsIcon },
+  { name: "Digital Marketing", icon: marketingIcon },
+  { name: "Web Development", icon: webIcon },
 ]
-
 // Stats data
 const STATS = [
   { value: "50+", label: "Projects Delivered" },
@@ -117,7 +122,7 @@ function First() {
             <div className="absolute w-36 h-36 rounded-full bg-gradient-to-br from-[#4A8EBC]/20 to-[#3B5488]/20 flex items-center justify-center shadow-lg backdrop-blur-sm animate-pulse">
               <div className="w-32 h-32 relative bg-white rounded-full flex items-center justify-center shadow-inner">
                 <img
-                  src="/images/logo.png"
+                  src={logo}
                   alt="Nepal Digital Heights Logo"
                   className="w-24 h-24 object-contain"
                   onError={(e) => {

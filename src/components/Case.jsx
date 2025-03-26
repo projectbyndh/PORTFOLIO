@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { ArrowRight, Filter } from "lucide-react"
 import React from "react"
+import Footer from "./Footer"
 
 export default function CaseStudies() {
   const [animatedItems, setAnimatedItems] = useState([])
@@ -400,6 +401,8 @@ export default function CaseStudies() {
           </div>
         </div>
       </section>
+      <Footer/>
+
     </div>
   )
 }

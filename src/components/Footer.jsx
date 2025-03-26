@@ -87,11 +87,11 @@ const Footer = () => {
           </div>
           <ul className="space-y-4">
             {[
-              { name: "About Us", url: "#about" },
+              { name: "About Us", url: "/about" },
               { name: "Services", url: "#services" },
-              { name: "Case Studies", url: "#case-studies" },
+              { name: "Case Studies", url: "/casestudy" },
               { name: "Testimonials", url: "#testimonials" },
-              { name: "Contact", url: "#contact" },
+              { name: "Contact", url: "/contact" },
             ].map((link) => (
               <li key={link.name}>
                 <a

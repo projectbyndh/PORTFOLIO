@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Mail, Phone, MapPin, Clock, Send, MessageSquare, User, Briefcase, FileText } from "lucide-react"
 import React from "react"
+import Footer from "./Footer"
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -450,6 +451,8 @@ export default function Contact() {
           </div>
         </div>
       </section>
+      <Footer/>
+
     </div>
   )
 }

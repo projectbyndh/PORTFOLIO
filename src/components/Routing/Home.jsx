@@ -7,8 +7,7 @@ import React from "react";
 import Footer from "../Footer";
 import Refer from "../Refer";
 import AboutUs from "../Aboutus";
-import Case from '../Case'
-import Contact from "../Contact";
+
 function Home() {
   return (
     <>
@@ -19,11 +18,6 @@ function Home() {
     <WWW />
     <Refer />
     <Footer/>
-    <AboutUs/>
-    <Case/>
-    <Contact/>
-    
-
     </>
   )
 }
