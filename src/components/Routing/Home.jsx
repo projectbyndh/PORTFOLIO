@@ -8,6 +8,7 @@ import Footer from "../Footer";
 import Refer from "../Refer";
 import AboutUs from "../Aboutus";
 import Case from '../Case'
+import Contact from "../Contact";
 function Home() {
   return (
     <>
@@ -20,6 +21,8 @@ function Home() {
     <Footer/>
     <AboutUs/>
     <Case/>
+    <Contact/>
+    
 
     </>
   )
