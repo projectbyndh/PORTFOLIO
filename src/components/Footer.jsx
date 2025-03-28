@@ -88,7 +88,7 @@ const Footer = () => {
           <ul className="space-y-4">
             {[
               { name: "About Us", url: "/about" },
-              { name: "Services", url: "#services" },
+              { name: "eservices", url: "/eservices" },
               { name: "Case Studies", url: "/casestudy" },
               { name: "Carrers", url: "/carrers" },
               { name: "Contact", url: "/contact" },
