@@ -1,4 +1,5 @@
 "use client"
+import Footer from "../components/Footer"
 
 import { useState, useEffect } from "react"
 import { Users, Award, Target, Clock, ArrowRight } from "lucide-react"
@@ -331,6 +332,7 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

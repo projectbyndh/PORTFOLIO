@@ -54,7 +54,7 @@ const E_SERVICES = [
     description: "Strategic digital transformation services for your business.",
     features: ["Process Automation", "Data Analytics", "Digital Strategy"],
   },
-];
+]; 
 
 export default function EServicesEnhanced() {
   const [activeAccordion, setActiveAccordion] = useState(0);
