@@ -9,16 +9,16 @@ import Carrers from "../src/components/Carrers";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/casestudy" element={<CaseStudies />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/carrers" element={<Carrers />} />
-          <Route path="/eservices" element={<EServices />} />
-        </Routes>
-      </BrowserRouter>
+<BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Home />} />
+    <Route path="/about" element={<AboutUs />} />
+    <Route path="/casestudy" element={<CaseStudies />} />
+    <Route path="/contact" element={<Contact />} />
+    <Route path="/carrers" element={<Carrers />} />
+    <Route path="/eservices" element={<EServices />} />
+  </Routes>
+</BrowserRouter>
     </>
   );
 }
