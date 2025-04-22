@@ -209,7 +209,7 @@ export default function Testimonials() {
           </div>
           <div className="bg-gradient-to-br from-[#E0F0FF] to-[#D8EBFF] rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
             <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-2">
-              200+
+              20+
             </div>
             <p className="text-[#2B4066]/80">Happy Clients</p>
           </div>
