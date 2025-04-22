@@ -64,10 +64,10 @@
 
             <div className="max-w-7xl mx-auto text-center relative z-10">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
-                Join Our Tech Revolution at xAI!
+                Join Our Tech Revolution at NDH Tech!
             </h1>
             <p className="text-lg text-[#2B4066]/80 max-w-3xl mx-auto">
-                Explore open roles, meet our team, and apply to shape the future with xAI.
+                Explore open roles, meet our team, and apply to shape the future with NDH Tech.
             </p>
             {/* Navigation Buttons */}
             <div className="mt-8 flex justify-center gap-4">
@@ -245,7 +245,7 @@
                 <Mail className="h-8 w-8 text-[#4A8EBC]" />
                 </div>
                 <h2 className="text-2xl font-bold text-[#1A2A44] mb-4 border-b-2 border-[#4A8EBC]/20 pb-2">
-                👉 Apply for a Career at xAI
+                👉 Apply for a Career at NDH Tech
                 </h2>
                 <form className="space-y-6">
                 <div>
@@ -312,13 +312,13 @@
                 </div>
                 <div>
                     <label className="block text-[#1A2A44] font-semibold mb-2" htmlFor="message">
-                    Why Join xAI?
+                    Why Join NDH Tech?
                     </label>
                     <textarea
                     id="message"
                     className="w-full p-3 rounded-lg border border-[#4A8EBC]/20 focus:outline-none focus:border-[#4A8EBC]"
                     rows="4"
-                    placeholder="Tell us why you’re excited to join xAI"
+                    placeholder="Tell us why you’re excited to join NDH Tech"
                     required
                     ></textarea>
                 </div>

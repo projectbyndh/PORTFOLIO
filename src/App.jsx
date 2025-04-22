@@ -4,8 +4,8 @@ import Home from "./components/Routing/Home";
 import AboutUs from "./components/Aboutus";
 import CaseStudies from "./components/Case";
 import Contact from "./components/Contact";
-import EServices from "../src/components/EServices";
-import Carrers from "../src/components/Carrers";
+import E-Services from "../src/components/E-Services";
+import Careers from "../src/components/Careers";
 function App() {
   return (
     <>
@@ -15,8 +15,8 @@ function App() {
     <Route path="/about" element={<AboutUs />} />
     <Route path="/casestudy" element={<CaseStudies />} />
     <Route path="/contact" element={<Contact />} />
-    <Route path="/carrers" element={<Carrers />} />
-    <Route path="/eservices" element={<EServices />} />
+    <Route path="/Careers" element={<Careers />} />
+    <Route path="/E-Services" element={<E-Services />} />
   </Routes>
 </BrowserRouter>
     </>

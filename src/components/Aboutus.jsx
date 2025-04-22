@@ -269,10 +269,10 @@ export default function AboutUs() {
             }`}
           >
             {[
-              { value: "10+", label: "Years of Experience" },
-              { value: "200+", label: "Clients Worldwide" },
-              { value: "500+", label: "Projects Delivered" },
-              { value: "25+", label: "Team Members" },
+              { value: "1+", label: "Years of Experience" },
+              { value: "20+", label: "Clients Worldwide" },
+              { value: "20+", label: "Projects Delivered" },
+              { value: "10+", label: "Team Members" },
             ].map((stat) => (
               <div
                 key={stat.label}
