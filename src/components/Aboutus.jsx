@@ -35,28 +35,28 @@ export default function AboutUs() {
   // Team members data
   const teamMembers = [
     {
-      name: "Rajesh Sharma",
-      position: "Founder & CEO",
+      name: "Navin Pandey",
+      position: "CEO",
       image: "/images/team-1.jpg",
-      bio: "With over 15 years of experience in IT, Rajesh leads our vision and strategy with passion and innovation.",
+      bio: "With over 7 years of experience in IT, Navin leads our vision and strategy with passion and innovation.",
     },
     {
-      name: "Anita Gurung",
+      name: "Sagar Aryal",
       position: "CTO",
       image: "/images/team-2.jpg",
-      bio: "Anita brings technical excellence and forward-thinking leadership to our development processes.",
+      bio: "Sagar brings technical excellence and forward-thinking leadership to our development processes.",
     },
     {
-      name: "Sunil Patel",
-      position: "Design Director",
+      name: "Sunil Paudel",
+      position: "Managing Director",
       image: "/images/team-3.jpg",
       bio: "Sunil's creative vision ensures our designs are both beautiful and functional for our clients.",
     },
     {
-      name: "Priya Thapa",
-      position: "Marketing Head",
+      name: "Rajesh Subedi",
+      position: "HR",
       image: "/images/team-4.jpg",
-      bio: "Priya drives our digital marketing strategies with data-driven insights and creativity.",
+      bio: "Rajesh Hires new talented, aspiring young developers.",
     },
   ]
 
@@ -125,7 +125,7 @@ export default function AboutUs() {
             >
               <h2 className="text-3xl font-bold text-[#1A2A44] mb-6">Our Story</h2>
               <p className="text-[#2B4066]/80 mb-6 leading-relaxed">
-                Founded in 2013, Nepal Digital Heights began with a simple mission: to provide world-class digital
+                Founded in 2024, Nepal Digital Heights began with a simple mission: to provide world-class digital
                 solutions from Nepal to the global market. What started as a small team of passionate developers has
                 grown into a comprehensive digital agency with expertise across web development, mobile applications,
                 digital marketing, and IT consulting.

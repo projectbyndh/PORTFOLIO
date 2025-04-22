@@ -19,9 +19,9 @@ const TECH_STACK = [
 ]
 // Stats data
 const STATS = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "10+", label: "Years in Business" },
-  { value: "25+", label: "Team Members" },
+  { value: "20+", label: "Projects Delivered" },
+  { value: "1+", label: "Years in Business" },
+  { value: "10+", label: "Team Members" },
   { value: "98%", label: "Client Satisfaction" },
 ]
 
