@@ -41,7 +41,7 @@ const Footer = () => {
           <div className="relative inline-block">
             <div className="absolute -top-3 -left-3 w-6 h-6 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
             <h2 className="text-3xl font-extrabold text-white bg-gradient-to-r from-[#4A8EBC] to-[#FFFFFF] bg-clip-text text-transparent">
-              Nepal Digital Heights
+              Nepal Digital Heights and Technologies Pvt Ltd.
             </h2>
           </div>
           <p className="text-[#D1E0F0] text-sm leading-relaxed max-w-xs">
@@ -59,19 +59,19 @@ const Footer = () => {
               <div className="w-8 h-8 rounded-full bg-[#4A8EBC]/10 flex items-center justify-center mr-3 group-hover:bg-[#4A8EBC]/20 transition-all duration-300">
                 <Phone size={16} className="group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span>+977 (555) 123-4567</span>
+              <span>+977 9857089898</span>
             </div>
             <div className="flex items-center group hover:text-[#4A8EBC] transition-colors duration-300">
               <div className="w-8 h-8 rounded-full bg-[#4A8EBC]/10 flex items-center justify-center mr-3 group-hover:bg-[#4A8EBC]/20 transition-all duration-300">
                 <Mail size={16} className="group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span>contact@nepaldigitalheights.com</span>
+              <span>support@ndhtechnologies.com</span>
             </div>
             <div className="flex items-center group hover:text-[#4A8EBC] transition-colors duration-300">
               <div className="w-8 h-8 rounded-full bg-[#4A8EBC]/10 flex items-center justify-center mr-3 group-hover:bg-[#4A8EBC]/20 transition-all duration-300">
                 <Globe size={16} className="group-hover:scale-110 transition-transform duration-300" />
               </div>
-              <span>www.nepaldigitalheights.com</span>
+              <span>www.ndhtechnologies.com</span>
             </div>
           </div>
         </div>
