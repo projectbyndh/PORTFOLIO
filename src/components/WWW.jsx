@@ -4,6 +4,7 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import React from "react"
+import { Link } from "react-router-dom"
 function PartnersSlider() {
   const settings = {
     dots: false,
@@ -121,7 +122,9 @@ function PartnersSlider() {
             Join our growing network of industry-leading partners and collaborate with us.
           </p>
           <button className="px-8 py-4 bg-white text-[#4A8EBC] font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg border-2 border-[#4A8EBC] hover:bg-gradient-to-r hover:from-[#3B5488] hover:to-[#4A8EBC] hover:text-white">
+            <Link to='/contact'>
             Become a Partner
+            </Link>
           </button>
         </div>
       </div>

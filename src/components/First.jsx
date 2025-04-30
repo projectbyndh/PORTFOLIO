@@ -8,7 +8,9 @@ import webIcon from '../assets/web-design.png'
 import logo from '../assets/logo.png'
 import { useEffect, useRef } from "react"
 import React from "react"
-// Tech stack data with paths using public directory
+import { Link } from 'react-router-dom'
+
+
 const TECH_STACK = [
   { name: "Android Development", icon: androidIcon },
   { name: "WordPress", icon: wordpressIcon },
@@ -19,9 +21,9 @@ const TECH_STACK = [
 ]
 // Stats data
 const STATS = [
-  { value: "50+", label: "Projects Delivered" },
-  { value: "10+", label: "Years in Business" },
-  { value: "25+", label: "Team Members" },
+  { value: "3+", label: "Projects Delivered" },
+  { value: "1+", label: "Years in Business" },
+  { value: "5+", label: "Team Members" },
   { value: "98%", label: "Client Satisfaction" },
 ]
 
@@ -99,18 +101,19 @@ function First() {
               possibilities with world-class IT solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
-              <a
-                href="#services"
-                className="bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold py-4 px-10 rounded-full text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
-              >
-                Discover Services
-              </a>
-              <a
-                href="#contact"
+
+            <Link
+  to="/eservices"
+  className="bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold py-4 px-10 rounded-full text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+>
+  Discover Services
+</Link>
+              <Link
+                to="/contact"
                 className="border-2 border-[#4A8EBC] text-[#3B5488] font-semibold py-4 px-10 rounded-full text-lg hover:bg-[#4A8EBC]/30 hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
               >
                 Get Started
-              </a>
+              </Link>
             </div>
           </div>
 

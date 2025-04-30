@@ -226,38 +226,18 @@ export default function WorldMap() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
               <div className="flex items-center">
                 <div className="w-4 h-4 rounded-full bg-[#4A8EBC] mr-3 shadow-[0_0_10px_#4A8EBC]"></div>
-                <span className="text-[#2B4066]">Headquarters (Nepal)</span>
+                <span className="text-[#2B4066]">Headquarters (Rupandehi,Nepal)</span>
               </div>
-              <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-[#3B5488] mr-3 shadow-[0_0_6px_#3B5488]"></div>
-                <span className="text-[#2B4066]">Regional Offices</span>
-              </div>
+
               <div className="flex items-center">
                 <div className="w-3 h-3 rounded-full bg-[#5A9ECC] mr-3 shadow-[0_0_6px_#5A9ECC]"></div>
-                <span className="text-[#2B4066]">Partner Locations</span>
-              </div>
-              <div className="flex items-center">
-                <div className="h-0.5 w-8 bg-[#4A8EBC] mr-3 rounded-full"></div>
-                <span className="text-[#2B4066]">Primary Connections</span>
-              </div>
-              <div className="flex items-center">
-                <div className="h-0.5 w-8 bg-[#5A9ECC] opacity-50 mr-3 rounded-full"></div>
-                <span className="text-[#2B4066]">Secondary Networks</span>
+                <span className="text-[#2B4066]">Kathmandu</span>
               </div>
             </div>
           </div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-12 text-center">
-          <p className="text-lg text-[#2B4066]/80 mb-6 max-w-2xl mx-auto">
-            Ready to expand your business globally? Partner with Nepal Digital Heights for seamless digital
-            transformation.
-          </p>
-          <button className="px-8 py-4 bg-gradient-to-r from-[#3B5488] to-[#4A8EBC] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-            Contact Our Global Team
-          </button>
-        </div>
+
       </div>
 
       <style jsx global>{`

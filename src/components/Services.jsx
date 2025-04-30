@@ -3,7 +3,7 @@ import React from "react"
 
 import { useState, useEffect } from "react"
 import { Globe, Smartphone, Layout, Share2, Search, Palette, Database, BarChart2, HeadphonesIcon } from "lucide-react"
-
+import { Link } from "react-router-dom"
 export default function Services() {
   const [animatedItems, setAnimatedItems] = useState([])
 
@@ -186,9 +186,11 @@ export default function Services() {
             isAnimated(4) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
+          <Link to='/eservices' smooth={true} duration={500}>
           <button className="px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
             See All Services
           </button>
+          </Link>
         </div>
       </div>
 
@@ -202,17 +204,7 @@ export default function Services() {
           }}
         ></div>
 
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <h2 className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-4">
-            Ready to transform your digital presence?
-          </h2>
-          <p className="text-lg text-[#2B4066]/80 max-w-3xl mx-auto mb-8">
-            Let's discuss how our services can help your business grow and succeed in the digital landscape.
-          </p>
-          <button className="px-6 py-3 bg-white text-[#4A8EBC] font-bold rounded-full border-2 border-[#4A8EBC] hover:bg-gradient-to-r hover:from-[#4A8EBC] hover:to-[#3B5488] hover:text-white transition-all duration-300 shadow-md hover:shadow-lg">
-            Contact Us Today
-          </button>
-        </div>
+
       </div>
     </div>
   )

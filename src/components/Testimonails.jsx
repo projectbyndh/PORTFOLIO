@@ -1,49 +1,44 @@
 "use client"
-
+import { Link } from "react-router-dom"
 import { useState, useEffect, useRef } from "react"
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import React from "react"
-// Sample testimonial data
+// Sample testimonial data with English names and companies
 const TESTIMONIALS = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    position: "CEO, TechVision",
-    image: "/images/testimonial-1.jpg",
+    name: "Sarika Pokharel",
+    position: "CEO, Trail Blazer",
     rating: 5,
-    text: "Nepal Digital Heights transformed our online presence completely. Their team delivered a stunning website that perfectly captures our brand identity and has significantly increased our conversion rates.",
+    text: "Nepal Digital Heights completely transformed our online presence. Their team created a fantastic website that encapsulated our brand identity perfectly, and conversion rates have increased significantly.",
   },
   {
     id: 2,
-    name: "Michael Chen",
-    position: "Marketing Director, GrowthHub",
-    image: "/images/testimonial-2.jpg",
+    name: "Aditya Yadav",
+    position: "Marketing Director, Green Light Tech",
     rating: 5,
-    text: "Working with Nepal Digital Heights on our digital marketing strategy has been a game-changer. Their expertise in SEO and social media marketing has helped us reach new audiences and grow our business.",
+    text: "Working with Nepal Digital Heights on our digital marketing strategy has elevated our business to new heights. Their expertise in SEO and social media marketing has helped us reach new audiences and grow our business.",
   },
   {
     id: 3,
     name: "Priya Sharma",
-    position: "Founder, EcoSolutions",
-    image: "/images/testimonial-3.jpg",
+    position: "Founder, Ecosolutions",
     rating: 5,
-    text: "The mobile app developed by Nepal Digital Heights exceeded our expectations. The user interface is intuitive, and the performance is outstanding. Our customers love it!",
+    text: "The mobile app developed by Nepal Digital Heights exceeded our expectations. The user interface is simple, and the performance is outstanding. Our customers love it!",
   },
   {
     id: 4,
-    name: "David Wilson",
-    position: "CTO, InnovateTech",
-    image: "/images/testimonial-4.jpg",
+    name: "Raju Thapa",
+    position: "CTO, Innovate Tech",
     rating: 4,
-    text: "Their IT consulting services helped us streamline our operations and implement more efficient systems. The team is knowledgeable, responsive, and a pleasure to work with.",
+    text: "Their IT consulting services helped us streamline our operations and implement more efficient systems. The team was knowledgeable, responsive, and a pleasure to work with.",
   },
   {
     id: 5,
     name: "Anita Gurung",
     position: "Owner, Mountain Crafts",
-    image: "/images/testimonial-5.jpg",
     rating: 5,
-    text: "As a small business owner, I needed an affordable yet professional e-commerce solution. Nepal Digital Heights delivered exactly what I needed, and their ongoing support has been exceptional.",
+    text: "As a small business owner, I needed an affordable yet professional e-commerce solution. Nepal Digital Heights provided exactly what I needed, and their ongoing support has been exceptional.",
   },
 ]
 
@@ -140,20 +135,9 @@ export default function Testimonials() {
                 }`}
               >
                 <div className="flex items-center mb-4">
-                  <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#4A8EBC]/30 mr-4 shadow-md">
-                    <img
-                      src={testimonial.image || "/placeholder.svg?height=56&width=56"}
-                      alt={testimonial.name}
-                      className="w-full h-full object-cover"
-                      onError={(e) => {
-                        if (e.target instanceof HTMLImageElement) {
-                          e.target.src = "/placeholder.svg?height=56&width=56"
-                        }
-                      }}
-                    />
-                  </div>
+ 
                   <div>
-                    <h3 className="font-bold text-[#1A2A44]">{testimonial.name}</h3>
+                    <h3 className="font-bold text-[#3260aa]">{testimonial.name}</h3>
                     <p className="text-sm text-[#2B4066]/70">{testimonial.position}</p>
                   </div>
                 </div>
@@ -209,15 +193,9 @@ export default function Testimonials() {
           </div>
           <div className="bg-gradient-to-br from-[#E0F0FF] to-[#D8EBFF] rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
             <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-2">
-              200+
+              7+
             </div>
             <p className="text-[#2B4066]/80">Happy Clients</p>
-          </div>
-          <div className="bg-gradient-to-br from-[#E0F0FF] to-[#D8EBFF] rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
-            <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-2">
-              4.9/5
-            </div>
-            <p className="text-[#2B4066]/80">Average Rating</p>
           </div>
         </div>
 
@@ -230,9 +208,11 @@ export default function Testimonials() {
           <p className="text-lg text-[#2B4066]/80 mb-6 max-w-2xl mx-auto">
             Join our growing list of satisfied clients and experience the Nepal Digital Heights difference.
           </p>
-          <button className="px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-            Get Started Today
-          </button>
+          <Link to='/contact' smooth={true} duration={500}>
+            <button className="px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+              Get Started Today
+            </button>
+          </Link>
         </div>
       </div>
     </div>
