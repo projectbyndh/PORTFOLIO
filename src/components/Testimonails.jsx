@@ -7,53 +7,41 @@ import React from "react"
 const TESTIMONIALS = [
   {
     id: 1,
-<<<<<<< HEAD
     name: "Sarika Pokharel",
     position: "CEO, Trail Blazer",
-=======
     name: "Krishna Kharel",
     position: "CEO, Realestate Made Easy",
     image: "/images/testimonial-1.jpg",
->>>>>>> bf1721e9e25e2e1b0664568b6fb3ac7473c4ff0d
     rating: 5,
     text: "Nepal Digital Heights completely transformed our online presence. Their team created a fantastic website that encapsulated our brand identity perfectly, and conversion rates have increased significantly.",
   },
   {
     id: 2,
-<<<<<<< HEAD
     name: "Aditya Yadav",
     position: "Marketing Director, Green Light Tech",
-=======
     name: "Meelan Khatri",
     position: "CEO, Appleday Store",
     image: "/images/testimonial-2.jpg",
->>>>>>> bf1721e9e25e2e1b0664568b6fb3ac7473c4ff0d
     rating: 5,
     text: "Working with Nepal Digital Heights on our digital marketing strategy has elevated our business to new heights. Their expertise in SEO and social media marketing has helped us reach new audiences and grow our business.",
   },
   {
     id: 3,
-<<<<<<< HEAD
     name: "Priya Sharma",
     position: "Founder, Ecosolutions",
-=======
     name: "Sagar Kandel",
     position: "Co-Founder, Numazu Halal Suppliers",
     image: "/images/testimonial-3.jpg",
->>>>>>> bf1721e9e25e2e1b0664568b6fb3ac7473c4ff0d
     rating: 5,
     text: "The mobile app developed by Nepal Digital Heights exceeded our expectations. The user interface is simple, and the performance is outstanding. Our customers love it!",
   },
   {
     id: 4,
-<<<<<<< HEAD
     name: "Raju Thapa",
     position: "CTO, Innovate Tech",
-=======
     name: "Er. Devendra Kumar Sharma",
     position: "Independent Candidate For Member of Parliament",
     image: "/images/testimonial-4.jpg",
->>>>>>> bf1721e9e25e2e1b0664568b6fb3ac7473c4ff0d
     rating: 4,
     text: "Their IT consulting services helped us streamline our operations and implement more efficient systems. The team was knowledgeable, responsive, and a pleasure to work with.",
   },
@@ -217,11 +205,9 @@ export default function Testimonials() {
           </div>
           <div className="bg-gradient-to-br from-[#E0F0FF] to-[#D8EBFF] rounded-xl p-6 text-center shadow-md hover:shadow-lg transition-all duration-300">
             <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-2">
-<<<<<<< HEAD
               7+
-=======
               20+
->>>>>>> bf1721e9e25e2e1b0664568b6fb3ac7473c4ff0d
+
             </div>
             <p className="text-[#2B4066]/80">Happy Clients</p>
           </div>
