@@ -106,7 +106,7 @@ function First() {
             <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
 
             <Link
-  to="/eservices"
+  to="/E-Services"
   className="bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold py-4 px-10 rounded-full text-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
 >
   Discover Services

@@ -7,8 +7,7 @@ import React from "react"
 const TESTIMONIALS = [
   {
     id: 1,
-    name: "Sarika Pokharel",
-    position: "CEO, Trail Blazer",
+
     name: "Krishna Kharel",
     position: "CEO, Realestate Made Easy",
     image: "/images/testimonial-1.jpg",
@@ -17,8 +16,7 @@ const TESTIMONIALS = [
   },
   {
     id: 2,
-    name: "Aditya Yadav",
-    position: "Marketing Director, Green Light Tech",
+
     name: "Meelan Khatri",
     position: "CEO, Appleday Store",
     image: "/images/testimonial-2.jpg",
@@ -27,8 +25,7 @@ const TESTIMONIALS = [
   },
   {
     id: 3,
-    name: "Priya Sharma",
-    position: "Founder, Ecosolutions",
+
     name: "Sagar Kandel",
     position: "Co-Founder, Numazu Halal Suppliers",
     image: "/images/testimonial-3.jpg",
@@ -37,8 +34,7 @@ const TESTIMONIALS = [
   },
   {
     id: 4,
-    name: "Raju Thapa",
-    position: "CTO, Innovate Tech",
+
     name: "Er. Devendra Kumar Sharma",
     position: "Independent Candidate For Member of Parliament",
     image: "/images/testimonial-4.jpg",
