@@ -186,7 +186,7 @@ export default function Services() {
             isAnimated(4) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <Link to='/eservices' smooth={true} duration={500}>
+          <Link to='/E-Services' smooth={true} duration={500}>
           <button className="px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
             See All Services
           </button>

@@ -24,9 +24,6 @@ const STATS = [
   { value: "3+", label: "Projects Delivered" },
   { value: "1+", label: "Years in Business" },
   { value: "5+", label: "Team Members" },
-  { value: "20+", label: "Projects Delivered" },
-  { value: "1+", label: "Years in Business" },
-  { value: "10+", label: "Team Members" },
   { value: "98%", label: "Client Satisfaction" },
 ]
 

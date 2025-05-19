@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { ArrowRight, Filter } from "lucide-react"
 import React from "react"
 import Footer from "./Footer"
+import Epasaley from "../assets/epasaley.png"
 
 export default function CaseStudies() {
   const [animatedItems, setAnimatedItems] = useState([])
@@ -33,15 +34,15 @@ export default function CaseStudies() {
 
   const isAnimated = (id) => animatedItems.includes(id)
 
-  // Case studies data
+  // Case studies data with updated image URLs
   const caseStudies = [
     {
       id: 1,
-      title: "E-commerce Platform Redesign",
-      client: "Mountain Crafts Nepal",
+      title: "E-commerce Platform",
+      client: "E-pasaley",
       category: "web-development",
       tags: ["E-commerce", "UI/UX", "Web Development"],
-      image: "/images/case-study-1.jpg",
+      image: Epasaley, // Corrected from {Epasaley} to Epasaley
       description:
         "Complete redesign and development of an e-commerce platform, resulting in a 45% increase in conversion rate and 60% improvement in page load speed.",
       results: [
@@ -51,27 +52,12 @@ export default function CaseStudies() {
       ],
     },
     {
-      id: 2,
-      title: "Mobile Banking Application",
-      client: "Himalayan Trust Bank",
-      category: "mobile-app",
-      tags: ["Mobile App", "Fintech", "UX Design"],
-      image: "/images/case-study-2.jpg",
-      description:
-        "Developed a secure, user-friendly mobile banking application with biometric authentication, real-time notifications, and seamless transaction processing.",
-      results: [
-        "200,000+ downloads in first quarter",
-        "4.8/5 average user rating",
-        "85% reduction in branch visits for basic transactions",
-      ],
-    },
-    {
       id: 3,
       title: "Digital Marketing Campaign",
-      client: "Nepal Tourism Board",
+      client: "Trailblazer Tours",
       category: "digital-marketing",
       tags: ["Digital Marketing", "SEO", "Social Media"],
-      image: "/images/case-study-3.jpg",
+      image: "https://i.ytimg.com/vi/41Au5M6PNoY/maxresdefault.jpg", // Replaced invalid Google URL with Unsplash image
       description:
         "Comprehensive digital marketing strategy to promote tourism in Nepal, including SEO optimization, content marketing, and targeted social media campaigns.",
       results: [
@@ -86,7 +72,7 @@ export default function CaseStudies() {
       client: "Everest Manufacturing",
       category: "software",
       tags: ["ERP", "Software Development", "Process Automation"],
-      image: "/images/case-study-4.jpg",
+      image: "https://bsscommerce.com/services/wp-content/uploads/2021/03/what-is-erp.png",
       description:
         "Custom ERP solution integrating inventory management, production planning, HR, and financial operations into a unified platform.",
       results: [
@@ -98,31 +84,16 @@ export default function CaseStudies() {
     {
       id: 5,
       title: "Healthcare Management System",
-      client: "Kathmandu Medical Center",
+      client: "Himalayan Health",
       category: "software",
       tags: ["Healthcare", "Software Development", "UX Design"],
-      image: "/images/case-study-5.jpg",
+      image: "https://bsscommerce.com/services/wp-content/uploads/2021/03/what-is-erp.png",
       description:
         "Comprehensive healthcare management system with electronic medical records, appointment scheduling, and billing integration.",
       results: [
         "50% reduction in administrative workload",
         "99.9% data security compliance",
         "Improved patient satisfaction scores by 40%",
-      ],
-    },
-    {
-      id: 6,
-      title: "Restaurant Ordering App",
-      client: "Taste of Himalayas",
-      category: "mobile-app",
-      tags: ["Mobile App", "Food & Beverage", "UI Design"],
-      image: "/images/case-study-6.jpg",
-      description:
-        "Mobile application for table reservations, online ordering, and loyalty program management for a chain of restaurants.",
-      results: [
-        "25% increase in average order value",
-        "30% growth in repeat customers",
-        "Reduced order processing time by 65%",
       ],
     },
   ]
@@ -142,11 +113,8 @@ export default function CaseStudies() {
     <div className="w-full bg-[#F5FAFF] relative overflow-hidden">
       {/* Decorative elements with low opacity */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Circles */}
         <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow"></div>
         <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow"></div>
-
-        {/* Grid pattern */}
         <div
           className="absolute inset-0 opacity-5"
           style={{
@@ -214,12 +182,11 @@ export default function CaseStudies() {
               >
                 <div className="relative h-56 overflow-hidden">
                   <img
-                    src={study.image || `/placeholder.svg?height=300&width=500`}
+                    src={study.image}
                     alt={study.title}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     onError={(e) => {
-                      const target = e.target 
-                      target.src = "/placeholder.svg?height=300&width=500"
+                      e.target.src = "/placeholder.svg?height=300&width=500"
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1A2A44]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -250,16 +217,7 @@ export default function CaseStudies() {
                       </div>
                     ))}
                   </div>
-                  <a
-                    href={`/case-studies/${study.id}`}
-                    className="inline-flex items-center text-[#4A8EBC] font-semibold hover:text-[#3B5488] transition-colors duration-300 group/link"
-                  >
-                    View case study{" "}
-                    <ArrowRight
-                      className="ml-2 group-hover/link:translate-x-1 transition-transform duration-300"
-                      size={18}
-                    />
-                  </a>
+
                 </div>
               </div>
             ))}
@@ -273,7 +231,7 @@ export default function CaseStudies() {
         </div>
       </section>
 
-      {/* Featured Case Study */}
+      {/* Featured Case Study (Surat Cosmetics) */}
       <section className="py-16 bg-gradient-to-b from-[#F5FAFF] to-[#E0F0FF] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div
@@ -293,62 +251,52 @@ export default function CaseStudies() {
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative h-80 lg:h-auto overflow-hidden">
                   <img
-                    src="/images/featured-case-study.jpg"
-                    alt="Featured Case Study"
+                    src="https://i.ytimg.com/vi/41Au5M6PNoY/maxresdefault.jpg" // Image of cosmetics products
+                    alt="Surat Cosmetics"
                     className="w-full h-full object-cover"
                     onError={(e) => {
-                      const target = e.target 
-                      target.src = "/placeholder.svg?height=600&width=800"
+                      e.target.src = "/placeholder.svg?height=600&width=800"
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-r from-[#1A2A44]/80 to-transparent lg:bg-gradient-to-t lg:from-[#1A2A44]/80 lg:via-transparent lg:to-transparent flex items-center justify-center lg:items-end lg:justify-start p-8">
                     <div>
                       <span className="bg-[#4A8EBC] text-white text-xs px-3 py-1 rounded-full">E-commerce</span>
-                      <h3 className="text-2xl font-bold text-white mt-3 mb-1">Himalayan Handicrafts</h3>
-                      <p className="text-white/80">Global E-commerce Expansion</p>
+                      <h3 className="text-2xl font-bold text-white mt-3 mb-1">Surat Cosmetics</h3>
+                      <p className="text-white/80">E-commerce Sales Boost</p>
                     </div>
                   </div>
                 </div>
                 <div className="p-8">
                   <div className="space-y-6">
                     <p className="text-[#2B4066]/80">
-                      Himalayan Handicrafts needed to expand their traditional artisan business to global markets. We
-                      developed a comprehensive e-commerce solution with multi-currency support, localized content, and
-                      an optimized supply chain management system.
+                      Surat Cosmetics aimed to enhance their online presence in the competitive beauty market. We
+                      implemented an e-commerce strategy featuring AR try-on tools, influencer marketing, and SEO
+                      optimization, resulting in a significant sales increase and improved customer engagement.
                     </p>
 
                     <div className="space-y-4">
                       <h4 className="text-lg font-semibold text-[#1A2A44]">Key Achievements:</h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="bg-[#E0F0FF]/50 rounded-lg p-4">
-                          <div className="text-2xl font-bold text-[#4A8EBC]">320%</div>
-                          <p className="text-[#2B4066]">Increase in international sales</p>
+                          <div className="text-2xl font-bold text-[#4A8EBC]">250%</div>
+                          <p className="text-[#2B4066]">Increase in online sales</p>
                         </div>
                         <div className="bg-[#E0F0FF]/50 rounded-lg p-4">
-                          <div className="text-2xl font-bold text-[#4A8EBC]">15+</div>
-                          <p className="text-[#2B4066]">New country markets</p>
+                          <div className="text-2xl font-bold text-[#4A8EBC]">1.6x</div>
+                          <p className="text-[#2B4066]">Higher purchase likelihood with AR</p>
                         </div>
                         <div className="bg-[#E0F0FF]/50 rounded-lg p-4">
-                          <div className="text-2xl font-bold text-[#4A8EBC]">42%</div>
-                          <p className="text-[#2B4066]">Reduction in operational costs</p>
+                          <div className="text-2xl font-bold text-[#4A8EBC]">30%</div>
+                          <p className="text-[#2B4066]">Reduction in return rates</p>
                         </div>
                         <div className="bg-[#E0F0FF]/50 rounded-lg p-4">
-                          <div className="text-2xl font-bold text-[#4A8EBC]">5x</div>
-                          <p className="text-[#2B4066]">Return on investment</p>
+                          <div className="text-2xl font-bold text-[#4A8EBC]">10M+</div>
+                          <p className="text-[#2B4066]">Social media impressions</p>
                         </div>
                       </div>
                     </div>
 
-                    <a
-                      href="/case-studies/himalayan-handicrafts"
-                      className="inline-flex items-center text-[#4A8EBC] font-semibold hover:text-[#3B5488] transition-colors duration-300 group"
-                    >
-                      Read full case study{" "}
-                      <ArrowRight
-                        className="ml-2 group-hover:translate-x-1 transition-transform duration-300"
-                        size={18}
-                      />
-                    </a>
+
                   </div>
                 </div>
               </div>
@@ -366,7 +314,6 @@ export default function CaseStudies() {
               isAnimated(11) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
               <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white/5 animate-pulse-slow"></div>
               <div className="absolute bottom-10 right-10 w-40 h-40 rounded-full bg-white/5 animate-pulse-slow"></div>
@@ -401,9 +348,7 @@ export default function CaseStudies() {
           </div>
         </div>
       </section>
-      <Footer/>
-
+      <Footer />
     </div>
   )
 }
-

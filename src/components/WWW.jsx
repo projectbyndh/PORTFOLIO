@@ -5,6 +5,11 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import React from "react"
 import { Link } from "react-router-dom"
+import numazu from "../assets/numazu.png"
+import razes from "../assets/Razes.png"
+import samiksha from "../assets/samiksha.png"
+import surat from "../assets/surat.png"
+import epasaley from "../assets/epasaley.png"
 function PartnersSlider() {
   const settings = {
     dots: false,
@@ -44,18 +49,13 @@ function PartnersSlider() {
     ],
   }
 
-  const companies = [
-    { name: "Google", logo: "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_92x30dp.png" },
-    { name: "Microsoft", logo: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg" },
-    { name: "Apple", logo: "https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png" },
-    { name: "Amazon", logo: "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg" },
-    { name: "Facebook", logo: "https://upload.wikimedia.org/wikipedia/commons/7/7c/Facebook_New_Logo_%282015%29.svg" },
-    { name: "Twitter", logo: "https://upload.wikimedia.org/wikipedia/commons/9/95/Twitter_new_X_logo.png" },
-    { name: "Netflix", logo: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg" },
-    { name: "Tesla", logo: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" },
-    { name: "IBM", logo: "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg" },
-    { name: "Adobe", logo: "https://upload.wikimedia.org/wikipedia/commons/6/66/Adobe_Corporate_logo.svg" },
-  ]
+const companies = [
+  { name: "numaju", logo: numazu },
+  { name: "Razes Art", logo: razes },
+  { name: "Samiksha", logo: samiksha },
+  { name: "Surat", logo: surat },
+  { name: "epasaley", logo: epasaley },
+]
 
   return (
     <div className="w-full bg-[#F5FAFF] py-16 md:py-24 relative overflow-hidden">
@@ -116,17 +116,7 @@ function PartnersSlider() {
           <div className="absolute right-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-l from-[#F5FAFF] to-transparent pointer-events-none"></div>
         </div>
 
-        {/* CTA */}
-        <div className="mt-16 text-center">
-          <p className="text-lg text-[#2B4066]/80 mb-6 max-w-2xl mx-auto">
-            Join our growing network of industry-leading partners and collaborate with us.
-          </p>
-          <button className="px-8 py-4 bg-white text-[#4A8EBC] font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg border-2 border-[#4A8EBC] hover:bg-gradient-to-r hover:from-[#3B5488] hover:to-[#4A8EBC] hover:text-white">
-            <Link to='/contact'>
-            Become a Partner
-            </Link>
-          </button>
-        </div>
+
       </div>
     </div>
   )

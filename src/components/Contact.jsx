@@ -114,8 +114,7 @@ export default function Contact() {
                     <div>
                       <h3 className="text-[#1A2A44] font-medium mb-1">Our Location</h3>
                       <p className="text-[#2B4066]/80 text-sm">
-                        Butwal-11, Rupandehi
-                        <br />
+Tillottama-5, Rupandehi                        <br />
                         Nepal
                       </p>
                     </div>
@@ -128,10 +127,8 @@ export default function Contact() {
                     <div>
                       <h3 className="text-[#1A2A44] font-medium mb-1">Email Us</h3>
                       <p className="text-[#2B4066]/80 text-sm">
-                        info@nepaldigitalheights.com
-                        <br />
-                        support@nepaldigitalheights.com
-                      </p>
+info@ndhtechnologies.com                        <br />
+support@ndhtechnologies.com                      </p>
                     </div>
                   </div>
 
@@ -142,10 +139,8 @@ export default function Contact() {
                     <div>
                       <h3 className="text-[#1A2A44] font-medium mb-1">Call Us</h3>
                       <p className="text-[#2B4066]/80 text-sm">
-                        +977 (555) 123-4567
-                        <br />
-                        +977 (555) 765-4321
-                      </p>
+  
++9779867453240                      </p>
                     </div>
                   </div>
 
@@ -156,9 +151,8 @@ export default function Contact() {
                     <div>
                       <h3 className="text-[#1A2A44] font-medium mb-1">Working Hours</h3>
                       <p className="text-[#2B4066]/80 text-sm">
-                        Monday - Friday: 9:00 AM - 6:00 PM
+                        Sunday - Friday: 11:00 AM - 6:00 PM
                         <br />
-                        Saturday: 10:00 AM - 2:00 PM
                       </p>
                     </div>
                   </div>
