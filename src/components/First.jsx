@@ -49,12 +49,12 @@ function First() {
     // Animation
     let rotation = 0
     const animate = () => {
-      rotation += 0.015
+      rotation += 0.01
       icons.forEach((icon, index) => {
         const angle = rotation + (index / totalIcons) * 2 * Math.PI
         const x = radius * Math.cos(angle)
         const y = radius * Math.sin(angle)
-        icon.style.transform = `translate(${x}px, ${y}px) rotate(${rotation * 10}deg)`
+        icon.style.transform = `translate(${x}px, ${y}px) rotate(${rotation * 0}deg)`
       })
       requestAnimationFrame(animate)
     }

@@ -115,10 +115,8 @@ const Footer = () => {
             <h4 className="text-white text-sm font-medium mb-3">Follow Us</h4>
             <div className="flex space-x-2">
               {[
-                { icon: Facebook, name: "Facebook", href: "#" },
-                { icon: Twitter, name: "Twitter", href: "#" },
-                { icon: Instagram, name: "Instagram", href: "#" },
-                { icon: Linkedin, name: "LinkedIn", href: "#" },
+                { icon: Facebook, name: "Facebook", href: "http://Facebook.com/techbyndh" },
+                { icon: Instagram, name: "Instagram", href: "http://Instagram.com/techbyndh" },
               ].map((social, idx) => (
                 <a
                   key={idx}

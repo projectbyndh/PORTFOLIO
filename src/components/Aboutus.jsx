@@ -32,33 +32,6 @@ export default function AboutUs() {
 
   const isAnimated = (id) => animatedItems.includes(id)
 
-  // Team members data
-  const teamMembers = [
-    {
-      name: "Navin Pandey",
-      position: "CEO",
-      image: "https://www.shutterstock.com/image-vector/default-avatar-photo-placeholder-grey-600nw-2007531536.jpg",
-      bio: "With over 7 years of experience in IT, Navin leads our vision and strategy with passion and innovation.",
-    },
-    {
-      name: "Sagar Aryal",
-      position: "CTO",
-      image: "https://www.shutterstock.com/image-vector/default-avatar-photo-placeholder-grey-600nw-2007531536.jpg",
-      bio: "Sagar brings technical excellence and forward-thinking leadership to our development processes.",
-    },
-    {
-      name: "Sunil Paudel",
-      position: "Managing Director",
-      image: "https://www.shutterstock.com/image-vector/default-avatar-photo-placeholder-grey-600nw-2007531536.jpg",
-      bio: "Sunil's creative vision ensures our designs are both beautiful and functional for our clients.",
-    },
-    {
-      name: "Rajesh Subedi",
-      position: "HR",
-      image: "https://www.shutterstock.com/image-vector/default-avatar-photo-placeholder-grey-600nw-2007531536.jpg",
-      bio: "Rajesh Hires new talented, aspiring young developers.",
-    },
-  ]
 
   return (
     <div className="w-full bg-[#F5FAFF] relative overflow-hidden">
@@ -135,13 +108,7 @@ export default function AboutUs() {
                 that drive business growth and digital transformation. Our team combines local talent with global
                 perspectives to create digital experiences that stand out in today's competitive landscape.
               </p>
-              <a
-                href="#team"
-                className="inline-flex items-center text-[#4A8EBC] font-semibold hover:text-[#3B5488] transition-colors duration-300 group"
-              >
-                Meet our team{" "}
-                <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-300" size={18} />
-              </a>
+   
             </div>
           </div>
         </div>
@@ -250,11 +217,9 @@ export default function AboutUs() {
 
           <div className="text-center mt-12">
             <p className="text-[#2B4066]/80 mb-6">
-              Our full team includes 25+ talented professionals across development, design, marketing, and support.
+              Our full team includes 7+ talented professionals across development, design, marketing, and support.
             </p>
-            <button className="px-8 py-4 bg-white text-[#4A8EBC] font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg border-2 border-[#4A8EBC] hover:bg-gradient-to-r hover:from-[#3B5488] hover:to-[#4A8EBC] hover:text-white">
-              View Full Team
-            </button>
+
           </div>
         </div>
       </section>
