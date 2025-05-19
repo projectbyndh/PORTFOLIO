@@ -37,25 +37,25 @@ export default function AboutUs() {
     {
       name: "Navin Pandey",
       position: "CEO",
-      image: "/images/team-1.jpg",
+      image: "https://www.shutterstock.com/image-vector/default-avatar-photo-placeholder-grey-600nw-2007531536.jpg",
       bio: "With over 7 years of experience in IT, Navin leads our vision and strategy with passion and innovation.",
     },
     {
       name: "Sagar Aryal",
       position: "CTO",
-      image: "/images/team-2.jpg",
+      image: "https://www.shutterstock.com/image-vector/default-avatar-photo-placeholder-grey-600nw-2007531536.jpg",
       bio: "Sagar brings technical excellence and forward-thinking leadership to our development processes.",
     },
     {
       name: "Sunil Paudel",
       position: "Managing Director",
-      image: "/images/team-3.jpg",
+      image: "https://www.shutterstock.com/image-vector/default-avatar-photo-placeholder-grey-600nw-2007531536.jpg",
       bio: "Sunil's creative vision ensures our designs are both beautiful and functional for our clients.",
     },
     {
       name: "Rajesh Subedi",
       position: "HR",
-      image: "/images/team-4.jpg",
+      image: "https://www.shutterstock.com/image-vector/default-avatar-photo-placeholder-grey-600nw-2007531536.jpg",
       bio: "Rajesh Hires new talented, aspiring young developers.",
     },
   ]
@@ -106,7 +106,7 @@ export default function AboutUs() {
                 <div className="absolute -bottom-6 -right-6 w-32 h-32 rounded-full bg-[#3B5488]/10 animate-pulse-slow"></div>
                 <div className="relative rounded-2xl overflow-hidden shadow-xl border border-[#4A8EBC]/10">
                   <img
-                    src="/placeholder.svg?height=500&width=600"
+                    src="https://static.vecteezy.com/system/resources/previews/007/932/867/non_2x/about-us-button-about-us-text-template-for-website-about-us-icon-flat-style-vector.jpg"
                     alt="Nepal Digital Heights Office"
                     className="w-full h-auto object-cover"
                   />
@@ -125,13 +125,13 @@ export default function AboutUs() {
             >
               <h2 className="text-3xl font-bold text-[#1A2A44] mb-6">Our Story</h2>
               <p className="text-[#2B4066]/80 mb-6 leading-relaxed">
-                Founded in 2024, Nepal Digital Heights began with a simple mission: to provide world-class digital
+                Founded in 2025, Nepal Digital Heights began with a simple mission: to provide world-class digital
                 solutions from Nepal to the global market. What started as a small team of passionate developers has
                 grown into a comprehensive digital agency with expertise across web development, mobile applications,
                 digital marketing, and IT consulting.
               </p>
               <p className="text-[#2B4066]/80 mb-8 leading-relaxed">
-                Today, we're proud to have served over 200 clients across 10+ countries, delivering innovative solutions
+                Today, we're proud to have served over 8 clients across 3+ countries, delivering innovative solutions
                 that drive business growth and digital transformation. Our team combines local talent with global
                 perspectives to create digital experiences that stand out in today's competitive landscape.
               </p>

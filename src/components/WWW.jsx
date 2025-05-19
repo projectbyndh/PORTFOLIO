@@ -10,6 +10,8 @@ import razes from "../assets/Razes.png"
 import samiksha from "../assets/samiksha.png"
 import surat from "../assets/surat.png"
 import epasaley from "../assets/epasaley.png"
+import trailblazers from "../assets/trailblazers.png"
+import appleday from "../assets/appleday.png"
 function PartnersSlider() {
   const settings = {
     dots: false,
@@ -55,6 +57,9 @@ const companies = [
   { name: "Samiksha", logo: samiksha },
   { name: "Surat", logo: surat },
   { name: "epasaley", logo: epasaley },
+  { name: "trailblazers", logo: trailblazers },
+  { name: "appleday", logo: appleday },
+
 ]
 
   return (
