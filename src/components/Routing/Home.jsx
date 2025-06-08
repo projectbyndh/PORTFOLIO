@@ -7,7 +7,7 @@ import React from "react";
 import Footer from "../Footer";
 import Refer from "../Refer";
 import AboutUs from "../Aboutus";
-
+import Blogsection from "../Blogsection";
 function Home() {
   return (
     <>
@@ -17,6 +17,7 @@ function Home() {
     <NepalMap/>
     <WWW />
     <Refer />
+    < Blogsection/>
     <Footer/>
     </>
   )

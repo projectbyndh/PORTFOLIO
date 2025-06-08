@@ -8,6 +8,7 @@ import Careers from "../src/components/Carrers";
 import EServicesEnhanced from "./components/EServices"; 
 import Dashboard from "./admin/Dashboard";
 import AdminBlogPanel from "./admin/Blogadmin";
+import BlogsDetails from "./components/BlogsDetails";
 function App() {
   return (
     <>
@@ -21,6 +22,8 @@ function App() {
     <Route path="/contact" element={<Contact />} />
     <Route path="/Careers" element={<Careers />} />
     <Route path="/E-Services" element={<EServicesEnhanced />} />
+    <Route path="/blog" element={<blogsection />} />
+    <Route path="/blogdetails" element={<BlogsDetails />} />
   </Routes>
 </BrowserRouter>
     </>
