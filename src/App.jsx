@@ -5,12 +5,16 @@ import AboutUs from "./components/Aboutus";
 import CaseStudies from "./components/Case";
 import Contact from "./components/Contact";
 import Careers from "../src/components/Carrers";
-import EServicesEnhanced from "./components/EServices";
+import EServicesEnhanced from "./components/EServices"; 
+import Dashboard from "./admin/Dashboard";
+import AdminBlogPanel from "./admin/Blogadmin";
 function App() {
   return (
     <>
 <BrowserRouter>
   <Routes>
+    <Route path="/admin/*" element={<Dashboard />} />
+    <Route path="/admin/add-blog" element={<AdminBlogPanel />} />
     <Route path="/" element={<Home />} />
     <Route path="/about" element={<AboutUs />} />
     <Route path="/casestudy" element={<CaseStudies />} />
