@@ -108,6 +108,8 @@ export default function BlogDetails() {
           </div>
         )}
       </div>
+      <Footer />
     </div>
+    
   );
 }
