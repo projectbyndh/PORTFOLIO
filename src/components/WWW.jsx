@@ -5,13 +5,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import React from "react"
 import { Link } from "react-router-dom"
-import numazu from "../assets/numazu.png"
-import razes from "../assets/Razes.png"
-import samiksha from "../assets/samiksha.png"
-import surat from "../assets/surat.png"
-import epasaley from "../assets/epasaley.png"
-import trailblazers from "../assets/trailblazers.png"
-import appleday from "../assets/appleday.png"
+import useCompanyStore from "../Store/CompanyStore";
 function PartnersSlider() {
   const settings = {
     dots: false,
@@ -51,16 +45,8 @@ function PartnersSlider() {
     ],
   }
 
-const companies = [
-  { name: "numaju", logo: numazu },
-  { name: "Razes Art", logo: razes },
-  { name: "Samiksha", logo: samiksha },
-  { name: "Surat", logo: surat },
-  { name: "epasaley", logo: epasaley },
-  { name: "trailblazers", logo: trailblazers },
-  { name: "appleday", logo: appleday },
 
-]
+  const companies = useCompanyStore((state) => state.companies);
 
   return (
     <div className="w-full bg-[#F5FAFF] py-16 md:py-24 relative overflow-hidden">

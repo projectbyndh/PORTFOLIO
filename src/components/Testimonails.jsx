@@ -217,7 +217,7 @@ export default function Testimonials() {
           <p className="text-lg text-[#2B4066]/80 mb-6 max-w-2xl mx-auto">
             Join our growing list of satisfied clients and experience the Nepal Digital Heights difference.
           </p>
-          <Link to='/contact' smooth={true} duration={500}>
+          <Link to='/contact'>
             <button className="px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
               Get Started Today
             </button>

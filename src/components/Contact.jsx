@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Mail, Phone, MapPin, Clock, Send, MessageSquare, User, Briefcase, FileText } from "lucide-react"
 import React from "react"
 import Footer from "./Footer"
+import useMessageStore from "../Store/MessageStore";
 export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
@@ -22,14 +23,21 @@ export default function Contact() {
     setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
+  const addMessage = useMessageStore((state) => state.addMessage);
   const handleSubmit = (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
-    // Simulate form submission
+    // Save message to store
+    const msg = {
+      ...formData,
+      date: new Date().toISOString(),
+    };
+    addMessage(msg);
+
     setTimeout(() => {
-      setIsSubmitting(false)
-      setSubmitted(true)
+      setIsSubmitting(false);
+      setSubmitted(true);
 
       // Reset form after showing success message
       setTimeout(() => {
@@ -40,11 +48,11 @@ export default function Contact() {
           company: "",
           service: "",
           message: "",
-        })
-        setSubmitted(false)
-      }, 5000)
-    }, 1500)
-  }
+        });
+        setSubmitted(false);
+      }, 5000);
+    }, 1500);
+  };
 
   const services = [
     "Web Development",

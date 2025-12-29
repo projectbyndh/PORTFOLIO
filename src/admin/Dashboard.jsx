@@ -1,5 +1,5 @@
-import Sidebar from '../admin/Sidebar';
 import React, { useEffect, useState } from 'react';
+import AdminLayout from './Layout';
 
 export default function Dashboard() {
   const [dashboardData, setDashboardData] = useState({
@@ -23,15 +23,13 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-b from-[#F5FAFF] to-[#EAF5FF]">
-      <Sidebar />
-      <main className="flex-1 p-8">
-        <div className="bg-white/50 backdrop-blur-sm rounded-xl shadow-lg p-6 min-h-[80vh]">
-          <h1 className="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-8">
+    <AdminLayout>
+      <div className="max-w-6xl mx-auto w-full">
+        <div className="bg-white/60 backdrop-blur-md rounded-2xl shadow-2xl p-10 min-h-[80vh] border border-[#4A8EBC]/20">
+          <h1 className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-10 text-center tracking-tight">
             Admin Dashboard
           </h1>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <DashboardCard title="Total Users" value={dashboardData.totalUsers} />
             <DashboardCard title="Today's Visits" value={dashboardData.todaysVisits} />
             <DashboardCard title="Total Blogs" value={dashboardData.totalBlogs} />
@@ -39,16 +37,17 @@ export default function Dashboard() {
             <DashboardCard title="Your Dashboard Visits" value={dashboardData.dashboardVisits} />
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </AdminLayout>
   );
 }
 
 function DashboardCard({ title, value }) {
   return (
-    <div className="bg-white/80 backdrop-blur-md border border-[#4A8EBC]/20 shadow-md p-6 rounded-xl text-center">
-      <h2 className="text-lg font-semibold text-[#1A2A44]/80 mb-2">{title}</h2>
-      <p className="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
+    <div className="bg-gradient-to-br from-[#F5FAFF] via-[#EAF5FF] to-[#D8EBFF] border border-[#4A8EBC]/30 shadow-xl p-8 rounded-2xl text-center flex flex-col items-center justify-center relative overflow-hidden">
+      <div className="absolute -top-6 -left-6 w-16 h-16 rounded-full bg-[#4A8EBC]/10 blur-2xl opacity-60 pointer-events-none z-0"></div>
+      <h2 className="text-lg font-bold text-[#1A2A44] mb-2 z-10">{title}</h2>
+      <p className="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] z-10">
         {value}
       </p>
     </div>

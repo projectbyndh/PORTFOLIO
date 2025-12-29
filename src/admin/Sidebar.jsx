@@ -15,6 +15,9 @@ export default function Sidebar() {
 
   const menu = [
     { name: 'Add Blog', path: '/admin/add-blog', icon: <FiEdit /> },
+    { name: 'See Messages', path: '/admin/messages', icon: <FiBriefcase /> },
+    { name: 'Manage Companies', path: '/admin/companies', icon: <FiHome /> },
+    { name: 'Manage Courses', path: '/admin/courses', icon: <FiBriefcase /> },
   ];
 
   return (

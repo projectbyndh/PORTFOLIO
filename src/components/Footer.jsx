@@ -149,20 +149,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0); opacity: 0.7; }
-          50% { transform: translateY(-15px); opacity: 0.4; }
-        }
-        .animate-float {
-          animation: float 5s infinite ease-in-out;
-        }
-        .delay-1000 { animation-delay: 1s; }
-        .delay-2000 { animation-delay: 2s; }
-        .font-sans {
-          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        }
-      `}</style>
+      {/* Custom styles removed. If you need these, add them to your global CSS file. */}
     </footer>
   );
 };

@@ -8,19 +8,22 @@ import Footer from "../Footer";
 import Refer from "../Refer";
 import AboutUs from "../Aboutus";
 import Blogsection from "../Blogsection";
+import CompaniesSection from "../CompaniesSection";
+
+
 function Home() {
   return (
     <>
-    <First />
-    <Testimonails />
-    <Services />
-    <NepalMap/>
-    <WWW />
-    <Refer />
-    < Blogsection/>
-    <Footer/>
+      <First />
+      <Testimonails />
+      <Services />
+      <CompaniesSection />
+      <NepalMap />
+      <Refer />
+      <Blogsection />
+      <Footer />
     </>
-  )
+  );
 }
 
 export default Home

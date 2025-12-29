@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useBlogStore from '../Store/BlogStore';
-import Sidebar from './Sidebar';
+import AdminLayout from './Layout';
 
 const AdminPanel = () => {
   const { blogs, selectedBlog, loading, error, fetchBlogs, fetchBlogById, addBlog, updateBlog, deleteBlog } = useBlogStore();
@@ -47,12 +47,8 @@ const AdminPanel = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-gradient-to-b from-[#F5FAFF] to-[#EAF5FF]">
-      
-      {/* Sidebar included here */}
-      <Sidebar />
-
-      <main className="flex-1 p-8 relative overflow-hidden">
+    <AdminLayout>
+      <div className="relative overflow-hidden min-h-[80vh]">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/10 animate-pulse-slow"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-[#3B5488]/10 animate-pulse-slow"></div>
@@ -66,22 +62,22 @@ const AdminPanel = () => {
         </div>
 
         <div className="max-w-7xl mx-auto p-6 py-16 relative z-10">
-          <h1 className="text-5xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] text-center mb-12 animate-fade-in">
+          <h1 className="text-5xl md:text-6xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] text-center mb-12 animate-fade-in tracking-tight">
             Blog Admin Panel
           </h1>
 
           {error && (
-            <p className="text-red-500 text-lg bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow mb-6 text-center">
+            <p className="text-red-500 text-lg bg-white/60 backdrop-blur-md p-4 rounded-xl shadow mb-6 text-center">
               {error}
             </p>
           )}
           {loading && (
-            <p className="text-[#4A8EBC] text-lg bg-white/50 backdrop-blur-sm p-4 rounded-lg shadow mb-6 text-center animate-pulse">
+            <p className="text-[#4A8EBC] text-lg bg-white/60 backdrop-blur-md p-4 rounded-xl shadow mb-6 text-center animate-pulse">
               Loading...
             </p>
           )}
 
-          <div className="mb-12 p-6 bg-white/50 backdrop-blur-sm rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div className="mb-12 p-8 bg-white/60 backdrop-blur-md rounded-2xl shadow-2xl hover:shadow-xl transition-shadow duration-300 border border-[#4A8EBC]/20">
             <h2 className="text-2xl font-semibold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
               {editId ? 'Edit Blog' : 'Add New Blog'}
             </h2>
@@ -189,8 +185,8 @@ const AdminPanel = () => {
             ))}
           </div>
         </div>
-      </main>
-    </div>
+      </div>
+    </AdminLayout>
   );
 };
 

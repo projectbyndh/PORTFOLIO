@@ -92,48 +92,7 @@ export default function EServicesEnhanced() {
 
   return (
     <>
-      <style jsx global>{`
-        @keyframes fadeInDown {
-          from {
-            opacity: 0;
-            transform: translateY(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-fade-in-down {
-          animation: fadeInDown 0.8s ease-out;
-        }
-
-        .animate-fade-in-up {
-          animation: fadeInUp 0.8s ease-out;
-        }
-
-        .animate-fade-in {
-          animation: fadeInUp 0.8s ease-out;
-        }
-
-        /* Focus styles for accessibility */
-        a:focus,
-        button:focus {
-          outline: 2px solid #4A8EBC;
-          outline-offset: 2px;
-        }
-      `}</style>
+      {/* Custom styles removed. If you need these, add them to your global CSS file. */}
 
       <div className="bg-[#F5FAFF] min-h-screen font-sans">
         {/* Hero Section */}
