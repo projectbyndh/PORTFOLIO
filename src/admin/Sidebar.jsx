@@ -18,6 +18,8 @@ export default function Sidebar() {
     { name: 'See Messages', path: '/admin/messages', icon: <FiBriefcase /> },
     { name: 'Manage Companies', path: '/admin/companies', icon: <FiHome /> },
     { name: 'Manage Courses', path: '/admin/courses', icon: <FiBriefcase /> },
+    { name: 'Manage Careers', path: '/admin/careers', icon: <FiBriefcase /> },
+    { name: 'Manage Team', path: '/admin/team', icon: <FiHome /> },
   ];
 
   return (

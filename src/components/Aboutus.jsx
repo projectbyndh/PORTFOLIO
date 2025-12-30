@@ -1,3 +1,4 @@
+// Team members will be loaded only from localStorage
 "use client"
 import Footer from "../components/Footer"
 
@@ -5,8 +6,36 @@ import { useState, useEffect } from "react"
 import { Users, Award, Target, Clock, ArrowRight } from "lucide-react"
 import React from "react"
 
+import PageSidebar from "./PageSidebar";
+
 export default function AboutUs() {
   const [animatedItems, setAnimatedItems] = useState([])
+  const [teamMembers, setTeamMembers] = useState([]);
+
+  useEffect(() => {
+    const updateTeam = () => {
+      const stored = localStorage.getItem("teamMembers");
+      let members = [];
+      if (stored) {
+        try {
+          const parsed = JSON.parse(stored);
+          if (Array.isArray(parsed)) {
+            members = parsed;
+          }
+        } catch {}
+      }
+      setTeamMembers(members);
+    };
+    updateTeam();
+    window.addEventListener("storage", updateTeam);
+    window.addEventListener("teamMembersUpdated", updateTeam);
+    const interval = setInterval(updateTeam, 1000);
+    return () => {
+      window.removeEventListener("storage", updateTeam);
+      window.removeEventListener("teamMembersUpdated", updateTeam);
+      clearInterval(interval);
+    };
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -32,24 +61,24 @@ export default function AboutUs() {
 
   const isAnimated = (id) => animatedItems.includes(id)
 
-
   return (
-    <div className="w-full bg-[#F5FAFF] relative overflow-hidden">
-      {/* Decorative elements with low opacity */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Circles */}
-        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow"></div>
-        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow"></div>
+    <div className="w-full min-h-screen bg-[#F5FAFF] flex">
+      <main className="flex-1 relative overflow-hidden">
+        {/* Decorative elements with low opacity */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {/* Circles */}
+          <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow"></div>
+          <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow"></div>
 
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
-            backgroundSize: "30px 30px",
-          }}
-        ></div>
-      </div>
+          {/* Grid pattern */}
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
+              backgroundSize: "30px 30px",
+            }}
+          ></div>
+        </div>
 
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 overflow-hidden">
@@ -109,6 +138,30 @@ export default function AboutUs() {
                 perspectives to create digital experiences that stand out in today's competitive landscape.
               </p>
    
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission & Vision Section */}
+      <section className="py-16 bg-gradient-to-br from-[#E0F0FF]/60 to-[#F5FAFF]/80 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div className="animate-on-scroll bg-white/80 rounded-2xl shadow-xl border border-[#4A8EBC]/10 p-10 flex flex-col items-center md:items-start">
+              <h2 className="text-3xl font-bold text-[#1A2A44] mb-4">Our Mission</h2>
+              <p className="text-[#2B4066]/80 mb-4 text-lg">To empower businesses and individuals by delivering innovative, reliable, and accessible digital solutions that drive growth and create lasting impact.</p>
+              <div className="flex items-center gap-3 mt-2">
+                <Target className="h-8 w-8 text-[#4A8EBC]" />
+                <span className="font-semibold text-[#4A8EBC]">Empower. Innovate. Impact.</span>
+              </div>
+            </div>
+            <div className="animate-on-scroll bg-white/80 rounded-2xl shadow-xl border border-[#4A8EBC]/10 p-10 flex flex-col items-center md:items-start">
+              <h2 className="text-3xl font-bold text-[#1A2A44] mb-4">Our Vision</h2>
+              <p className="text-[#2B4066]/80 mb-4 text-lg">To be Nepal’s leading digital agency, recognized globally for transforming ideas into digital realities and setting new standards in technology and creativity.</p>
+              <div className="flex items-center gap-3 mt-2">
+                <Award className="h-8 w-8 text-[#4A8EBC]" />
+                <span className="font-semibold text-[#4A8EBC]">Lead. Inspire. Transform.</span>
+              </div>
             </div>
           </div>
         </div>
@@ -174,45 +227,56 @@ export default function AboutUs() {
             <div className="inline-block relative">
               <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
               <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-4">
-                Meet Our Leadership
+                Meet Our Team
               </h2>
             </div>
             <p className="text-[#2B4066]/80 max-w-2xl mx-auto">
-              The talented individuals who drive our vision and lead our teams to success.
+              {`We are {teamMembers.length} strong! The talented individuals who drive our vision and lead our teams to success.`}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div
-                key={member.name}
-                id={`about-${index + 7}`}
-                className={`animate-on-scroll bg-white/70 backdrop-blur-sm rounded-xl overflow-hidden shadow-md border border-[#4A8EBC]/10 hover:shadow-lg transition-all duration-300 group ${
-                  isAnimated(index + 7) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
-              >
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={member.image || "/placeholder.svg?height=300&width=300"}
-                    alt={member.name}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    onError={(e) => {
-                      const target = e.target 
-                      target.src = "/placeholder.svg?height=300&width=300"
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A2A44]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-[#1A2A44] group-hover:text-[#4A8EBC] transition-colors duration-300">
-                    {member.name}
-                  </h3>
-                  <p className="text-[#4A8EBC] font-medium mb-3">{member.position}</p>
-                  <p className="text-[#2B4066]/80 text-sm">{member.bio}</p>
-                </div>
+            {teamMembers.length === 0 ? (
+              <div className="col-span-full text-center text-gray-500 py-12 text-lg">
+                No team members found. Please add team members from the admin panel.
               </div>
-            ))}
+            ) : (
+              teamMembers.map((member, index) => (
+                <div
+                  key={member.name}
+                  id={`about-${index + 7}`}
+                  className={`animate-on-scroll bg-white/70 backdrop-blur-sm rounded-xl overflow-hidden shadow-md border border-[#4A8EBC]/10 hover:shadow-lg transition-all duration-300 group ${
+                    isAnimated(index + 7) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                  }`}
+                  style={{ transitionDelay: `${index * 100}ms` }}
+                >
+                  <div className="relative h-64 overflow-hidden">
+                    <img
+                      src={member.image || "/placeholder.svg?height=300&width=300"}
+                      alt={member.name}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      onError={(e) => {
+                        const target = e.target 
+                        target.src = "/placeholder.svg?height=300&width=300"
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A2A44]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-[#1A2A44] group-hover:text-[#4A8EBC] transition-colors duration-300">
+                      {member.name}
+                    </h3>
+                    <p className="text-[#4A8EBC] font-medium mb-3">{member.position}</p>
+                    <p className="text-[#2B4066]/80 text-sm">{member.bio}</p>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
+          {/* Debug output for troubleshooting */}
+          <div style={{marginTop: 32, background: '#f9fafb', color: '#1A2A44', padding: 16, borderRadius: 8}}>
+            <strong>Debug: Raw teamMembers data from localStorage:</strong>
+            <pre style={{fontSize: 12, overflowX: 'auto'}}>{JSON.stringify(teamMembers, null, 2)}</pre>
           </div>
 
           <div className="text-center mt-12">
@@ -235,9 +299,9 @@ export default function AboutUs() {
           >
             {[
               { value: "1+", label: "Years of Experience" },
-              { value: "20+", label: "Clients Worldwide" },
-              { value: "20+", label: "Projects Delivered" },
-              { value: "10+", label: "Team Members" },
+              { value: "3+", label: "Clients Worldwide" },
+              { value: "5+", label: "Projects Delivered" },
+              { value: "5+", label: "Team Members" },
             ].map((stat) => (
               <div
                 key={stat.label}
@@ -298,6 +362,7 @@ export default function AboutUs() {
         </div>
       </section>
       <Footer />
+      </main>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 "use client";
+import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Globe, Facebook, Instagram, Twitter, Linkedin, ChevronRight, Send } from "lucide-react";
 import React from "react";
 
@@ -23,6 +24,39 @@ const Footer = () => {
       <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-[#4A8EBC] to-[#2A4B7C]"></div>
 
       <div className="container mx-auto relative grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-2 lg:grid-cols-4 z-10">
+              {/* Team Members in Footer */}
+              <div className="col-span-full mt-12">
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-lg font-bold text-white">Our Team</h3>
+                  <Link to="/our-teams" className="text-[#4A8EBC] text-sm font-semibold hover:underline">Meet Our Teams</Link>
+                </div>
+                <div id="footer-team-members" className="flex flex-wrap gap-4 justify-center">
+                  {(() => {
+                    let members = [];
+                    try {
+                      const stored = typeof window !== 'undefined' ? localStorage.getItem("teamMembers") : null;
+                      if (stored) {
+                        const parsed = JSON.parse(stored);
+                        if (Array.isArray(parsed)) members = parsed;
+                      }
+                    } catch {}
+                    if (members.length === 0) {
+                      return <span className="text-gray-300 text-sm">No team members yet.</span>;
+                    }
+                    return members.slice(0, 6).map((member, idx) => (
+                      <div key={member.name + idx} className="flex flex-col items-center w-20">
+                        <img
+                          src={member.image || "/placeholder.svg?height=60&width=60"}
+                          alt={member.name}
+                          className="w-12 h-12 rounded-full object-cover border mb-1"
+                          onError={e => { e.target.src = "/placeholder.svg?height=60&width=60"; }}
+                        />
+                        <span className="text-xs text-white text-center truncate w-full">{member.name}</span>
+                      </div>
+                    ));
+                  })()}
+                </div>
+              </div>
         {/* Company Info */}
         <div className="space-y-5">
           <div className="relative inline-block">
@@ -63,16 +97,17 @@ const Footer = () => {
             </h3>
           </div>
           <ul className="space-y-3">
-            {[
-              { name: "About Us", url: "/about" },
+            {[ 
+              { name: "About Us", url: "/about-us" },
               { name: "E-Services", url: "/E-Services" },
-              { name: "Case Studies", url: "/casestudy" },
+              { name: "Case Studies", url: "/case-studies" },
               { name: "Careers", url: "/Careers" },
               { name: "Contact", url: "/contact" },
+              { name: "Meet Our Teams", url: "/our-teams" },
             ].map((link) => (
               <li key={link.name}>
-                <a
-                  href={link.url}
+                <Link
+                  to={link.url}
                   className="text-gray-200 hover:text-white flex items-center group transition-all duration-200"
                   aria-label={`Navigate to ${link.name}`}
                 >
@@ -80,7 +115,7 @@ const Footer = () => {
                     <ChevronRight size={12} className="opacity-0 group-hover:opacity-100 transition-all duration-200" />
                   </div>
                   {link.name}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

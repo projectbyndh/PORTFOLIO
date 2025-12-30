@@ -15,11 +15,12 @@ function Home() {
   return (
     <>
       <First />
-      <Testimonails />
       <Services />
       <CompaniesSection />
       <NepalMap />
       <Refer />
+            <Testimonails />
+
       <Blogsection />
       <Footer />
     </>
