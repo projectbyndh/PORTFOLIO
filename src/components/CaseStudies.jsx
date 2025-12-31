@@ -1,135 +1,218 @@
 "use client"
-import React from 'react'
-import { useEffect, useRef } from "react"
-import Footer from '../components/Footer'  // Adjust this path to your actual Footer component
+import { useState } from "react"
+import { ArrowRight, Sparkles, Code2, Smartphone, TrendingUp, GraduationCap, Heart, CheckCircle2, Globe, Server } from "lucide-react"
+import React from "react"
+const categories = [
+  "All",
+  "Web Applications",
+  "Mobile Applications",
+  "SaaS & ERP",
+  "Digital Marketing",
+  "Education & Institutions",
+  "Healthcare",
+]
 
-const PortfolioPage = () => {
-  const containerRef = useRef(null)
+const projects = [
+  {
+    name: "Numazu Shopping",
+    category: "Web Applications",
+    categories: ["Web Applications", "Mobile Applications"],
+    techStack: [".NET", "React", "Flutter"],
+    description: "A cross-platform shopping ecosystem with high-performance backend, modern web UI, and seamless mobile commerce experience.",
+    image: "https://cdn.dribbble.com/userupload/16072864/file/original-75fa6cf2feb9be53365f225615c3aecd.png?resize=1200x900", // Professional food delivery admin/dashboard
+  },
+  {
+    name: "Epasaley",
+    category: "SaaS & ERP",
+    categories: ["Web Applications", "SaaS & ERP"],
+    techStack: ["Node.js", "React"],
+    description: "Complete e-commerce platform featuring scalable architecture, multi-vendor support, and powerful admin dashboards.",
+    image: "https://nextadmin.co/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ferhsp57d%2Fproduction%2F310be6d36cb70aff4b4ad12e7c0eb17c777a1e77-1920x1080.png%3Ffit%3Dmax%26auto%3Dformat&w=3840&q=75", // Clean modern e-commerce dashboard
+  },
+  {
+    name: "Student Admission Boost Campaign",
+    client: "Siddhartha School & Siddhartha International College",
+    category: "Digital Marketing",
+    categories: ["Digital Marketing", "Education & Institutions"],
+    techStack: ["Digital Marketing", "Social Media", "Analytics"],
+    description: "Comprehensive digital campaigns driving admission growth through targeted ads, event digitization, and funnel optimization.",
+    image: "https://s3-alpha.figma.com/hub/file/2263836765020777372/7ec97126-9927-404f-962d-5cdfb3c584e2-cover.png", // Modern school management dashboard
+    services: ["Social Media Campaigns", "Event Digitization", "Admission Funnel Optimization"],
+  },
+  {
+    name: "Trailblazers",
+    category: "Digital Marketing",
+    categories: ["Digital Marketing"],
+    techStack: ["Google Ads", "Meta Ads", "Analytics"],
+    description: "High-impact adventure travel marketing campaigns with creative content, precise targeting, and measurable ROI.",
+    image: "https://www.geckoboard.com/uploads/Digital-marketing-campaign-dashboard.png", // Professional marketing analytics dashboard
+  },
+  {
+    name: "Resunga Polyclinic",
+    category: "Healthcare",
+    categories: ["Healthcare", "Web Applications"],
+    techStack: ["Backend Systems", "Digital Infrastructure"],
+    description: "Modern healthcare management system with patient portals, appointment scheduling, and secure data handling.",
+    image: "https://cdn.dribbble.com/userupload/15369173/file/original-d9d779abf13c9cb42abf092076d035e4.png?resize=1200x900", // Clinic management dashboard
+    services: ["Clinic Management System", "Patient Portal", "Digital Infrastructure"],
+  },
+  {
+    name: "ERP & RMS Solutions",
+    category: "SaaS & ERP",
+    categories: ["SaaS & ERP"],
+    techStack: ["Custom ERP", "RMS", "Cloud Infrastructure"],
+    description: "Enterprise-grade ERP and Restaurant Management Systems for inventory, billing, staff scheduling, and real-time analytics.",
+    image: "https://s3-alpha.figma.com/hub/file/5053856392/9c2cba0d-d322-4a28-b386-d7e915583298-cover.png", // Modern restaurant admin dashboard
+    services: ["Inventory Management", "POS Integration", "Analytics & Reporting"],
+  },
+  {
+    name: "Selection Clothing",
+    category: "Web Applications",
+    categories: ["Digital Marketing", "Web Applications"],
+    techStack: ["Next.js", "Node.js", "MongoDB"],
+    description: "Fashion-forward e-commerce platform with advanced filtering, personalized recommendations, and seamless checkout.",
+    image: "https://yi-files.yellowimages.com/products/1816000/1816979/2925235-full.jpg", // Fashion e-commerce dashboard mockup
+    services: ["Product Catalog", "Payment Integration", "Inventory Sync"],
+  },
+]
 
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
+export default function ProjectsShowcase() {
+  const [activeCategory, setActiveCategory] = useState("All")
 
-    const icons = container.querySelectorAll(".tech-icon")
-    const radius = 220
-    const totalIcons = icons.length
+  const filteredProjects = activeCategory === "All"
+    ? projects
+    : projects.filter((project) => project.categories.includes(activeCategory))
 
-    let rotation = 0
-    const animate = () => {
-      rotation += 0.005
-
-      icons.forEach((icon, index) => {
-        const angle = rotation + (index / totalIcons) * 2 * Math.PI
-        const x = radius * Math.cos(angle)
-        const y = radius * Math.sin(angle)
-        icon.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`
-      })
-
-      requestAnimationFrame(animate)
+  const getCategoryIcon = (category) => {
+    switch (category) {
+      case "Web Applications": return <Globe className="h-4 w-4" />
+      case "Mobile Applications": return <Smartphone className="h-4 w-4" />
+      case "SaaS & ERP": return <Server className="h-4 w-4" />
+      case "Digital Marketing": return <TrendingUp className="h-4 w-4" />
+      case "Education & Institutions": return <GraduationCap className="h-4 w-4" />
+      case "Healthcare": return <Heart className="h-4 w-4" />
+      default: return <Sparkles className="h-4 w-4" />
     }
-
-    animate()
-
-    return () => cancelAnimationFrame(animate)
-  }, [])
+  }
 
   return (
     <div className="bg-[#F5FAFF] min-h-screen font-sans overflow-hidden">
-      {/* Featured Project - Numazu Halal Food */}
+      {/* Hero Section - Adapted from First component style */}
+      <section className="bg-gradient-to-b from-[#F5FAFF] to-[#EAF5FF] text-[#1A2A44] relative py-20 lg:py-32">
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-10 left-10 w-80 h-80 rounded-full bg-[#4A8EBC]/10 blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-[#3B5488]/10 blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] via-[#4A8EBC] to-[#3B5488] mb-8">
+            Our Projects
+          </h1>
+          <p className="text-xl md:text-2xl text-[#2B4066]/90 max-w-4xl mx-auto leading-relaxed">
+            <span className="font-bold text-[#4A8EBC]">Innovate. Scale. Succeed.</span> — Showcasing world-class solutions we've built for clients across industries.
+          </p>
+        </div>
+      </section>
+
+      {/* Category Filters - Soft blue style */}
+      <section className="sticky top-0 z-20 bg-[#F5FAFF]/90 backdrop-blur-md border-b border-[#4A8EBC]/20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex gap-4 overflow-x-auto py-6 scrollbar-hide">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => setActiveCategory(category)}
+                className={`flex items-center gap-2 whitespace-nowrap rounded-full px-6 py-3 text-sm font-semibold transition-all ${
+                  activeCategory === category
+                    ? "bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-lg"
+                    : "bg-white/70 text-[#3B5488] hover:bg-white hover:shadow-md"
+                }`}
+              >
+                {getCategoryIcon(category)}
+                <span>{category}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Grid */}
       <section className="py-20 px-6">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-[#1A2A44]">Featured Project</h2>
-          <div className="grid md:grid-cols-2 gap-12 items-center bg-white/70 backdrop-blur-md rounded-3xl shadow-2xl p-10 md:p-16 hover:shadow-[#4A8EBC]/40 transition-all duration-500">
-            <div className="order-2 md:order-1">
-              <h3 className="text-3xl font-bold mb-6 text-[#3B5488]">Numazu Halal Food</h3>
-              <p className="text-lg mb-6 text-[#2B4066]/90">
-                <strong>Scope:</strong> Custom Web Development & Cross-Platform Mobile Application
-              </p>
-              <div className="space-y-4 mb-8">
-                <p><strong>Tech Stack:</strong></p>
-                <ul className="grid grid-cols-2 gap-4 text-[#2B4066]/90">
-                  <li className="flex items-center gap-2"><span className="w-2 h-2 bg-[#4A8EBC] rounded-full"></span> React.js Frontend</li>
-                  <li className="flex items-center gap-2"><span className="w-2 h-2 bg-[#4A8EBC] rounded-full"></span> Flutter Mobile (iOS & Android)</li>
-                  <li className="flex items-center gap-2"><span className="w-2 h-2 bg-[#4A8EBC] rounded-full"></span> .NET Backend & API</li>
-                  <li className="flex items-center gap-2"><span className="w-2 h-2 bg-[#4A8EBC] rounded-full"></span> MySQL Database</li>
-                </ul>
+          <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+            {filteredProjects.map((project, index) => (
+              <div
+                key={project.name}
+                className="group relative bg-white/70 backdrop-blur-sm rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl hover:-translate-y-4 transition-all duration-500"
+                style={{ animationDelay: `${index * 150}ms` }}
+              >
+                <div className="relative aspect-video overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A2A44]/70 to-transparent opacity-60 group-hover:opacity-70 transition-opacity" />
+                  <div className="absolute top-4 left-4">
+                    <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-[#3B5488] shadow-md">
+                      {getCategoryIcon(project.category)}
+                      {project.category}
+                    </span>
+                  </div>
+                </div>
+                <div className="p-8">
+                  <h3 className="text-2xl font-bold text-[#1A2A44] group-hover:text-[#4A8EBC] transition-colors">
+                    {project.name}
+                  </h3>
+                  {project.client && (
+                    <p className="mt-2 text-[#3B5488] font-medium">{project.client}</p>
+                  )}
+                  <p className="mt-4 text-[#2B4066]/90 leading-relaxed">{project.description}</p>
+                  {project.services && (
+                    <div className="mt-6 space-y-2">
+                      {project.services.map((service) => (
+                        <div key={service} className="flex items-center gap-3">
+                          <CheckCircle2 className="h-5 w-5 text-[#4A8EBC]" />
+                          <span className="text-[#2B4066]/90">{service}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    {project.techStack.map((tech) => (
+                      <span
+                        key={tech}
+                        className="rounded-full bg-[#E0F0FF] px-4 py-2 text-sm font-medium text-[#3B5488]"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <button className="mt-8 inline-flex items-center gap-2 text-[#4A8EBC] font-semibold hover:gap-4 transition-all">
+                    View Details <ArrowRight className="h-4 w-4" />
+                  </button>
+                </div>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
               </div>
-              <p className="text-lg text-[#2B4066]/90">
-                <strong>Impact:</strong> Bridged physical retail with seamless digital access. .NET backend ensured secure, scalable handling of peak traffic while maintaining data integrity across platforms.
-              </p>
-            </div>
-            <div className="order-1 md:order-2 rounded-2xl overflow-hidden shadow-2xl">
-              <img
-                src="https://code.market/imgproxy/2023/06/1685761324_800_Food-Delivery-Flutter-iOSAndroid-App-Template.png"
-                alt="Numazu Halal Food App Mockups"
-                className="w-full h-full object-cover"
-              />
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Additional Projects Grid */}
-      <section className="py-20 px-6 bg-gradient-to-b from-[#EAF5FF] to-[#F5FAFF]">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 text-[#1A2A44]">More Projects</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-            {/* UrbanStyle E-Commerce Platform */}
-            <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl overflow-hidden hover:-translate-y-6 hover:shadow-2xl hover:shadow-[#4A8EBC]/40 transition-all duration-500">
-              <div className="overflow-hidden">
-                <img
-                  src="https://flatlogic.com/blog/wp-content/uploads/2019/09/Screen-Shot-2019-09-17-at-5.11.27-PM-1024x578.png"
-                  alt="UrbanStyle E-Commerce Dashboard"
-                  className="w-full h-64 object-cover"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-4 text-[#3B5488]">UrbanStyle E-Commerce Platform</h3>
-                <p className="text-[#2B4066]/90 mb-4">Full-stack online shopping platform with admin dashboard, product management, payments, and user authentication.</p>
-                <p className="text-sm text-[#4A8EBC] font-medium">React • Node.js • Express • MongoDB</p>
-              </div>
-            </div>
-
-            {/* Proprietary SaaS Inventory System */}
-            <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl overflow-hidden hover:-translate-y-6 hover:shadow-2xl hover:shadow-[#4A8EBC]/40 transition-all duration-500">
-              <div className="overflow-hidden">
-                <img
-                  src="https://cdn3.f-cdn.com//files/download/234270216/Screenshot%202024-10-14%20202706.png?width=780&height=438&fit=crop"
-                  alt="Inventory Management Dashboard"
-                  className="w-full h-64 object-cover"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-4 text-[#3B5488]">Proprietary SaaS Inventory System</h3>
-                <p className="text-[#2B4066]/90 mb-4">Internal tool for real-time inventory management with third-party integrations.</p>
-                <p className="text-sm text-[#4A8EBC] font-medium">.NET • React • MySQL</p>
-              </div>
-            </div>
-
-            {/* Hospitality Sector Integrations */}
-            <div className="bg-white/80 backdrop-blur-md rounded-3xl shadow-xl overflow-hidden hover:-translate-y-6 hover:shadow-2xl hover:shadow-[#4A8EBC]/40 transition-all duration-500">
-              <div className="overflow-hidden">
-                <img
-                  src="https://i.ytimg.com/vi/yCWc91uwWPg/maxresdefault.jpg"
-                  alt="Hospitality Booking Dashboard"
-                  className="w-full h-64 object-cover"
-                />
-              </div>
-              <div className="p-8">
-                <h3 className="text-2xl font-bold mb-4 text-[#3B5488]">Hospitality Sector Integrations</h3>
-                <p className="text-[#2B4066]/90 mb-4">Custom API integrations for booking and management systems.</p>
-                <p className="text-sm text-[#4A8EBC] font-medium">Flutter • .NET • REST APIs</p>
-              </div>
-            </div>
-
-
-          </div>
+      {/* CTA - Matching First style */}
+      <section className="bg-gradient-to-r from-[#E0F0FF]/80 to-[#D8EBFF]/80 px-6 py-20">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1A2A44] mb-6">
+            Ready to Start Your Project?
+          </h2>
+          <p className="text-xl text-[#2B4066]/90 mb-10">
+            Let's bring your vision to life with innovative digital solutions.
+          </p>
+          <button className="bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold py-5 px-12 rounded-full text-lg shadow-2xl hover:shadow-[#4A8EBC]/50 hover:scale-105 transition-all duration-300">
+            Get in Touch <ArrowRight className="inline h-5 w-5 ml-2" />
+          </button>
         </div>
       </section>
-
-      <Footer />
     </div>
   )
 }
-
-export default PortfolioPage

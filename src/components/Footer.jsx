@@ -25,7 +25,7 @@ const Footer = () => {
 
       <div className="container mx-auto relative grid grid-cols-1 gap-10 sm:gap-12 md:grid-cols-2 lg:grid-cols-4 z-10">
               {/* Team Members in Footer */}
-              <div className="col-span-full mt-12">
+              {/* <div className="col-span-full mt-12">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-bold text-white">Our Team</h3>
                   <Link to="/our-teams" className="text-[#4A8EBC] text-sm font-semibold hover:underline">Meet Our Teams</Link>
@@ -168,14 +168,14 @@ const Footer = () => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="container mx-auto mt-12 pt-5 border-t border-[#4A8EBC]/20 flex flex-col sm:flex-row justify-between items-center text-gray-200 text-sm relative z-10">
-        <div>© {currentYear} Nepal Digital Heights. All rights reserved.</div>
-        <div className="mt-3 sm:mt-0 flex space-x-4">
+      <div className="container mx-auto mt-12 pt-5 border-t border-[#4A8EBC]/20 flex flex-col gap-4 sm:flex-row justify-between items-center text-gray-200 text-sm relative z-10">
+        <div className="w-full text-center sm:text-left">© {currentYear} Nepal Digital Heights. All rights reserved.</div>
+        <div className="w-full flex flex-col sm:flex-row gap-2 sm:gap-4 justify-center sm:justify-end items-center mt-3 sm:mt-0">
           {["Privacy Policy", "Terms of Service", "Sitemap"].map((link) => (
             <a
               key={link}
               href="#"
-              className="text-gray-200 hover:text-[#4A8EBC] transition-colors duration-200"
+              className="text-gray-200 hover:text-[#4A8EBC] transition-colors duration-200 px-4 py-2 rounded-lg text-base"
               aria-label={link}
             >
               {link}

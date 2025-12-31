@@ -156,12 +156,7 @@ export default function EServicesEnhanced() {
               </div>
             </div>
 
-            <a
-              href="#services"
-              className="bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold py-3 px-8 rounded-full inline-flex items-center gap-2 hover:shadow-lg hover:scale-105 transition-all duration-300"
-            >
-              Explore Services <ArrowRight className="w-4 h-4" />
-            </a>
+  
           </div>
         </section>
 
@@ -250,13 +245,13 @@ export default function EServicesEnhanced() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="#contact"
+                href="/contact"
                 className="bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold py-3 px-8 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 Contact Us Today
               </a>
               <a
-                href="#portfolio"
+                href="/case-studies"
                 className="border-2 border-[#4A8EBC] text-[#3B5488] font-semibold py-3 px-8 rounded-full hover:bg-[#4A8EBC]/20 hover:scale-105 transition-all duration-300"
               >
                 View Portfolio

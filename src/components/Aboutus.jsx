@@ -81,9 +81,9 @@ export default function AboutUs() {
         </div>
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 overflow-hidden">
+      <section className="relative pt-20 pb-10 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <div className="inline-block relative">
               <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
               <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow"></div>
@@ -96,7 +96,7 @@ export default function AboutUs() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mt-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mt-10">
             <div
               id="about-1"
               className={`animate-on-scroll transition-all duration-700 ${
@@ -110,7 +110,7 @@ export default function AboutUs() {
                   <img
                     src="https://static.vecteezy.com/system/resources/previews/007/932/867/non_2x/about-us-button-about-us-text-template-for-website-about-us-icon-flat-style-vector.jpg"
                     alt="Nepal Digital Heights Office"
-                    className="w-full h-auto object-cover"
+                    className="w-full h-48 sm:h-64 md:h-auto object-cover rounded-xl"
                   />
                   <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#1A2A44]/80 to-transparent p-6">
                     <p className="text-white text-sm">Our modern office in Butwal, Nepal</p>
@@ -125,14 +125,14 @@ export default function AboutUs() {
                 isAnimated(2) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
               }`}
             >
-              <h2 className="text-3xl font-bold text-[#1A2A44] mb-6">Our Story</h2>
-              <p className="text-[#2B4066]/80 mb-6 leading-relaxed">
-                Founded in 2025, Nepal Digital Heights began with a simple mission: to provide world-class digital
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-4">Our Story</h2>
+              <p className="text-[#2B4066]/80 mb-4 leading-relaxed text-base sm:text-lg">
+                Founded in 2024, Nepal Digital Heights began with a simple mission: to provide world-class digital
                 solutions from Nepal to the global market. What started as a small team of passionate developers has
                 grown into a comprehensive digital agency with expertise across web development, mobile applications,
                 digital marketing, and IT consulting.
               </p>
-              <p className="text-[#2B4066]/80 mb-8 leading-relaxed">
+              <p className="text-[#2B4066]/80 mb-6 leading-relaxed text-base sm:text-lg">
                 Today, we're proud to have served over 8 clients across 3+ countries, delivering innovative solutions
                 that drive business growth and digital transformation. Our team combines local talent with global
                 perspectives to create digital experiences that stand out in today's competitive landscape.
@@ -144,9 +144,9 @@ export default function AboutUs() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-16 bg-gradient-to-br from-[#E0F0FF]/60 to-[#F5FAFF]/80 relative">
+      <section className="py-10 sm:py-16 bg-gradient-to-br from-[#E0F0FF]/60 to-[#F5FAFF]/80 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="animate-on-scroll bg-white/80 rounded-2xl shadow-xl border border-[#4A8EBC]/10 p-10 flex flex-col items-center md:items-start">
               <h2 className="text-3xl font-bold text-[#1A2A44] mb-4">Our Mission</h2>
               <p className="text-[#2B4066]/80 mb-4 text-lg">To empower businesses and individuals by delivering innovative, reliable, and accessible digital solutions that drive growth and create lasting impact.</p>
@@ -168,7 +168,7 @@ export default function AboutUs() {
       </section>
 
       {/* Values Section */}
-      <section className="py-16 bg-gradient-to-b from-[#F5FAFF] to-[#E0F0FF] relative">
+      <section className="py-10 sm:py-16 bg-gradient-to-b from-[#F5FAFF] to-[#E0F0FF] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-[#1A2A44] mb-4">Our Core Values</h2>
@@ -177,7 +177,7 @@ export default function AboutUs() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
             {[
               {
                 icon: <Target className="h-8 w-8 text-[#4A8EBC]" />,
@@ -220,80 +220,14 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Team Section */}
-      <section id="team" className="py-16 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-16">
-            <div className="inline-block relative">
-              <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
-              <h2 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-4">
-                Meet Our Team
-              </h2>
-            </div>
-            <p className="text-[#2B4066]/80 max-w-2xl mx-auto">
-              {`We are {teamMembers.length} strong! The talented individuals who drive our vision and lead our teams to success.`}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.length === 0 ? (
-              <div className="col-span-full text-center text-gray-500 py-12 text-lg">
-                No team members found. Please add team members from the admin panel.
-              </div>
-            ) : (
-              teamMembers.map((member, index) => (
-                <div
-                  key={member.name}
-                  id={`about-${index + 7}`}
-                  className={`animate-on-scroll bg-white/70 backdrop-blur-sm rounded-xl overflow-hidden shadow-md border border-[#4A8EBC]/10 hover:shadow-lg transition-all duration-300 group ${
-                    isAnimated(index + 7) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                  }`}
-                  style={{ transitionDelay: `${index * 100}ms` }}
-                >
-                  <div className="relative h-64 overflow-hidden">
-                    <img
-                      src={member.image || "/placeholder.svg?height=300&width=300"}
-                      alt={member.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      onError={(e) => {
-                        const target = e.target 
-                        target.src = "/placeholder.svg?height=300&width=300"
-                      }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1A2A44]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold text-[#1A2A44] group-hover:text-[#4A8EBC] transition-colors duration-300">
-                      {member.name}
-                    </h3>
-                    <p className="text-[#4A8EBC] font-medium mb-3">{member.position}</p>
-                    <p className="text-[#2B4066]/80 text-sm">{member.bio}</p>
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-          {/* Debug output for troubleshooting */}
-          <div style={{marginTop: 32, background: '#f9fafb', color: '#1A2A44', padding: 16, borderRadius: 8}}>
-            <strong>Debug: Raw teamMembers data from localStorage:</strong>
-            <pre style={{fontSize: 12, overflowX: 'auto'}}>{JSON.stringify(teamMembers, null, 2)}</pre>
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-[#2B4066]/80 mb-6">
-              Our full team includes 7+ talented professionals across development, design, marketing, and support.
-            </p>
-
-          </div>
-        </div>
-      </section>
+      {/* Team Section removed as requested */}
 
       {/* Stats Section */}
-      <section className="py-16 bg-gradient-to-b from-[#E0F0FF] to-[#F5FAFF] relative">
+      <section className="py-10 sm:py-16 bg-gradient-to-b from-[#E0F0FF] to-[#F5FAFF] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div
             id="about-11"
-            className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 animate-on-scroll transition-all duration-700 ${
+            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 animate-on-scroll transition-all duration-700 ${
               isAnimated(11) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
@@ -318,7 +252,7 @@ export default function AboutUs() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 relative">
+      <section className="py-10 sm:py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div
             id="about-12"
@@ -344,7 +278,7 @@ export default function AboutUs() {
               Let's discuss how Nepal Digital Heights can help transform your digital presence and drive your business
               forward.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center relative">
+            <div className="flex flex-col gap-4 sm:flex-row justify-center relative">
               <a
                 href="/contact"
                 className="px-8 py-4 bg-white text-[#1A2A44] font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
@@ -352,7 +286,7 @@ export default function AboutUs() {
                 Contact Us
               </a>
               <a
-                href="/services"
+                href="/E-services"
                 className="px-8 py-4 border-2 border-white text-white font-bold rounded-full text-lg hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
               >
                 Explore Services

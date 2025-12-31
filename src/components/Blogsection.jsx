@@ -1,14 +1,17 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { ChevronLeft, ChevronRight, ArrowRight, Calendar, Clock, User, Eye, Heart } from "lucide-react"
 import useBlogStore from "../Store/BlogStore"
 import React from "react"
-export default function BlogSection() {
+
+function Blogsection() {
   const { blogs, fetchBlogs, loading, error } = useBlogStore()
   const [currentIndex, setCurrentIndex] = useState(0)
   const [slidesToShow, setSlidesToShow] = useState(3)
   const [hoveredCard, setHoveredCard] = useState(null)
+  const dragStartX = useRef(null)
+  const dragDelta = useRef(0)
 
   // Fetch blogs on mount
   useEffect(() => {
@@ -33,12 +36,32 @@ export default function BlogSection() {
   }, [])
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + slidesToShow >= blogs.length ? 0 : prev + 1))
+    setCurrentIndex((prev) => (prev + slidesToShow >= displayBlogs.length ? 0 : prev + 1))
   }
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev === 0 ? Math.max(0, blogs.length - slidesToShow) : prev - 1))
+    setCurrentIndex((prev) => (prev === 0 ? Math.max(0, displayBlogs.length - slidesToShow) : prev - 1))
   }
+
+  // Touch/drag handlers for carousel
+  const handleDragStart = (e) => {
+    dragStartX.current = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+    dragDelta.current = 0;
+  };
+  const handleDragMove = (e) => {
+    if (dragStartX.current === null) return;
+    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+    dragDelta.current = clientX - dragStartX.current;
+  };
+  const handleDragEnd = () => {
+    if (dragDelta.current > 50) {
+      prevSlide();
+    } else if (dragDelta.current < -50) {
+      nextSlide();
+    }
+    dragStartX.current = null;
+    dragDelta.current = 0;
+  };
 
   const formatDate = (timestamp) => {
     return new Date(Number.parseInt(timestamp)).toLocaleDateString("en-US", {
@@ -57,6 +80,36 @@ export default function BlogSection() {
   const truncateContent = (content, maxLength = 120) => {
     return content.length > maxLength ? content.substring(0, maxLength) + "..." : content
   }
+
+  // Dummy blogs if none exist
+  const dummyBlogs = [
+    {
+      _id: '1700000000001',
+      title: 'How to Build a Modern React App',
+      content: 'Learn the essentials of building a modern React application with best practices, hooks, and state management. This guide covers everything you need to get started quickly.',
+      image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_45lUhXYOommHgxXd0_IWSp8FQ06wA0PaPSoDL4FasAXvA_ju9wWVZiJ4l__EoGOK1G2tA8b-dEQa-s0CnqgQ7xh9eeoeWUuByVMTDWN93SG3t71rtuUn7rHzxgg-hABgLN5clLBIWPEu9BXuf1y3H4xljah2T-8Kqo2Ih-GhuTai47PjnGAZPkPWfOAe/s2681/Imagen4.jpg',
+    },
+    {
+      _id: '1700000000002',
+      title: 'Understanding Zustand for State Management',
+      content: 'Zustand is a fast and simple state management solution for React. Discover how to use Zustand effectively in your next project.',
+      image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi_45lUhXYOommHgxXd0_IWSp8FQ06wA0PaPSoDL4FasAXvA_ju9wWVZiJ4l__EoGOK1G2tA8b-dEQa-s0CnqgQ7xh9eeoeWUuByVMTDWN93SG3t71rtuUn7rHzxgg-hABgLN5clLBIWPEu9BXuf1y3H4xljah2T-8Kqo2Ih-GhuTai47PjnGAZPkPWfOAe/s2681/Imagen4.jpg',
+    },
+    {
+      _id: '1700000000003',
+      title: 'Deploying Vite Apps on Hostinger',
+      content: 'A step-by-step guide to deploying your Vite-powered React SPA on Hostinger shared hosting, including routing and asset fixes.',
+      image:"https://images.g2crowd.com/uploads/product/image/d2295191ae7e31fe5bb82cb311c7cb95/hostinger.png",
+    },
+    {
+      _id: '1700000000004',
+      title: '7 Sales Psychology Principles to Master as a Digital Marketer',
+      content: `Introduction\nThe secret to each top-performing campaign is knowing how humans act. Techniques and technology evolve, but human psychology remains the same. In this article, I\'ll share the top sales psychology takeaways I learned on a digital marketing course — and how you can apply them ethically to drive engagement, conversions, and customer loyalty.\n\n1. The Power of Reciprocity\nPsychological Insight: People have a desire to repay a favor.\nMarketing Application: Deliver value first — e.g., a free ebook, checklist, or premium content — and then ask for something in return, such as an email address or sale.\nExample: HubSpot\'s set of free templates creates good will, increasing the chances users will ultimately purchase their CRM software.\n\n2. Curiosity Drives Clicks\nPsychological Insight: We are wired to seek closure when presented with information deficiency.\nMarketing Application: Use open loops and stimulating headlines to make readers curious.\nExample: \'You\'re Losing Sales Because of This One Mistake\' makes you click to learn what the mistake is.\n\n3. Scarcity Creates Urgency\nPsychological Insight: We are scared of losing out on limited opportunities.\nMarketing Application: Use time-sensitive offers, low-stock alerts, or countdown timers to elicit quicker decisions.\nExample: Amazon\'s \'Only 3 left in stock\' urges customers to act quickly.\n\n4. Social Proof Builds Trust\nPsychological Insight: We refer to others when uncertain.\nMarketing Application: Emphasize testimonials, reviews, user base, or influencer endorsement.\nExample: \'Over 1 million users trust Grammarly\' immediately builds confidence.\n\n5. Anchoring for Perceived Value\nPsychological Insight: Our brain calculates prices according to the first number we notice.\nMarketing Application: Show a big anchor price next to your offer so the deal will sound like a bargain.\nExample: \'Originally $299, now $99\' frames the product as high value at a reduced price.\n\n6. The Decoy Effect (Three-Box Strategy)\nPsychological Insight: People like to choose the middle item when offered three.\nMarketing Application: Price your offerings in three tiers, with the middle one as \'best value.\'\nExample: SaaS vendors generally price as Basic, Pro (highlighted), and Premium.\n\n7. Consistency Builds Loyalty\nPsychological Observation: Once they\'ve committed, people strive to stay consistent.\nMarketing Use: Start off small like a newsletter sign-up, which can be escalated to larger conversions.\nExample: A free 7-day challenge gets users on board before selling them a full course.\n\nConclusion\nSales psychology isn’t about manipulation — it’s about understanding and ethically influencing behavior. When applied with empathy and integrity, these principles can dramatically improve your marketing results. Whether you’re writing copy, designing funnels, or crafting offers, embedding psychology makes your message resonate deeper and convert better.`,
+      image: 'https://fiveringsmarketing.com/wp-content/uploads/2023/11/Psychology-of-Sales-Five-Proven-Tips-1024x569.png',
+    },
+  ];
+
+  const displayBlogs = blogs.length === 0 ? dummyBlogs : blogs;
 
   return (
     <section className="relative py-20 bg-gradient-to-br from-[#F5FAFF] via-white to-[#F0F7FF] overflow-hidden">
@@ -140,22 +193,10 @@ export default function BlogSection() {
         )}
 
         {/* Empty State */}
-        {blogs.length === 0 && !loading && !error && (
-          <div className="text-center py-20">
-            <div className="w-24 h-24 mx-auto mb-6 bg-gradient-to-br from-[#4A8EBC]/10 to-[#3B5488]/10 rounded-full flex items-center justify-center">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#4A8EBC] to-[#3B5488] rounded-full flex items-center justify-center">
-                <span className="text-white text-xl">📝</span>
-              </div>
-            </div>
-            <h3 className="text-2xl font-bold text-[#1A2A44] mb-4">No Blogs Available</h3>
-            <p className="text-[#2B4066]/70 max-w-md mx-auto">
-              We're working on creating amazing content for you. Check back soon for our latest insights and tutorials.
-            </p>
-          </div>
-        )}
+        {/* No empty state, always show dummy or real blogs */}
 
         {/* Carousel Container */}
-        {blogs.length > 0 && !loading && (
+        {displayBlogs.length > 0 && !loading && (
           <div className="relative">
             {/* Enhanced Navigation Buttons */}
             <div className="absolute -left-8 top-1/2 -translate-y-1/2 z-20">
@@ -177,14 +218,24 @@ export default function BlogSection() {
             </div>
 
             {/* Enhanced Blog Cards */}
-            <div className="overflow-hidden mx-12">
+            <div
+              className="overflow-hidden mx-12"
+              onMouseDown={handleDragStart}
+              onMouseMove={handleDragMove}
+              onMouseUp={handleDragEnd}
+              onMouseLeave={handleDragEnd}
+              onTouchStart={handleDragStart}
+              onTouchMove={handleDragMove}
+              onTouchEnd={handleDragEnd}
+              style={{ cursor: 'grab', userSelect: 'none' }}
+            >
               <div
                 className="flex transition-transform duration-700 ease-out"
                 style={{
                   transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)`,
                 }}
               >
-                {blogs.map((blog, index) => (
+                {displayBlogs.map((blog, index) => (
                   <div key={blog._id} className="flex-shrink-0 px-4" style={{ width: `${100 / slidesToShow}%` }}>
                     <div
                       className="group h-full bg-white/70 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-3 rounded-2xl relative"
@@ -310,3 +361,5 @@ export default function BlogSection() {
     </section>
   )
 }
+
+export default Blogsection
