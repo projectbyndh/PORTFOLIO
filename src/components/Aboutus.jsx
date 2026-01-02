@@ -1,6 +1,5 @@
 // Team members will be loaded only from localStorage
 "use client"
-import Footer from "../components/Footer"
 
 import { useState, useEffect } from "react"
 import { Users, Award, Target, Clock, ArrowRight } from "lucide-react"
@@ -10,7 +9,7 @@ import PageSidebar from "./PageSidebar";
 
 export default function AboutUs() {
   const [animatedItems, setAnimatedItems] = useState([])
-  const [teamMembers, setTeamMembers] = useState([]);
+  const [, setTeamMembers] = useState([]);
 
   useEffect(() => {
     const updateTeam = () => {
@@ -22,7 +21,7 @@ export default function AboutUs() {
           if (Array.isArray(parsed)) {
             members = parsed;
           }
-        } catch {}
+        } catch { /* empty */ }
       }
       setTeamMembers(members);
     };
@@ -87,7 +86,7 @@ export default function AboutUs() {
             <div className="inline-block relative">
               <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
               <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow"></div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] to-[#4A8EBC]">
                 About Us
               </h1>
             </div>
@@ -112,8 +111,8 @@ export default function AboutUs() {
                     alt="Nepal Digital Heights Office"
                     className="w-full h-48 sm:h-64 md:h-auto object-cover rounded-xl"
                   />
-                  <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[#1A2A44]/80 to-transparent p-6">
-                    <p className="text-white text-sm">Our modern office in Butwal, Nepal</p>
+                  <div className="absolute bottom-0 left-0 right-0 bg-linear-to-t from-[#1A2A44]/80 to-transparent p-6">
+                    <p className="text-white text-sm">Our modern office in Tilottama, Nepal</p>
                   </div>
                 </div>
               </div>
@@ -144,7 +143,7 @@ export default function AboutUs() {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="py-10 sm:py-16 bg-gradient-to-br from-[#E0F0FF]/60 to-[#F5FAFF]/80 relative">
+      <section className="py-10 sm:py-16 bg-linear-to-br from-[#E0F0FF]/60 to-[#F5FAFF]/80 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
             <div className="animate-on-scroll bg-white/80 rounded-2xl shadow-xl border border-[#4A8EBC]/10 p-10 flex flex-col items-center md:items-start">
@@ -168,7 +167,7 @@ export default function AboutUs() {
       </section>
 
       {/* Values Section */}
-      <section className="py-10 sm:py-16 bg-gradient-to-b from-[#F5FAFF] to-[#E0F0FF] relative">
+      <section className="py-10 sm:py-16 bg-linear-to-b from-[#F5FAFF] to-[#E0F0FF] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-[#1A2A44] mb-4">Our Core Values</h2>
@@ -223,7 +222,7 @@ export default function AboutUs() {
       {/* Team Section removed as requested */}
 
       {/* Stats Section */}
-      <section className="py-10 sm:py-16 bg-gradient-to-b from-[#E0F0FF] to-[#F5FAFF] relative">
+      <section className="py-10 sm:py-16 bg-linear-to-b from-[#E0F0FF] to-[#F5FAFF] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div
             id="about-11"
@@ -234,14 +233,14 @@ export default function AboutUs() {
             {[
               { value: "1+", label: "Years of Experience" },
               { value: "3+", label: "Clients Worldwide" },
-              { value: "5+", label: "Projects Delivered" },
-              { value: "5+", label: "Team Members" },
+              { value: "7+", label: "Projects Delivered" },
+              { value: "10+", label: "Team Members" },
             ].map((stat) => (
               <div
                 key={stat.label}
                 className="bg-white/70 backdrop-blur-sm rounded-xl p-8 text-center shadow-md border border-[#4A8EBC]/10 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-2">
+                <div className="text-4xl font-bold text-transparent bg-clip-text bg-linear-to-r from-[#1A2A44] to-[#4A8EBC] mb-2">
                   {stat.value}
                 </div>
                 <p className="text-[#2B4066]/80">{stat.label}</p>
@@ -254,12 +253,7 @@ export default function AboutUs() {
       {/* CTA Section */}
       <section className="py-10 sm:py-16 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div
-            id="about-12"
-            className={`bg-gradient-to-r from-[#1A2A44] to-[#3B5488] rounded-2xl p-12 text-center shadow-xl relative overflow-hidden animate-on-scroll transition-all duration-900 ${
-              isAnimated(12) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
-          >
+          <div id="about-12" className="relative">
             {/* Decorative elements */}
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
               <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white/5 animate-pulse-slow"></div>
@@ -295,7 +289,6 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-      <Footer />
       </main>
     </div>
   )

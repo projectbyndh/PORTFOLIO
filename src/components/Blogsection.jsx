@@ -112,7 +112,7 @@ function Blogsection() {
   const displayBlogs = blogs.length === 0 ? dummyBlogs : blogs;
 
   return (
-    <section className="relative py-20 bg-gradient-to-br from-[#F5FAFF] via-white to-[#F0F7FF] overflow-hidden">
+    <section className="relative py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#F5FAFF] via-white to-[#F0F7FF] overflow-hidden">
       {/* Enhanced Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-gradient-to-br from-[#4A8EBC]/15 to-[#3B5488]/10 blur-3xl animate-pulse"></div>
@@ -140,9 +140,9 @@ function Blogsection() {
         ></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
         {/* Enhanced Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-10 sm:mb-16 md:mb-20">
           <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-[#4A8EBC]/10 to-[#3B5488]/10 border border-[#4A8EBC]/20 mb-8 backdrop-blur-sm">
             <div className="flex gap-1">
               <div className="w-2 h-2 rounded-full bg-[#4A8EBC] animate-pulse"></div>
@@ -152,13 +152,13 @@ function Blogsection() {
             <span className="text-sm font-semibold text-[#4A8EBC] tracking-wide">LATEST INSIGHTS</span>
           </div>
 
-          <h2 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-8 leading-tight">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 sm:mb-8 leading-tight">
             <span className="bg-gradient-to-r from-[#1A2A44] via-[#4A8EBC] to-[#3B5488] bg-clip-text text-transparent">
               Our Blog
             </span>
           </h2>
 
-          <p className="text-xl text-[#2B4066]/70 max-w-3xl mx-auto leading-relaxed font-light">
+          <p className="text-base sm:text-lg md:text-xl text-[#2B4066]/70 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed font-light">
             Discover insights, tutorials, and industry trends from our team of experts.
             <br className="hidden md:block" />
             Stay ahead with the latest in technology and development.
@@ -198,28 +198,27 @@ function Blogsection() {
         {/* Carousel Container */}
         {displayBlogs.length > 0 && !loading && (
           <div className="relative">
-            {/* Enhanced Navigation Buttons */}
-            <div className="absolute -left-8 top-1/2 -translate-y-1/2 z-20">
+            {/* Navigation Buttons - smaller and repositioned for mobile */}
+            <div className="hidden sm:block absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-20">
               <button
                 onClick={prevSlide}
-                className="group w-14 h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#4A8EBC]/20 hover:bg-[#4A8EBC] hover:border-[#4A8EBC] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
+                className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#4A8EBC]/20 hover:bg-[#4A8EBC] hover:border-[#4A8EBC] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
               >
-                <ChevronLeft className="w-6 h-6 text-[#4A8EBC] group-hover:text-white transition-colors duration-300" />
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-[#4A8EBC] group-hover:text-white transition-colors duration-300" />
               </button>
             </div>
-
-            <div className="absolute -right-8 top-1/2 -translate-y-1/2 z-20">
+            <div className="hidden sm:block absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-20">
               <button
                 onClick={nextSlide}
-                className="group w-14 h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#4A8EBC]/20 hover:bg-[#4A8EBC] hover:border-[#4A8EBC] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
+                className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#4A8EBC]/20 hover:bg-[#4A8EBC] hover:border-[#4A8EBC] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
               >
-                <ChevronRight className="w-6 h-6 text-[#4A8EBC] group-hover:text-white transition-colors duration-300" />
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#4A8EBC] group-hover:text-white transition-colors duration-300" />
               </button>
             </div>
 
-            {/* Enhanced Blog Cards */}
+            {/* Blog Cards - vertical scroll on mobile, carousel on desktop */}
             <div
-              className="overflow-hidden mx-12"
+              className="overflow-x-auto sm:overflow-hidden mx-0 sm:mx-6 md:mx-12"
               onMouseDown={handleDragStart}
               onMouseMove={handleDragMove}
               onMouseUp={handleDragEnd}
@@ -230,15 +229,21 @@ function Blogsection() {
               style={{ cursor: 'grab', userSelect: 'none' }}
             >
               <div
-                className="flex transition-transform duration-700 ease-out"
-                style={{
-                  transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)`,
-                }}
+                className="flex flex-col sm:flex-row transition-transform duration-700 ease-out gap-6 sm:gap-0"
+                style={
+                  slidesToShow === 1
+                    ? {}
+                    : { transform: `translateX(-${currentIndex * (100 / slidesToShow)}%)` }
+                }
               >
                 {displayBlogs.map((blog, index) => (
-                  <div key={blog._id} className="flex-shrink-0 px-4" style={{ width: `${100 / slidesToShow}%` }}>
+                  <div
+                    key={blog._id}
+                    className="flex-shrink-0 w-full sm:px-4"
+                    style={{ width: slidesToShow === 1 ? '100%' : `${100 / slidesToShow}%` }}
+                  >
                     <div
-                      className="group h-full bg-white/70 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-3 rounded-2xl relative"
+                      className="group h-full bg-white/70 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-2 sm:hover:-translate-y-3 rounded-2xl relative"
                       onMouseEnter={() => setHoveredCard(index)}
                       onMouseLeave={() => setHoveredCard(null)}
                     >
@@ -250,7 +255,7 @@ function Blogsection() {
                         <img
                           src={blog.image || "/placeholder.svg?height=280&width=400"}
                           alt={blog.title}
-                          className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700"
+                          className="w-full h-44 sm:h-56 object-cover group-hover:scale-105 sm:group-hover:scale-110 transition-transform duration-700"
                           onError={(e) => {
                             e.target.src = "/placeholder.svg?height=280&width=400"
                           }}
@@ -260,7 +265,7 @@ function Blogsection() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
 
                         {/* Floating action buttons */}
-                        <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+                        <div className="absolute top-2 sm:top-4 right-2 sm:right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                           <button className="w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors duration-200">
                             <Heart className="w-4 h-4 text-[#4A8EBC]" />
                           </button>
@@ -270,17 +275,17 @@ function Blogsection() {
                         </div>
 
                         {/* Blog number badge */}
-                        <div className="absolute top-4 left-4">
-                          <div className="w-10 h-10 bg-gradient-to-br from-[#4A8EBC] to-[#3B5488] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                        <div className="absolute top-2 sm:top-4 left-2 sm:left-4">
+                          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-br from-[#4A8EBC] to-[#3B5488] rounded-full flex items-center justify-center text-white font-bold text-xs sm:text-sm">
                             {String(index + 1).padStart(2, "0")}
                           </div>
                         </div>
                       </div>
 
                       {/* Content */}
-                      <div className="p-6 relative">
+                      <div className="p-4 sm:p-6 relative">
                         {/* Meta information */}
-                        <div className="flex items-center gap-4 text-sm text-[#2B4066]/60 mb-4">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-[#2B4066]/60 mb-2 sm:mb-4">
                           <div className="flex items-center gap-1">
                             <Calendar className="w-4 h-4" />
                             <span>{formatDate(blog._id)}</span>
@@ -292,34 +297,34 @@ function Blogsection() {
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-xl font-bold text-[#1A2A44] mb-4 line-clamp-2 group-hover:text-[#4A8EBC] transition-colors duration-300 leading-tight">
+                        <h3 className="text-lg sm:text-xl font-bold text-[#1A2A44] mb-2 sm:mb-4 line-clamp-2 group-hover:text-[#4A8EBC] transition-colors duration-300 leading-tight">
                           {blog.title}
                         </h3>
 
                         {/* Content preview */}
-                        <p className="text-[#2B4066]/70 mb-6 line-clamp-3 leading-relaxed">
+                        <p className="text-[#2B4066]/70 mb-4 sm:mb-6 line-clamp-3 leading-relaxed text-sm sm:text-base">
                           {truncateContent(blog.content)}
                         </p>
 
                         {/* Footer */}
-                        <div className="flex items-center justify-between pt-4 border-t border-[#4A8EBC]/10">
-                          <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] flex items-center justify-center">
-                              <User className="w-5 h-5 text-white" />
+                        <div className="flex items-center justify-between pt-2 sm:pt-4 border-t border-[#4A8EBC]/10">
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] flex items-center justify-center">
+                              <User className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                             </div>
                             <div>
-                              <div className="text-sm font-semibold text-[#2B4066]">NDH Technologies</div>
-                              <div className="text-xs text-[#2B4066]/60">Author</div>
+                              <div className="text-xs sm:text-sm font-semibold text-[#2B4066]">NDH Technologies</div>
+                              <div className="text-[10px] sm:text-xs text-[#2B4066]/60">Author</div>
                             </div>
                           </div>
 
-<a
-  href={`/blogdetails?id=${blog._id}`}
-  className="group/link inline-flex items-center gap-2 text-[#4A8EBC] hover:text-[#3B5488] font-semibold text-sm transition-all duration-300"
->
-  <span>Read More</span>
-  <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
-</a>
+                          <a
+                            href={`/blogdetails?id=${blog._id}`}
+                            className="group/link inline-flex items-center gap-1 sm:gap-2 text-[#4A8EBC] hover:text-[#3B5488] font-semibold text-xs sm:text-sm transition-all duration-300"
+                          >
+                            <span>Read More</span>
+                            <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -328,16 +333,16 @@ function Blogsection() {
               </div>
             </div>
 
-            {/* Enhanced Dots Indicator */}
-            <div className="flex justify-center gap-3 mt-12">
+            {/* Dots Indicator - smaller on mobile */}
+            <div className="flex justify-center gap-2 sm:gap-3 mt-8 sm:mt-12">
               {Array.from({ length: Math.ceil(blogs.length / slidesToShow) }).map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index * slidesToShow)}
-                  className={`h-3 rounded-full transition-all duration-300 ${
+                  className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${
                     Math.floor(currentIndex / slidesToShow) === index
-                      ? "bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] w-12"
-                      : "bg-[#4A8EBC]/30 hover:bg-[#4A8EBC]/50 w-3"
+                      ? "bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] w-8 sm:w-12"
+                      : "bg-[#4A8EBC]/30 hover:bg-[#4A8EBC]/50 w-2 sm:w-3"
                   }`}
                 />
               ))}

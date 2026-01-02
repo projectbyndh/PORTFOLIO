@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import useBlogStore from "../Store/BlogStore";
 import React from "react";
-import Footer from "./Footer";
 
 // Dummy blogs for fallback (sync with Blogsection)
 const dummyBlogs = [
@@ -145,7 +144,6 @@ export default function BlogDetails() {
           </div>
         )}
       </div>
-      <Footer />
     </div>
     
   );

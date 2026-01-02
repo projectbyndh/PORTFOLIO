@@ -1,7 +1,6 @@
 import React from "react";
-import logo from '../assets/logo.png'
+import Logo from "./Logo";
 import { useEffect, useRef, useState } from "react";
-import Footer from "./Footer";
 import {
   ArrowRight,
   CheckCircle,
@@ -97,7 +96,7 @@ export default function EServicesEnhanced() {
       <div className="bg-[#F5FAFF] min-h-screen font-sans">
         {/* Hero Section */}
         <section
-          className="bg-gradient-to-b from-[#F5FAFF] to-[#EAF5FF] py-16 relative overflow-hidden"
+          className="bg-linear-to-b from-[#F5FAFF] to-[#EAF5FF] py-16 relative overflow-hidden"
           aria-labelledby="hero-title"
         >
           <div className="absolute top-20 left-10 w-40 h-40 rounded-full bg-[#4A8EBC]/10 animate-pulse" />
@@ -111,12 +110,15 @@ export default function EServicesEnhanced() {
           />
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-            <h1
-              id="hero-title"
-              className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] mb-4 animate-fade-in-down"
-            >
-              Our E-Services
-            </h1>
+                <div className="flex items-center justify-center gap-3">
+                  <Logo className="hidden sm:block h-8 w-auto" />
+                  <h1
+                    id="hero-title"
+                    className="text-3xl sm:text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] to-[#4A8EBC] mb-4 animate-fade-in-down"
+                  >
+                    Our E-Services
+                  </h1>
+                </div>
             <p className="text-base sm:text-lg text-[#2B4066]/80 max-w-2xl mx-auto mb-8 animate-fade-in-up">
               Comprehensive digital solutions to transform your business and drive growth in the digital landscape.
             </p>
@@ -127,13 +129,10 @@ export default function EServicesEnhanced() {
               className="relative h-40 max-w-md mx-auto my-8"
               aria-hidden="true"
             >
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gradient-to-br from-[#4A8EBC] to-[#f0f0f0] rounded-full flex items-center justify-center text-white shadow-lg animate-pulse">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-linear-to-br from-[#4A8EBC] to-[#f0f0f0] rounded-full flex items-center justify-center text-white shadow-lg animate-pulse">
                 <span className="font-bold">
-                  <img
-                  src={logo}
-                
-                 />
-                  </span>
+                  <Logo className="h-10 w-auto" />
+                </span>
               </div>
 
               <div className="floating-icon absolute top-0 left-1/4 w-12 h-12 bg-white rounded-full shadow-md flex items-center justify-center">
@@ -172,7 +171,10 @@ export default function EServicesEnhanced() {
             <p className="text-base sm:text-lg text-[#2B4066]/80 max-w-2xl mx-auto mb-12 text-center animate-fade-in">
               Digital services designed to help businesses worldwide thrive in the digital era.
             </p>
-
+                <div className="flex items-center justify-center gap-2">
+                  <Logo className="hidden sm:block h-6 w-auto" />
+                  What We Offer
+                </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {E_SERVICES.map((service, index) => (
                 <article
@@ -238,7 +240,10 @@ export default function EServicesEnhanced() {
               id="cta-title"
               className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-4 animate-fade-in"
             >
-              Ready to Transform Your Business?
+                <div className="flex items-center justify-center gap-2">
+                  <Logo className="hidden sm:block h-6 w-auto" />
+                  Ready to Transform Your Business?
+                </div>
             </h2>
             <p className="text-base sm:text-lg text-[#2B4066]/80 mb-8 max-w-xl mx-auto animate-fade-in">
               Let's discuss how our e-services can help your business thrive in the global digital landscape.
@@ -246,7 +251,7 @@ export default function EServicesEnhanced() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
-                className="bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold py-3 px-8 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
+                className="bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold py-3 px-8 rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300"
               >
                 Contact Us Today
               </a>
@@ -259,7 +264,6 @@ export default function EServicesEnhanced() {
             </div>
           </div>
         </section>
-        <Footer />
       </div>
     </>
   );

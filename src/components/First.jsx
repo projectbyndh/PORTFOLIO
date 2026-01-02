@@ -21,10 +21,9 @@ const TECH_STACK = [
 ]
 // Stats data
 const STATS = [
-  { value: "3+", label: "Projects Delivered" },
+  { value: "7+", label: "Projects Delivered" },
   { value: "1+", label: "Years in Business" },
-  { value: "5+", label: "Team Members" },
-  { value: "98%", label: "Client Satisfaction" },
+  { value: "10+", label: "Team Members" },
 ]
 
 function First() {
@@ -170,7 +169,7 @@ function First() {
             }}
           ></div>
 
-          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 relative">
+          <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-3 gap-12 relative">
             {STATS.map((stat) => (
               <div
                 key={stat.label}

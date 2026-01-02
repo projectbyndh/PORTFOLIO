@@ -3,9 +3,7 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { Briefcase, Users, Mail, ArrowRight, Linkedin } from "lucide-react"
 
-import Footer from "./Footer"
 import CareerApplicationForm from "./CareerApplicationForm"
-import { NavLink, useLocation } from "react-router-dom";
 
 export default function Careers() {
   const [activeSection, setActiveSection] = useState("opportunities") 
@@ -13,7 +11,6 @@ export default function Careers() {
   const [careers, setCareers] = useState([]);
   const [showForm, setShowForm] = useState(false);
   const [selectedPosition, setSelectedPosition] = useState("");
-  const location = useLocation();
 
   useEffect(() => {
     const stored = localStorage.getItem("careers");
@@ -182,7 +179,6 @@ export default function Careers() {
           )}
         </div>
         {/* The form is now shown as a modal, not inline */}
-        <Footer />
       </main>
     </div>
   );

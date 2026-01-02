@@ -1,6 +1,9 @@
 "use client"
-import { motion } from "framer-motion"
+
 import React from "react"
+import Logo from "./Logo"
+// eslint-disable-next-line no-unused-vars
+import { motion } from "framer-motion"
 import navin from "../assets/navin.png"
 import sagar from "../assets/sagar.png"
 import prajwal from "../assets/prajwal.png"
@@ -253,18 +256,21 @@ export default function OurTeams() {
   const staffTeam = teamMembers.filter((m) => m.level === "staff")
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] via-[#EBF5FF] to-[#F5FAFF] py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-linear-to-br from-[#F5FAFF] via-[#EBF5FF] to-[#F5FAFF] py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl">
         {/* Header with animation */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="text-center mb-12 sm:mb-16"
+          className="mb-12 text-center sm:mb-16"
         >
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] via-[#2B4A6F] to-[#4A8EBC] leading-tight">
-            Meet Our Team
-          </h1>
+          <div className="flex items-center justify-center gap-3">
+            <Logo className="hidden sm:block h-8 w-auto" />
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] via-[#2B4A6F] to-[#4A8EBC] leading-tight">
+              Meet Our Team
+            </h1>
+          </div>
           <p className="text-base sm:text-lg text-[#2B4A6F]/70 max-w-2xl mx-auto px-4 leading-relaxed">
             The creative minds behind our success, driven by passion and innovation
           </p>
@@ -285,14 +291,14 @@ export default function OurTeams() {
               scale: 1.02,
               transition: { duration: 0.3, ease: "easeOut" },
             }}
-            className="bg-gradient-to-br from-white to-[#F0F9FF] rounded-3xl shadow-xl hover:shadow-2xl p-6 sm:p-8 flex flex-col items-center relative overflow-hidden group transition-all duration-300 border border-[#4A8EBC]/10"
+            className="bg-linear-to-br from-white to-[#F0F9FF] rounded-3xl shadow-xl hover:shadow-2xl p-6 sm:p-8 flex flex-col items-center relative overflow-hidden group transition-all duration-300 border border-[#4A8EBC]/10"
           >
             {/* Decorative background element */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/5 via-[#4A8EBC]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-linear-to-br from-[#4A8EBC]/5 via-[#4A8EBC]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
             {/* Animated rings around mascot */}
             <motion.div
-              className="absolute top-8 left-1/2 -translate-x-1/2"
+              className="absolute -translate-x-1/2 top-8 left-1/2"
               animate={{
                 scale: [1, 1.3, 1],
                 opacity: [0.3, 0, 0.3],
@@ -306,7 +312,7 @@ export default function OurTeams() {
               <div className="w-32 h-32 rounded-full border-2 border-[#4A8EBC]" />
             </motion.div>
 
-            <div className="relative z-10 mb-6 flex items-center justify-center h-32">
+            <div className="relative z-10 flex items-center justify-center h-32 mb-6">
               <AnimatedNDHCharacter />
             </div>
 
@@ -329,7 +335,7 @@ export default function OurTeams() {
             </motion.div>
 
             <motion.div
-              className="text-gray-600 text-center leading-relaxed text-sm sm:text-base px-2"
+              className="px-2 text-sm leading-relaxed text-center text-gray-600 sm:text-base"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
@@ -339,7 +345,7 @@ export default function OurTeams() {
 
             {/* Badge */}
             <motion.div
-              className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-gradient-to-r from-[#4A8EBC] to-[#2B4A6F] text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-lg"
+              className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-linear-to-r from-[#4A8EBC] to-[#2B4A6F] text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-lg"
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, type: "spring" }}
@@ -355,11 +361,14 @@ export default function OurTeams() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mb-12 sm:mb-16"
         >
-          <div className="text-center mb-6 sm:mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-2">Executive Leadership</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#4A8EBC] to-[#2B4A6F] mx-auto rounded-full"></div>
+          <div className="mb-6 text-center sm:mb-8">
+            <div className="flex items-center justify-center gap-2">
+              <Logo className="hidden sm:block h-6 w-auto" />
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-2">Executive Leadership</h2>
+            </div>
+            <div className="w-20 h-1 bg-linear-to-r from-[#4A8EBC] to-[#2B4A6F] mx-auto rounded-full"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
             {executiveTeam.map((member, idx) => (
               <motion.div
                 key={member.name + idx}
@@ -375,9 +384,9 @@ export default function OurTeams() {
                   scale: 1.02,
                   transition: { duration: 0.3, ease: "easeOut" },
                 }}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl p-6 flex flex-col items-center relative overflow-hidden group transition-all duration-300 border border-gray-100"
+                className="relative flex flex-col items-center p-6 overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg rounded-2xl hover:shadow-2xl group"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-linear-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10 mb-4">
                   <motion.div
@@ -393,7 +402,7 @@ export default function OurTeams() {
                           e.currentTarget.src = "/placeholder.svg?height=120&width=120"
                         }}
                       />
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </motion.div>
                 </div>
@@ -404,7 +413,7 @@ export default function OurTeams() {
                 <div className="text-[#4A8EBC] font-semibold mb-3 text-xs sm:text-sm relative z-10">
                   {member.position}
                 </div>
-                <div className="text-gray-600 text-xs sm:text-sm text-center leading-relaxed relative z-10">
+                <div className="relative z-10 text-xs leading-relaxed text-center text-gray-600 sm:text-sm">
                   {member.bio}
                 </div>
               </motion.div>
@@ -418,11 +427,14 @@ export default function OurTeams() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mb-12 sm:mb-16"
         >
-          <div className="text-center mb-6 sm:mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-2">Department Leaders</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#4A8EBC] to-[#2B4A6F] mx-auto rounded-full"></div>
+          <div className="mb-6 text-center sm:mb-8">
+            <div className="flex items-center justify-center gap-2">
+              <Logo className="hidden sm:block h-6 w-auto" />
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-2">Department Leaders</h2>
+            </div>
+            <div className="w-20 h-1 bg-linear-to-r from-[#4A8EBC] to-[#2B4A6F] mx-auto rounded-full"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto">
+          <div className="grid max-w-3xl grid-cols-1 gap-6 mx-auto sm:grid-cols-2 sm:gap-8">
             {managementTeam.map((member, idx) => (
               <motion.div
                 key={member.name + idx}
@@ -438,9 +450,9 @@ export default function OurTeams() {
                   scale: 1.02,
                   transition: { duration: 0.3, ease: "easeOut" },
                 }}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl p-6 flex flex-col items-center relative overflow-hidden group transition-all duration-300 border border-gray-100"
+                className="relative flex flex-col items-center p-6 overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg rounded-2xl hover:shadow-2xl group"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-linear-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10 mb-4">
                   <motion.div
@@ -456,7 +468,7 @@ export default function OurTeams() {
                           e.currentTarget.src = "/placeholder.svg?height=120&width=120"
                         }}
                       />
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </motion.div>
                 </div>
@@ -467,7 +479,7 @@ export default function OurTeams() {
                 <div className="text-[#4A8EBC] font-semibold mb-3 text-xs sm:text-sm relative z-10">
                   {member.position}
                 </div>
-                <div className="text-gray-600 text-xs sm:text-sm text-center leading-relaxed relative z-10">
+                <div className="relative z-10 text-xs leading-relaxed text-center text-gray-600 sm:text-sm">
                   {member.bio}
                 </div>
               </motion.div>
@@ -480,11 +492,14 @@ export default function OurTeams() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <div className="text-center mb-6 sm:mb-8">
-            <h2 className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-2">Team Members</h2>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#4A8EBC] to-[#2B4A6F] mx-auto rounded-full"></div>
+          <div className="mb-6 text-center sm:mb-8">
+            <div className="flex items-center justify-center gap-2">
+              <Logo className="hidden sm:block h-6 w-auto" />
+              <h2 className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-2">Team Members</h2>
+            </div>
+            <div className="w-20 h-1 bg-linear-to-r from-[#4A8EBC] to-[#2B4A6F] mx-auto rounded-full"></div>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-3xl mx-auto">
+          <div className="grid max-w-3xl grid-cols-1 gap-6 mx-auto sm:grid-cols-2 sm:gap-8">
             {staffTeam.map((member, idx) => (
               <motion.div
                 key={member.name + idx}
@@ -500,9 +515,9 @@ export default function OurTeams() {
                   scale: 1.02,
                   transition: { duration: 0.3, ease: "easeOut" },
                 }}
-                className="bg-white rounded-2xl shadow-lg hover:shadow-2xl p-6 flex flex-col items-center relative overflow-hidden group transition-all duration-300 border border-gray-100"
+                className="relative flex flex-col items-center p-6 overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg rounded-2xl hover:shadow-2xl group"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-linear-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10 mb-4">
                   <motion.div
@@ -518,7 +533,7 @@ export default function OurTeams() {
                           e.currentTarget.src = "/placeholder.svg?height=120&width=120"
                         }}
                       />
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </motion.div>
                 </div>
@@ -529,7 +544,7 @@ export default function OurTeams() {
                 <div className="text-[#4A8EBC] font-semibold mb-3 text-xs sm:text-sm relative z-10">
                   {member.position}
                 </div>
-                <div className="text-gray-600 text-xs sm:text-sm text-center leading-relaxed relative z-10">
+                <div className="relative z-10 text-xs leading-relaxed text-center text-gray-600 sm:text-sm">
                   {member.bio}
                 </div>
               </motion.div>

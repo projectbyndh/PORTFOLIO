@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react"
 import { ArrowRight, Filter } from "lucide-react"
 import React from "react"
-import Footer from "./Footer"
 import Epasaley from "../assets/epasaley.png"
 
 export default function CaseStudies() {
@@ -348,7 +347,6 @@ export default function CaseStudies() {
           </div>
         </div>
       </section>
-      <Footer />
     </div>
   )
 }

@@ -2,6 +2,13 @@
 import { useState } from "react"
 import { ArrowRight, Sparkles, Code2, Smartphone, TrendingUp, GraduationCap, Heart, CheckCircle2, Globe, Server } from "lucide-react"
 import React from "react"
+import Logo from "./Logo"
+import { Link } from "react-router-dom"
+import numa from '../assets/numa.jpeg';
+import dg from '../assets/dg.jpeg';
+import rms2 from '../assets/rms2.jpeg';
+import select from '../assets/select.jpeg';
+import ep from '../assets/ep.jpeg';
 const categories = [
   "All",
   "Web Applications",
@@ -14,33 +21,33 @@ const categories = [
 
 const projects = [
   {
-    name: "Numazu Shopping",
+    name: "Numazu Halal Food",
     category: "Web Applications",
     categories: ["Web Applications", "Mobile Applications"],
     techStack: [".NET", "React", "Flutter"],
     description: "A cross-platform shopping ecosystem with high-performance backend, modern web UI, and seamless mobile commerce experience.",
-    image: "https://cdn.dribbble.com/userupload/16072864/file/original-75fa6cf2feb9be53365f225615c3aecd.png?resize=1200x900", // Professional food delivery admin/dashboard
+    image: numa, // Professional food delivery admin/dashboard
   },
   {
     name: "Epasaley",
-    category: "SaaS & ERP",
-    categories: ["Web Applications", "SaaS & ERP"],
+    category: "E-Commerces",
+    categories: ["Web Applications", "e-Commerces"],
     techStack: ["Node.js", "React"],
     description: "Complete e-commerce platform featuring scalable architecture, multi-vendor support, and powerful admin dashboards.",
-    image: "https://nextadmin.co/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Ferhsp57d%2Fproduction%2F310be6d36cb70aff4b4ad12e7c0eb17c777a1e77-1920x1080.png%3Ffit%3Dmax%26auto%3Dformat&w=3840&q=75", // Clean modern e-commerce dashboard
+    image: ep, // Clean modern e-commerce dashboard
   },
   {
-    name: "Student Admission Boost Campaign",
+    name: "Siddhartha School & College",
     client: "Siddhartha School & Siddhartha International College",
     category: "Digital Marketing",
     categories: ["Digital Marketing", "Education & Institutions"],
     techStack: ["Digital Marketing", "Social Media", "Analytics"],
     description: "Comprehensive digital campaigns driving admission growth through targeted ads, event digitization, and funnel optimization.",
-    image: "https://s3-alpha.figma.com/hub/file/2263836765020777372/7ec97126-9927-404f-962d-5cdfb3c584e2-cover.png", // Modern school management dashboard
+    image: dg, // Modern school management dashboard
     services: ["Social Media Campaigns", "Event Digitization", "Admission Funnel Optimization"],
   },
   {
-    name: "Trailblazers",
+    name: "Trailblazers Nepal",
     category: "Digital Marketing",
     categories: ["Digital Marketing"],
     techStack: ["Google Ads", "Meta Ads", "Analytics"],
@@ -62,16 +69,16 @@ const projects = [
     categories: ["SaaS & ERP"],
     techStack: ["Custom ERP", "RMS", "Cloud Infrastructure"],
     description: "Enterprise-grade ERP and Restaurant Management Systems for inventory, billing, staff scheduling, and real-time analytics.",
-    image: "https://s3-alpha.figma.com/hub/file/5053856392/9c2cba0d-d322-4a28-b386-d7e915583298-cover.png", // Modern restaurant admin dashboard
+    image: rms2, // Modern restaurant admin dashboard
     services: ["Inventory Management", "POS Integration", "Analytics & Reporting"],
   },
   {
     name: "Selection Clothing",
-    category: "Web Applications",
-    categories: ["Digital Marketing", "Web Applications"],
+    category: "Digital Marketing",
+    categories: ["Digital Marketing"],
     techStack: ["Next.js", "Node.js", "MongoDB"],
     description: "Fashion-forward e-commerce platform with advanced filtering, personalized recommendations, and seamless checkout.",
-    image: "https://yi-files.yellowimages.com/products/1816000/1816979/2925235-full.jpg", // Fashion e-commerce dashboard mockup
+    image: select, // Fashion e-commerce dashboard mockup
     services: ["Product Catalog", "Payment Integration", "Inventory Sync"],
   },
 ]
@@ -98,16 +105,19 @@ export default function ProjectsShowcase() {
   return (
     <div className="bg-[#F5FAFF] min-h-screen font-sans overflow-hidden">
       {/* Hero Section - Adapted from First component style */}
-      <section className="bg-gradient-to-b from-[#F5FAFF] to-[#EAF5FF] text-[#1A2A44] relative py-20 lg:py-32">
+      <section className="bg-linear-to-b from-[#F5FAFF] to-[#EAF5FF] text-[#1A2A44] relative py-20 lg:py-32">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-10 left-10 w-80 h-80 rounded-full bg-[#4A8EBC]/10 blur-3xl animate-pulse"></div>
           <div className="absolute bottom-20 right-20 w-96 h-96 rounded-full bg-[#3B5488]/10 blur-3xl animate-pulse delay-1000"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] via-[#4A8EBC] to-[#3B5488] mb-8">
-            Our Projects
-          </h1>
+          <div className="flex items-center justify-center gap-3">
+            <Logo className="hidden sm:block h-10 w-auto" />
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] via-[#4A8EBC] to-[#3B5488] mb-8">
+              Our Projects
+            </h1>
+          </div>
           <p className="text-xl md:text-2xl text-[#2B4066]/90 max-w-4xl mx-auto leading-relaxed">
             <span className="font-bold text-[#4A8EBC]">Innovate. Scale. Succeed.</span> — Showcasing world-class solutions we've built for clients across industries.
           </p>
@@ -124,7 +134,7 @@ export default function ProjectsShowcase() {
                 onClick={() => setActiveCategory(category)}
                 className={`flex items-center gap-2 whitespace-nowrap rounded-full px-6 py-3 text-sm font-semibold transition-all ${
                   activeCategory === category
-                    ? "bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-lg"
+                    ? "bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-lg"
                     : "bg-white/70 text-[#3B5488] hover:bg-white hover:shadow-md"
                 }`}
               >
@@ -152,7 +162,7 @@ export default function ProjectsShowcase() {
                     alt={project.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A2A44]/70 to-transparent opacity-60 group-hover:opacity-70 transition-opacity" />
+                  <div className="absolute inset-0 bg-linear-to-t from-[#1A2A44]/70 to-transparent opacity-60 group-hover:opacity-70 transition-opacity" />
                   <div className="absolute top-4 left-4">
                     <span className="inline-flex items-center gap-2 rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-[#3B5488] shadow-md">
                       {getCategoryIcon(project.category)}
@@ -188,11 +198,11 @@ export default function ProjectsShowcase() {
                       </span>
                     ))}
                   </div>
-                  <button className="mt-8 inline-flex items-center gap-2 text-[#4A8EBC] font-semibold hover:gap-4 transition-all">
+                  <Link to="/contact" className="mt-8 inline-flex items-center gap-2 text-[#4A8EBC] font-semibold hover:gap-4 transition-all">
                     View Details <ArrowRight className="h-4 w-4" />
-                  </button>
+                  </Link>
                 </div>
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
               </div>
             ))}
           </div>
@@ -200,7 +210,7 @@ export default function ProjectsShowcase() {
       </section>
 
       {/* CTA - Matching First style */}
-      <section className="bg-gradient-to-r from-[#E0F0FF]/80 to-[#D8EBFF]/80 px-6 py-20">
+      <section className="bg-linear-to-r from-[#E0F0FF]/80 to-[#D8EBFF]/80 px-6 py-20">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-[#1A2A44] mb-6">
             Ready to Start Your Project?
@@ -208,9 +218,9 @@ export default function ProjectsShowcase() {
           <p className="text-xl text-[#2B4066]/90 mb-10">
             Let's bring your vision to life with innovative digital solutions.
           </p>
-          <button className="bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold py-5 px-12 rounded-full text-lg shadow-2xl hover:shadow-[#4A8EBC]/50 hover:scale-105 transition-all duration-300">
+          <Link to="/contact" className="inline-flex items-center bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold py-5 px-12 rounded-full text-lg shadow-2xl hover:shadow-[#4A8EBC]/50 hover:scale-105 transition-transform duration-300">
             Get in Touch <ArrowRight className="inline h-5 w-5 ml-2" />
-          </button>
+          </Link>
         </div>
       </section>
     </div>

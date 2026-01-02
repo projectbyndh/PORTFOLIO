@@ -1,6 +1,7 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Logo from "./Logo";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -16,8 +17,9 @@ export default function Navbar() {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-white/30 backdrop-blur-lg shadow-lg border-b border-[#4A8EBC]/10">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="text-2xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
-          NDH Tech
+        <Link to="/" className="flex items-center gap-3" aria-label="Go to homepage">
+          <Logo className="h-9 w-auto" />
+          <span className="sr-only">NDH Technologies</span>
         </Link>
         {/* Desktop Nav */}
         <ul className="hidden md:flex gap-8">

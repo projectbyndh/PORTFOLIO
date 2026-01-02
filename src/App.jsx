@@ -1,11 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import React from "react";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import React, { Suspense } from "react";
 import Home from "./components/Routing/Home";
 import AboutUs from "./components/Aboutus";
 import CaseStudies from "./components/CaseStudies";
 import OurTeams from "./components/OurTeams";
 import TeamMembers from "./components/TeamMembers";
-import ProjectAdda from "./components/ProjectAdda";
 import Contact from "./components/Contact";
 import Careers from "./components/Carrers";
 import EServicesEnhanced from "./components/EServices";
@@ -23,11 +22,12 @@ import BlogSection from "./components/Blogsection";
 import ProtectedRoute from "./admin/ProtectedRoute";
 import Login from "./admin/Login";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Loader from "./components/Loader";
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import PrivacyPolicy from "./components/PrivacyPolicy";
 import Terms from "./components/Terms";
-import Sitemap from "./components/Sitemap";
  
 function App() {
  function ScrollToTop() {
@@ -41,6 +41,7 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <Navbar />
+      <Suspense fallback={<Loader />}> 
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route element={<ProtectedRoute />}>
@@ -58,17 +59,23 @@ function App() {
         <Route path="/case-studies" element={<CaseStudies />} />
         <Route path="/project-adda" element={<CaseStudies />} />
         <Route path="/contact" element={<Contact />} />
-        <Route path="/Careers" element={<Careers />} />
-        <Route path="/E-Services" element={<EServicesEnhanced />} />
+        {/* Normalize route casings for hosting and SEO */}
+        <Route path="/careers" element={<Careers />} />
+        <Route path="/Careers" element={<Navigate to="/careers" replace />} />
+        <Route path="/e-services" element={<EServicesEnhanced />} />
+        <Route path="/E-Services" element={<Navigate to="/e-services" replace />} />
         <Route path="/blog" element={<BlogSection />} />
         <Route path="/blogdetails" element={<BlogsDetails />} />
         <Route path="/courses" element={<CoursesSection />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<Terms />} />
-        <Route path="/sitemap" element={<Sitemap />} />
         <Route path="/team" element={<TeamMembers />} />
         <Route path="/our-teams" element={<OurTeams />} />
+        {/* Catch-all to home for unknown routes in static hosting */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
+      </Suspense>
+      <Footer />
     </BrowserRouter>
   );
 }
