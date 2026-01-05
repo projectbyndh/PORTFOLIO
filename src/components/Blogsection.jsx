@@ -109,7 +109,8 @@ function Blogsection() {
     },
   ];
 
-  const displayBlogs = blogs.length === 0 ? dummyBlogs : blogs;
+  // Combine admin blogs with dummy blogs
+  const displayBlogs = [...blogs, ...dummyBlogs];
 
   return (
     <section className="relative py-12 sm:py-16 md:py-20 bg-gradient-to-br from-[#F5FAFF] via-white to-[#F0F7FF] overflow-hidden">

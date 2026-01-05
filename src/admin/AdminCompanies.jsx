@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import useCompanyStore from "../Store/CompanyStore";
 import AdminLayout from "./Layout";
@@ -6,6 +5,7 @@ import AdminLayout from "./Layout";
 export default function AdminCompanies() {
   const companies = useCompanyStore((state) => state.companies);
   const addCompany = useCompanyStore((state) => state.addCompany);
+  const deleteCompany = useCompanyStore((state) => state.deleteCompany);
   const clearCompanies = useCompanyStore((state) => state.clearCompanies);
   const [form, setForm] = useState({ name: "", logoUrl: "" });
   const [error, setError] = useState("");
@@ -73,6 +73,13 @@ export default function AdminCompanies() {
           <div className="relative z-10 grid grid-cols-2 md:grid-cols-4 gap-10">
             {companies.map((company) => (
               <div key={company.id} className="group flex flex-col items-center bg-gradient-to-br from-[#F5FAFF] via-[#EAF5FF] to-[#D8EBFF] border border-[#4A8EBC]/40 rounded-3xl p-8 shadow-2xl hover:shadow-3xl transition-all duration-300 relative overflow-hidden cursor-pointer scale-100 hover:scale-105">
+                <button
+                  onClick={() => deleteCompany(company.id)}
+                  className="absolute top-2 right-2 w-8 h-8 bg-red-500 hover:bg-red-600 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 text-sm font-bold"
+                  title="Delete company"
+                >
+                  ×
+                </button>
                 <div className="absolute -top-8 -left-8 w-24 h-24 rounded-full bg-[#4A8EBC]/20 blur-2xl opacity-50 pointer-events-none z-0 group-hover:opacity-80 group-hover:scale-110 transition-all duration-300" />
                 <img src={company.logoUrl} alt={company.name} className="h-20 w-20 object-contain mb-3 rounded-full border-4 border-[#4A8EBC]/40 bg-white shadow-lg z-10 group-hover:scale-110 transition-transform duration-300" />
                 <span className="text-[#1A2A44] font-extrabold text-center text-xl z-10 drop-shadow group-hover:text-[#4A8EBC] transition-colors duration-300">{company.name}</span>

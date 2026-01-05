@@ -2,20 +2,20 @@
 
 import { useEffect, useRef, useState } from "react"
 import L from "leaflet"
+import "leaflet/dist/leaflet.css"
 import React from "react"
 
-// Define sample locations
 const locations = [
-  { name: "Rupandehi, Nepal", lat: 27.6264, lng: 83.3789, color: "#4A8EBC", isHighlighted: true },
-  { name: "New York", lat: 40.7128, lng: -74.006, color: "#3B5488" },
-  { name: "London", lat: 51.5074, lng: -0.1278, color: "#5A9ECC" },
-  { name: "Tokyo", lat: 35.6762, lng: 139.6503, color: "#6AAEDC" },
-  { name: "Sydney", lat: -33.8688, lng: 151.2093, color: "#7ABCEC" },
-  { name: "Cape Town", lat: -33.9249, lng: 18.4241, color: "#8ACAFC" },
-  { name: "Rio de Janeiro", lat: -22.9068, lng: -43.1729, color: "#5A9ECC" },
-  { name: "Moscow", lat: 55.7558, lng: 37.6173, color: "#6AAEDC" },
-  { name: "Dubai", lat: 25.2048, lng: 55.2708, color: "#7ABCEC" },
-  { name: "Singapore", lat: 1.3521, lng: 103.8198, color: "#8ACAFC" },
+  { name: "Rupandehi, Nepal", lat: 27.6264, lng: 83.3789, color: "#4A90E2", isHighlighted: true },
+  { name: "United States", lat: 37.0902, lng: -95.7129, color: "#5BA3F5", clients: 12 },
+  { name: "United Kingdom", lat: 51.5074, lng: -0.1278, color: "#6AB6FF", clients: 8 },
+  { name: "Australia", lat: -25.2744, lng: 133.7751, color: "#7EC8FF", clients: 6 },
+  { name: "Japan", lat: 36.2048, lng: 138.2529, color: "#8AD3FF", clients: 5 },
+  { name: "UAE", lat: 25.2048, lng: 55.2708, color: "#9ADCFF", clients: 7 },
+  { name: "Singapore", lat: 1.3521, lng: 103.8198, color: "#6AB6FF", clients: 4 },
+  { name: "Canada", lat: 56.1304, lng: -106.3468, color: "#7EC8FF", clients: 3 },
+  { name: "Germany", lat: 51.1657, lng: 10.4515, color: "#8AD3FF", clients: 5 },
+  { name: "India", lat: 20.5937, lng: 78.9629, color: "#5BA3F5", clients: 15 },
 ]
 
 export default function WorldMap() {
@@ -25,92 +25,104 @@ export default function WorldMap() {
 
   useEffect(() => {
     if (typeof window !== "undefined" && mapRef.current && !leafletMap.current) {
-      // Initialize the map
       leafletMap.current = L.map(mapRef.current, {
-        center: [27.6264, 83.3789], // Center on Rupandehi, Nepal
+        center: [27.6264, 83.3789],
         zoom: 3,
         minZoom: 2,
-        maxZoom: 6,
+        maxZoom: 7,
         zoomControl: true,
         attributionControl: false,
       })
 
-      // Add a custom styled map
       L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        attribution: '© OpenStreetMap contributors',
       }).addTo(leafletMap.current)
 
-      // Custom marker icon
+      // Enhanced marker with pulse for HQ
       const createCustomIcon = (color, isHighlighted = false) => {
-        const size = isHighlighted ? 18 : 12
-        const pulseAnimation = isHighlighted
-          ? `animation: pulse 2s infinite; @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.3); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }`
-          : ""
-
+        const size = isHighlighted ? 22 : 14
+        const pulse = isHighlighted
+          ? `animation: pulseGlow 2s infinite; @keyframes pulseGlow { 0%,100% { box-shadow: 0 0 15px 5px ${color}; } 50% { box-shadow: 0 0 30px 12px ${color}; } }`
+          : `box-shadow: 0 0 12px 3px ${color};`
         return L.divIcon({
-          className: "custom-marker",
+          className: "custom-div-icon",
           html: `<div style="
-            background-color: ${color};
+            background: ${color};
             width: ${size}px;
             height: ${size}px;
             border-radius: 50%;
-            box-shadow: 0 0 ${isHighlighted ? "15px 5px" : "10px 2px"} ${color};
-            ${pulseAnimation}
+            border: 3px solid white;
+            ${pulse}
           "></div>`,
           iconSize: [size, size],
+          iconAnchor: [size / 2, size / 2],
         })
       }
 
-      // Add markers for each location
-      locations.forEach((location) => {
-        const marker = L.marker([location.lat, location.lng], {
-          icon: createCustomIcon(location.color, location.isHighlighted),
+      // Add markers with tooltips
+      locations.forEach((loc) => {
+        const marker = L.marker([loc.lat, loc.lng], {
+          icon: createCustomIcon(loc.color, loc.isHighlighted),
         }).addTo(leafletMap.current)
 
-        marker.bindTooltip(location.name, {
-          permanent: location.isHighlighted,
+        const content = loc.isHighlighted
+          ? `<strong style="font-size:15px;color:#fff;">${loc.name}</strong><br/><span style="color:#a0d8ff;">🏢 Headquarters</span>`
+          : `<strong style="color:#fff;">${loc.name}</strong><br/><span style="color:#b0e0ff;">👥 ${loc.clients} Clients</span>`
+
+        marker.bindTooltip(content, {
+          permanent: loc.isHighlighted,
           direction: "top",
-          className: location.isHighlighted ? "highlighted-tooltip" : "location-tooltip",
+          offset: [0, -10],
+          className: "custom-tooltip",
         })
       })
 
-      // Draw curved lines between locations
+      // Smooth curved path (quadratic bezier)
+      function createCurvedPath(start, end) {
+        const points = []
+        const offset = 0.25
+        const midLat = (start[0] + end[0]) / 2
+        const midLng = (start[1] + end[1]) / 2
+        const dx = end[1] - start[1]
+        const dy = end[0] - start[0]
+        const dist = Math.sqrt(dx * dx + dy * dy)
+        const normX = -dy / dist
+        const normY = dx / dist
+        const controlLat = midLat + normX * offset * dist * 0.2
+        const controlLng = midLng + normY * offset * dist * 0.2
+
+        const steps = 50
+        for (let i = 0; i <= steps; i++) {
+          const t = i / steps
+          const lat = (1 - t) * (1 - t) * start[0] + 2 * (1 - t) * t * controlLat + t * t * end[0]
+          const lng = (1 - t) * (1 - t) * start[1] + 2 * (1 - t) * t * controlLng + t * t * end[1]
+          points.push([lat, lng])
+        }
+        return points
+      }
+
+      const hqColor = "#4A90E2"
       const rupandehi = locations[0]
+
+      // Draw only curved lines — NO ARROWS
       for (let i = 1; i < locations.length; i++) {
         const start = [rupandehi.lat, rupandehi.lng]
         const end = [locations[i].lat, locations[i].lng]
-        const latlngs = createCurvedLine(start, end)
+        const path = createCurvedPath(start, end)
 
-        L.polyline(latlngs, {
-          color: `${rupandehi.color}`,
-          weight: 2,
-          opacity: 0.8,
-          className: "nepal-flight-path",
+        L.polyline(path, {
+          color: hqColor,
+          weight: 3,
+          opacity: 0.85,
+          dashArray: "8, 12",
+          dashOffset: "0",
+          className: "flowing-line",
         }).addTo(leafletMap.current)
-      }
-
-      // Additional connections
-      for (let i = 1; i < locations.length; i++) {
-        for (let j = i + 1; j < locations.length; j++) {
-          if (Math.random() > 0.7) {
-            const start = [locations[i].lat, locations[i].lng]
-            const end = [locations[j].lat, locations[j].lng]
-            const latlngs = createCurvedLine(start, end)
-
-            L.polyline(latlngs, {
-              color: `${locations[i].color}50`,
-              weight: 1,
-              opacity: 0.5,
-              className: "flight-path",
-            }).addTo(leafletMap.current)
-          }
-        }
       }
 
       setIsLoaded(true)
     }
 
-    // Cleanup
     return () => {
       if (leafletMap.current) {
         leafletMap.current.remove()
@@ -119,128 +131,99 @@ export default function WorldMap() {
     }
   }, [])
 
-  // Curved line calculation
-  function createCurvedLine(start, end) {
-    const latlngs = []
-    const midLat = (start[0] + end[0]) / 2
-    const midLng = (start[1] + end[1]) / 2
-    const distance = Math.sqrt(Math.pow(end[0] - start[0], 2) + Math.pow(end[1] - start[1], 2))
-    const curveHeight = distance * 0.2
-
-    const dx = end[0] - start[0]
-    const dy = end[1] - start[1]
-    const perpX = -dy
-    const perpY = dx
-    const length = Math.sqrt(perpX * perpX + perpY * perpY)
-    const controlLat = midLat + (perpX / length) * curveHeight
-    const controlLng = midLng + (perpY / length) * curveHeight
-
-    const steps = 20
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps
-      const lat = Math.pow(1 - t, 2) * start[0] + 2 * (1 - t) * t * controlLat + Math.pow(t, 2) * end[0]
-      const lng = Math.pow(1 - t, 2) * start[1] + 2 * (1 - t) * t * controlLng + Math.pow(t, 2) * end[1]
-      latlngs.push([lat, lng])
-    }
-    return latlngs
-  }
-
   return (
-    <div className="w-full bg-[#F5FAFF] py-16 md:py-24 relative overflow-hidden">
-      {/* Decorative elements with low opacity */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Circles */}
-        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow"></div>
-        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow"></div>
-
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
-            backgroundSize: "30px 30px",
-          }}
-        ></div>
+    <div className="w-full bg-gradient-to-b from-[#f0f8ff] to-[#e6f2ff] py-20 md:py-28 relative overflow-hidden">
+      {/* Subtle background decoration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-10 left-10 w-96 h-96 rounded-full bg-[#4A90E2]/10 blur-3xl"></div>
+        <div className="absolute bottom-20 right-20 w-80 h-80 rounded-full bg-[#6AB6FF]/10 blur-3xl"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#4A90E2_1px,transparent_1px)] bg-[length:60px_60px] opacity-5"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-block relative">
-            <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow"></div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
-              Global Presence
-            </h2>
-          </div>
-          <p className="mt-4 text-lg text-[#2B4066]/80 max-w-2xl mx-auto">
-            Connecting businesses across the world with innovative digital solutions.
-          </p>
+        <div className="text-center mb-16">
+          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#2c5282] to-[#4A90E2] bg-clip-text text-transparent">
+            From Rupandehi to the World
+          </h2>
+ 
+
         </div>
 
-        {/* Map Container */}
-        <div className="relative">
-          <div
-            className="map-container bg-[#0a1a2d] rounded-2xl overflow-hidden shadow-xl border border-[#4A8EBC]/20"
-            style={{
-              width: "100%",
-              height: "600px",
-              position: "relative",
-            }}
-          >
-            {/* Loading overlay */}
+        {/* Map */}
+        <div className="relative max-w-5xl mx-auto">
+          <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#4A90E2]/30 bg-gradient-to-br from-[#0f172a]/90 to-[#1e293b]/90 backdrop-blur-sm">
             {!isLoaded && (
-              <div className="absolute inset-0 bg-[#0a1a2d] flex items-center justify-center z-20">
-                <div className="w-16 h-16 border-4 border-[#4A8EBC]/20 border-t-[#4A8EBC] rounded-full animate-spin"></div>
+              <div className="absolute inset-0 flex items-center justify-center z-50 bg-[#0f172a]/80">
+                <div className="w-20 h-20 border-4 border-[#4A90E2]/30 border-t-[#4A90E2] rounded-full animate-spin"></div>
               </div>
             )}
+            <div ref={mapRef} className="h-96 md:h-[560px]" />
 
-            {/* Map */}
-            <div
-              ref={mapRef}
-              style={{
-                width: "100%",
-                height: "100%",
-                background: "#0a1a2d",
-                borderRadius: "1rem",
-              }}
-            />
-
-            {/* Map overlay decorations */}
-            <div className="absolute top-4 left-4 bg-[#1A2A44]/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg border border-[#4A8EBC]/30 z-10">
-              <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-[#4A8EBC] mr-2 animate-pulse"></div>
-                <span className="text-sm font-medium">Nepal Digital Heights</span>
+            {/* HQ Badge */}
+            <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-md rounded-2xl px-6 py-4 shadow-xl border border-[#4A90E2]/40">
+              <div className="flex items-center gap-4">
+                <div className="w-5 h-5 rounded-full bg-[#4A90E2] animate-pulse shadow-lg"></div>
+                <div>
+                  <div className="font-bold text-[#2d3748]">Nepal Digital Heights</div>
+                  <div className="text-sm text-[#4a6fa5]">Rupandehi, Nepal 🇳🇵</div>
+                </div>
               </div>
             </div>
 
-            <div className="absolute bottom-4 right-4 bg-[#1A2A44]/80 backdrop-blur-sm text-white px-4 py-2 rounded-lg shadow-lg border border-[#4A8EBC]/30 z-10 text-xs">
-              Serving clients in 10+ countries
-            </div>
+            {/* Bottom tagline */}
+            {/* <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur rounded-xl px-5 py-3 shadow-lg border border-[#4A90E2]/20 text-sm text-[#2d3748]">
+              🌍 Serving 10+ countries worldwide
+            </div> */}
           </div>
 
-          {/* Map Legend */}
-          <div className="mt-8 bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-md border border-[#4A8EBC]/10">
-            <h3 className="text-xl font-semibold text-[#1A2A44] mb-4">Our Global Network</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div className="flex items-center">
-                <div className="w-4 h-4 rounded-full bg-[#4A8EBC] mr-3 shadow-[0_0_10px_#4A8EBC]"></div>
-                <span className="text-[#2B4066]">Headquarters (Rupandehi,Nepal)</span>
-              </div>
-
-              <div className="flex items-center">
-                <div className="w-3 h-3 rounded-full bg-[#5A9ECC] mr-3 shadow-[0_0_6px_#5A9ECC]"></div>
-                <span className="text-[#2B4066]">Kathmandu</span>
-              </div>
+          {/* Legend */}
+          {/* <div className="mt-12 bg-white/80 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-[#4A90E2]/20">
+            <h3 className="text-2xl font-bold text-[#2d3748] mb-6 text-center">Our Global Presence</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
+              {locations.map((loc, i) => (
+                <div key={i} className="flex flex-col items-center text-center">
+                  <div
+                    className={`${loc.isHighlighted ? "w-10 h-10" : "w-7 h-7"} rounded-full mb-3 border-4 border-white shadow-xl`}
+                    style={{ backgroundColor: loc.color, boxShadow: `0 0 20px ${loc.color}` }}
+                  ></div>
+                  <span className={`font-medium ${loc.isHighlighted ? "text-lg text-[#2d3748]" : "text-sm text-[#4a6fa5]"}`}>
+                    {loc.name.split(",")[0]}
+                  </span>
+                  {!loc.isHighlighted && <span className="text-xs text-[#6b7280] mt-1">{loc.clients} clients</span>}
+                </div>
+              ))}
             </div>
-          </div>
+            <p className="text-center mt-8 text-[#4a6fa5]/80">
+              🚀 All connections flow from our headquarters in <strong className="text-[#4A90E2]">Rupandehi, Nepal</strong>
+            </p>
+          </div> */}
         </div>
-
-
       </div>
 
-      {/* All custom styles removed. If you need these, add them to your global CSS file. */}
+      {/* Custom Styles */}
+      <style jsx global>{`
+        .custom-tooltip {
+          background: rgba(15, 23, 42, 0.9) !important;
+          border: 1px solid #4A90E2 !important;
+          border-radius: 12px !important;
+          padding: 10px 14px !important;
+          font-size: 13px !important;
+          box-shadow: 0 4px 20px rgba(74, 144, 226, 0.4) !important;
+          backdrop-filter: blur(8px);
+        }
+        .custom-tooltip::before {
+          border-top-color: #4A90E2 !important;
+        }
+        .flowing-line {
+          animation: flow 10s linear infinite;
+        }
+        @keyframes flow {
+          to {
+            stroke-dashoffset: -20;
+          }
+        }
+      `}</style>
     </div>
   )
 }
-

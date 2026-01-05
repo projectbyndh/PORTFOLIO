@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { generateApplicationPDF } from "../utils/pdf";
 
 
 export default function CareerApplicationForm({ position = "", onSuccess }) {
@@ -24,6 +25,14 @@ export default function CareerApplicationForm({ position = "", onSuccess }) {
       resumeName: form.resume ? form.resume.name : "",
     };
     localStorage.setItem("careerApplications", JSON.stringify([...prev, newApp]));
+    // Auto-generate a PDF summary for user convenience
+    try {
+      generateApplicationPDF(newApp);
+    } catch (err) {
+      // Fail gracefully without blocking submission
+      // eslint-disable-next-line no-console
+      console.warn("PDF generation failed:", err);
+    }
     setSuccess("Application submitted successfully!");
     setForm({ name: "", email: "", resume: null, message: "", position });
     if (onSuccess) onSuccess();

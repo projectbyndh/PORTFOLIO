@@ -8,18 +8,29 @@ export default function AdminCareers() {
     const stored = localStorage.getItem("careers");
     return stored ? JSON.parse(stored) : [];
   });
-  const [title, setTitle] = useState("");
-  const [desc, setDesc] = useState("");
+  const [image, setImage] = useState("");
+  const [imageName, setImageName] = useState("");
+
+  const handleImageChange = (e) => {
+    const file = e.target.files && e.target.files[0];
+    if (!file) return;
+    setImageName(file.name);
+    const reader = new FileReader();
+    reader.onload = (evt) => {
+      setImage(evt.target?.result || "");
+    };
+    reader.readAsDataURL(file);
+  };
 
   const addCareer = (e) => {
     e.preventDefault();
-    if (!title.trim() || !desc.trim()) return;
-    const newCareer = { id: Date.now(), title, desc };
+    if (!image) return;
+    const newCareer = { id: Date.now(), image };
     const updated = [...careers, newCareer];
     setCareers(updated);
     localStorage.setItem("careers", JSON.stringify(updated));
-    setTitle("");
-    setDesc("");
+    setImage("");
+    setImageName("");
   };
 
   const removeCareer = (id) => {
@@ -36,33 +47,46 @@ export default function AdminCareers() {
             Manage Careers
           </h1>
           <form onSubmit={addCareer} className="mb-8 space-y-4 max-w-xl mx-auto">
-            <input
-              className="border p-3 w-full rounded-lg focus:ring-2 focus:ring-[#4A8EBC]"
-              placeholder="Job Title"
-              value={title}
-              onChange={e => setTitle(e.target.value)}
-            />
-            <textarea
-              className="border p-3 w-full rounded-lg focus:ring-2 focus:ring-[#4A8EBC]"
-              placeholder="Job Description"
-              value={desc}
-              onChange={e => setDesc(e.target.value)}
-            />
+            <div className="space-y-2">
+              <label className="block text-sm font-medium text-[#1A2A44]">Upload Career Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="border p-2 w-full rounded-lg focus:ring-2 focus:ring-[#4A8EBC]"
+              />
+              {image && (
+                <div className="mt-2 flex items-center gap-3">
+                  <div className="w-16 h-16 rounded-lg overflow-hidden border">
+                    <img src={image} alt={imageName || "Preview"} className="w-full h-full object-cover" />
+                  </div>
+                  <span className="text-sm text-gray-600 truncate max-w-[200px]">{imageName}</span>
+                </div>
+              )}
+            </div>
             <button type="submit" className="bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white px-6 py-2 rounded-full font-semibold shadow hover:scale-105 transition-all">
               Add Career
             </button>
           </form>
-          <ul className="space-y-4 max-w-xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
             {careers.map(c => (
-              <li key={c.id} className="border p-4 rounded-xl flex justify-between items-center bg-white/80 shadow-sm">
-                <div>
-                  <div className="font-semibold text-lg text-[#1A2A44]">{c.title}</div>
-                  <div className="text-sm text-gray-600">{c.desc}</div>
+              <div key={c.id} className="relative group">
+                <div className="aspect-square rounded-xl overflow-hidden border bg-white shadow-sm">
+                  {c.image ? (
+                    <img src={c.image} alt="Career" className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-xs text-gray-400">No image</div>
+                  )}
                 </div>
-                <button onClick={() => removeCareer(c.id)} className="text-red-500 font-bold px-3 py-1 rounded hover:bg-red-50 transition-all">Delete</button>
-              </li>
+                <button 
+                  onClick={() => removeCareer(c.id)} 
+                  className="absolute top-2 right-2 bg-red-500 text-white w-6 h-6 rounded-full text-sm font-bold opacity-0 group-hover:opacity-100 transition-opacity hover:bg-red-600"
+                >
+                  ×
+                </button>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
         <AdminCareerApplications />
       </div>

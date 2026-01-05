@@ -1,4 +1,5 @@
 import React from "react";
+import useCompanyStore from "../Store/CompanyStore";
 import numazu from '../assets/numazu.png';
 import trailblazers from '../assets/trailblazers.png';
 import appleday from '../assets/appleday.png';
@@ -7,9 +8,13 @@ import resunga from '../assets/resunga.jpeg';
 import siddhartha from '../assets/siddhartha.jpeg';
 import school from '../assets/school.jpeg';
 import selection from '../assets/selection.jpeg';
+
 export default function CompaniesSection() {
-  // Always show dummy partners
-  const dummyPartners = [
+  // Get companies from admin store
+  const adminCompanies = useCompanyStore((state) => state.companies);
+  
+  // Default partners (fallback)
+  const defaultPartners = [
     { id: '1', name: 'Numazu', logoUrl: numazu },
     { id: '2', name: 'Trailblazers', logoUrl: trailblazers },
     { id: '3', name: 'Apple Day', logoUrl: appleday },
@@ -20,8 +25,11 @@ export default function CompaniesSection() {
     { id: '8', name: 'Resunga Pharmacy', logoUrl: resunga },
   ];
 
+  // Combine admin companies with default partners
+  const partners = [...adminCompanies, ...defaultPartners];
+
   // Duplicate the array for seamless looping
-  const marqueePartners = [...dummyPartners, ...dummyPartners];
+  const marqueePartners = [...partners, ...partners];
 
   return (
     <section className="py-12 bg-white/80">
