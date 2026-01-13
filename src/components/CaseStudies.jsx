@@ -9,6 +9,7 @@ import dg from '../assets/dg.jpeg';
 import rms2 from '../assets/rms2.jpeg';
 import select from '../assets/select.jpeg';
 import ep from '../assets/ep.jpeg';
+
 const categories = [
   "All",
   "Web Applications",
@@ -19,7 +20,8 @@ const categories = [
   "Healthcare",
 ]
 
-const projects = [
+// Fallback projects
+const FALLBACK_PROJECTS = [
   {
     name: "Numazu Halal Food",
     category: "Web Applications",
@@ -84,11 +86,15 @@ const projects = [
 ]
 
 export default function ProjectsShowcase() {
+  const displayProjects = FALLBACK_PROJECTS
   const [activeCategory, setActiveCategory] = useState("All")
 
   const filteredProjects = activeCategory === "All"
-    ? projects
-    : projects.filter((project) => project.categories.includes(activeCategory))
+    ? displayProjects
+    : displayProjects.filter((project) => {
+        const projectCategories = project.categories || [project.category]
+        return projectCategories.includes(activeCategory)
+      })
 
   const getCategoryIcon = (category) => {
     switch (category) {

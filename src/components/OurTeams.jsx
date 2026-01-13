@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Logo from "./Logo"
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion"
@@ -12,62 +12,63 @@ import suman from "../assets/suman.png"
 import rajesh from "../assets/rajesh.png"
 import bibek from "../assets/bibek.png"
 import vipul from "../assets/vipul.png"
-const teamMembers = [
+
+const defaultTeamMembers = [
   {
     name: "Navin Pandey",
     position: "CEO",
     level: "executive",
     bio: "With a strong vision for digital transformation, Navin leads our team with passion and innovation.",
-    image: navin,
+    image_url: navin,
   },
   {
     name: "Sagar Aryal",
     position: "CTO",
     level: "executive",
     bio: "Sagar is an expert in full-stack development, driving our technical strategies and agile methodologies.",
-    image: sagar,
+    image_url: sagar,
   },
   {
     name: "Prajwal Pandey",
     position: "CFO",
     level: "executive",
     bio: "Prajwal manages our financial strategies, ensuring sustainable growth and profitability.",
-    image: prajwal,
+    image_url: prajwal,
   },
   {
     name: "Sunil Poudel",
     position: "QA Head",
     level: "executive",
     bio: "Sunil oversees quality assurance, ensuring our products meet the highest standards of excellence.",
-    image: sunil,
+    image_url: sunil,
   },
   {
     name: "Suman Acharya",
     position: "Marketing Head",
     level: "management",
     bio: "Suman excels in crafting effective marketing strategies that drive brand growth and engagement.",
-    image: suman,
+    image_url: suman,
   },
   {
     name: "Rajesh Subedi",
     position: "Lead Engineer",
     level: "management",
     bio: "Rajesh specializes in creating intuitive user experiences, ensuring our platforms are user-friendly and engaging.",
-    image: rajesh,
+    image_url: rajesh,
   },
   {
     name: "Bibek Pandey",
     position: "Software Engineer",
     level: "staff",
     bio: "Bibek is a rising star in our development team, contributing fresh ideas and innovative solutions.",
-    image: bibek,
+    image_url: bibek,
   },
   {
     name: "Vipul Pun",
     position: "Software Engineer",
     level: "staff",
     bio: "Vipul is a talented developer bringing creativity and technical expertise to our engineering team.",
-    image: vipul,
+    image_url: vipul,
   },
 ]
 
@@ -251,9 +252,11 @@ const AnimatedNDHCharacter = () => {
 }
 
 export default function OurTeams() {
-  const executiveTeam = teamMembers.filter((m) => m.level === "executive")
-  const managementTeam = teamMembers.filter((m) => m.level === "management")
-  const staffTeam = teamMembers.filter((m) => m.level === "staff")
+  const displayMembers = defaultTeamMembers
+
+  const executiveTeam = displayMembers.filter((m) => m.level === "executive")
+  const managementTeam = displayMembers.filter((m) => m.level === "management")
+  const staffTeam = displayMembers.filter((m) => m.level === "staff")
 
   return (
     <div className="min-h-screen bg-linear-to-br from-[#F5FAFF] via-[#EBF5FF] to-[#F5FAFF] py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
@@ -395,7 +398,7 @@ export default function OurTeams() {
                   >
                     <div className="relative">
                       <img
-                        src={member.image || "/placeholder.svg"}
+                        src={member.image_url || "/placeholder.svg"}
                         alt={member.name}
                         className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-[#4A8EBC]/20 shadow-md"
                         onError={(e) => {
@@ -414,7 +417,7 @@ export default function OurTeams() {
                   {member.position}
                 </div>
                 <div className="relative z-10 text-xs leading-relaxed text-center text-gray-600 sm:text-sm">
-                  {member.bio}
+                  {member.short_description || member.bio}
                 </div>
               </motion.div>
             ))}
@@ -461,7 +464,7 @@ export default function OurTeams() {
                   >
                     <div className="relative">
                       <img
-                        src={member.image || "/placeholder.svg"}
+                        src={member.image_url || "/placeholder.svg"}
                         alt={member.name}
                         className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-[#4A8EBC]/20 shadow-md"
                         onError={(e) => {
@@ -480,7 +483,7 @@ export default function OurTeams() {
                   {member.position}
                 </div>
                 <div className="relative z-10 text-xs leading-relaxed text-center text-gray-600 sm:text-sm">
-                  {member.bio}
+                  {member.short_description || member.bio}
                 </div>
               </motion.div>
             ))}
@@ -526,7 +529,7 @@ export default function OurTeams() {
                   >
                     <div className="relative">
                       <img
-                        src={member.image || "/placeholder.svg"}
+                        src={member.image_url || "/placeholder.svg"}
                         alt={member.name}
                         className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-[#4A8EBC]/20 shadow-md"
                         onError={(e) => {
@@ -545,7 +548,7 @@ export default function OurTeams() {
                   {member.position}
                 </div>
                 <div className="relative z-10 text-xs leading-relaxed text-center text-gray-600 sm:text-sm">
-                  {member.bio}
+                  {member.short_description || member.bio}
                 </div>
               </motion.div>
             ))}

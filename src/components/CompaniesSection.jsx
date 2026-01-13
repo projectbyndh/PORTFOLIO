@@ -1,5 +1,4 @@
-import React from "react";
-import useCompanyStore from "../Store/CompanyStore";
+import React, { useEffect, useState } from "react";
 import numazu from '../assets/numazu.png';
 import trailblazers from '../assets/trailblazers.png';
 import appleday from '../assets/appleday.png';
@@ -10,26 +9,28 @@ import school from '../assets/school.jpeg';
 import selection from '../assets/selection.jpeg';
 
 export default function CompaniesSection() {
-  // Get companies from admin store
-  const adminCompanies = useCompanyStore((state) => state.companies);
-  
-  // Default partners (fallback)
-  const defaultPartners = [
-    { id: '1', name: 'Numazu', logoUrl: numazu },
-    { id: '2', name: 'Trailblazers', logoUrl: trailblazers },
-    { id: '3', name: 'Apple Day', logoUrl: appleday },
-    { id: '4', name: 'Epasaley', logoUrl: epasaley },
-    { id: '5', name: 'Selection Clothing', logoUrl: selection },
-    { id: '6', name: 'Siddhartha College', logoUrl: siddhartha },
-    { id: '7', name: 'Siddhartha School', logoUrl: school },
-    { id: '8', name: 'Resunga Pharmacy', logoUrl: resunga },
-  ];
+  const [displayCompanies, setDisplayCompanies] = useState([]);
 
-  // Combine admin companies with default partners
-  const partners = [...adminCompanies, ...defaultPartners];
+  // Use default partners
+  useEffect(() => {
+    const defaultPartners = [
+      { id: '1', name: 'Numazu', logoUrl: numazu },
+      { id: '2', name: 'Trailblazers', logoUrl: trailblazers },
+      { id: '3', name: 'Apple Day', logoUrl: appleday },
+      { id: '4', name: 'Epasaley', logoUrl: epasaley },
+      { id: '5', name: 'Selection Clothing', logoUrl: selection },
+      { id: '6', name: 'Siddhartha College', logoUrl: siddhartha },
+      { id: '7', name: 'Siddhartha School', logoUrl: school },
+      { id: '8', name: 'Resunga Pharmacy', logoUrl: resunga },
+    ];
+    setDisplayCompanies(defaultPartners);
+  }, [])
+
+  // Combine display companies with default partners
+  const partners = displayCompanies;
 
   // Duplicate the array for seamless looping
-  const marqueePartners = [...partners, ...partners];
+  const marqueePartners = partners && partners.length > 0 ? [...partners, ...partners] : [];
 
   return (
     <section className="py-12 bg-white/80">

@@ -3,8 +3,9 @@ import { Link } from "react-router-dom"
 import { useState, useEffect, useRef } from "react"
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import React from "react"
-// Sample testimonial data with English names and companies
-const TESTIMONIALS = [
+
+// Fallback testimonial data
+const FALLBACK_TESTIMONIALS = [
   {
     id: 1,
 
@@ -51,6 +52,7 @@ const TESTIMONIALS = [
 ]
 
 export default function Testimonials() {
+  const displayTestimonials = FALLBACK_TESTIMONIALS
   const [currentIndex, setCurrentIndex] = useState(0)
   const [animatedItems, setAnimatedItems] = useState([])
   const testimonialsRef = useRef(null)
@@ -74,18 +76,18 @@ export default function Testimonials() {
 
   const isAnimated = (id) => animatedItems.includes(id)
 
-  const nextTestimonial = () => setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length)
-  const prevTestimonial = () => setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length)
+  const nextTestimonial = () => setCurrentIndex((prev) => (prev + 1) % displayTestimonials.length)
+  const prevTestimonial = () => setCurrentIndex((prev) => (prev - 1 + displayTestimonials.length) % displayTestimonials.length)
 
   const getVisibleTestimonials = () => {
     if (typeof window !== "undefined" && window.innerWidth < 768) {
-      return [TESTIMONIALS[currentIndex]]
+      return [displayTestimonials[currentIndex]]
     }
 
     const visibleCount = 3
     const testimonials = []
     for (let i = 0; i < visibleCount; i++) {
-      testimonials.push(TESTIMONIALS[(currentIndex + i) % TESTIMONIALS.length])
+      testimonials.push(displayTestimonials[(currentIndex + i) % displayTestimonials.length])
     }
     return testimonials
   }
@@ -114,7 +116,7 @@ export default function Testimonials() {
           <div className="inline-block relative">
             <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow" />
             <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow" />
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] to-[#4A8EBC]">
               Client Testimonials
             </h2>
           </div>
@@ -198,7 +200,7 @@ export default function Testimonials() {
             Join our growing list of satisfied clients and experience the Nepal Digital Heights difference.
           </p>
           <Link to='/contact'>
-            <button className="px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            <button className="px-8 py-4 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
               Get Started Today
             </button>
           </Link>

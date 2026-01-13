@@ -4,6 +4,7 @@ import React from "react"
 import { useState, useEffect } from "react"
 import { Globe, Smartphone, Layout, Share2, Search, Palette, Database, BarChart2, HeadphonesIcon } from "lucide-react"
 import { Link } from "react-router-dom"
+
 export default function Services() {
   const [animatedItems, setAnimatedItems] = useState([])
 
@@ -32,199 +33,204 @@ export default function Services() {
   const isAnimated = (id) => animatedItems.includes(id)
 
   return (
-    <div className="w-full bg-[#F5FAFF] relative overflow-hidden">
-      {/* Decorative elements with low opacity */}
+    <main className="w-full bg-linear-to-br from-[#F5FAFF] via-[#EAF5FF] to-[#F0F9FF] relative overflow-hidden py-20" role="region" aria-labelledby="services-heading">
+      {/* Enhanced Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Circles */}
-        <div className="absolute top-40 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow"></div>
-        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow"></div>
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-80 h-80 rounded-full bg-linear-to-br from-[#4A8EBC]/6 to-[#2DD4BF]/4 animate-float blur-2xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-linear-to-br from-[#3B5488]/5 to-[#8B5CF6]/3 animate-float blur-2xl" style={{animationDelay: '3s'}}></div>
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 rounded-full bg-linear-to-br from-[#F59E0B]/4 to-[#EF4444]/3 animate-float blur-xl" style={{animationDelay: '6s'}}></div>
 
-        {/* Grid pattern */}
+        {/* Geometric Shapes */}
+        <div className="absolute top-32 right-32 w-20 h-20 border-2 border-[#4A8EBC]/20 rotate-45 animate-spin-slow"></div>
+        <div className="absolute bottom-32 left-32 w-16 h-16 bg-[#2DD4BF]/10 rounded-full animate-bounce"></div>
+
+        {/* Grid Pattern */}
         <div
-          className="absolute inset-0 opacity-5"
+          className="absolute inset-0 opacity-4"
           style={{
-            backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
-            backgroundSize: "30px 30px",
+            backgroundImage: `radial-gradient(circle, #4A8EBC 1px, transparent 1px)`,
+            backgroundSize: "40px 40px",
           }}
         ></div>
       </div>
 
-      {/* Header Section */}
-      <div className="w-full bg-gradient-to-b from-[#E0F0FF] to-[#F5FAFF] py-16 px-4 sm:px-6 lg:px-8 relative">
-        {/* Wavy pattern */}
-        <svg
-          className="absolute top-0 left-0 w-full h-32 opacity-10"
-          viewBox="0 0 1440 320"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill="#4A8EBC"
-            fillOpacity="1"
-            d="M0,192L48,176C96,160,192,128,288,122.7C384,117,480,139,576,165.3C672,192,768,224,864,213.3C960,203,1056,149,1152,138.7C1248,128,1344,160,1392,176L1440,192L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
-          ></path>
-        </svg>
-
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-          <div className="inline-block relative">
-            <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow"></div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
-              Our Expertise, <span className="text-[#4A8EBC]">Your Success.</span>
+      {/* Enhanced Header Section */}
+      <div className="relative z-10">
+        <div className="max-w-7xl mx-auto px-6 py-16 text-center">
+          <div className="relative inline-block mb-8">
+            <div className="absolute -top-6 -left-6 w-12 h-12 rounded-full bg-linear-to-br from-[#4A8EBC]/20 to-[#2DD4BF]/20 animate-pulse-slow"></div>
+            <div className="absolute -bottom-6 -right-6 w-12 h-12 rounded-full bg-linear-to-br from-[#8B5CF6]/20 to-[#F59E0B]/20 animate-pulse-slow" style={{animationDelay: '1s'}}></div>
+            <h1 id="services-heading" className="text-5xl md:text-6xl font-extrabold mb-6 animate-fade-in">
+              <span className="bg-linear-to-r from-[#1A2A44] via-[#4A8EBC] to-[#3B5488] bg-clip-text text-transparent">
+                Our Expertise,
+              </span>
+              <br />
+              <span className="bg-linear-to-r from-[#2DD4BF] to-[#8B5CF6] bg-clip-text text-transparent">
+                Your Success
+              </span>
             </h1>
           </div>
-          <p className="text-lg text-[#2B4066]/80 max-w-3xl mx-auto">
+
+          <p className="text-xl md:text-2xl text-[#2B4066]/80 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.3s'}}>
             We deliver cutting-edge digital solutions tailored to your business needs, helping you stay ahead in today's
-            competitive landscape.
+            competitive landscape with innovative technology and strategic insights.
           </p>
         </div>
       </div>
 
-      {/* Services Categories */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {/* Enhanced Services Categories */}
+      <div className="max-w-7xl mx-auto px-6 py-16 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Digital Presence & Development */}
           <div
             id="category-1"
-            className={`animate-on-scroll rounded-xl p-8 border border-[#4A8EBC]/10 bg-white/70 backdrop-blur-sm shadow-lg transition-all duration-500 hover:shadow-xl hover:bg-white/90 ${
+            className={`group relative animate-on-scroll transition-all duration-700 hover:-translate-y-2 ${
               isAnimated(1) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
-            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-[#4A8EBC]/20 to-[#3B5488]/20 flex items-center justify-center mb-6 shadow-md">
-              <Globe className="h-8 w-8 text-[#4A8EBC]" />
-            </div>
-            <h2 className="text-2xl font-bold text-[#1A2A44] mb-4 border-b-2 border-[#4A8EBC]/20 pb-2">
-              Digital Presence & Development
-            </h2>
-            <div className="space-y-6">
-              <ServiceItem
-                icon={<Layout className="h-6 w-6 text-[#4A8EBC]" />}
-                title="Custom Web Solutions"
-                description="From e-commerce platforms to dynamic web applications, we build websites that perform."
-              />
-              <ServiceItem
-                icon={<Smartphone className="h-6 w-6 text-[#4A8EBC]" />}
-                title="Mobile App Innovation"
-                description="Cross-platform apps designed for seamless user experiences."
-              />
-              <ServiceItem
-                icon={<Layout className="h-6 w-6 text-[#4A8EBC]" />}
-                title="WordPress Mastery"
-                description="Tailored WordPress solutions for businesses of all sizes."
-              />
+            <div className="absolute inset-0 bg-linear-to-br from-[#4A8EBC]/10 to-[#2DD4BF]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/50 transition-all duration-500">
+              <div className="h-20 w-20 rounded-2xl bg-linear-to-br from-[#4A8EBC] to-[#3B5488] flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform duration-300">
+                <Globe className="h-10 w-10 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-[#1A2A44] mb-6 group-hover:text-[#4A8EBC] transition-colors duration-300">
+                Digital Presence & Development
+              </h2>
+              <div className="space-y-6">
+                <ServiceItem
+                  icon={<Layout className="h-6 w-6 text-[#4A8EBC]" />}
+                  title="Custom Web Solutions"
+                  description="From e-commerce platforms to dynamic web applications, we build websites that perform."
+                />
+                <ServiceItem
+                  icon={<Smartphone className="h-6 w-6 text-[#4A8EBC]" />}
+                  title="Mobile App Innovation"
+                  description="Cross-platform apps designed for seamless user experiences."
+                />
+                <ServiceItem
+                  icon={<Layout className="h-6 w-6 text-[#4A8EBC]" />}
+                  title="WordPress Mastery"
+                  description="Tailored WordPress solutions for businesses of all sizes."
+                />
+              </div>
             </div>
           </div>
 
           {/* Digital Marketing & Branding */}
           <div
             id="category-2"
-            className={`animate-on-scroll rounded-xl p-8 border border-[#4A8EBC]/10 bg-white/70 backdrop-blur-sm shadow-lg transition-all duration-700 hover:shadow-xl hover:bg-white/90 ${
+            className={`group relative animate-on-scroll transition-all duration-700 hover:-translate-y-2 ${
               isAnimated(2) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
+            style={{animationDelay: '0.2s'}}
           >
-            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-[#4A8EBC]/20 to-[#3B5488]/20 flex items-center justify-center mb-6 shadow-md">
-              <Share2 className="h-8 w-8 text-[#4A8EBC]" />
-            </div>
-            <h2 className="text-2xl font-bold text-[#1A2A44] mb-4 border-b-2 border-[#4A8EBC]/20 pb-2">
-              Digital Marketing & Branding
-            </h2>
-            <div className="space-y-6">
-              <ServiceItem
-                icon={<Share2 className="h-6 w-6 text-[#4A8EBC]" />}
-                title="Strategic Social Media"
-                description="Engaging content and targeted campaigns that build your brand."
-              />
-              <ServiceItem
-                icon={<Search className="h-6 w-6 text-[#4A8EBC]" />}
-                title="SEO Excellence"
-                description="Improving your online visibility and driving organic traffic."
-              />
-              <ServiceItem
-                icon={<Palette className="h-6 w-6 text-[#4A8EBC]" />}
-                title="Visual Branding"
-                description="Creating compelling visuals that resonate with your audience."
-              />
+            <div className="absolute inset-0 bg-linear-to-br from-[#2DD4BF]/10 to-[#8B5CF6]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/50 transition-all duration-500">
+              <div className="h-20 w-20 rounded-2xl bg-linear-to-br from-[#2DD4BF] to-[#8B5CF6] flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform duration-300">
+                <Share2 className="h-10 w-10 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-[#1A2A44] mb-6 group-hover:text-[#2DD4BF] transition-colors duration-300">
+                Digital Marketing & Branding
+              </h2>
+              <div className="space-y-6">
+                <ServiceItem
+                  icon={<Share2 className="h-6 w-6 text-[#2DD4BF]" />}
+                  title="Strategic Social Media"
+                  description="Engaging content and targeted campaigns that build your brand."
+                />
+                <ServiceItem
+                  icon={<Search className="h-6 w-6 text-[#2DD4BF]" />}
+                  title="SEO Excellence"
+                  description="Improving your online visibility and driving organic traffic."
+                />
+                <ServiceItem
+                  icon={<Palette className="h-6 w-6 text-[#2DD4BF]" />}
+                  title="Visual Branding"
+                  description="Creating compelling visuals that resonate with your audience."
+                />
+              </div>
             </div>
           </div>
 
           {/* IT Support & Consulting */}
           <div
             id="category-3"
-            className={`animate-on-scroll rounded-xl p-8 border border-[#4A8EBC]/10 bg-white/70 backdrop-blur-sm shadow-lg transition-all duration-900 hover:shadow-xl hover:bg-white/90 ${
+            className={`group relative animate-on-scroll transition-all duration-700 hover:-translate-y-2 ${
               isAnimated(3) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
+            style={{animationDelay: '0.4s'}}
           >
-            <div className="h-16 w-16 rounded-full bg-gradient-to-br from-[#4A8EBC]/20 to-[#3B5488]/20 flex items-center justify-center mb-6 shadow-md">
-              <Database className="h-8 w-8 text-[#4A8EBC]" />
-            </div>
-            <h2 className="text-2xl font-bold text-[#1A2A44] mb-4 border-b-2 border-[#4A8EBC]/20 pb-2">
-              IT Support & Consulting
-            </h2>
-            <div className="space-y-6">
-              <ServiceItem
-                icon={<Database className="h-6 w-6 text-[#4A8EBC]" />}
-                title="Database Solutions"
-                description="Robust database management and optimization."
-              />
-              <ServiceItem
-                icon={<BarChart2 className="h-6 w-6 text-[#4A8EBC]" />}
-                title="IT Strategic Planning"
-                description="Aligning your IT infrastructure with your business goals."
-              />
-              <ServiceItem
-                icon={<HeadphonesIcon className="h-6 w-6 text-[#4A8EBC]" />}
-                title="Reliable Technical Support"
-                description="Ensuring smooth operations with our expert support."
-              />
+            <div className="absolute inset-0 bg-linear-to-br from-[#8B5CF6]/10 to-[#F59E0B]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-2xl hover:shadow-3xl border border-white/50 transition-all duration-500">
+              <div className="h-20 w-20 rounded-2xl bg-linear-to-br from-[#8B5CF6] to-[#F59E0B] flex items-center justify-center mb-6 shadow-xl group-hover:scale-110 transition-transform duration-300">
+                <Database className="h-10 w-10 text-white" />
+              </div>
+              <h2 className="text-2xl font-bold text-[#1A2A44] mb-6 group-hover:text-[#8B5CF6] transition-colors duration-300">
+                IT Support & Consulting
+              </h2>
+              <div className="space-y-6">
+                <ServiceItem
+                  icon={<Database className="h-6 w-6 text-[#8B5CF6]" />}
+                  title="Database Solutions"
+                  description="Robust database management and optimization."
+                />
+                <ServiceItem
+                  icon={<BarChart2 className="h-6 w-6 text-[#8B5CF6]" />}
+                  title="IT Strategic Planning"
+                  description="Aligning your IT infrastructure with your business goals."
+                />
+                <ServiceItem
+                  icon={<HeadphonesIcon className="h-6 w-6 text-[#8B5CF6]" />}
+                  title="Reliable Technical Support"
+                  description="Ensuring smooth operations with our expert support."
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        {/* CTA Section */}
+        {/* Enhanced CTA Section */}
         <div
           id="category-4"
           className={`animate-on-scroll mt-16 text-center transition-all duration-1000 ${
             isAnimated(4) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
-          <Link to='/E-Services'>
-          <button className="px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-            See All Services
-          </button>
-          </Link>
+          <div className="relative inline-block">
+            <div className="absolute inset-0 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] rounded-2xl blur-xl opacity-30 animate-pulse-slow"></div>
+            <Link to='/E-Services'>
+              <button className="relative px-12 py-5 bg-linear-to-r from-[#4A8EBC] via-[#2DD4BF] to-[#3B5488] text-white font-bold rounded-2xl text-xl shadow-2xl hover:shadow-3xl transition-all duration-500 hover:scale-105 hover:from-[#3B5488] hover:via-[#8B5CF6] hover:to-[#1A2A44] group overflow-hidden">
+                <span className="relative z-10">Explore All Services</span>
+                <div className="absolute inset-0 bg-linear-to-r from-[#2DD4BF] to-[#8B5CF6] opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute top-0 left-0 w-full h-full bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
-
-      {/* Bottom Banner */}
-      <div className="w-full bg-gradient-to-t from-[#E0F0FF] to-[#F5FAFF] py-16 px-4 sm:px-6 lg:px-8 mt-16 relative">
-        {/* Subtle pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%234A8EBC' fillOpacity='1' fillRule='evenodd'%3E%3Ccircle cx='3' cy='3' r='1'/%3E%3Ccircle cx='13' cy='13' r='1'/%3E%3C/g%3E%3C/svg%3E")`,
-          }}
-        ></div>
-
-
-      </div>
-    </div>
+    </main>
   )
 }
 
-// Service Item Component
+// Enhanced Service Item Component
 function ServiceItem({ icon, title, description }) {
   return (
-    <div className="group">
-      <div className="flex items-start">
-        <div className="flex-shrink-0 mr-4 p-2 rounded-lg bg-[#E0F0FF] group-hover:bg-[#4A8EBC]/10 transition-colors duration-300">
+    <div className="group relative p-4 rounded-xl hover:bg-linear-to-r hover:from-[#4A8EBC]/5 hover:to-[#2DD4BF]/5 transition-all duration-300 cursor-pointer">
+      <div className="flex items-start gap-4">
+        <div className="shrink-0 p-3 rounded-xl bg-linear-to-br from-[#4A8EBC]/10 to-[#2DD4BF]/10 group-hover:from-[#4A8EBC]/20 group-hover:to-[#2DD4BF]/20 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
           {icon}
         </div>
-        <div>
-          <h3 className="text-lg font-semibold text-[#1A2A44] group-hover:text-[#4A8EBC] transition-colors duration-300">
+        <div className="flex-1">
+          <h3 className="text-lg font-semibold text-[#1A2A44] group-hover:text-[#4A8EBC] transition-colors duration-300 mb-2">
             {title}
           </h3>
-          <p className="mt-1 text-[#2B4066]/80">{description}</p>
+          <p className="text-[#2B4066]/80 leading-relaxed group-hover:text-[#2B4066]/90 transition-colors duration-300">
+            {description}
+          </p>
         </div>
       </div>
+      <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-linear-to-r from-[#4A8EBC] to-[#2DD4BF] group-hover:w-full transition-all duration-500"></div>
     </div>
   )
 }

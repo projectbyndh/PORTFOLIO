@@ -5,28 +5,30 @@ import L from "leaflet"
 import "leaflet/dist/leaflet.css"
 import React from "react"
 
-const locations = [
-  { name: "Rupandehi, Nepal", lat: 27.6264, lng: 83.3789, color: "#4A90E2", isHighlighted: true },
-  { name: "United States", lat: 37.0902, lng: -95.7129, color: "#5BA3F5", clients: 12 },
-  { name: "United Kingdom", lat: 51.5074, lng: -0.1278, color: "#6AB6FF", clients: 8 },
-  { name: "Australia", lat: -25.2744, lng: 133.7751, color: "#7EC8FF", clients: 6 },
-  { name: "Japan", lat: 36.2048, lng: 138.2529, color: "#8AD3FF", clients: 5 },
-  { name: "UAE", lat: 25.2048, lng: 55.2708, color: "#9ADCFF", clients: 7 },
-  { name: "Singapore", lat: 1.3521, lng: 103.8198, color: "#6AB6FF", clients: 4 },
-  { name: "Canada", lat: 56.1304, lng: -106.3468, color: "#7EC8FF", clients: 3 },
-  { name: "Germany", lat: 51.1657, lng: 10.4515, color: "#8AD3FF", clients: 5 },
-  { name: "India", lat: 20.5937, lng: 78.9629, color: "#5BA3F5", clients: 15 },
+const defaultLocations = [
+  { name: "Rupandehi, Nepal", latitude: 27.6264, longitude: 83.3789, color: "#4A90E2", isHighlighted: true },
+  { name: "United States", latitude: 37.0902, longitude: -95.7129, color: "#5BA3F5", clients: 12 },
+  { name: "United Kingdom", latitude: 51.5074, longitude: -0.1278, color: "#6AB6FF", clients: 8 },
+  { name: "Australia", latitude: -25.2744, longitude: 133.7751, color: "#7EC8FF", clients: 6 },
+  { name: "Japan", latitude: 36.2048, longitude: 138.2529, color: "#8AD3FF", clients: 5 },
+  { name: "UAE", latitude: 25.2048, longitude: 55.2708, color: "#9ADCFF", clients: 7 },
+  { name: "Singapore", latitude: 1.3521, longitude: 103.8198, color: "#6AB6FF", clients: 4 },
+  { name: "Canada", latitude: 56.1304, longitude: -106.3468, color: "#7EC8FF", clients: 3 },
+  { name: "Germany", latitude: 51.1657, longitude: 10.4515, color: "#8AD3FF", clients: 5 },
+  { name: "India", latitude: 20.5937, longitude: 78.9629, color: "#5BA3F5", clients: 15 },
 ]
 
 export default function WorldMap() {
   const mapRef = useRef(null)
   const leafletMap = useRef(null)
   const [isLoaded, setIsLoaded] = useState(false)
+  const displayLocations = defaultLocations
 
+  // Initialize map with displayLocations
   useEffect(() => {
-    if (typeof window !== "undefined" && mapRef.current && !leafletMap.current) {
+    if (typeof window !== "undefined" && mapRef.current && !leafletMap.current && displayLocations.length > 0) {
       leafletMap.current = L.map(mapRef.current, {
-        center: [27.6264, 83.3789],
+        center: [displayLocations[0].latitude, displayLocations[0].longitude],
         zoom: 3,
         minZoom: 2,
         maxZoom: 7,
@@ -60,14 +62,14 @@ export default function WorldMap() {
       }
 
       // Add markers with tooltips
-      locations.forEach((loc) => {
-        const marker = L.marker([loc.lat, loc.lng], {
+      displayLocations.forEach((loc) => {
+        const marker = L.marker([loc.latitude, loc.longitude], {
           icon: createCustomIcon(loc.color, loc.isHighlighted),
         }).addTo(leafletMap.current)
 
         const content = loc.isHighlighted
-          ? `<strong style="font-size:15px;color:#fff;">${loc.name}</strong><br/><span style="color:#a0d8ff;">🏢 Headquarters</span>`
-          : `<strong style="color:#fff;">${loc.name}</strong><br/><span style="color:#b0e0ff;">👥 ${loc.clients} Clients</span>`
+          ? `<strong style="font-size:15px;color:#fff;">${loc.address}</strong><br/><span style="color:#a0d8ff;">🏢 Headquarters</span>`
+          : `<strong style="color:#fff;">${loc.address}</strong><br/><span style="color:#b0e0ff;">👥 ${loc.clients} Clients</span>`
 
         marker.bindTooltip(content, {
           permanent: loc.isHighlighted,
@@ -102,12 +104,12 @@ export default function WorldMap() {
       }
 
       const hqColor = "#4A90E2"
-      const rupandehi = locations[0]
+      const hq = displayLocations[0]
 
       // Draw only curved lines — NO ARROWS
-      for (let i = 1; i < locations.length; i++) {
-        const start = [rupandehi.lat, rupandehi.lng]
-        const end = [locations[i].lat, locations[i].lng]
+      for (let i = 1; i < displayLocations.length; i++) {
+        const start = [hq.latitude, hq.longitude]
+        const end = [displayLocations[i].latitude, displayLocations[i].longitude]
         const path = createCurvedPath(start, end)
 
         L.polyline(path, {
@@ -129,21 +131,21 @@ export default function WorldMap() {
         leafletMap.current = null
       }
     }
-  }, [])
+  }, [displayLocations])
 
   return (
-    <div className="w-full bg-gradient-to-b from-[#f0f8ff] to-[#e6f2ff] py-20 md:py-28 relative overflow-hidden">
+    <div className="w-full bg-linear-to-b from-[#f0f8ff] to-[#e6f2ff] py-20 md:py-28 relative overflow-hidden">
       {/* Subtle background decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-10 left-10 w-96 h-96 rounded-full bg-[#4A90E2]/10 blur-3xl"></div>
         <div className="absolute bottom-20 right-20 w-80 h-80 rounded-full bg-[#6AB6FF]/10 blur-3xl"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#4A90E2_1px,transparent_1px)] bg-[length:60px_60px] opacity-5"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#4A90E2_1px,transparent_1px)] bg-size-[60px_60px] opacity-5"></div>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-[#2c5282] to-[#4A90E2] bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-6xl font-bold bg-linear-to-r from-[#2c5282] to-[#4A90E2] bg-clip-text text-transparent">
             From Rupandehi to the World
           </h2>
  
@@ -152,12 +154,7 @@ export default function WorldMap() {
 
         {/* Map */}
         <div className="relative max-w-5xl mx-auto">
-          <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#4A90E2]/30 bg-gradient-to-br from-[#0f172a]/90 to-[#1e293b]/90 backdrop-blur-sm">
-            {!isLoaded && (
-              <div className="absolute inset-0 flex items-center justify-center z-50 bg-[#0f172a]/80">
-                <div className="w-20 h-20 border-4 border-[#4A90E2]/30 border-t-[#4A90E2] rounded-full animate-spin"></div>
-              </div>
-            )}
+          <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#4A90E2]/30 bg-linear-to-br from-[#0f172a]/90 to-[#1e293b]/90 backdrop-blur-sm">
             <div ref={mapRef} className="h-96 md:h-[560px]" />
 
             {/* HQ Badge */}

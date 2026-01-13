@@ -2,7 +2,6 @@
 import Slider from "react-slick"
 import React from "react"
 import { Link } from "react-router-dom"
-import useCompanyStore from "../Store/CompanyStore";
 function PartnersSlider() {
   const settings = {
     dots: false,
@@ -43,7 +42,11 @@ function PartnersSlider() {
   }
 
 
-  const companies = useCompanyStore((state) => state.companies);
+  const projects = [
+    { title: 'Numazu', image: 'https://via.placeholder.com/120x48?text=Numazu' },
+    { title: 'Trailblazers', image: 'https://via.placeholder.com/120x48?text=Trailblazers' },
+    { title: 'Apple Day', image: 'https://via.placeholder.com/120x48?text=Apple+Day' },
+  ];
 
   return (
     <div className="w-full bg-[#F5FAFF] py-16 md:py-24 relative overflow-hidden">
@@ -65,7 +68,7 @@ function PartnersSlider() {
           <div className="inline-block relative">
             <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
             <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow"></div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] to-[#4A8EBC]">
               Our Trusted Partners
             </h2>
           </div>
@@ -77,17 +80,17 @@ function PartnersSlider() {
         {/* Slider container with gradient edges */}
         <div className="relative">
           {/* Left gradient fade */}
-          <div className="absolute left-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-r from-[#F5FAFF] to-transparent pointer-events-none"></div>
+          <div className="absolute left-0 top-0 bottom-0 w-16 z-10 bg-linear-to-r from-[#F5FAFF] to-transparent pointer-events-none"></div>
 
           {/* Slider */}
           <div className="slider-container py-8">
             <Slider {...settings}>
-              {companies.map((company, index) => (
+              {projects.map((project, index) => (
                 <div key={index} className="px-6">
                   <div className="h-24 flex items-center justify-center bg-white/70 backdrop-blur-sm rounded-xl p-4 mx-2 shadow-sm hover:shadow-md transition-all duration-300 border border-[#4A8EBC]/10">
                     <img
-                      src={company.logo || "/placeholder.svg"}
-                      alt={`${company.name} logo`}
+                      src={project.image || "/placeholder.svg"}
+                      alt={`${project.title} logo`}
                       className="max-h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
                       onError={(e) => {
                         const target = e.target
@@ -101,7 +104,7 @@ function PartnersSlider() {
           </div>
 
           {/* Right gradient fade */}
-          <div className="absolute right-0 top-0 bottom-0 w-16 z-10 bg-gradient-to-l from-[#F5FAFF] to-transparent pointer-events-none"></div>
+          <div className="absolute right-0 top-0 bottom-0 w-16 z-10 bg-linear-to-l from-[#F5FAFF] to-transparent pointer-events-none"></div>
         </div>
 
 
