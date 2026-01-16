@@ -114,16 +114,16 @@ const FAQManagement = () => {
       )}
 
       {showForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-[#1A2A44]/40 backdrop-blur-md flex items-center justify-center z-50 p-4">
+          <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-[#1A2A44]/20 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-[#4A8EBC]/10">
             <div className="p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-2xl font-bold">
+              <div className="flex justify-between items-center mb-6 pb-4 border-b border-[#4A8EBC]/10">
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">
                   {editingFAQ ? 'Edit FAQ' : 'Add New FAQ'}
                 </h2>
                 <button
                   onClick={handleFormClose}
-                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                  className="p-2 text-[#4A8EBC] hover:bg-[#4A8EBC]/10 rounded-xl transition-all duration-200 text-2xl leading-none"
                 >
                   ×
                 </button>

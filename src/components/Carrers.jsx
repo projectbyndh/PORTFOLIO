@@ -297,7 +297,7 @@ export default function Careers() {
       {/* Application Modal */}
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={handleCloseForm} />
+          <div className="absolute inset-0 bg-[#1A2A44]/40 backdrop-blur-md" onClick={handleCloseForm} />
           
           <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
             {/* Modal Header */}

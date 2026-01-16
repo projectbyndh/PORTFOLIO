@@ -99,18 +99,18 @@ const BlogForm = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+    <div className="fixed inset-0 bg-[#1A2A44]/40 backdrop-blur-md flex items-center justify-center z-50 p-4">
+      <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-[#4A8EBC]/10">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900">
+        <div className="flex items-center justify-between p-6 border-b border-[#4A8EBC]/10 bg-gradient-to-r from-[#4A8EBC]/5 to-[#2DD4BF]/5">
+          <h2 className="text-xl font-bold bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">
             {initialData ? 'Edit Blog' : 'Create New Blog'}
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 transition-colors"
+            className="p-2 rounded-xl text-[#4A8EBC] hover:text-[#1A2A44] hover:bg-[#4A8EBC]/10 transition-colors"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
@@ -118,7 +118,7 @@ const BlogForm = ({
         <form onSubmit={handleSubmit(handleFormSubmit)} className="p-6 space-y-6">
           {/* Image Upload */}
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
               Blog Image
             </label>
             <ImageUploadPreview
@@ -131,15 +131,15 @@ const BlogForm = ({
 
           {/* Title */}
           <div>
-            <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="title" className="block text-sm font-semibold text-[#1A2A44] mb-2">
               Title *
             </label>
             <input
               {...register('title')}
               type="text"
               id="title"
-              className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                errors.title ? 'border-red-500' : 'border-gray-300'
+              className={`w-full px-4 py-2.5 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all ${
+                errors.title ? 'border-red-500' : 'border-[#4A8EBC]/20'
               }`}
               placeholder="Enter blog title"
             />
@@ -150,15 +150,15 @@ const BlogForm = ({
 
           {/* Author */}
           <div>
-            <label htmlFor="author" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="author" className="block text-sm font-semibold text-[#1A2A44] mb-2">
               Author *
             </label>
             <input
               {...register('author')}
               type="text"
               id="author"
-              className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                errors.author ? 'border-red-500' : 'border-gray-300'
+              className={`w-full px-4 py-2.5 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all ${
+                errors.author ? 'border-red-500' : 'border-[#4A8EBC]/20'
               }`}
               placeholder="Enter author name"
             />
@@ -169,15 +169,15 @@ const BlogForm = ({
 
           {/* Description */}
           <div>
-            <label htmlFor="description" className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="description" className="block text-sm font-semibold text-[#1A2A44] mb-2">
               Description/Content *
             </label>
             <textarea
               {...register('description')}
               id="description"
               rows={6}
-              className={`w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 ${
-                errors.description ? 'border-red-500' : 'border-gray-300'
+              className={`w-full px-4 py-2.5 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all ${
+                errors.description ? 'border-red-500' : 'border-[#4A8EBC]/20'
               }`}
               placeholder="Enter blog description or content"
             />
@@ -187,11 +187,11 @@ const BlogForm = ({
           </div>
 
           {/* Actions */}
-          <div className="flex justify-end gap-3 pt-4 border-t border-gray-200">
+          <div className="flex justify-end gap-3 pt-4 border-t border-[#4A8EBC]/10">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-md transition-colors"
+              className="px-5 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/10 hover:bg-[#4A8EBC]/20 rounded-xl transition-all border border-[#4A8EBC]/20"
               disabled={isSubmitting || loading}
             >
               Cancel
@@ -199,7 +199,7 @@ const BlogForm = ({
             <button
               type="submit"
               disabled={isSubmitting || loading}
-              className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 disabled:cursor-not-allowed rounded-md transition-colors"
+              className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all shadow-lg shadow-[#4A8EBC]/25"
             >
               {isSubmitting || loading ? (
                 <>

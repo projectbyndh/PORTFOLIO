@@ -57,14 +57,14 @@ const DashboardOverview = () => {
     });
   }, [blogs, contacts, faqs]);
 
-  // Quick action cards
+  // Quick action cards with NDH color theme
   const quickActions = [
     {
       title: 'Blog Management',
       description: 'Create and manage blog posts',
       icon: FileText,
       path: '/admin/blogs',
-      color: 'from-blue-500 to-blue-600',
+      color: 'from-[#4A8EBC] to-[#3B5488]',
       count: stats.totalBlogs,
     },
     {
@@ -72,21 +72,21 @@ const DashboardOverview = () => {
       description: 'Manage your team profiles',
       icon: Users,
       path: '/admin/teams',
-      color: 'from-emerald-500 to-emerald-600',
+      color: 'from-[#2DD4BF] to-[#4A8EBC]',
     },
     {
       title: 'Projects',
       description: 'Showcase your portfolio',
       icon: FolderKanban,
       path: '/admin/projects',
-      color: 'from-purple-500 to-purple-600',
+      color: 'from-[#8B5CF6] to-[#4A8EBC]',
     },
     {
       title: 'Careers',
       description: 'Post job openings',
       icon: Briefcase,
       path: '/admin/careers',
-      color: 'from-amber-500 to-amber-600',
+      color: 'from-[#F59E0B] to-[#EF4444]',
     },
   ];
 
@@ -141,7 +141,7 @@ const DashboardOverview = () => {
 
       {/* Quick Actions */}
       <div className="mb-8">
-        <h2 className="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h2>
+        <h2 className="text-lg font-bold bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent mb-4">Quick Actions</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {quickActions.map((action) => {
             const Icon = action.icon;
@@ -149,18 +149,21 @@ const DashboardOverview = () => {
               <Link
                 key={action.path}
                 to={action.path}
-                className="group bg-white rounded-2xl p-5 border border-slate-100 hover:border-slate-200 hover:shadow-lg transition-all duration-300"
+                className="group relative bg-white/80 backdrop-blur-xl rounded-2xl p-5 border border-[#4A8EBC]/10 hover:border-[#4A8EBC]/20 hover:shadow-xl transition-all duration-300 overflow-hidden"
               >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-4 shadow-lg`}>
+                {/* Decorative gradient */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-[#4A8EBC]/5 to-[#2DD4BF]/5 rounded-full blur-xl -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-500" />
+                
+                <div className={`relative w-12 h-12 rounded-xl bg-gradient-to-br ${action.color} flex items-center justify-center mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                   <Icon className="w-6 h-6 text-white" />
                 </div>
-                <h3 className="font-semibold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
+                <h3 className="relative font-bold text-[#1A2A44] mb-1 group-hover:text-[#4A8EBC] transition-colors">
                   {action.title}
                 </h3>
-                <p className="text-sm text-slate-500 mb-3">{action.description}</p>
-                <div className="flex items-center text-sm text-blue-600 font-medium">
+                <p className="relative text-sm text-[#2B4066]/60 mb-3">{action.description}</p>
+                <div className="relative flex items-center text-sm text-[#4A8EBC] font-semibold">
                   <span>Manage</span>
-                  <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 ml-1 group-hover:translate-x-2 transition-transform" />
                 </div>
               </Link>
             );
@@ -174,8 +177,8 @@ const DashboardOverview = () => {
         <DataCard 
           title="Recent Blogs" 
           actions={
-            <Link to="/admin/blogs" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-              View All
+            <Link to="/admin/blogs" className="text-sm text-[#4A8EBC] hover:text-[#3B5488] font-semibold transition-colors">
+              View All →
             </Link>
           }
         >
@@ -190,23 +193,23 @@ const DashboardOverview = () => {
               description="Start creating content for your website"
             />
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {(Array.isArray(blogs) ? blogs.slice(0, 5) : []).map((blog) => (
-                <div key={blog._id} className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors">
+                <div key={blog._id} className="flex items-start gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#4A8EBC]/5 hover:to-[#2DD4BF]/5 transition-all duration-300 border border-transparent hover:border-[#4A8EBC]/10">
                   {blog.featuredImage ? (
                     <img
                       src={blog.featuredImage}
                       alt={blog.title}
-                      className="w-12 h-12 rounded-lg object-cover"
+                      className="w-12 h-12 rounded-xl object-cover shadow-md"
                     />
                   ) : (
-                    <div className="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center">
-                      <FileText className="w-5 h-5 text-slate-400" />
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#4A8EBC]/10 to-[#2DD4BF]/10 flex items-center justify-center border border-[#4A8EBC]/10">
+                      <FileText className="w-5 h-5 text-[#4A8EBC]" />
                     </div>
                   )}
                   <div className="flex-1 min-w-0">
-                    <h4 className="text-sm font-medium text-slate-900 truncate">{blog.title}</h4>
-                    <p className="text-xs text-slate-500 flex items-center gap-1 mt-1">
+                    <h4 className="text-sm font-semibold text-[#1A2A44] truncate">{blog.title}</h4>
+                    <p className="text-xs text-[#2B4066]/60 flex items-center gap-1 mt-1">
                       <Clock className="w-3 h-3" />
                       {formatDate(blog.createdAt)}
                     </p>
@@ -221,8 +224,8 @@ const DashboardOverview = () => {
         <DataCard 
           title="Recent Messages" 
           actions={
-            <Link to="/admin/contacts" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-              View All
+            <Link to="/admin/contacts" className="text-sm text-[#4A8EBC] hover:text-[#3B5488] font-semibold transition-colors">
+              View All →
             </Link>
           }
         >
@@ -237,19 +240,19 @@ const DashboardOverview = () => {
               description="Contact submissions will appear here"
             />
           ) : (
-            <div className="space-y-4">
+            <div className="space-y-3">
               {contacts.slice(0, 5).map((contact) => (
-                <div key={contact._id} className="flex items-start gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white font-medium text-sm">
+                <div key={contact._id} className="flex items-start gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#4A8EBC]/5 hover:to-[#2DD4BF]/5 transition-all duration-300 border border-transparent hover:border-[#4A8EBC]/10">
+                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#4A8EBC] to-[#8B5CF6] flex items-center justify-center text-white font-bold text-sm shadow-lg shadow-[#4A8EBC]/20">
                     {contact.name?.charAt(0)}
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <h4 className="text-sm font-medium text-slate-900">{contact.name}</h4>
-                      <span className="text-xs text-slate-400">{formatDate(contact.createdAt)}</span>
+                      <h4 className="text-sm font-semibold text-[#1A2A44]">{contact.name}</h4>
+                      <span className="text-xs text-[#2B4066]/50">{formatDate(contact.createdAt)}</span>
                     </div>
-                    <p className="text-xs text-slate-500">{contact.email}</p>
-                    <p className="text-sm text-slate-600 truncate mt-1">{contact.message}</p>
+                    <p className="text-xs text-[#4A8EBC]">{contact.email}</p>
+                    <p className="text-sm text-[#2B4066]/70 truncate mt-1">{contact.message}</p>
                   </div>
                 </div>
               ))}

@@ -29,7 +29,7 @@ export const Modal = ({
     <div className="fixed inset-0 z-50 overflow-y-auto">
       {/* Overlay */}
       <div
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#1A2A44]/40 backdrop-blur-md transition-opacity"
         onClick={closeOnOverlayClick ? onClose : undefined}
       />
 
@@ -37,22 +37,22 @@ export const Modal = ({
       <div className="flex min-h-full items-center justify-center p-4">
         <div
           className={`
-            relative w-full ${sizes[size]} bg-white rounded-2xl shadow-2xl
-            transform transition-all
+            relative w-full ${sizes[size]} bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl
+            transform transition-all border border-[#4A8EBC]/10
           `}
           onClick={(e) => e.stopPropagation()}
         >
           {/* Header */}
-          <div className="flex items-start justify-between px-6 py-4 border-b border-slate-100">
+          <div className="flex items-start justify-between px-6 py-4 border-b border-[#4A8EBC]/10 bg-gradient-to-r from-[#4A8EBC]/5 to-[#2DD4BF]/5">
             <div>
-              <h2 className="text-lg font-semibold text-slate-900">{title}</h2>
+              <h2 className="text-lg font-bold bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">{title}</h2>
               {description && (
-                <p className="text-sm text-slate-500 mt-0.5">{description}</p>
+                <p className="text-sm text-[#2B4066]/60 mt-0.5">{description}</p>
               )}
             </div>
             <button
               onClick={onClose}
-              className="p-2 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors -mr-2"
+              className="p-2 rounded-xl text-[#4A8EBC] hover:text-[#1A2A44] hover:bg-[#4A8EBC]/10 transition-colors -mr-2"
             >
               <X className="w-5 h-5" />
             </button>
@@ -65,7 +65,7 @@ export const Modal = ({
 
           {/* Footer */}
           {footer && (
-            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-slate-100 bg-slate-50/50 rounded-b-2xl">
+            <div className="flex items-center justify-end gap-3 px-6 py-4 border-t border-[#4A8EBC]/10 bg-gradient-to-r from-[#4A8EBC]/5 to-[#2DD4BF]/5 rounded-b-2xl">
               {footer}
             </div>
           )}
@@ -91,7 +91,7 @@ export const ConfirmModal = ({
 }) => {
   return (
     <Modal isOpen={isOpen} onClose={onClose} title={title} size="sm">
-      <p className="text-slate-600">{message}</p>
+      <p className="text-[#2B4066]/80">{message}</p>
       <div className="flex items-center justify-end gap-3 mt-6">
         <Button variant="secondary" onClick={onClose} disabled={loading}>
           {cancelLabel}
@@ -137,7 +137,7 @@ export const FormModal = ({
         <div className="space-y-5">
           {children}
         </div>
-        <div className="flex items-center justify-end gap-3 mt-6 pt-5 border-t border-slate-100">
+        <div className="flex items-center justify-end gap-3 mt-6 pt-5 border-t border-[#4A8EBC]/10">
           <Button 
             type="button" 
             variant="secondary" 

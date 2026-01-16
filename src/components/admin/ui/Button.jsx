@@ -1,7 +1,7 @@
 import React from 'react';
 
 /**
- * Button - Consistent button styles across admin panel
+ * Button - Premium button styles for NDH admin panel
  */
 export const Button = ({
   children,
@@ -16,35 +16,36 @@ export const Button = ({
   ...props
 }) => {
   const baseStyles = `
-    inline-flex items-center justify-center font-medium rounded-xl
-    transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed
+    inline-flex items-center justify-center font-semibold rounded-xl
+    transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed
+    hover:scale-[1.02] active:scale-[0.98]
   `;
 
   const variants = {
     primary: `
-      bg-gradient-to-r from-blue-600 to-indigo-600 text-white
-      hover:from-blue-700 hover:to-indigo-700
-      shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40
+      bg-gradient-to-r from-[#4A8EBC] via-[#3B5488] to-[#2DD4BF] text-white
+      hover:from-[#3B5488] hover:via-[#4A8EBC] hover:to-[#8B5CF6]
+      shadow-lg shadow-[#4A8EBC]/25 hover:shadow-xl hover:shadow-[#4A8EBC]/30
     `,
     secondary: `
-      bg-white text-slate-700 border border-slate-200
-      hover:bg-slate-50 hover:border-slate-300 shadow-sm
+      bg-white/80 backdrop-blur-sm text-[#4A8EBC] border border-[#4A8EBC]/20
+      hover:bg-[#4A8EBC]/5 hover:border-[#4A8EBC]/30 shadow-sm
     `,
     ghost: `
-      bg-transparent text-slate-600
-      hover:bg-slate-100 hover:text-slate-900
+      bg-transparent text-[#2B4066]/70
+      hover:bg-[#4A8EBC]/10 hover:text-[#4A8EBC]
     `,
     danger: `
-      bg-red-600 text-white
-      hover:bg-red-700 shadow-lg shadow-red-500/25
+      bg-gradient-to-r from-red-500 to-rose-600 text-white
+      hover:from-red-600 hover:to-rose-700 shadow-lg shadow-red-500/25
     `,
     dangerOutline: `
-      bg-white text-red-600 border border-red-200
+      bg-white/80 backdrop-blur-sm text-red-600 border border-red-200
       hover:bg-red-50 hover:border-red-300
     `,
     success: `
-      bg-emerald-600 text-white
-      hover:bg-emerald-700 shadow-lg shadow-emerald-500/25
+      bg-gradient-to-r from-emerald-500 to-teal-600 text-white
+      hover:from-emerald-600 hover:to-teal-700 shadow-lg shadow-emerald-500/25
     `,
   };
 

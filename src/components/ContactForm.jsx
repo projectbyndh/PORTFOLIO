@@ -55,87 +55,89 @@ const ContactForm = ({ contact, onClose, onSuccess }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-xl font-bold mb-4">{contact ? 'Edit Contact' : 'Add New Contact'}</h2>
+    <div className="fixed inset-0 bg-[#1A2A44]/40 backdrop-blur-md flex items-center justify-center z-50 p-4">
+      <div className="bg-white/95 backdrop-blur-xl p-6 rounded-2xl shadow-2xl shadow-[#1A2A44]/20 w-full max-w-md max-h-[90vh] overflow-y-auto border border-[#4A8EBC]/10">
+        <h2 className="text-xl font-bold mb-6 bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">
+          {contact ? 'Edit Contact' : 'Add New Contact'}
+        </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Name *</label>
+            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Name *</label>
             <input
               type="text"
               name="name"
               value={formData.name}
               onChange={handleChange}
               required
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Email *</label>
+            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Email *</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Phone Number *</label>
+            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Phone Number *</label>
             <input
               type="text"
               name="phoneNumber"
               value={formData.phoneNumber}
               onChange={handleChange}
               required
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Company Name</label>
+            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Company Name</label>
             <input
               type="text"
               name="companyName"
               value={formData.companyName}
               onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Service Interested *</label>
+            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Service Interested *</label>
             <input
               type="text"
               name="serviceInterested"
               value={formData.serviceInterested}
               onChange={handleChange}
               required
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
             />
           </div>
-          <div className="mb-4">
-            <label className="block text-sm font-medium mb-1">Message *</label>
+          <div className="mb-6">
+            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Message *</label>
             <textarea
               name="message"
               value={formData.message}
               onChange={handleChange}
               required
               rows="4"
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
             />
           </div>
-          <div className="flex justify-end space-x-2">
+          <div className="flex justify-end gap-3 pt-4 border-t border-[#4A8EBC]/10">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+              className="px-5 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/10 hover:bg-[#4A8EBC]/20 rounded-xl transition-all duration-200 border border-[#4A8EBC]/20"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 disabled:opacity-50"
+              className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] disabled:opacity-50 rounded-xl transition-all duration-200 shadow-lg shadow-[#4A8EBC]/25"
             >
               {loading ? 'Saving...' : (contact ? 'Update' : 'Create')}
             </button>

@@ -60,22 +60,19 @@ const PartnerForm = ({ partner, onClose }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 relative">
+    <div className="relative">
       {submitting && (
-        <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center z-10">
+        <div className="absolute inset-0 bg-white/75 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500 mx-auto mb-2"></div>
-            <p className="text-sm text-gray-600">Saving...</p>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#4A8EBC] mx-auto mb-2"></div>
+            <p className="text-sm text-[#4A8EBC]">Saving...</p>
           </div>
         </div>
       )}
-      <h2 className="text-2xl font-bold mb-4">
-        {partner ? 'Edit Partner' : 'Add Partner'}
-      </h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
             Partner Name
           </label>
           <input
@@ -84,7 +81,7 @@ const PartnerForm = ({ partner, onClose }) => {
             value={formData.name}
             onChange={handleInputChange}
             disabled={submitting}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 disabled:bg-gray-100"
             placeholder="Enter partner name"
           />
           {errors.name && (
@@ -93,7 +90,7 @@ const PartnerForm = ({ partner, onClose }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
             Partner Logo
           </label>
           <ImageUploadPreview
@@ -106,19 +103,19 @@ const PartnerForm = ({ partner, onClose }) => {
           />
         </div>
 
-        <div className="flex justify-end space-x-4">
+        <div className="flex justify-end gap-3 pt-4 border-t border-[#4A8EBC]/10">
           <button
             type="button"
             onClick={onClose}
             disabled={submitting}
-            className="px-4 py-2 text-gray-600 border border-gray-300 rounded-md hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-5 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/10 hover:bg-[#4A8EBC]/20 rounded-xl transition-all duration-200 border border-[#4A8EBC]/20 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={submitting}
-            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all duration-200 shadow-lg shadow-[#4A8EBC]/25"
           >
             {submitting ? 'Saving...' : (partner ? 'Update' : 'Create')}
           </button>
