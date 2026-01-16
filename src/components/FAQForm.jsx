@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import usePartners from '../hooks/usePartners';
-import ImageUploadPreview from './ImageUploadPreview';
+import useFAQs from '../hooks/useFAQs';
 
-const PartnerForm = ({ partner, onClose }) => {
-  const { createPartner, updatePartnerById } = usePartners();
+const FAQForm = ({ faq, onClose }) => {
+  const { createFAQ, updateFAQ } = useFAQs();
   const [submitting, setSubmitting] = useState(false);
-  const [selectedImageFile, setSelectedImageFile] = useState(null);
   const [formData, setFormData] = useState({
-    name: partner?.name || ''
+    question: faq?.question || '',
+    answer: faq?.answer || ''
   });
   const [errors, setErrors] = useState({});
 
@@ -28,8 +27,11 @@ const PartnerForm = ({ partner, onClose }) => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) {
-      newErrors.name = 'Partner name is required';
+    if (!formData.question.trim()) {
+      newErrors.question = 'Question is required';
+    }
+    if (!formData.answer.trim()) {
+      newErrors.answer = 'Answer is required';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -41,15 +43,15 @@ const PartnerForm = ({ partner, onClose }) => {
 
     try {
       setSubmitting(true);
-      const partnerData = {
-        name: formData.name,
-        image: selectedImageFile
+      const faqData = {
+        question: formData.question,
+        answer: formData.answer
       };
 
-      if (partner) {
-        await updatePartnerById(partner._id, partnerData);
+      if (faq) {
+        await updateFAQ(faq._id, faqData);
       } else {
-        await createPartner(partnerData);
+        await createFAQ(faqData);
       }
       onClose();
     } catch (err) {
@@ -70,40 +72,42 @@ const PartnerForm = ({ partner, onClose }) => {
         </div>
       )}
       <h2 className="text-2xl font-bold mb-4">
-        {partner ? 'Edit Partner' : 'Add Partner'}
+        {faq ? 'Edit FAQ' : 'Add FAQ'}
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Partner Name
+            Question
           </label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="question"
+            value={formData.question}
             onChange={handleInputChange}
-            disabled={submitting}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
-            placeholder="Enter partner name"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter the FAQ question"
           />
-          {errors.name && (
-            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+          {errors.question && (
+            <p className="text-red-500 text-sm mt-1">{errors.question}</p>
           )}
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Partner Logo
+            Answer
           </label>
-          <ImageUploadPreview
-            currentImage={partner?.image}
-            onImageUpload={async (file) => {
-              setSelectedImageFile(file);
-              return file;
-            }}
-            onImageRemove={() => setSelectedImageFile(null)}
+          <textarea
+            name="answer"
+            value={formData.answer}
+            onChange={handleInputChange}
+            rows={6}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter the FAQ answer"
           />
+          {errors.answer && (
+            <p className="text-red-500 text-sm mt-1">{errors.answer}</p>
+          )}
         </div>
 
         <div className="flex justify-end space-x-4">
@@ -120,7 +124,7 @@ const PartnerForm = ({ partner, onClose }) => {
             disabled={submitting}
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {submitting ? 'Saving...' : (partner ? 'Update' : 'Create')}
+            {submitting ? 'Saving...' : (faq ? 'Update' : 'Create')}
           </button>
         </div>
       </form>
@@ -128,4 +132,4 @@ const PartnerForm = ({ partner, onClose }) => {
   );
 };
 
-export default PartnerForm;
+export default FAQForm;

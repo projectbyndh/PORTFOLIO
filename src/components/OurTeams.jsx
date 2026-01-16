@@ -4,73 +4,8 @@ import React, { useEffect, useState } from "react"
 import Logo from "./Logo"
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion"
-import navin from "../assets/navin.png"
-import sagar from "../assets/sagar.png"
-import prajwal from "../assets/prajwal.png"
-import sunil from "../assets/sunil.png"
-import suman from "../assets/suman.png"
-import rajesh from "../assets/rajesh.png"
-import bibek from "../assets/bibek.png"
-import vipul from "../assets/vipul.png"
-
-const defaultTeamMembers = [
-  {
-    name: "Navin Pandey",
-    position: "CEO",
-    level: "executive",
-    bio: "With a strong vision for digital transformation, Navin leads our team with passion and innovation.",
-    image_url: navin,
-  },
-  {
-    name: "Sagar Aryal",
-    position: "CTO",
-    level: "executive",
-    bio: "Sagar is an expert in full-stack development, driving our technical strategies and agile methodologies.",
-    image_url: sagar,
-  },
-  {
-    name: "Prajwal Pandey",
-    position: "CFO",
-    level: "executive",
-    bio: "Prajwal manages our financial strategies, ensuring sustainable growth and profitability.",
-    image_url: prajwal,
-  },
-  {
-    name: "Sunil Poudel",
-    position: "QA Head",
-    level: "executive",
-    bio: "Sunil oversees quality assurance, ensuring our products meet the highest standards of excellence.",
-    image_url: sunil,
-  },
-  {
-    name: "Suman Acharya",
-    position: "Marketing Head",
-    level: "management",
-    bio: "Suman excels in crafting effective marketing strategies that drive brand growth and engagement.",
-    image_url: suman,
-  },
-  {
-    name: "Rajesh Subedi",
-    position: "Lead Engineer",
-    level: "management",
-    bio: "Rajesh specializes in creating intuitive user experiences, ensuring our platforms are user-friendly and engaging.",
-    image_url: rajesh,
-  },
-  {
-    name: "Bibek Pandey",
-    position: "Software Engineer",
-    level: "staff",
-    bio: "Bibek is a rising star in our development team, contributing fresh ideas and innovative solutions.",
-    image_url: bibek,
-  },
-  {
-    name: "Vipul Pun",
-    position: "Software Engineer",
-    level: "staff",
-    bio: "Vipul is a talented developer bringing creativity and technical expertise to our engineering team.",
-    image_url: vipul,
-  },
-]
+import useTeams from "../hooks/useTeams"
+import Loader from "./Loader"
 
 // Animated NDH Character Component
 const AnimatedNDHCharacter = () => {
@@ -252,11 +187,41 @@ const AnimatedNDHCharacter = () => {
 }
 
 export default function OurTeams() {
-  const displayMembers = defaultTeamMembers
+  const { teams, loading, error, fetchTeams } = useTeams();
+
+  // Transform API data to match component structure
+  const displayMembers = teams.map(team => ({
+    name: team.name,
+    position: team.position,
+    level: team.position.toLowerCase().includes('ceo') || team.position.toLowerCase().includes('cto') || team.position.toLowerCase().includes('cfo') || team.position.toLowerCase().includes('head')
+      ? 'executive'
+      : team.position.toLowerCase().includes('lead') || team.position.toLowerCase().includes('manager')
+      ? 'management'
+      : 'staff',
+    bio: team.description,
+    image_url: team.image,
+  }));
 
   const executiveTeam = displayMembers.filter((m) => m.level === "executive")
   const managementTeam = displayMembers.filter((m) => m.level === "management")
   const staffTeam = displayMembers.filter((m) => m.level === "staff")
+
+  if (loading) return <Loader />;
+  if (error) {
+    return (
+      <div className="min-h-screen bg-linear-to-br from-[#F5FAFF] via-[#EBF5FF] to-[#F5FAFF] py-12 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-red-500 mb-4">{error}</div>
+          <button
+            onClick={fetchTeams}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-linear-to-br from-[#F5FAFF] via-[#EBF5FF] to-[#F5FAFF] py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">

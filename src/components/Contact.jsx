@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Mail, Phone, MapPin, Clock, Send, MessageSquare, User, Briefcase, FileText } from "lucide-react"
 import React from "react"
 import Logo from "./Logo"
+import axios from '../api/axios'
+import toast from 'react-hot-toast'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -27,10 +29,19 @@ export default function Contact() {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const contactData = {
+        name: formData.name,
+        email: formData.email,
+        phoneNumber: formData.phone,
+        companyName: formData.company,
+        serviceInterested: formData.service,
+        message: formData.message,
+      };
+
+      await axios.post('/contacts', contactData);
       setSubmitted(true);
+      toast.success('Message sent successfully!');
 
       // Reset form after showing success message
       setTimeout(() => {
@@ -44,7 +55,12 @@ export default function Contact() {
         });
         setSubmitted(false);
       }, 5000);
-    }, 1000);
+    } catch (error) {
+      toast.error('Failed to send message. Please try again.');
+      console.error('Error submitting contact form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const services = [

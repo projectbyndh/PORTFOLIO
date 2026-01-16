@@ -186,6 +186,96 @@ export default function AdminDashboard() {
 
               <button
                 onClick={() => {
+                  navigate('/admin/teams');
+                  setSidebarOpen(false);
+                }}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  activeTab === 'teams'
+                    ? 'bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-lg'
+                    : 'text-[#2B4066]/70 hover:bg-[#4A8EBC]/10 hover:text-[#4A8EBC]'
+                }`}
+              >
+                <UserIcon className="w-5 h-5" />
+                Manage Teams
+              </button>
+
+              <button
+                onClick={() => {
+                  navigate('/admin/projects');
+                  setSidebarOpen(false);
+                }}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  activeTab === 'projects'
+                    ? 'bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-lg'
+                    : 'text-[#2B4066]/70 hover:bg-[#4A8EBC]/10 hover:text-[#4A8EBC]'
+                }`}
+              >
+                <PenTool className="w-5 h-5" />
+                Manage Projects
+              </button>
+
+              <button
+                onClick={() => {
+                  navigate('/admin/services');
+                  setSidebarOpen(false);
+                }}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  activeTab === 'services'
+                    ? 'bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-lg'
+                    : 'text-[#2B4066]/70 hover:bg-[#4A8EBC]/10 hover:text-[#4A8EBC]'
+                }`}
+              >
+                <Settings className="w-5 h-5" />
+                Manage Services
+              </button>
+
+              <button
+                onClick={() => {
+                  navigate('/admin/faqs');
+                  setSidebarOpen(false);
+                }}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  activeTab === 'faqs'
+                    ? 'bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-lg'
+                    : 'text-[#2B4066]/70 hover:bg-[#4A8EBC]/10 hover:text-[#4A8EBC]'
+                }`}
+              >
+                <FileText className="w-5 h-5" />
+                Manage FAQs
+              </button>
+
+              <button
+                onClick={() => {
+                  navigate('/admin/contacts');
+                  setSidebarOpen(false);
+                }}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  activeTab === 'contacts'
+                    ? 'bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-lg'
+                    : 'text-[#2B4066]/70 hover:bg-[#4A8EBC]/10 hover:text-[#4A8EBC]'
+                }`}
+              >
+                <FileText className="w-5 h-5" />
+                Manage Contacts
+              </button>
+
+              <button
+                onClick={() => {
+                  navigate('/admin/contact-info');
+                  setSidebarOpen(false);
+                }}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  activeTab === 'contact-info'
+                    ? 'bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-lg'
+                    : 'text-[#2B4066]/70 hover:bg-[#4A8EBC]/10 hover:text-[#4A8EBC]'
+                }`}
+              >
+                <FileText className="w-5 h-5" />
+                Manage Contact Info
+              </button>
+
+              <button
+                onClick={() => {
                   navigate('/admin/blog/create');
                   setSidebarOpen(false);
                 }}

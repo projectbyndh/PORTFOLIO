@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import usePartners from '../hooks/usePartners';
+import useServices from '../hooks/useServices';
 import ImageUploadPreview from './ImageUploadPreview';
 
-const PartnerForm = ({ partner, onClose }) => {
-  const { createPartner, updatePartnerById } = usePartners();
+const ServiceForm = ({ service, onClose }) => {
+  const { createService, updateService } = useServices();
   const [submitting, setSubmitting] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState(null);
   const [formData, setFormData] = useState({
-    name: partner?.name || ''
+    title: service?.title || '',
+    description: service?.description || ''
   });
   const [errors, setErrors] = useState({});
 
@@ -28,8 +29,11 @@ const PartnerForm = ({ partner, onClose }) => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) {
-      newErrors.name = 'Partner name is required';
+    if (!formData.title.trim()) {
+      newErrors.title = 'Service title is required';
+    }
+    if (!formData.description.trim()) {
+      newErrors.description = 'Service description is required';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -41,15 +45,16 @@ const PartnerForm = ({ partner, onClose }) => {
 
     try {
       setSubmitting(true);
-      const partnerData = {
-        name: formData.name,
-        image: selectedImageFile
+      const serviceData = {
+        title: formData.title,
+        description: formData.description,
+        logo: selectedImageFile
       };
 
-      if (partner) {
-        await updatePartnerById(partner._id, partnerData);
+      if (service) {
+        await updateService(service._id, serviceData);
       } else {
-        await createPartner(partnerData);
+        await createService(serviceData);
       }
       onClose();
     } catch (err) {
@@ -70,34 +75,50 @@ const PartnerForm = ({ partner, onClose }) => {
         </div>
       )}
       <h2 className="text-2xl font-bold mb-4">
-        {partner ? 'Edit Partner' : 'Add Partner'}
+        {service ? 'Edit Service' : 'Add Service'}
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Partner Name
+            Title
           </label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="title"
+            value={formData.title}
             onChange={handleInputChange}
-            disabled={submitting}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
-            placeholder="Enter partner name"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter service title"
           />
-          {errors.name && (
-            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
+          {errors.title && (
+            <p className="text-red-500 text-sm mt-1">{errors.title}</p>
           )}
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
-            Partner Logo
+            Description
+          </label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleInputChange}
+            rows={4}
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter service description"
+          />
+          {errors.description && (
+            <p className="text-red-500 text-sm mt-1">{errors.description}</p>
+          )}
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Logo
           </label>
           <ImageUploadPreview
-            currentImage={partner?.image}
+            currentImage={service?.logo}
             onImageUpload={async (file) => {
               setSelectedImageFile(file);
               return file;
@@ -120,7 +141,7 @@ const PartnerForm = ({ partner, onClose }) => {
             disabled={submitting}
             className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {submitting ? 'Saving...' : (partner ? 'Update' : 'Create')}
+            {submitting ? 'Saving...' : (service ? 'Update' : 'Create')}
           </button>
         </div>
       </form>
@@ -128,4 +149,4 @@ const PartnerForm = ({ partner, onClose }) => {
   );
 };
 
-export default PartnerForm;
+export default ServiceForm;

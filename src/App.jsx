@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate, Outlet } from "react-router-dom";
 import React, { Suspense } from "react";
 import Home from "./components/Routing/Home";
 import AboutUs from "./components/Aboutus";
@@ -22,11 +22,18 @@ import Terms from "./components/Terms";
 
 // Admin Components
 import AdminLogin from "./components/AdminLogin";
+import AdminLayout from "./components/admin/AdminLayout";
 import AdminDashboard from "./components/AdminDashboard";
 import BlogEditor from "./components/BlogEditor";
 import BlogManagement from "./pages/BlogManagement";
 import CareerManagement from "./pages/CareerManagement";
 import PartnerManagement from "./pages/PartnerManagement";
+import TeamManagement from "./pages/TeamManagement";
+import ProjectManagement from "./pages/ProjectManagement";
+import ServiceManagement from "./pages/ServiceManagement";
+import FAQManagement from "./pages/FAQManagement";
+import ContactManagement from "./pages/ContactManagement";
+import ContactInfoManagement from "./pages/ContactInfoManagement";
 import Partners from "./components/Partners";
  
 function App() {
@@ -77,14 +84,25 @@ function App() {
         <Route path="/team" element={<LayoutWrapper><TeamMembers /></LayoutWrapper>} />
         <Route path="/our-teams" element={<LayoutWrapper><OurTeams /></LayoutWrapper>} />
         
-        {/* Admin Routes without Layout */}
-        <Route path="/admin/login" element={<LayoutWrapper showLayout={false}><AdminLogin /></LayoutWrapper>} />
-        <Route path="/admin/dashboard" element={<LayoutWrapper showLayout={false}><AdminDashboard /></LayoutWrapper>} />
-        <Route path="/admin/blogs" element={<LayoutWrapper showLayout={false}><BlogManagement /></LayoutWrapper>} />
-        <Route path="/admin/careers" element={<LayoutWrapper showLayout={false}><CareerManagement /></LayoutWrapper>} />
-        <Route path="/admin/partners" element={<LayoutWrapper showLayout={false}><PartnerManagement /></LayoutWrapper>} />
-        <Route path="/admin/blog/create" element={<LayoutWrapper showLayout={false}><BlogEditor /></LayoutWrapper>} />
-        <Route path="/admin/blog/edit/:id" element={<LayoutWrapper showLayout={false}><BlogEditor /></LayoutWrapper>} />
+        {/* Admin Routes - Login without layout */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+        
+        {/* Admin Routes with shared AdminLayout */}
+        <Route path="/admin" element={<AdminLayout />}>
+          <Route index element={<Navigate to="/admin/dashboard" replace />} />
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="blogs" element={<BlogManagement />} />
+          <Route path="careers" element={<CareerManagement />} />
+          <Route path="partners" element={<PartnerManagement />} />
+          <Route path="teams" element={<TeamManagement />} />
+          <Route path="projects" element={<ProjectManagement />} />
+          <Route path="services" element={<ServiceManagement />} />
+          <Route path="faqs" element={<FAQManagement />} />
+          <Route path="contacts" element={<ContactManagement />} />
+          <Route path="contact-info" element={<ContactInfoManagement />} />
+          <Route path="blog/create" element={<BlogEditor />} />
+          <Route path="blog/edit/:id" element={<BlogEditor />} />
+        </Route>
         
         {/* Catch-all to home for unknown routes in static hosting */}
         <Route path="*" element={<Navigate to="/" replace />} />

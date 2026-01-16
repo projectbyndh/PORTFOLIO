@@ -24,14 +24,20 @@ const usePartners = () => {
     try {
       setLoading(true);
       clearError();
-      const response = await axios.get('/api/partners');
+      const response = await axios.get('/api/partners', {
+        timeout: 5000, // 5 second timeout
+      });
       if (response.data.success) {
         setPartners(response.data.data);
       }
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to fetch partners';
+      const errorMessage = err.response?.data?.message || err.code === 'ECONNABORTED'
+        ? 'Backend server is not available. Please start the server.'
+        : 'Failed to fetch partners';
       setError(errorMessage);
       toast.error(errorMessage);
+      // Set empty partners array on error to prevent infinite loading
+      setPartners([]);
     } finally {
       setLoading(false);
     }
@@ -42,13 +48,17 @@ const usePartners = () => {
     try {
       setLoading(true);
       clearError();
-      const response = await axios.get(`/api/partners/${id}`);
+      const response = await axios.get(`/api/partners/${id}`, {
+        timeout: 5000, // 5 second timeout
+      });
       if (response.data.success) {
         setCurrentPartner(response.data.data);
         return response.data.data;
       }
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to fetch partner';
+      const errorMessage = err.response?.data?.message || err.code === 'ECONNABORTED'
+        ? 'Backend server is not available. Please start the server.'
+        : 'Failed to fetch partner';
       setError(errorMessage);
       toast.error(errorMessage);
     } finally {
@@ -72,6 +82,7 @@ const usePartners = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        timeout: 10000, // 10 second timeout for file uploads
       });
 
       if (response.data.success) {
@@ -80,7 +91,9 @@ const usePartners = () => {
         return response.data.data;
       }
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to create partner';
+      const errorMessage = err.response?.data?.message || err.code === 'ECONNABORTED'
+        ? 'Backend server is not available. Please start the server.'
+        : 'Failed to create partner';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -105,6 +118,7 @@ const usePartners = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
+        timeout: 10000, // 10 second timeout for file uploads
       });
 
       if (response.data.success) {
@@ -113,7 +127,9 @@ const usePartners = () => {
         return response.data.data;
       }
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to update partner';
+      const errorMessage = err.response?.data?.message || err.code === 'ECONNABORTED'
+        ? 'Backend server is not available. Please start the server.'
+        : 'Failed to update partner';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -127,13 +143,17 @@ const usePartners = () => {
     try {
       setLoading(true);
       clearError();
-      const response = await axios.delete(`/api/partners/${id}`);
+      const response = await axios.delete(`/api/partners/${id}`, {
+        timeout: 5000, // 5 second timeout
+      });
       if (response.data.success) {
         removePartner(id);
         toast.success('Partner deleted successfully');
       }
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to delete partner';
+      const errorMessage = err.response?.data?.message || err.code === 'ECONNABORTED'
+        ? 'Backend server is not available. Please start the server.'
+        : 'Failed to delete partner';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
