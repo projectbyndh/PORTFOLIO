@@ -16,7 +16,8 @@ import {
   Settings,
   Menu,
   X,
-  RefreshCw
+  RefreshCw,
+  Briefcase
 } from 'lucide-react';
 import useAuthStore from '../Store/useAuthStore';
 import useBlogStore from '../Store/useBlogStore';
@@ -151,6 +152,36 @@ export default function AdminDashboard() {
               >
                 <FileText className="w-5 h-5" />
                 Manage Blogs
+              </button>
+
+              <button
+                onClick={() => {
+                  navigate('/admin/careers');
+                  setSidebarOpen(false);
+                }}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  activeTab === 'careers'
+                    ? 'bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-lg'
+                    : 'text-[#2B4066]/70 hover:bg-[#4A8EBC]/10 hover:text-[#4A8EBC]'
+                }`}
+              >
+                <Briefcase className="w-5 h-5" />
+                Manage Careers
+              </button>
+
+              <button
+                onClick={() => {
+                  navigate('/admin/partners');
+                  setSidebarOpen(false);
+                }}
+                className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  activeTab === 'partners'
+                    ? 'bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-lg'
+                    : 'text-[#2B4066]/70 hover:bg-[#4A8EBC]/10 hover:text-[#4A8EBC]'
+                }`}
+              >
+                <UserIcon className="w-5 h-5" />
+                Manage Partners
               </button>
 
               <button

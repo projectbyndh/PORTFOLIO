@@ -25,6 +25,20 @@ const ImageUploadPreview = ({
   const handleFileSelect = (event) => {
     const file = event.target.files[0];
     if (file) {
+      // Validate file type and size
+      const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/webp'];
+      const maxSize = 10 * 1024 * 1024; // 10MB
+
+      if (!allowedTypes.includes(file.type)) {
+        alert('Please select a valid image file (JPEG, PNG, GIF, or WebP)');
+        return;
+      }
+
+      if (file.size > maxSize) {
+        alert('File size must be less than 10MB');
+        return;
+      }
+
       setSelectedFile(file);
       // Create preview URL
       const url = URL.createObjectURL(file);
@@ -117,7 +131,7 @@ const ImageUploadPreview = ({
           >
             <ImageIcon className="w-12 h-12 text-gray-400 mb-2" />
             <p className="text-gray-500 text-sm">Click to select image</p>
-            <p className="text-gray-400 text-xs mt-1">PNG, JPG, GIF up to 10MB</p>
+            <p className="text-gray-400 text-xs mt-1">JPEG, PNG, GIF, WebP up to 10MB</p>
           </div>
         )}
       </div>
@@ -126,7 +140,7 @@ const ImageUploadPreview = ({
       <input
         ref={fileInputRef}
         type="file"
-        accept="image/*"
+        accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
         onChange={handleFileSelect}
         className="hidden"
       />

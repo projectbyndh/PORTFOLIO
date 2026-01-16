@@ -1,25 +1,25 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import { Briefcase, Mail, Phone, FileText, User, X, Upload, CheckCircle, MapPin, Clock } from "lucide-react"
+import { Briefcase, Mail, Phone, FileText, User, X, Upload, CheckCircle, MapPin, Clock, Loader2 } from "lucide-react"
 import { generateApplicationPDF } from "../utils/pdf"
+import { useCareers } from "../hooks/useCareers"
 
 export default function Careers() {
-  const [displayCareers, setDisplayCareers] = useState([])
   const [showForm, setShowForm] = useState(false)
   const [selectedPosition, setSelectedPosition] = useState("")
   const [form, setForm] = useState({ name: "", email: "", phone: "", resume: null })
   const [success, setSuccess] = useState(false)
   const [dragActive, setDragActive] = useState(false)
 
-  // Hardcoded career posts
+  // Use the careers hook to fetch data from API
+  const { careers, loading, error, fetchCareers } = useCareers()
+
+  // Fetch careers on component mount
   useEffect(() => {
-    const dummyCareers = [
-      { id: 1, image: 'https://via.placeholder.com/300x400?text=Software+Engineer' },
-      { id: 2, image: 'https://via.placeholder.com/300x400?text=UI/UX+Designer' },
-      { id: 3, image: 'https://via.placeholder.com/300x400?text=Project+Manager' },
-    ];
-    setDisplayCareers(dummyCareers);
-  }, [])
+    fetchCareers().catch(err => {
+      console.error('Failed to fetch careers:', err)
+    })
+  }, [fetchCareers])
 
   const handleApplyNow = (position) => {
     setSelectedPosition(position)
@@ -168,32 +168,44 @@ export default function Careers() {
           </p>
         </div>
 
-        {displayCareers.length === 0 ? (
+        {careers.length === 0 ? (
           <div className="text-center py-20 rounded-xl bg-white/70 backdrop-blur-sm shadow-lg border border-[#4A8EBC]/10">
-            <div className="w-24 h-24 bg-linear-to-br from-[#4A8EBC]/20 to-[#3B5488]/20 rounded-full flex items-center justify-center mx-auto mb-6">
-              <Briefcase className="w-12 h-12 text-[#4A8EBC]" />
-            </div>
-            <h3 className="text-2xl font-semibold text-[#1A2A44] mb-3">No Openings Right Now</h3>
-            <p className="text-[#2B4066]/80 max-w-md mx-auto mb-8">
-              We don't have any open positions at the moment, but we're always looking for talented people. 
-              Check back soon or send us your CV!
-            </p>
-            <a 
-              href="mailto:careers@ndh.com" 
-              className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105"
-            >
-              <Mail className="w-5 h-5" />
-              Send Your CV
-            </a>
+            {loading ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="w-8 h-8 animate-spin text-[#4A8EBC]" />
+                <span className="ml-2 text-[#2B4066]">Loading careers...</span>
+              </div>
+            ) : (
+              <>
+                <div className="w-24 h-24 bg-linear-to-br from-[#4A8EBC]/20 to-[#3B5488]/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <Briefcase className="w-12 h-12 text-[#4A8EBC]" />
+                </div>
+                <h3 className="text-2xl font-semibold text-[#1A2A44] mb-3">
+                  {error ? 'Error Loading Careers' : 'No Openings Right Now'}
+                </h3>
+                <p className="text-[#2B4066]/80 max-w-md mx-auto mb-8">
+                  {error 
+                    ? 'Unable to load career opportunities. Please try again later.'
+                    : "We don't have any open positions at the moment, but we're always looking for talented people. Check back soon or send us your CV!"
+                  }
+                </p>
+                <a 
+                  href="mailto:careers@ndh.com" 
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105"
+                >
+                  <Mail className="w-5 h-5" />
+                  Send Your CV
+                </a>
+              </>
+            )}
           </div>
         ) : (
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-              {displayCareers.map((career, index) => (
+              {careers.map((career, index) => (
                 <div 
-                  key={career.id} 
-                  className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 cursor-pointer bg-white border border-[#4A8EBC]/10"
-                  onClick={() => handleApplyNow("Position")}
+                  key={career._id} 
+                  className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-white border border-[#4A8EBC]/10"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {/* Large Image */}
@@ -201,7 +213,7 @@ export default function Careers() {
                     {career.image ? (
                       <img 
                         src={career.image} 
-                        alt="Career opportunity" 
+                        alt={career.title} 
                         className="w-full h-full object-contain bg-white"
                       />
                     ) : (
@@ -210,12 +222,25 @@ export default function Careers() {
                       </div>
                     )}
                   </div>
-                  {/* Overlay */}
-                  <div className="absolute inset-0 bg-linear-to-t from-[#1A2A44]/80 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
-                  {/* Apply Button */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
+                  
+                  {/* Career Info */}
+                  <div className="p-6 bg-white">
+                    <h3 className="text-xl font-bold text-[#1A2A44] mb-2">{career.title}</h3>
+                    <div className="flex items-center gap-2 text-[#2B4066]/70 mb-3">
+                      <MapPin className="w-4 h-4" />
+                      <span className="text-sm">{career.location}</span>
+                    </div>
+                    <p className="text-[#2B4066]/80 text-sm line-clamp-3 mb-4">
+                      {career.description?.substring(0, 120)}...
+                    </p>
+                    
+                    {/* Apply Button */}
                     <button
-                      className="w-full py-3 px-6 bg-white/90 backdrop-blur-sm text-[#4A8EBC] font-bold rounded-full opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 hover:bg-white shadow-lg"
+                      className="w-full py-3 px-6 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleApplyNow(career.title);
+                      }}
                     >
                       Apply Now
                     </button>

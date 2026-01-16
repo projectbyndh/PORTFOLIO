@@ -50,10 +50,17 @@ const useBlogStore = create((set, get) => ({
     set({ loading: true, error: null });
     try {
       const response = await axiosInstance.get('/api/blogs');
-      const blogsData = Array.isArray(response.data) ? response.data : [];
       console.log('✅ API returned blogs:', blogsData.length);
 
-      // Only use backend data, no local merging
+      if (blogsData.length === 0) {
+        console.log('⚠️ Backend returned no blogs, using demo data');
+        set({
+          blogs: get().demoBlogs,
+          loading: false
+        });
+        return get().demoBlogs;
+      }
+
       set({
         blogs: blogsData,
         loading: false
@@ -67,14 +74,14 @@ const useBlogStore = create((set, get) => ({
         return get().blogs; // Return existing blogs
       }
 
-      console.log('❌ Backend not available, showing empty list');
-      // No fallback data - only show backend data
+      console.log('❌ Backend not available/error, using demo data fallback');
+      // Fallback to demo data on error
       set({
-        blogs: [],
+        blogs: get().demoBlogs,
         loading: false,
-        error: 'Unable to connect to backend. Please check your connection.'
+        error: null // Clear error to show demo blogs
       });
-      return [];
+      return get().demoBlogs;
     }
   },
 
@@ -83,9 +90,9 @@ const useBlogStore = create((set, get) => ({
     set({ loading: true, error: null });
     try {
       const response = await axiosInstance.get(`/api/blogs/${id}`);
-      set({ 
-        selectedBlog: response.data, 
-        loading: false 
+      set({
+        selectedBlog: response.data,
+        loading: false
       });
       return response.data;
     } catch (error) {
@@ -100,9 +107,9 @@ const useBlogStore = create((set, get) => ({
       // Find blog locally
       const localBlog = get().blogs.find(blog => blog._id === id);
       if (localBlog) {
-        set({ 
-          selectedBlog: localBlog, 
-          loading: false 
+        set({
+          selectedBlog: localBlog,
+          loading: false
         });
         return localBlog;
       } else {
@@ -162,16 +169,16 @@ const useBlogStore = create((set, get) => ({
     try {
       const response = await axiosInstance.put(`/api/blogs/${id}`, blogData);
       const updatedBlog = response.data;
-      
+
       // Update blog in the list
-      set((state) => ({ 
-        blogs: state.blogs.map(blog => 
+      set((state) => ({
+        blogs: state.blogs.map(blog =>
           blog._id === id ? updatedBlog : blog
         ),
         selectedBlog: state.selectedBlog?._id === id ? updatedBlog : state.selectedBlog,
-        loading: false 
+        loading: false
       }));
-      
+
       return updatedBlog;
     } catch (error) {
       console.log('Backend not available, updating blog locally');
@@ -181,15 +188,15 @@ const useBlogStore = create((set, get) => ({
         _id: id,
         updatedAt: new Date()
       };
-      
-      set((state) => ({ 
-        blogs: state.blogs.map(blog => 
+
+      set((state) => ({
+        blogs: state.blogs.map(blog =>
           blog._id === id ? updatedBlog : blog
         ),
         selectedBlog: state.selectedBlog?._id === id ? updatedBlog : state.selectedBlog,
-        loading: false 
+        loading: false
       }));
-      
+
       return updatedBlog;
     }
   },
@@ -199,24 +206,24 @@ const useBlogStore = create((set, get) => ({
     set({ loading: true, error: null });
     try {
       await axiosInstance.delete(`/api/blogs/${id}`);
-      
+
       // Remove blog from the list
-      set((state) => ({ 
+      set((state) => ({
         blogs: state.blogs.filter(blog => blog._id !== id),
         selectedBlog: state.selectedBlog?._id === id ? null : state.selectedBlog,
-        loading: false 
+        loading: false
       }));
-      
+
       return true;
     } catch (error) {
       console.log('Backend not available, deleting blog locally');
       // Delete blog locally
-      set((state) => ({ 
+      set((state) => ({
         blogs: state.blogs.filter(blog => blog._id !== id),
         selectedBlog: state.selectedBlog?._id === id ? null : state.selectedBlog,
-        loading: false 
+        loading: false
       }));
-      
+
       return true;
     }
   },

@@ -25,6 +25,9 @@ import AdminLogin from "./components/AdminLogin";
 import AdminDashboard from "./components/AdminDashboard";
 import BlogEditor from "./components/BlogEditor";
 import BlogManagement from "./pages/BlogManagement";
+import CareerManagement from "./pages/CareerManagement";
+import PartnerManagement from "./pages/PartnerManagement";
+import Partners from "./components/Partners";
  
 function App() {
  function ScrollToTop() {
@@ -62,6 +65,8 @@ function App() {
         {/* Normalize route casings for hosting and SEO */}
         <Route path="/careers" element={<LayoutWrapper><Careers /></LayoutWrapper>} />
         <Route path="/Careers" element={<Navigate to="/careers" replace />} />
+        <Route path="/partners" element={<LayoutWrapper><Partners /></LayoutWrapper>} />
+        <Route path="/Partners" element={<Navigate to="/partners" replace />} />
         <Route path="/e-services" element={<LayoutWrapper><EServicesEnhanced /></LayoutWrapper>} />
         <Route path="/E-Services" element={<Navigate to="/e-services" replace />} />
         <Route path="/blog" element={<LayoutWrapper><BlogSection /></LayoutWrapper>} />
@@ -76,6 +81,8 @@ function App() {
         <Route path="/admin/login" element={<LayoutWrapper showLayout={false}><AdminLogin /></LayoutWrapper>} />
         <Route path="/admin/dashboard" element={<LayoutWrapper showLayout={false}><AdminDashboard /></LayoutWrapper>} />
         <Route path="/admin/blogs" element={<LayoutWrapper showLayout={false}><BlogManagement /></LayoutWrapper>} />
+        <Route path="/admin/careers" element={<LayoutWrapper showLayout={false}><CareerManagement /></LayoutWrapper>} />
+        <Route path="/admin/partners" element={<LayoutWrapper showLayout={false}><PartnerManagement /></LayoutWrapper>} />
         <Route path="/admin/blog/create" element={<LayoutWrapper showLayout={false}><BlogEditor /></LayoutWrapper>} />
         <Route path="/admin/blog/edit/:id" element={<LayoutWrapper showLayout={false}><BlogEditor /></LayoutWrapper>} />
         
