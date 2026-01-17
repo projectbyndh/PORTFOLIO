@@ -135,16 +135,18 @@ const BlogList = ({
                 <div className="flex items-center justify-end gap-2">
                   <button
                     onClick={() => onEdit(blog)}
-                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-md transition-colors"
+                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 focus:ring-offset-white/50"
                     title="Edit blog"
+                    aria-label={`Edit blog: ${blog.title}`}
                   >
                     <Edit className="w-4 h-4" />
                   </button>
                   <button
                     onClick={() => onDelete(blog._id || blog.id)}
                     disabled={deletingId === (blog._id || blog.id)}
-                    className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:ring-offset-2 focus:ring-offset-white/50"
                     title="Delete blog"
+                    aria-label={`Delete blog: ${blog.title}`}
                   >
                     {deletingId === (blog._id || blog.id) ? (
                       <Loader2 className="w-4 h-4 animate-spin" />

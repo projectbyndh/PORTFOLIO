@@ -19,7 +19,7 @@ export default function CareersSidebar() {
               <NavLink
                 to={item.path}
                 className={({ isActive }) =>
-                  `block px-4 py-3 rounded-lg transition-all duration-200 font-semibold text-lg ${
+                  `block px-4 py-3 rounded-lg transition-all duration-200 font-semibold text-lg focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/50 focus:ring-offset-2 focus:ring-offset-white/50 ${
                     isActive
                       ? 'bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white shadow-md'
                       : 'hover:bg-[#EAF5FF] text-[#1A2A44]'

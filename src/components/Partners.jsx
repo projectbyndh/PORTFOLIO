@@ -5,8 +5,6 @@ import Loader from '../components/Loader';
 const Partners = () => {
   const { partners, loading, error } = usePartners();
 
-  console.log('Partners component render:', { partners, loading, error });
-
   if (loading) return <Loader />;
   if (error) return <div className="text-center py-8 text-red-500">{error}</div>;
 

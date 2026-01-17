@@ -142,7 +142,14 @@ const useFAQs = () => {
   };
 
   useEffect(() => {
-    fetchFAQs();
+    // Only fetch FAQs automatically in production or when explicitly requested
+    // In development, avoid spamming the console with backend errors
+    const shouldFetchAutomatically = process.env.NODE_ENV === 'production' ||
+      localStorage.getItem('enable-api-calls') === 'true';
+
+    if (shouldFetchAutomatically) {
+      fetchFAQs();
+    }
   }, []);
 
   return {

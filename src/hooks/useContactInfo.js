@@ -3,7 +3,7 @@ import axios from '../api/axios';
 export const useContactInfo = () => {
   const fetchContactInfo = async () => {
     try {
-      const response = await axios.get('/contact-info');
+      const response = await axios.get('/api/contact-info');
       return response.data;
     } catch (error) {
       console.error('Error fetching contact info:', error);
@@ -13,7 +13,7 @@ export const useContactInfo = () => {
 
   const createContactInfo = async (contactInfoData) => {
     try {
-      const response = await axios.post('/contact-info', contactInfoData);
+      const response = await axios.post('/api/contact-info', contactInfoData);
       return response.data;
     } catch (error) {
       console.error('Error creating contact info:', error);
@@ -23,7 +23,7 @@ export const useContactInfo = () => {
 
   const updateContactInfo = async (id, contactInfoData) => {
     try {
-      const response = await axios.put(`/contact-info/${id}`, contactInfoData);
+      const response = await axios.put(`/api/contact-info/${id}`, contactInfoData);
       return response.data;
     } catch (error) {
       console.error('Error updating contact info:', error);
@@ -33,7 +33,7 @@ export const useContactInfo = () => {
 
   const deleteContactInfo = async (id) => {
     try {
-      const response = await axios.delete(`/contact-info/${id}`);
+      const response = await axios.delete(`/api/contact-info/${id}`);
       return response.data;
     } catch (error) {
       console.error('Error deleting contact info:', error);

@@ -1,11 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Mail, Phone, MapPin, Clock, Send, MessageSquare, User, Briefcase, FileText } from "lucide-react"
 import React from "react"
 import Logo from "./Logo"
-import axios from '../api/axios'
 import toast from 'react-hot-toast'
+import useFAQs from '../hooks/useFAQs'
+import { useContacts } from '../hooks/useContacts'
+import { useContactInfo } from '../hooks/useContactInfo'
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -19,6 +21,29 @@ export default function Contact() {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [contactInfo, setContactInfo] = useState(null)
+
+  // Fetch FAQs
+  const { faqs, loading: faqsLoading, error: faqsError, fetchFAQs } = useFAQs()
+  
+  // Contact hooks
+  const { createContact } = useContacts()
+  const { fetchContactInfo } = useContactInfo()
+
+  // Fetch contact info on component mount
+  useEffect(() => {
+    const loadContactInfo = async () => {
+      try {
+        const info = await fetchContactInfo()
+        if (info.success && info.data.length > 0) {
+          setContactInfo(info.data[0]) // Assuming we want the first contact info
+        }
+      } catch (error) {
+        console.error('Failed to fetch contact info:', error)
+      }
+    }
+    loadContactInfo()
+  }, [fetchContactInfo])
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -39,7 +64,7 @@ export default function Contact() {
         message: formData.message,
       };
 
-      await axios.post('/contacts', contactData);
+      await createContact(contactData);
       setSubmitted(true);
       toast.success('Message sent successfully!');
 
@@ -134,8 +159,9 @@ export default function Contact() {
                     <div>
                       <h3 className="text-[#1A2A44] font-medium mb-1">Our Location</h3>
                       <p className="text-[#2B4066]/80 text-sm">
-Tillottama-5, Rupandehi                        <br />
-                        Nepal
+                        {contactInfo?.location?.address || 'Tillottama-5, Rupandehi'}
+                        <br />
+                        {contactInfo?.location?.city || 'Nepal'}
                       </p>
                     </div>
                   </div>
@@ -147,8 +173,10 @@ Tillottama-5, Rupandehi                        <br />
                     <div>
                       <h3 className="text-[#1A2A44] font-medium mb-1">Email Us</h3>
                       <p className="text-[#2B4066]/80 text-sm">
-info@ndhtechnologies.com                        <br />
-support@ndhtechnologies.com                      </p>
+                        {contactInfo?.email || 'info@ndhtechnologies.com'}
+                        <br />
+                        {contactInfo?.supportEmail || 'support@ndhtechnologies.com'}
+                      </p>
                     </div>
                   </div>
 
@@ -159,8 +187,8 @@ support@ndhtechnologies.com                      </p>
                     <div>
                       <h3 className="text-[#1A2A44] font-medium mb-1">Call Us</h3>
                       <p className="text-[#2B4066]/80 text-sm">
-  
-+9779867453240                      </p>
+                        {contactInfo?.phone || '+9779867453240'}
+                      </p>
                     </div>
                   </div>
 
@@ -171,8 +199,9 @@ support@ndhtechnologies.com                      </p>
                     <div>
                       <h3 className="text-[#1A2A44] font-medium mb-1">Working Hours</h3>
                       <p className="text-[#2B4066]/80 text-sm">
-                        Sunday - Friday: 11:00 AM - 6:00 PM
+                        {contactInfo?.workingHours || 'Sunday - Friday: 11:00 AM - 6:00 PM'}
                         <br />
+                        {contactInfo?.timezone || 'Nepal Time (GMT+5:45)'}
                       </p>
                     </div>
                   </div>
@@ -406,65 +435,7 @@ support@ndhtechnologies.com                      </p>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16 bg-linear-to-b from-[#F5FAFF] to-[#E0F0FF] relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1A2A44] mb-4">Frequently Asked Questions</h2>
-            <p className="text-[#2B4066]/80 max-w-2xl mx-auto">
-              Find quick answers to common questions about our services and process.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                question: "What services does Nepal Digital Heights offer?",
-                answer:
-                  "We offer a comprehensive range of digital services including web development, mobile app development, UI/UX design, digital marketing, e-commerce solutions, IT consulting, and custom software development.",
-              },
-              {
-                question: "How long does a typical project take to complete?",
-                answer:
-                  "Project timelines vary based on complexity and scope. A simple website might take 2-4 weeks, while a complex web application or mobile app could take 2-6 months. We'll provide a detailed timeline during our initial consultation.",
-              },
-              {
-                question: "Do you work with clients outside of Nepal?",
-                answer:
-                  "We work with clients globally and have successfully delivered projects for businesses in North America, Europe, Australia, and across Asia.",
-              },
-              {
-                question: "What is your project process like?",
-                answer:
-                  "Our process typically includes discovery and planning, design, development, testing, deployment, and post-launch support. We follow agile methodologies to ensure transparent communication and regular updates throughout the project lifecycle.",
-              },
-              {
-                question: "How do you handle project pricing?",
-                answer:
-                  "We offer flexible pricing models including fixed-price quotes for well-defined projects and time-and-materials billing for more complex or evolving projects. We provide detailed proposals with clear cost breakdowns before beginning any work.",
-              },
-              {
-                question: "Do you provide ongoing maintenance and support?",
-                answer:
-                  "Yes, we offer various maintenance and support packages to ensure your digital products remain secure, up-to-date, and performing optimally after launch. Our support team is available to address any issues that may arise.",
-              },
-              {
-                question: "How do I get started with Nepal Digital Heights?",
-                answer:
-                  "Simply fill out our contact form, email us, or give us a call. We'll schedule an initial consultation to discuss your project requirements, goals, and timeline, then provide you with a customized proposal.",
-              },
-            ].map((faq, index) => (
-              <div
-                key={index}
-                className="bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-md border border-[#4A8EBC]/10 hover:shadow-lg transition-all duration-300"
-              >
-                <h3 className="text-lg font-semibold text-[#1A2A44] mb-3">{faq.question}</h3>
-                <p className="text-[#2B4066]/80">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
 
     </div>

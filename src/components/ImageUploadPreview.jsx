@@ -10,7 +10,8 @@ const ImageUploadPreview = ({
   onImageUpload,
   onImageRemove,
   uploading = false,
-  className = ''
+  className = '',
+  showUploadButton = true
 }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(currentImage);
@@ -146,7 +147,7 @@ const ImageUploadPreview = ({
       />
 
       {/* Upload Button */}
-      {selectedFile && (
+      {selectedFile && showUploadButton && (
         <div className="flex items-center gap-3">
           <button
             type="button"

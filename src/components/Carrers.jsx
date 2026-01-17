@@ -205,38 +205,38 @@ export default function Careers() {
               {careers.map((career, index) => (
                 <div 
                   key={career._id} 
-                  className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-white border border-[#4A8EBC]/10"
+                  className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-white border border-[#4A8EBC]/10 h-full flex flex-col"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  {/* Large Image */}
-                  <div className="aspect-3/4 w-full">
+                  {/* Fixed Height Image Container */}
+                  <div className="w-full h-64 relative overflow-hidden">
                     {career.image ? (
                       <img 
                         src={career.image} 
                         alt={career.title} 
-                        className="w-full h-full object-contain bg-white"
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
                       <div className="w-full h-full bg-linear-to-br from-[#4A8EBC] to-[#3B5488] flex items-center justify-center">
-                        <Briefcase className="w-20 h-20 text-white/50" />
+                        <Briefcase className="w-16 h-16 text-white/60" />
                       </div>
                     )}
                   </div>
                   
-                  {/* Career Info */}
-                  <div className="p-6 bg-white">
-                    <h3 className="text-xl font-bold text-[#1A2A44] mb-2">{career.title}</h3>
+                  {/* Career Info - Flex grow to fill remaining space */}
+                  <div className="p-6 bg-white flex-grow flex flex-col">
+                    <h3 className="text-xl font-bold text-[#1A2A44] mb-2 line-clamp-2">{career.title}</h3>
                     <div className="flex items-center gap-2 text-[#2B4066]/70 mb-3">
                       <MapPin className="w-4 h-4" />
                       <span className="text-sm">{career.location}</span>
                     </div>
-                    <p className="text-[#2B4066]/80 text-sm line-clamp-3 mb-4">
+                    <p className="text-[#2B4066]/80 text-sm line-clamp-3 mb-4 flex-grow">
                       {career.description?.substring(0, 120)}...
                     </p>
                     
-                    {/* Apply Button */}
+                    {/* Apply Button - Always at bottom */}
                     <button
-                      className="w-full py-3 px-6 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105"
+                      className="w-full py-3 px-6 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105 mt-auto"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleApplyNow(career.title);

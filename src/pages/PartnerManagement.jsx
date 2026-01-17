@@ -36,7 +36,8 @@ const PartnerManagement = () => {
     fetchPartners();
   };
 
-  if (loading && partners.length === 0) return <Loader />;
+  // Only show loader on initial load when no partners exist
+  if (loading && partners.length === 0 && !error) return <Loader />;
   if (error && partners.length === 0) {
     return (
       <div className="container mx-auto px-4 py-8">

@@ -50,6 +50,7 @@ const useBlogStore = create((set, get) => ({
     set({ loading: true, error: null });
     try {
       const response = await axiosInstance.get('/api/blogs');
+      const blogsData = response.data?.data || [];
       console.log('✅ API returned blogs:', blogsData.length);
 
       if (blogsData.length === 0) {
@@ -90,11 +91,12 @@ const useBlogStore = create((set, get) => ({
     set({ loading: true, error: null });
     try {
       const response = await axiosInstance.get(`/api/blogs/${id}`);
+      const blogData = response.data?.data || response.data;
       set({
-        selectedBlog: response.data,
+        selectedBlog: blogData,
         loading: false
       });
-      return response.data;
+      return blogData;
     } catch (error) {
       // Handle 304 responses
       if (error.response?.status === 304) {
@@ -134,7 +136,7 @@ const useBlogStore = create((set, get) => ({
       }));
 
       return newBlog;
-    } catch (error) {
+    } catch {
       console.log('❌ Backend not available, cannot create blog');
       set({
         loading: false,
@@ -157,7 +159,7 @@ const useBlogStore = create((set, get) => ({
       });
 
       return response.data.url || response.data.imageUrl;
-    } catch (error) {
+    } catch {
       console.log('📁 Backend upload not available, will use local storage');
       return null;
     }
@@ -180,7 +182,7 @@ const useBlogStore = create((set, get) => ({
       }));
 
       return updatedBlog;
-    } catch (error) {
+    } catch {
       console.log('Backend not available, updating blog locally');
       // Update blog locally
       const updatedBlog = {
@@ -215,7 +217,7 @@ const useBlogStore = create((set, get) => ({
       }));
 
       return true;
-    } catch (error) {
+    } catch {
       console.log('Backend not available, deleting blog locally');
       // Delete blog locally
       set((state) => ({

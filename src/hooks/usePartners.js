@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react';
-import axios from '../api/axios';
-import usePartnerStore from '../Store/usePartnerStore';
-import toast from 'react-hot-toast';
+// Global flag to prevent multiple logs in development
+let devModeLogged = false;
 
 const usePartners = () => {
   const {
@@ -72,17 +70,11 @@ const usePartners = () => {
       setLoading(true);
       clearError();
 
-      const formData = new FormData();
-      formData.append('name', partnerData.name);
-      if (partnerData.image) {
-        formData.append('image', partnerData.image);
-      }
-
-      const response = await axios.post('/api/partners', formData, {
+      const response = await axios.post('/api/partners', partnerData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
         },
-        timeout: 10000, // 10 second timeout for file uploads
+        timeout: 5000,
       });
 
       if (response.data.success) {
@@ -108,17 +100,11 @@ const usePartners = () => {
       setLoading(true);
       clearError();
 
-      const formData = new FormData();
-      formData.append('name', partnerData.name);
-      if (partnerData.image) {
-        formData.append('image', partnerData.image);
-      }
-
-      const response = await axios.put(`/api/partners/${id}`, formData, {
+      const response = await axios.put(`/api/partners/${id}`, partnerData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          'Content-Type': 'application/json',
         },
-        timeout: 10000, // 10 second timeout for file uploads
+        timeout: 5000,
       });
 
       if (response.data.success) {
@@ -185,9 +171,31 @@ const usePartners = () => {
   };
 
   useEffect(() => {
-    if (partners.length === 0) {
+    // Only fetch partners automatically in production or when explicitly requested
+    // In development, avoid spamming the console with backend errors
+    const shouldFetchAutomatically = process.env.NODE_ENV === 'production' ||
+      localStorage.getItem('enable-api-calls') === 'true';
+
+    if (!shouldFetchAutomatically) {
+      // Only log once per application session to avoid console spam
+      if (!devModeLogged) {
+        console.log('🔧 Partners API calls disabled in development. Set localStorage.setItem("enable-api-calls", "true") to enable.');
+        devModeLogged = true;
+      }
+    } else {
       fetchPartners();
     }
+
+    // Safety timeout to prevent infinite loading
+    const timeout = setTimeout(() => {
+      if (loading) {
+        console.warn('Partner loading timeout - resetting loading state');
+        setLoading(false);
+        setError('Loading timeout - please refresh the page');
+      }
+    }, 10000); // 10 seconds timeout
+
+    return () => clearTimeout(timeout);
   }, []);
 
   return {

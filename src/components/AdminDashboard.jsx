@@ -109,7 +109,8 @@ export default function AdminDashboard() {
             <div className="flex items-center gap-4">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-2 rounded-lg hover:bg-[#4A8EBC]/10 transition-colors duration-200"
+                className="lg:hidden p-2 rounded-lg hover:bg-[#4A8EBC]/10 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/50 focus:ring-offset-2 focus:ring-offset-white/50"
+                aria-label="Open menu"
               >
                 <Menu className="w-6 h-6 text-[#4A8EBC]" />
               </button>

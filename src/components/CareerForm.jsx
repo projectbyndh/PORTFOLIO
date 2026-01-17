@@ -217,7 +217,7 @@ const CareerForm = ({
             />
             {errors.description && (
               <p className="mt-1 text-sm text-red-500">{errors.description.message}</p>
-            )}}
+            )}
           </div>
 
           {/* Requirements */}

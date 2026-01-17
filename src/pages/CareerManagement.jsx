@@ -5,8 +5,8 @@ import { Toaster } from 'react-hot-toast';
 import { useCareers } from '../hooks/useCareers';
 import CareerList from '../components/CareerList';
 import CareerForm from '../components/CareerForm';
-import useAuthStore from '../Store/useAuthStore';
 
+import useAuthStore from '../Store/useAuthStore';
 /**
  * CareerManagement Page - Complete career management interface
  * Features: List careers, create, edit, delete with image upload

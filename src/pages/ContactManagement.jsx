@@ -3,7 +3,7 @@ import { useContacts } from '../hooks/useContacts';
 import ContactForm from '../components/ContactForm';
 import toast from 'react-hot-toast';
 import { Edit, Trash2, Plus } from 'lucide-react';
-
+import React from 'react';
 const ContactManagement = () => {
   const { fetchContacts, deleteContact } = useContacts();
   const [contacts, setContacts] = useState([]);

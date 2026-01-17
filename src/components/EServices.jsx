@@ -171,10 +171,7 @@ export default function EServicesEnhanced() {
             <p className="text-base sm:text-lg text-[#2B4066]/80 max-w-2xl mx-auto mb-12 text-center animate-fade-in">
               Digital services designed to help businesses worldwide thrive in the digital era.
             </p>
-                <div className="flex items-center justify-center gap-2">
-                  <Logo className="hidden sm:block h-6 w-auto" />
-                  What We Offer
-                </div>
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {E_SERVICES.map((service, index) => (
                 <article

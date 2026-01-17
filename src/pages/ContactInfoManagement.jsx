@@ -3,6 +3,7 @@ import { useContactInfo } from '../hooks/useContactInfo';
 import ContactInfoForm from '../components/ContactInfoForm';
 import toast from 'react-hot-toast';
 import { Edit, Trash2, Plus, MapPin, Mail, Phone, Clock } from 'lucide-react';
+import React from 'react';
 
 const ContactInfoManagement = () => {
   const { fetchContactInfo, deleteContactInfo } = useContactInfo();

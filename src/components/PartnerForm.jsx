@@ -3,7 +3,7 @@ import usePartners from '../hooks/usePartners';
 import ImageUploadPreview from './ImageUploadPreview';
 
 const PartnerForm = ({ partner, onClose }) => {
-  const { createPartner, updatePartnerById } = usePartners();
+  const { createPartner, updatePartnerById, uploadImage } = usePartners();
   const [submitting, setSubmitting] = useState(false);
   const [selectedImageFile, setSelectedImageFile] = useState(null);
   const [formData, setFormData] = useState({
@@ -31,6 +31,9 @@ const PartnerForm = ({ partner, onClose }) => {
     if (!formData.name.trim()) {
       newErrors.name = 'Partner name is required';
     }
+    if (!partner && !selectedImageFile) {
+      newErrors.image = 'Partner logo is required';
+    }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -41,9 +44,18 @@ const PartnerForm = ({ partner, onClose }) => {
 
     try {
       setSubmitting(true);
+
+      let imageUrl = partner?.image; // Use existing image if editing
+
+      // Upload new image if selected
+      if (selectedImageFile) {
+        const uploadResult = await uploadImage(selectedImageFile);
+        imageUrl = uploadResult.imageUrl || uploadResult.url;
+      }
+
       const partnerData = {
         name: formData.name,
-        image: selectedImageFile
+        image: imageUrl
       };
 
       if (partner) {
@@ -95,12 +107,15 @@ const PartnerForm = ({ partner, onClose }) => {
           </label>
           <ImageUploadPreview
             currentImage={partner?.image}
-            onImageUpload={async (file) => {
+            onImageUpload={(file) => {
               setSelectedImageFile(file);
-              return file;
             }}
             onImageRemove={() => setSelectedImageFile(null)}
+            showUploadButton={false}
           />
+          {errors.image && (
+            <p className="text-red-500 text-sm mt-1">{errors.image}</p>
+          )}
         </div>
 
         <div className="flex justify-end gap-3 pt-4 border-t border-[#4A8EBC]/10">

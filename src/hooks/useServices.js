@@ -158,7 +158,14 @@ const useServices = () => {
   };
 
   useEffect(() => {
-    fetchServices();
+    // Only fetch services automatically in production or when explicitly requested
+    // In development, avoid spamming the console with backend errors
+    const shouldFetchAutomatically = process.env.NODE_ENV === 'production' ||
+      localStorage.getItem('enable-api-calls') === 'true';
+
+    if (shouldFetchAutomatically) {
+      fetchServices();
+    }
   }, []);
 
   return {
