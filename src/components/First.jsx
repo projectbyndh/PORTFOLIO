@@ -153,11 +153,7 @@ function First() {
             <div className="relative" ref={containerRef}>
               <div className="relative w-96 h-96 mx-auto">
                 {/* Central Logo */}
-                <div className="absolute inset-0 flex items-center justify-center z-10">
-                  <div className="w-32 h-32 bg-white/90 backdrop-blur-xl rounded-full shadow-2xl flex items-center justify-center animate-pulse-slow">
-                    <img src={logo} alt="Nepal Digital Heights" className="w-20 h-20 object-contain" />
-                  </div>
-                </div>
+
 
                 {/* Animated Tech Icons */}
                 {TECH_STACK.map((tech, index) => (

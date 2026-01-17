@@ -212,7 +212,7 @@ export default function Careers() {
                   <div className="w-full h-64 relative overflow-hidden">
                     {career.image ? (
                       <img 
-                        src={career.image} 
+                        src={career.image.startsWith('http') ? career.image : `http://localhost:5000${career.image}`} 
                         alt={career.title} 
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />

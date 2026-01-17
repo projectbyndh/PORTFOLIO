@@ -40,8 +40,8 @@ export default function Navbar() {
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-out ${
       scrolled
-        ? 'bg-white/98 backdrop-blur-xl shadow-2xl border-b border-neutral-200/60 py-3'
-        : 'bg-white/85 backdrop-blur-lg shadow-lg border-b border-neutral-100/40 py-4'
+        ? 'bg-gradient-to-b from-white/95 via-white/90 to-white/85 backdrop-blur-2xl shadow-2xl border-b border-white/30 border-t border-white/50 py-3'
+        : 'bg-gradient-to-b from-white/70 via-white/60 to-white/50 backdrop-blur-xl shadow-xl border-b border-white/20 border-t border-white/40 py-4'
     }`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
@@ -56,9 +56,7 @@ export default function Navbar() {
               <div className="absolute inset-0 bg-linear-to-r from-[#4A8EBC] to-[#8B5CF6] opacity-0 blur-xl group-hover:opacity-30 transition-opacity duration-500"></div>
             </div>
             <div className="hidden sm:block">
-              <span className="text-xl font-bold gradient-text transition-all duration-300">
-                NDH Technologies
-              </span>
+
             </div>
           </Link>
 
