@@ -1,129 +1,105 @@
 "use client"
-
-import { useEffect, useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
-import React from "react"
 
 const defaultLocations = [
-  { name: "Rupandehi, Nepal", latitude: 27.6264, longitude: 83.3789, color: "#4A90E2", isHighlighted: true },
-  { name: "United States", latitude: 37.0902, longitude: -95.7129, color: "#5BA3F5", clients: 12 },
-  { name: "United Kingdom", latitude: 51.5074, longitude: -0.1278, color: "#6AB6FF", clients: 8 },
-  { name: "Australia", latitude: -25.2744, longitude: 133.7751, color: "#7EC8FF", clients: 6 },
-  { name: "Japan", latitude: 36.2048, longitude: 138.2529, color: "#8AD3FF", clients: 5 },
-  { name: "UAE", latitude: 25.2048, longitude: 55.2708, color: "#9ADCFF", clients: 7 },
-  { name: "Singapore", latitude: 1.3521, longitude: 103.8198, color: "#6AB6FF", clients: 4 },
-  { name: "Canada", latitude: 56.1304, longitude: -106.3468, color: "#7EC8FF", clients: 3 },
-  { name: "Germany", latitude: 51.1657, longitude: 10.4515, color: "#8AD3FF", clients: 5 },
-  { name: "India", latitude: 20.5937, longitude: 78.9629, color: "#5BA3F5", clients: 15 },
+  { name: "Rupandehi, Nepal", lat: 27.6264, lng: 83.3789, color: "#4A8EBC", hq: true },
+  { name: "United States", lat: 37.0902, lng: -95.7129, color: "#60A5FA", clients: 12 },
+  { name: "United Kingdom", lat: 51.5074, lng: -0.1278, color: "#60A5FA", clients: 8 },
+  { name: "Australia", lat: -25.2744, lng: 133.7751, color: "#60A5FA", clients: 6 },
+  { name: "Japan", lat: 36.2048, lng: 138.2529, color: "#60A5FA", clients: 5 },
+  { name: "UAE", lat: 25.2048, lng: 55.2708, color: "#60A5FA", clients: 7 },
+  { name: "Singapore", lat: 1.3521, lng: 103.8198, color: "#60A5FA", clients: 4 },
+  { name: "Canada", lat: 56.1304, lng: -106.3468, color: "#60A5FA", clients: 3 },
+  { name: "Germany", lat: 51.1657, lng: 10.4515, color: "#60A5FA", clients: 5 },
+  { name: "India", lat: 20.5937, lng: 78.9629, color: "#60A5FA", clients: 15 },
 ]
 
 export default function WorldMap() {
   const mapRef = useRef(null)
   const leafletMap = useRef(null)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const displayLocations = defaultLocations
 
-  // Initialize map with displayLocations
   useEffect(() => {
-    if (typeof window !== "undefined" && mapRef.current && !leafletMap.current && displayLocations.length > 0) {
-      leafletMap.current = L.map(mapRef.current, {
-        center: [displayLocations[0].latitude, displayLocations[0].longitude],
-        zoom: 3,
-        minZoom: 2,
-        maxZoom: 7,
-        zoomControl: true,
-        attributionControl: false,
-      })
+    if (typeof window === "undefined" || !mapRef.current || leafletMap.current) return
 
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
-        attribution: '© OpenStreetMap contributors',
+    // 1. Initialize Map
+    leafletMap.current = L.map(mapRef.current, {
+      center: [20, 10], // Adjusted center for better global view
+      zoom: 2.5,
+      minZoom: 2,
+      maxZoom: 6,
+      zoomControl: false, // Cleaner UI
+      attributionControl: false,
+    })
+
+    // 2. Add Professional Dark Tiles
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png").addTo(leafletMap.current)
+
+    // 3. Custom Icon Factory
+    const createIcon = (color, isHq) => {
+      const size = isHq ? 20 : 10
+      return L.divIcon({
+        className: "custom-marker",
+        html: `<div class="marker-container ${isHq ? 'is-hq' : ''}">
+                <div class="marker-core" style="background: ${color};"></div>
+                <div class="marker-pulse" style="background: ${color};"></div>
+              </div>`,
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size / 2],
+      })
+    }
+
+    // 4. Draw Assets
+    const hq = defaultLocations.find(l => l.hq)
+    
+    defaultLocations.forEach(loc => {
+      // Add Marker
+      const marker = L.marker([loc.lat, loc.lng], {
+        icon: createIcon(loc.color, loc.hq)
       }).addTo(leafletMap.current)
 
-      // Enhanced marker with pulse for HQ
-      const createCustomIcon = (color, isHighlighted = false) => {
-        const size = isHighlighted ? 22 : 14
-        const pulse = isHighlighted
-          ? `animation: pulseGlow 2s infinite; @keyframes pulseGlow { 0%,100% { box-shadow: 0 0 15px 5px ${color}; } 50% { box-shadow: 0 0 30px 12px ${color}; } }`
-          : `box-shadow: 0 0 12px 3px ${color};`
-        return L.divIcon({
-          className: "custom-div-icon",
-          html: `<div style="
-            background: ${color};
-            width: ${size}px;
-            height: ${size}px;
-            border-radius: 50%;
-            border: 3px solid white;
-            ${pulse}
-          "></div>`,
-          iconSize: [size, size],
-          iconAnchor: [size / 2, size / 2],
-        })
-      }
+      // Add Tooltip
+      marker.bindTooltip(
+        `<div class="map-tooltip">
+          <p class="tooltip-name">${loc.name}</p>
+          <p class="tooltip-status">${loc.hq ? 'GLOBAL HEADQUARTERS' : loc.clients + ' Active Projects'}</p>
+        </div>`,
+        { direction: 'top', offset: [0, -5], className: 'leaflet-tooltip-custom' }
+      )
 
-      // Add markers with tooltips
-      displayLocations.forEach((loc) => {
-        const marker = L.marker([loc.latitude, loc.longitude], {
-          icon: createCustomIcon(loc.color, loc.isHighlighted),
-        }).addTo(leafletMap.current)
-
-        const content = loc.isHighlighted
-          ? `<strong style="font-size:15px;color:#fff;">${loc.address}</strong><br/><span style="color:#a0d8ff;">🏢 Headquarters</span>`
-          : `<strong style="color:#fff;">${loc.address}</strong><br/><span style="color:#b0e0ff;">👥 ${loc.clients} Clients</span>`
-
-        marker.bindTooltip(content, {
-          permanent: loc.isHighlighted,
-          direction: "top",
-          offset: [0, -10],
-          className: "custom-tooltip",
-        })
-      })
-
-      // Smooth curved path (quadratic bezier)
-      function createCurvedPath(start, end) {
+      // Add Arcs from HQ
+      if (!loc.hq) {
         const points = []
-        const offset = 0.25
-        const midLat = (start[0] + end[0]) / 2
-        const midLng = (start[1] + end[1]) / 2
-        const dx = end[1] - start[1]
-        const dy = end[0] - start[0]
-        const dist = Math.sqrt(dx * dx + dy * dy)
-        const normX = -dy / dist
-        const normY = dx / dist
-        const controlLat = midLat + normX * offset * dist * 0.2
-        const controlLng = midLng + normY * offset * dist * 0.2
+        const start = [hq.lat, hq.lng]
+        const end = [loc.lat, loc.lng]
+        
+        // Curve calculation (Midpoint offset)
+        const offsetX = end[1] - start[1]
+        const offsetY = end[0] - start[0]
+        const r = Math.sqrt(Math.pow(offsetX, 2) + Math.pow(offsetY, 2))
+        const theta = Math.atan2(offsetY, offsetX)
+        const thetaOffset = 0.5 // Controls the curve height
+        
+        const midX = (start[1] + end[1]) / 2 + (r/4) * Math.cos(theta + Math.PI/2)
+        const midY = (start[0] + end[0]) / 2 + (r/4) * Math.sin(theta + Math.PI/2)
 
-        const steps = 50
-        for (let i = 0; i <= steps; i++) {
-          const t = i / steps
-          const lat = (1 - t) * (1 - t) * start[0] + 2 * (1 - t) * t * controlLat + t * t * end[0]
-          const lng = (1 - t) * (1 - t) * start[1] + 2 * (1 - t) * t * controlLng + t * t * end[1]
-          points.push([lat, lng])
+        // Generate Quadratic Bezier
+        for (let t = 0; t <= 1; t += 0.02) {
+          const x = (1-t)*(1-t)*start[1] + 2*(1-t)*t*midX + t*t*end[1]
+          const y = (1-t)*(1-t)*start[0] + 2*(1-t)*t*midY + t*t*end[0]
+          points.push([y, x])
         }
-        return points
-      }
 
-      const hqColor = "#4A90E2"
-      const hq = displayLocations[0]
-
-      // Draw only curved lines — NO ARROWS
-      for (let i = 1; i < displayLocations.length; i++) {
-        const start = [hq.latitude, hq.longitude]
-        const end = [displayLocations[i].latitude, displayLocations[i].longitude]
-        const path = createCurvedPath(start, end)
-
-        L.polyline(path, {
-          color: hqColor,
-          weight: 3,
-          opacity: 0.85,
-          dashArray: "8, 12",
-          dashOffset: "0",
-          className: "flowing-line",
+        L.polyline(points, {
+          color: '#4A8EBC',
+          weight: 1.5,
+          opacity: 0.4,
+          dashArray: '5, 10',
+          className: 'map-arc'
         }).addTo(leafletMap.current)
       }
-
-      setIsLoaded(true)
-    }
+    })
 
     return () => {
       if (leafletMap.current) {
@@ -131,95 +107,103 @@ export default function WorldMap() {
         leafletMap.current = null
       }
     }
-  }, [displayLocations])
+  }, [])
 
   return (
-    <div className="w-full bg-linear-to-b from-[#f0f8ff] to-[#e6f2ff] py-20 md:py-28 relative overflow-hidden">
-      {/* Subtle background decoration */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-10 left-10 w-96 h-96 rounded-full bg-[#4A90E2]/10 blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 rounded-full bg-[#6AB6FF]/10 blur-3xl"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,#4A90E2_1px,transparent_1px)] bg-size-[60px_60px] opacity-5"></div>
-      </div>
+    <div className="w-full bg-[#020617] py-24 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-5xl md:text-6xl font-bold bg-linear-to-r from-[#2c5282] to-[#4A90E2] bg-clip-text text-transparent">
-            From Rupandehi to the World
-          </h2>
- 
-
+          <h2 className="text-sm font-black uppercase tracking-[0.4em] text-blue-500 mb-4">Our Global Reach</h2>
+          <h3 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tighter">
+            Scaling from <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Nepal to the World.</span>
+          </h3>
         </div>
 
-        {/* Map */}
-        <div className="relative max-w-5xl mx-auto">
-          <div className="rounded-3xl overflow-hidden shadow-2xl border border-[#4A90E2]/30 bg-linear-to-br from-[#0f172a]/90 to-[#1e293b]/90 backdrop-blur-sm">
-            <div ref={mapRef} className="h-96 md:h-[560px]" />
-
-            {/* HQ Badge */}
-            <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-md rounded-2xl px-6 py-4 shadow-xl border border-[#4A90E2]/40">
+        <div className="relative group">
+          {/* Holographic Border */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-transparent rounded-[2.5rem] blur opacity-75 group-hover:opacity-100 transition duration-1000" />
+          
+          <div className="relative bg-[#0F172A] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
+            <div ref={mapRef} className="h-[500px] md:h-[650px] grayscale-[0.5] contrast-[1.2] invert-[0.05]" />
+            
+            {/* HQ Floating Pane */}
+            <div className="absolute top-8 left-8 p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl z-[1000]">
               <div className="flex items-center gap-4">
-                <div className="w-5 h-5 rounded-full bg-[#4A90E2] animate-pulse shadow-lg"></div>
+                <div className="relative">
+                  <div className="w-3 h-3 bg-blue-500 rounded-full animate-ping absolute" />
+                  <div className="w-3 h-3 bg-blue-500 rounded-full relative" />
+                </div>
                 <div>
-                  <div className="font-bold text-[#2d3748]">Nepal Digital Heights</div>
-                  <div className="text-sm text-[#4a6fa5]">Rupandehi, Nepal 🇳🇵</div>
+                  <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest">Headquarters</p>
+                  <p className="text-lg font-bold text-white leading-none">Rupandehi, Nepal</p>
                 </div>
               </div>
             </div>
 
-            {/* Bottom tagline */}
-            {/* <div className="absolute bottom-6 right-6 bg-white/90 backdrop-blur rounded-xl px-5 py-3 shadow-lg border border-[#4A90E2]/20 text-sm text-[#2d3748]">
-              🌍 Serving 10+ countries worldwide
-            </div> */}
-          </div>
-
-          {/* Legend */}
-          {/* <div className="mt-12 bg-white/80 backdrop-blur-md rounded-2xl p-8 shadow-xl border border-[#4A90E2]/20">
-            <h3 className="text-2xl font-bold text-[#2d3748] mb-6 text-center">Our Global Presence</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
-              {locations.map((loc, i) => (
-                <div key={i} className="flex flex-col items-center text-center">
-                  <div
-                    className={`${loc.isHighlighted ? "w-10 h-10" : "w-7 h-7"} rounded-full mb-3 border-4 border-white shadow-xl`}
-                    style={{ backgroundColor: loc.color, boxShadow: `0 0 20px ${loc.color}` }}
-                  ></div>
-                  <span className={`font-medium ${loc.isHighlighted ? "text-lg text-[#2d3748]" : "text-sm text-[#4a6fa5]"}`}>
-                    {loc.name.split(",")[0]}
-                  </span>
-                  {!loc.isHighlighted && <span className="text-xs text-[#6b7280] mt-1">{loc.clients} clients</span>}
-                </div>
-              ))}
+            {/* Stats Overlay */}
+            <div className="absolute bottom-8 right-8 flex gap-4 z-[1000]">
+              <div className="px-5 py-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/5 text-white">
+                <p className="text-xs text-blue-400 font-bold uppercase tracking-widest">Network</p>
+                <p className="text-xl font-bold">10+ Countries</p>
+              </div>
             </div>
-            <p className="text-center mt-8 text-[#4a6fa5]/80">
-              🚀 All connections flow from our headquarters in <strong className="text-[#4A90E2]">Rupandehi, Nepal</strong>
-            </p>
-          </div> */}
+          </div>
         </div>
       </div>
 
-      {/* Custom Styles */}
       <style jsx global>{`
-        .custom-tooltip {
-          background: rgba(15, 23, 42, 0.9) !important;
-          border: 1px solid #4A90E2 !important;
-          border-radius: 12px !important;
-          padding: 10px 14px !important;
-          font-size: 13px !important;
-          box-shadow: 0 4px 20px rgba(74, 144, 226, 0.4) !important;
-          backdrop-filter: blur(8px);
+        .custom-marker .marker-container {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
-        .custom-tooltip::before {
-          border-top-color: #4A90E2 !important;
+        .marker-core {
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          border: 2px solid white;
+          z-index: 2;
         }
-        .flowing-line {
-          animation: flow 10s linear infinite;
+        .is-hq .marker-core {
+          width: 14px;
+          height: 14px;
+          background: #3B82F6 !important;
         }
-        @keyframes flow {
-          to {
-            stroke-dashoffset: -20;
-          }
+        .marker-pulse {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+          z-index: 1;
+          opacity: 0.6;
+          animation: mapPulse 2s infinite;
         }
+        @keyframes mapPulse {
+          0% { transform: scale(1); opacity: 0.6; }
+          100% { transform: scale(4); opacity: 0; }
+        }
+        .map-arc {
+          stroke-dasharray: 10;
+          animation: arcFlow 20s linear infinite;
+        }
+        @keyframes arcFlow {
+          from { stroke-dashoffset: 100; }
+          to { stroke-dashoffset: 0; }
+        }
+        .leaflet-tooltip-custom {
+          background: #1E293B !important;
+          border: 1px solid rgba(255,255,255,0.1) !important;
+          border-radius: 8px !important;
+          color: white !important;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+          padding: 8px 12px !important;
+        }
+        .tooltip-name { font-weight: 800; font-size: 14px; margin: 0; }
+        .tooltip-status { font-size: 10px; color: #60A5FA; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px; }
       `}</style>
     </div>
   )
