@@ -1,1 +1,36 @@
 @import "tailwindcss";
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure body is scrollable */
+body {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4A8EBC;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3B7AA8;
+}
+
+/* Ensure main content is scrollable */
+#root {
+  min-height: 100vh;
+  overflow-x: hidden;
+}

@@ -38,6 +38,7 @@ const PartnerForm = ({ partner, onClose }) => {
     return Object.keys(newErrors).length === 0;
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -45,17 +46,10 @@ const PartnerForm = ({ partner, onClose }) => {
     try {
       setSubmitting(true);
 
-      let imageUrl = partner?.image; // Use existing image if editing
-
-      // Upload new image if selected
-      if (selectedImageFile) {
-        const uploadResult = await uploadImage(selectedImageFile);
-        imageUrl = uploadResult.imageUrl || uploadResult.url;
-      }
-
       const partnerData = {
         name: formData.name,
-        image: imageUrl
+        imageFile: selectedImageFile, // Pass the file directly
+        image: partner?.image // Keep existing image if editing and no new file
       };
 
       if (partner) {
@@ -66,6 +60,7 @@ const PartnerForm = ({ partner, onClose }) => {
       onClose();
     } catch (err) {
       // Error handled in hook
+      console.error('Form submission error:', err);
     } finally {
       setSubmitting(false);
     }

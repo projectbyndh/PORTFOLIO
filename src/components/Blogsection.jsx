@@ -123,11 +123,13 @@ function Blogsection() {
   }
 
   return (
-    <section className="relative py-12 sm:py-16 md:py-20 bg-linear-to-br from-[#F5FAFF] via-white to-[#F0F7FF] overflow-hidden" aria-labelledby="blog-heading">
+    <section className="relative py-24 bg-[#FAFAFA] overflow-hidden" aria-labelledby="blog-heading">
       {/* Enhanced Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-linear-to-br from-[#4A8EBC]/15 to-[#3B5488]/10 blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-linear-to-tr from-[#4A8EBC]/15 to-[#3B5488]/10 blur-3xl animate-pulse"></div>
+        <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+
+        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-linear-to-br from-[#4A8EBC]/10 to-[#3B5488]/5 blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-linear-to-tr from-[#4A8EBC]/10 to-[#3B5488]/5 blur-3xl animate-pulse"></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-linear-to-r from-[#4A8EBC]/5 to-[#3B5488]/5 blur-3xl"></div>
 
         {/* Animated dots pattern */}
@@ -184,14 +186,14 @@ function Blogsection() {
             {/* Navigation Buttons - smaller and repositioned for mobile */}
             <div className="hidden sm:block absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-20">
               <button
-                onClick={prevSlide}                aria-label="Previous blog posts"                className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#4A8EBC]/20 hover:bg-[#4A8EBC] hover:border-[#4A8EBC] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
+                onClick={prevSlide} aria-label="Previous blog posts" className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#4A8EBC]/20 hover:bg-[#4A8EBC] hover:border-[#4A8EBC] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
               >
                 <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-[#4A8EBC] group-hover:text-white transition-colors duration-300" />
               </button>
             </div>
             <div className="hidden sm:block absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-20">
               <button
-                onClick={nextSlide}                aria-label="Next blog posts"                className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#4A8EBC]/20 hover:bg-[#4A8EBC] hover:border-[#4A8EBC] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
+                onClick={nextSlide} aria-label="Next blog posts" className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#4A8EBC]/20 hover:bg-[#4A8EBC] hover:border-[#4A8EBC] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
               >
                 <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#4A8EBC] group-hover:text-white transition-colors duration-300" />
               </button>
@@ -199,7 +201,7 @@ function Blogsection() {
 
             {/* Blog Cards - vertical scroll on mobile, carousel on desktop */}
             <div
-              className="overflow-x-auto sm:overflow-hidden mx-0 sm:mx-6 md:mx-12"
+              className="overflow-x-auto sm:overflow-hidden mx-0 sm:mx-2 md:mx-4"
               onMouseDown={handleDragStart}
               onMouseMove={handleDragMove}
               onMouseUp={handleDragEnd}
@@ -210,7 +212,7 @@ function Blogsection() {
               style={{ cursor: 'grab', userSelect: 'none' }}
             >
               <div
-                className="flex flex-col sm:flex-row transition-transform duration-700 ease-out gap-6 sm:gap-0"
+                className="flex flex-col sm:flex-row transition-transform duration-700 ease-out gap-8"
                 style={
                   slidesToShow === 1
                     ? {}
@@ -236,50 +238,70 @@ function Blogsection() {
                           alt={`Featured image for ${blog.title}`}
                           className="w-full h-44 sm:h-56 object-cover transition-transform duration-500 group-hover:scale-105"
                         />
+                        {/* Action Icons Overlay */}
+                        <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
+                          <button
+                            onClick={(e) => {
+                              const icon = e.currentTarget.querySelector('svg');
+                              if (icon) {
+                                icon.classList.toggle('fill-red-500');
+                                icon.classList.toggle('text-red-500');
+                                icon.classList.toggle('text-white');
+                              }
+                            }}
+                            className="p-2 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/40 transition-colors group/btn"
+                          >
+                            <Heart className="w-4 h-4 text-white transition-colors duration-300" />
+                          </button>
+                          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-md text-white text-xs font-medium">
+                            <Eye className="w-3.5 h-3.5" />
+                            <span>{blog.views || '1.2k'}</span>
+                          </div>
+                        </div>
                       </div>
 
                       {/* Content */}
-                      <div className="p-4 sm:p-6 relative">
+                      <div className="p-5 sm:p-7 relative font-sans">
                         {/* Meta information */}
-                        <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-xs sm:text-sm text-[#2B4066]/60 mb-2 sm:mb-4">
-                          <div className="flex items-center gap-1">
-                            <Calendar className="w-4 h-4" />
+                        <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-medium text-[#2B4066]/60 mb-3 sm:mb-4">
+                          <div className="flex items-center gap-1.5">
+                            <Calendar className="w-3.5 h-3.5" />
                             <span>{formatDate(blog)}</span>
                           </div>
-                          <div className="flex items-center gap-1">
-                            <Clock className="w-4 h-4" />
+                          <div className="flex items-center gap-1.5">
+                            <Clock className="w-3.5 h-3.5" />
                             <span>{getReadTime(blog.content || blog.description || '')} min read</span>
                           </div>
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-lg sm:text-xl font-bold text-[#1A2A44] mb-2 sm:mb-4 line-clamp-2 group-hover:text-[#4A8EBC] transition-colors duration-300 leading-tight">
+                        <h3 className="text-lg sm:text-xl font-bold text-[#1A2A44] mb-3 leading-tight group-hover:text-[#4A8EBC] transition-colors duration-300">
                           {blog.title}
                         </h3>
 
                         {/* Content preview */}
-                        <p className="text-[#2B4066]/70 mb-4 sm:mb-6 line-clamp-3 leading-relaxed text-sm sm:text-base">
+                        <p className="text-[#2B4066]/70 mb-5 line-clamp-3 leading-relaxed text-sm">
                           {truncateContent(blog.content || blog.description || '')}
                         </p>
 
                         {/* Footer */}
-                        <div className="flex items-center justify-between pt-2 sm:pt-4 border-t border-[#4A8EBC]/10">
-                          <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-linear-to-r from-[#4A8EBC] to-[#3B5488] flex items-center justify-center">
-                              <User className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                        <div className="flex items-center justify-between pt-4 border-t border-[#4A8EBC]/10">
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-full bg-linear-to-r from-[#4A8EBC] to-[#3B5488] flex items-center justify-center shadow-md">
+                              <User className="w-4 h-4 text-white" />
                             </div>
                             <div>
-                              <div className="text-xs sm:text-sm font-semibold text-[#2B4066]">{blog.author || 'NDH Technologies'}</div>
-                              <div className="text-[10px] sm:text-xs text-[#2B4066]/60">Author</div>
+                              <div className="text-xs font-bold text-[#1A2A44]">{blog.author || 'NDH Team'}</div>
+                              <div className="text-[10px] text-[#4A8EBC] font-medium tracking-wide">AUTHOR</div>
                             </div>
                           </div>
 
                           <a
                             href={`/blogdetails?id=${blog._id}`}
-                            className="group/link inline-flex items-center gap-1 sm:gap-2 text-[#4A8EBC] hover:text-[#3B5488] font-semibold text-xs sm:text-sm transition-all duration-300"
+                            className="group/link inline-flex items-center gap-1.5 text-[#4A8EBC] hover:text-[#3B5488] font-bold text-xs uppercase tracking-wider transition-all duration-300"
                           >
-                            <span>Read More</span>
-                            <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform duration-300" />
+                            <span>Read</span>
+                            <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform duration-300" />
                           </a>
                         </div>
                       </div>
@@ -297,11 +319,10 @@ function Blogsection() {
                   onClick={() => setCurrentIndex(index * slidesToShow)}
                   aria-label={`Go to slide ${index + 1}`}
                   aria-current={Math.floor(currentIndex / slidesToShow) === index}
-                  className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${
-                    Math.floor(currentIndex / slidesToShow) === index
-                      ? "bg-linear-to-r from-[#4A8EBC] to-[#3B5488] w-8 sm:w-12"
-                      : "bg-[#4A8EBC]/30 hover:bg-[#4A8EBC]/50 w-2 sm:w-3"
-                  }`}
+                  className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${Math.floor(currentIndex / slidesToShow) === index
+                    ? "bg-linear-to-r from-[#4A8EBC] to-[#3B5488] w-8 sm:w-12"
+                    : "bg-[#4A8EBC]/30 hover:bg-[#4A8EBC]/50 w-2 sm:w-3"
+                    }`}
                 />
               ))}
             </div>

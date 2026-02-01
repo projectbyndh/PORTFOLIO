@@ -196,8 +196,8 @@ export default function OurTeams() {
     level: team.position.toLowerCase().includes('ceo') || team.position.toLowerCase().includes('cto') || team.position.toLowerCase().includes('cfo') || team.position.toLowerCase().includes('head')
       ? 'executive'
       : team.position.toLowerCase().includes('lead') || team.position.toLowerCase().includes('manager')
-      ? 'management'
-      : 'staff',
+        ? 'management'
+        : 'staff',
     bio: team.description,
     image_url: team.image,
   }));
@@ -209,7 +209,9 @@ export default function OurTeams() {
   if (loading) return <Loader />;
   if (error) {
     return (
-      <div className="min-h-screen bg-linear-to-br from-[#F5FAFF] via-[#EBF5FF] to-[#F5FAFF] py-12 flex items-center justify-center">
+      <div className="min-h-screen bg-[#FAFAFA] py-12 flex items-center justify-center relative">
+        {/* Grain texture */}
+        <div className="fixed inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none z-0" />
         <div className="text-center">
           <div className="text-red-500 mb-4">{error}</div>
           <button
@@ -224,7 +226,15 @@ export default function OurTeams() {
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-[#F5FAFF] via-[#EBF5FF] to-[#F5FAFF] py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#FAFAFA] relative overflow-hidden pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+      {/* Grain texture */}
+      <div className="fixed inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none z-0" />
+
+      {/* Background effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-20 left-20 w-96 h-96 bg-[#4A8EBC]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#3B7AA8]/10 rounded-full blur-3xl" />
+      </div>
       <div className="mx-auto max-w-7xl">
         {/* Header with animation */}
         <motion.div
@@ -235,7 +245,7 @@ export default function OurTeams() {
         >
           <div className="flex items-center justify-center gap-3">
             <Logo className="hidden sm:block h-8 w-auto" />
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 sm:mb-4 bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] via-[#2B4A6F] to-[#4A8EBC] leading-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-3 sm:mb-4 tracking-tight text-neutral-900 leading-tight">
               Meet Our Team
             </h1>
           </div>
@@ -262,7 +272,7 @@ export default function OurTeams() {
             className="bg-linear-to-br from-white to-[#F0F9FF] rounded-3xl shadow-xl hover:shadow-2xl p-6 sm:p-8 flex flex-col items-center relative overflow-hidden group transition-all duration-300 border border-[#4A8EBC]/10"
           >
             {/* Decorative background element */}
-            <div className="absolute inset-0 bg-linear-to-br from-[#4A8EBC]/5 via-[#4A8EBC]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]" />
 
             {/* Animated rings around mascot */}
             <motion.div
@@ -334,7 +344,7 @@ export default function OurTeams() {
               <Logo className="hidden sm:block h-6 w-auto" />
               <h2 className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-2">Executive Leadership</h2>
             </div>
-            <div className="w-20 h-1 bg-linear-to-r from-[#4A8EBC] to-[#2B4A6F] mx-auto rounded-full"></div>
+            <div className="w-20 h-1 bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8] mx-auto rounded-full"></div>
           </div>
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
             {executiveTeam.map((member, idx) => (
@@ -354,7 +364,7 @@ export default function OurTeams() {
                 }}
                 className="relative flex flex-col items-center p-6 overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg rounded-2xl hover:shadow-2xl group"
               >
-                <div className="absolute inset-0 bg-linear-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]" />
 
                 <div className="relative z-10 mb-4">
                   <motion.div

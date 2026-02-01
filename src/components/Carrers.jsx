@@ -63,7 +63,7 @@ export default function Careers() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
+
     // Convert resume file to base64 for storage
     let resumeData = null
     if (form.resume) {
@@ -73,7 +73,7 @@ export default function Careers() {
         reader.readAsDataURL(form.resume)
       })
     }
-    
+
     const prev = JSON.parse(localStorage.getItem("careerApplications") || "[]")
     const newApp = {
       ...form,
@@ -83,13 +83,13 @@ export default function Careers() {
       resumeData: resumeData, // Store the actual file as base64
     }
     localStorage.setItem("careerApplications", JSON.stringify([...prev, newApp]))
-    
+
     try {
       generateApplicationPDF(newApp)
     } catch (err) {
       console.warn("PDF generation failed:", err)
     }
-    
+
     setSuccess(true)
     setTimeout(() => {
       handleCloseForm()
@@ -97,22 +97,18 @@ export default function Careers() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#F5FAFF] relative overflow-hidden">
+    <div className="w-full min-h-screen bg-[#FAFAFA] relative overflow-hidden pt-32">
+      {/* Grain texture */}
+      <div className="fixed inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none z-0" />
+
       {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-40 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse"></div>
-        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse"></div>
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
-            backgroundSize: "30px 30px",
-          }}
-        ></div>
+        <div className="absolute top-40 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/10 blur-3xl"></div>
+        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B7AA8]/10 blur-3xl"></div>
       </div>
 
       {/* Hero Section */}
-      <div className="w-full bg-linear-to-b from-[#E0F0FF] to-[#F5FAFF] py-16 px-4 sm:px-6 lg:px-8 relative">
+      <div className="w-full bg-gradient-to-b from-white/60 to-[#FAFAFA] py-16 px-4 sm:px-6 lg:px-8 relative">
         <svg
           className="absolute top-0 left-0 w-full h-32 opacity-10"
           viewBox="0 0 1440 320"
@@ -134,7 +130,7 @@ export default function Careers() {
               We're Hiring!
             </span>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] to-[#4A8EBC]">
+          <h1 className="text-4xl md:text-5xl font-black mb-6 tracking-tight text-neutral-900">
             Join Our Tech Revolution at <span className="text-[#4A8EBC]">NDH Tech!</span>
           </h1>
           <p className="text-lg text-[#2B4066]/80 max-w-3xl mx-auto mb-8">
@@ -184,13 +180,13 @@ export default function Careers() {
                   {error ? 'Error Loading Careers' : 'No Openings Right Now'}
                 </h3>
                 <p className="text-[#2B4066]/80 max-w-md mx-auto mb-8">
-                  {error 
+                  {error
                     ? 'Unable to load career opportunities. Please try again later.'
                     : "We don't have any open positions at the moment, but we're always looking for talented people. Check back soon or send us your CV!"
                   }
                 </p>
-                <a 
-                  href="mailto:careers@ndh.com" 
+                <a
+                  href="mailto:careers@ndh.com"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105"
                 >
                   <Mail className="w-5 h-5" />
@@ -203,17 +199,17 @@ export default function Careers() {
           <>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {careers.map((career, index) => (
-                <div 
-                  key={career._id} 
+                <div
+                  key={career._id}
                   className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-white border border-[#4A8EBC]/10 h-full flex flex-col"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {/* Fixed Height Image Container */}
                   <div className="w-full h-64 relative overflow-hidden">
                     {career.image ? (
-                      <img 
-                        src={career.image.startsWith('http') ? career.image : `http://localhost:5000${career.image}`} 
-                        alt={career.title} 
+                      <img
+                        src={career.image.startsWith('http') ? career.image : `http://localhost:5000${career.image}`}
+                        alt={career.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     ) : (
@@ -222,7 +218,7 @@ export default function Careers() {
                       </div>
                     )}
                   </div>
-                  
+
                   {/* Career Info - Flex grow to fill remaining space */}
                   <div className="p-6 bg-white flex-grow flex flex-col">
                     <h3 className="text-xl font-bold text-[#1A2A44] mb-2 line-clamp-2">{career.title}</h3>
@@ -233,7 +229,7 @@ export default function Careers() {
                     <p className="text-[#2B4066]/80 text-sm line-clamp-3 mb-4 flex-grow">
                       {career.description?.substring(0, 120)}...
                     </p>
-                    
+
                     {/* Apply Button - Always at bottom */}
                     <button
                       className="w-full py-3 px-6 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105 mt-auto"
@@ -248,14 +244,14 @@ export default function Careers() {
                 </div>
               ))}
             </div>
-            
+
             {/* Call to Action */}
             <div className="mt-16 text-center">
               <p className="text-[#2B4066]/80 mb-4">
                 Click on any position above to apply, or send us your CV directly.
               </p>
-              <a 
-                href="mailto:careers@ndh.com" 
+              <a
+                href="mailto:careers@ndh.com"
                 className="inline-flex items-center gap-2 px-6 py-3 border-2 border-[#4A8EBC] text-[#4A8EBC] font-semibold rounded-full hover:bg-[#4A8EBC] hover:text-white transition-all duration-300"
               >
                 <Mail className="w-5 h-5" />
@@ -267,7 +263,7 @@ export default function Careers() {
       </div>
 
       {/* Why Join Us Section */}
-      <div className="w-full bg-linear-to-t from-[#E0F0FF] to-[#F5FAFF] py-16 px-4 sm:px-6 lg:px-8 relative">
+      <div className="w-full bg-gradient-to-t from-white/60 to-[#FAFAFA] py-16 px-4 sm:px-6 lg:px-8 relative">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#1A2A44] mb-4">
@@ -277,7 +273,7 @@ export default function Careers() {
               We offer more than just a job – we offer a career path with growth, learning, and impact.
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: "🚀", title: "Growth & Learning", desc: "Continuous learning opportunities and career advancement paths" },
@@ -298,7 +294,7 @@ export default function Careers() {
       {showForm && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-[#1A2A44]/40 backdrop-blur-md" onClick={handleCloseForm} />
-          
+
           <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
             {/* Modal Header */}
             <div className="relative bg-linear-to-r from-[#4A8EBC] to-[#3B5488] px-8 py-6">
@@ -391,13 +387,12 @@ export default function Careers() {
                     onDragLeave={handleDrag}
                     onDragOver={handleDrag}
                     onDrop={handleDrop}
-                    className={`relative border-2 border-dashed rounded-lg p-6 text-center transition-all cursor-pointer ${
-                      dragActive 
-                        ? "border-[#4A8EBC] bg-[#E0F0FF]" 
-                        : form.resume 
-                          ? "border-green-500 bg-green-50" 
+                    className={`relative border-2 border-dashed rounded-lg p-6 text-center transition-all cursor-pointer ${dragActive
+                        ? "border-[#4A8EBC] bg-[#E0F0FF]"
+                        : form.resume
+                          ? "border-green-500 bg-green-50"
                           : "border-[#4A8EBC]/30 hover:border-[#4A8EBC] hover:bg-[#E0F0FF]/50"
-                    }`}
+                      }`}
                   >
                     <input
                       type="file"
@@ -437,7 +432,7 @@ export default function Careers() {
                 <button
                   type="submit"
                   className="w-full py-4 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105">
-                
+
                   Submit Application
                 </button>
               </form>

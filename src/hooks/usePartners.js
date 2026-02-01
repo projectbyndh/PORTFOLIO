@@ -75,11 +75,38 @@ const usePartners = () => {
       setLoading(true);
       clearError();
 
-      const response = await axios.post('/api/partners', partnerData, {
+      // Create FormData for multipart upload
+      const formData = new FormData();
+      formData.append('name', partnerData.name);
+
+      // If partnerData has a File object, append it
+      if (partnerData.imageFile instanceof File) {
+        formData.append('image', partnerData.imageFile);
+      } else if (partnerData.image) {
+        // If it's already a URL, send as JSON instead
+        const response = await axios.post('/api/partners', {
+          name: partnerData.name,
+          image: partnerData.image
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          timeout: 10000,
+        });
+
+        if (response.data.success) {
+          addPartner(response.data.data);
+          toast.success('Partner created successfully');
+          return response.data.data;
+        }
+        return;
+      }
+
+      const response = await axios.post('/api/partners', formData, {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
         },
-        timeout: 5000,
+        timeout: 10000,
       });
 
       if (response.data.success) {
@@ -90,7 +117,7 @@ const usePartners = () => {
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.code === 'ECONNABORTED'
         ? 'Backend server is not available. Please start the server.'
-        : 'Failed to create partner';
+        : err.response?.data?.error || 'Failed to create partner';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -105,11 +132,38 @@ const usePartners = () => {
       setLoading(true);
       clearError();
 
-      const response = await axios.put(`/api/partners/${id}`, partnerData, {
+      // Create FormData for multipart upload
+      const formData = new FormData();
+      formData.append('name', partnerData.name);
+
+      // Only append image if it's a new file
+      if (partnerData.imageFile instanceof File) {
+        formData.append('image', partnerData.imageFile);
+      } else if (partnerData.image && !partnerData.image.startsWith('/uploads/')) {
+        // If it's a new URL (not existing upload), send as JSON
+        const response = await axios.put(`/api/partners/${id}`, {
+          name: partnerData.name,
+          image: partnerData.image
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          timeout: 10000,
+        });
+
+        if (response.data.success) {
+          updatePartner(response.data.data);
+          toast.success('Partner updated successfully');
+          return response.data.data;
+        }
+        return;
+      }
+
+      const response = await axios.put(`/api/partners/${id}`, formData, {
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'multipart/form-data',
         },
-        timeout: 5000,
+        timeout: 10000,
       });
 
       if (response.data.success) {
@@ -120,7 +174,7 @@ const usePartners = () => {
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.code === 'ECONNABORTED'
         ? 'Backend server is not available. Please start the server.'
-        : 'Failed to update partner';
+        : err.response?.data?.error || 'Failed to update partner';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -176,31 +230,7 @@ const usePartners = () => {
   };
 
   useEffect(() => {
-    // Only fetch partners automatically in production or when explicitly requested
-    // In development, avoid spamming the console with backend errors
-    const shouldFetchAutomatically = process.env.NODE_ENV === 'production' ||
-      localStorage.getItem('enable-api-calls') === 'true';
-
-    if (!shouldFetchAutomatically) {
-      // Only log once per application session to avoid console spam
-      if (!devModeLogged) {
-        console.log('🔧 Partners API calls disabled in development. Set localStorage.setItem("enable-api-calls", "true") to enable.');
-        devModeLogged = true;
-      }
-    } else {
-      fetchPartners();
-    }
-
-    // Safety timeout to prevent infinite loading
-    const timeout = setTimeout(() => {
-      if (loading) {
-        console.warn('Partner loading timeout - resetting loading state');
-        setLoading(false);
-        setError('Loading timeout - please refresh the page');
-      }
-    }, 10000); // 10 seconds timeout
-
-    return () => clearTimeout(timeout);
+    fetchPartners();
   }, []);
 
   return {

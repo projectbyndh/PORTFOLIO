@@ -93,12 +93,13 @@ export default function Testimonials() {
   }
 
   return (
-    <div className="w-full bg-[#F5FAFF] relative overflow-hidden py-16 md:py-24">
+    <div className="w-full bg-[#FAFAFA] relative overflow-hidden py-24">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow" />
-        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow" />
+        <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow blur-3xl" />
+        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow blur-3xl" />
         <div
-          className="absolute inset-0 opacity-5"
+          className="absolute inset-0 opacity-[0.03]"
           style={{
             backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
             backgroundSize: "30px 30px",
@@ -109,9 +110,8 @@ export default function Testimonials() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div
           id="testimonial-1"
-          className={`text-center mb-16 animate-on-scroll transition-all duration-500 ${
-            isAnimated(1) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`text-center mb-16 animate-on-scroll transition-all duration-500 ${isAnimated(1) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
         >
           <div className="inline-block relative">
             <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow" />
@@ -127,9 +127,8 @@ export default function Testimonials() {
 
         <div
           id="testimonial-2"
-          className={`relative animate-on-scroll transition-all duration-700 ${
-            isAnimated(2) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`relative animate-on-scroll transition-all duration-700 ${isAnimated(2) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
           ref={testimonialsRef}
         >
           <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 text-[#4A8EBC]/10 z-0">
@@ -140,15 +139,14 @@ export default function Testimonials() {
             {getVisibleTestimonials().map((testimonial, index) => (
               <div
                 key={testimonial.id}
-                className={`bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-[#4A8EBC]/10 transition-all duration-500 hover:shadow-xl hover:bg-white/90 ${
-                  index === 0 ? "md:transform md:scale-105 md:shadow-xl" : ""
-                }`}
+                className={`bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-[#4A8EBC]/10 transition-all duration-500 hover:shadow-xl hover:bg-white/90 ${index === 0 ? "md:transform md:scale-105 md:shadow-xl" : ""
+                  }`}
               >
                 <div className="flex items-center mb-4">
- 
+
                   <div>
-                    <h3 className="font-bold text-[#3260aa]">{testimonial.name}</h3>
-                    <p className="text-sm text-[#2B4066]/70">{testimonial.position}</p>
+                    <h3 className="font-black text-neutral-900">{testimonial.name}</h3>
+                    <p className="text-sm text-neutral-600 font-semibold">{testimonial.position}</p>
                   </div>
                 </div>
 
@@ -162,7 +160,7 @@ export default function Testimonials() {
                   ))}
                 </div>
 
-                <p className="text-[#2B4066]/80 italic relative">
+                <p className="text-neutral-700 font-medium leading-relaxed relative">
                   <span className="absolute -top-2 -left-2 text-[#4A8EBC]/20">&quot;</span>
                   {testimonial.text}
                   <span className="absolute -bottom-4 -right-2 text-[#4A8EBC]/20">&quot;</span>
@@ -174,17 +172,17 @@ export default function Testimonials() {
           <div className="flex justify-center mt-8 space-x-4">
             <button
               onClick={prevTestimonial}
-              className="p-2 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300"
+              className="group p-3 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
               aria-label="Previous testimonial"
             >
-              <ChevronLeft size={24} />
+              <ChevronLeft size={24} className="group-hover:-translate-x-1 transition-transform duration-300" />
             </button>
             <button
               onClick={nextTestimonial}
-              className="p-2 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300"
+              className="group p-3 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
               aria-label="Next testimonial"
             >
-              <ChevronRight size={24} />
+              <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform duration-300" />
             </button>
           </div>
         </div>
@@ -192,9 +190,8 @@ export default function Testimonials() {
 
         <div
           id="testimonial-4"
-          className={`mt-16 text-center animate-on-scroll transition-all duration-1000 ${
-            isAnimated(4) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
+          className={`mt-16 text-center animate-on-scroll transition-all duration-1000 ${isAnimated(4) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            }`}
         >
           <p className="text-lg text-[#2B4066]/80 mb-6 max-w-2xl mx-auto">
             Join our growing list of satisfied clients and experience the Nepal Digital Heights difference.

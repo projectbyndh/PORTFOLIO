@@ -4,7 +4,7 @@ import L from "leaflet"
 import "leaflet/dist/leaflet.css"
 
 const defaultLocations = [
-  { name: "Rupandehi, Nepal", lat: 27.6264, lng: 83.3789, color: "#4A8EBC", hq: true },
+  { name: "Tillottama, Manigram -5", lat: 27.6333, lng: 83.4667, color: "#4A8EBC", hq: true },
   { name: "United States", lat: 37.0902, lng: -95.7129, color: "#60A5FA", clients: 12 },
   { name: "United Kingdom", lat: 51.5074, lng: -0.1278, color: "#60A5FA", clients: 8 },
   { name: "Australia", lat: -25.2744, lng: 133.7751, color: "#60A5FA", clients: 6 },
@@ -33,8 +33,8 @@ export default function WorldMap() {
       attributionControl: false,
     })
 
-    // 2. Add Professional Dark Tiles
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png").addTo(leafletMap.current)
+    // 2. Add Light Professional Tiles
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png").addTo(leafletMap.current)
 
     // 3. Custom Icon Factory
     const createIcon = (color, isHq) => {
@@ -52,7 +52,7 @@ export default function WorldMap() {
 
     // 4. Draw Assets
     const hq = defaultLocations.find(l => l.hq)
-    
+
     defaultLocations.forEach(loc => {
       // Add Marker
       const marker = L.marker([loc.lat, loc.lng], {
@@ -73,21 +73,21 @@ export default function WorldMap() {
         const points = []
         const start = [hq.lat, hq.lng]
         const end = [loc.lat, loc.lng]
-        
+
         // Curve calculation (Midpoint offset)
         const offsetX = end[1] - start[1]
         const offsetY = end[0] - start[0]
         const r = Math.sqrt(Math.pow(offsetX, 2) + Math.pow(offsetY, 2))
         const theta = Math.atan2(offsetY, offsetX)
         const thetaOffset = 0.5 // Controls the curve height
-        
-        const midX = (start[1] + end[1]) / 2 + (r/4) * Math.cos(theta + Math.PI/2)
-        const midY = (start[0] + end[0]) / 2 + (r/4) * Math.sin(theta + Math.PI/2)
+
+        const midX = (start[1] + end[1]) / 2 + (r / 4) * Math.cos(theta + Math.PI / 2)
+        const midY = (start[0] + end[0]) / 2 + (r / 4) * Math.sin(theta + Math.PI / 2)
 
         // Generate Quadratic Bezier
         for (let t = 0; t <= 1; t += 0.02) {
-          const x = (1-t)*(1-t)*start[1] + 2*(1-t)*t*midX + t*t*end[1]
-          const y = (1-t)*(1-t)*start[0] + 2*(1-t)*t*midY + t*t*end[0]
+          const x = (1 - t) * (1 - t) * start[1] + 2 * (1 - t) * t * midX + t * t * end[1]
+          const y = (1 - t) * (1 - t) * start[0] + 2 * (1 - t) * t * midY + t * t * end[0]
           points.push([y, x])
         }
 
@@ -110,43 +110,42 @@ export default function WorldMap() {
   }, [])
 
   return (
-    <div className="w-full bg-[#020617] py-24 relative overflow-hidden">
-      {/* Background Glow */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none" />
+    <div className="w-full bg-transparent py-16 relative overflow-hidden">
+      {/* Background Glow - Removed for white theme */}
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-sm font-black uppercase tracking-[0.4em] text-blue-500 mb-4">Our Global Reach</h2>
-          <h3 className="text-5xl md:text-7xl font-black text-white leading-tight tracking-tighter">
-            Scaling from <br/> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">Nepal to the World.</span>
+          <h2 className="text-sm font-black uppercase tracking-[0.4em] text-[#4A8EBC] mb-4">Our Global Reach</h2>
+          <h3 className="text-5xl md:text-7xl font-black text-neutral-900 leading-tight tracking-tighter">
+            Scaling from <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8]">Nepal to the World.</span>
           </h3>
         </div>
 
         <div className="relative group">
-          {/* Holographic Border */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-blue-500/20 to-transparent rounded-[2.5rem] blur opacity-75 group-hover:opacity-100 transition duration-1000" />
-          
-          <div className="relative bg-[#0F172A] rounded-[2rem] overflow-hidden border border-white/10 shadow-2xl">
-            <div ref={mapRef} className="h-[500px] md:h-[650px] grayscale-[0.5] contrast-[1.2] invert-[0.05]" />
-            
+          {/* Subtle Border */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#4A8EBC]/10 to-transparent rounded-[2.5rem] blur opacity-50 group-hover:opacity-75 transition duration-1000" />
+
+          <div className="relative bg-white/70 backdrop-blur-xl rounded-[2rem] overflow-hidden border border-white/60 shadow-2xl">
+            <div ref={mapRef} className="h-[500px] md:h-[650px]" />
+
             {/* HQ Floating Pane */}
-            <div className="absolute top-8 left-8 p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl z-[1000]">
+            <div className="absolute top-8 left-8 p-6 rounded-2xl bg-white/90 backdrop-blur-xl border border-white/60 shadow-2xl z-[1000]">
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <div className="w-3 h-3 bg-blue-500 rounded-full animate-ping absolute" />
-                  <div className="w-3 h-3 bg-blue-500 rounded-full relative" />
+                  <div className="w-3 h-3 bg-[#4A8EBC] rounded-full animate-ping absolute" />
+                  <div className="w-3 h-3 bg-[#4A8EBC] rounded-full relative" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-black text-blue-400 uppercase tracking-widest">Headquarters</p>
-                  <p className="text-lg font-bold text-white leading-none">Rupandehi, Nepal</p>
+                  <p className="text-[10px] font-black text-[#4A8EBC] uppercase tracking-widest">Headquarters</p>
+                  <p className="text-lg font-bold text-neutral-900 leading-none">Rupandehi, Nepal</p>
                 </div>
               </div>
             </div>
 
             {/* Stats Overlay */}
             <div className="absolute bottom-8 right-8 flex gap-4 z-[1000]">
-              <div className="px-5 py-3 rounded-xl bg-black/40 backdrop-blur-md border border-white/5 text-white">
-                <p className="text-xs text-blue-400 font-bold uppercase tracking-widest">Network</p>
+              <div className="px-5 py-3 rounded-xl bg-white/90 backdrop-blur-md border border-white/60 text-neutral-900">
+                <p className="text-xs text-[#4A8EBC] font-bold uppercase tracking-widest">Network</p>
                 <p className="text-xl font-bold">10+ Countries</p>
               </div>
             </div>
@@ -195,15 +194,15 @@ export default function WorldMap() {
           to { stroke-dashoffset: 0; }
         }
         .leaflet-tooltip-custom {
-          background: #1E293B !important;
-          border: 1px solid rgba(255,255,255,0.1) !important;
+          background: white !important;
+          border: 1px solid rgba(74,142,188,0.2) !important;
           border-radius: 8px !important;
-          color: white !important;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.5) !important;
+          color: #1A2A44 !important;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
           padding: 8px 12px !important;
         }
-        .tooltip-name { font-weight: 800; font-size: 14px; margin: 0; }
-        .tooltip-status { font-size: 10px; color: #60A5FA; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px; }
+        .tooltip-name { font-weight: 800; font-size: 14px; margin: 0; color: #1A2A44; }
+        .tooltip-status { font-size: 10px; color: #4A8EBC; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px; }
       `}</style>
     </div>
   )

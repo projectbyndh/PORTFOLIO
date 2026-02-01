@@ -35,15 +35,15 @@ import FAQManagement from "./pages/FAQManagement";
 import ContactManagement from "./pages/ContactManagement";
 import ContactInfoManagement from "./pages/ContactInfoManagement";
 import Partners from "./components/Partners";
- 
+
 function App() {
- function ScrollToTop() {
- const { pathname } = useLocation();
- useEffect(() => {
- window.scrollTo(0, 0);
- }, [pathname]);
- return null;
- }
+  function ScrollToTop() {
+    const { pathname } = useLocation();
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, [pathname]);
+    return null;
+  }
 
   // Component to conditionally render Navbar/Footer
   function LayoutWrapper({ children, showLayout = true }) {
@@ -59,54 +59,54 @@ function App() {
   return (
     <BrowserRouter>
       <ScrollToTop />
-      <Suspense fallback={<Loader />}> 
-      <Routes>
-        {/* Public Routes with Layout */}
-        <Route path="/" element={<LayoutWrapper><Home /></LayoutWrapper>} />
-        <Route path="/about-us" element={<LayoutWrapper><AboutUs /></LayoutWrapper>} />
-        <Route path="/casestudy" element={<LayoutWrapper><CaseStudies /></LayoutWrapper>} />
-        <Route path="/case-studies" element={<LayoutWrapper><CaseStudies /></LayoutWrapper>} />
-        <Route path="/project-adda" element={<LayoutWrapper><CaseStudies /></LayoutWrapper>} />
-        <Route path="/contact" element={<LayoutWrapper><Contact /></LayoutWrapper>} />
-        
-        {/* Normalize route casings for hosting and SEO */}
-        <Route path="/careers" element={<LayoutWrapper><Careers /></LayoutWrapper>} />
-        <Route path="/Careers" element={<Navigate to="/careers" replace />} />
-        <Route path="/partners" element={<LayoutWrapper><Partners /></LayoutWrapper>} />
-        <Route path="/Partners" element={<Navigate to="/partners" replace />} />
-        <Route path="/e-services" element={<LayoutWrapper><EServicesEnhanced /></LayoutWrapper>} />
-        <Route path="/E-Services" element={<Navigate to="/e-services" replace />} />
-        <Route path="/blog" element={<LayoutWrapper><BlogSection /></LayoutWrapper>} />
-        <Route path="/blogdetails" element={<LayoutWrapper><BlogsDetails /></LayoutWrapper>} />
-        <Route path="/courses" element={<LayoutWrapper><CoursesSection /></LayoutWrapper>} />
-        <Route path="/privacy-policy" element={<LayoutWrapper><PrivacyPolicy /></LayoutWrapper>} />
-        <Route path="/terms" element={<LayoutWrapper><Terms /></LayoutWrapper>} />
-        <Route path="/team" element={<LayoutWrapper><TeamMembers /></LayoutWrapper>} />
-        <Route path="/our-teams" element={<LayoutWrapper><OurTeams /></LayoutWrapper>} />
-        
-        {/* Admin Routes - Login without layout */}
-        <Route path="/admin/login" element={<AdminLogin />} />
-        
-        {/* Admin Routes with shared AdminLayout */}
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="blogs" element={<BlogManagement />} />
-          <Route path="careers" element={<CareerManagement />} />
-          <Route path="partners" element={<PartnerManagement />} />
-          <Route path="teams" element={<TeamManagement />} />
-          <Route path="projects" element={<ProjectManagement />} />
-          <Route path="services" element={<ServiceManagement />} />
-          <Route path="faqs" element={<FAQManagement />} />
-          <Route path="contacts" element={<ContactManagement />} />
-          <Route path="contact-info" element={<ContactInfoManagement />} />
-          <Route path="blog/create" element={<BlogEditor />} />
-          <Route path="blog/edit/:id" element={<BlogEditor />} />
-        </Route>
-        
-        {/* Catch-all to home for unknown routes in static hosting */}
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <Suspense fallback={<Loader />}>
+        <Routes>
+          {/* Public Routes with Layout */}
+          <Route path="/" element={<LayoutWrapper><Home /></LayoutWrapper>} />
+          <Route path="/about-us" element={<LayoutWrapper><AboutUs /></LayoutWrapper>} />
+          <Route path="/casestudy" element={<LayoutWrapper><CaseStudies /></LayoutWrapper>} />
+          <Route path="/case-studies" element={<LayoutWrapper><CaseStudies /></LayoutWrapper>} />
+          <Route path="/project-adda" element={<LayoutWrapper><CaseStudies /></LayoutWrapper>} />
+          <Route path="/contact" element={<LayoutWrapper><Contact /></LayoutWrapper>} />
+
+          {/* Normalize route casings for hosting and SEO */}
+          <Route path="/careers" element={<LayoutWrapper><Careers /></LayoutWrapper>} />
+          <Route path="/Careers" element={<Navigate to="/careers" replace />} />
+          <Route path="/partners" element={<LayoutWrapper><Partners /></LayoutWrapper>} />
+          <Route path="/Partners" element={<Navigate to="/partners" replace />} />
+          <Route path="/e-services" element={<LayoutWrapper><EServicesEnhanced /></LayoutWrapper>} />
+          <Route path="/E-Services" element={<Navigate to="/e-services" replace />} />
+          <Route path="/blog" element={<LayoutWrapper><BlogSection /></LayoutWrapper>} />
+          <Route path="/blogdetails" element={<LayoutWrapper><BlogsDetails /></LayoutWrapper>} />
+          <Route path="/courses" element={<LayoutWrapper><CoursesSection /></LayoutWrapper>} />
+          <Route path="/privacy-policy" element={<LayoutWrapper><PrivacyPolicy /></LayoutWrapper>} />
+          <Route path="/terms" element={<LayoutWrapper><Terms /></LayoutWrapper>} />
+          <Route path="/team" element={<LayoutWrapper><TeamMembers /></LayoutWrapper>} />
+          <Route path="/our-teams" element={<LayoutWrapper><OurTeams /></LayoutWrapper>} />
+
+          {/* Admin Routes - Login without layout */}
+          <Route path="/admin/login" element={<AdminLogin />} />
+
+          {/* Admin Routes with shared AdminLayout */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<Navigate to="/admin/dashboard" replace />} />
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="blogs" element={<BlogManagement />} />
+            <Route path="careers" element={<CareerManagement />} />
+            <Route path="partners" element={<PartnerManagement />} />
+            <Route path="teams" element={<TeamManagement />} />
+            <Route path="projects" element={<ProjectManagement />} />
+            <Route path="services" element={<ServiceManagement />} />
+            <Route path="faqs" element={<FAQManagement />} />
+            <Route path="contacts" element={<ContactManagement />} />
+            <Route path="contact-info" element={<ContactInfoManagement />} />
+            <Route path="blog/create" element={<BlogEditor />} />
+            <Route path="blog/edit/:id" element={<BlogEditor />} />
+          </Route>
+
+          {/* Catch-all to home for unknown routes in static hosting */}
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
       </Suspense>
     </BrowserRouter>
   );

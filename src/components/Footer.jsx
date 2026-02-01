@@ -1,225 +1,211 @@
 "use client";
-import { Link } from "react-router-dom";
-import { Mail, Phone, MapPin, Globe, Facebook, Instagram, Twitter, Linkedin, ChevronRight, Send } from "lucide-react";
 import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import {
+  Mail, Phone, MapPin, Send, Code2,
+  Github, Linkedin, Globe, Terminal, ArrowUpRight
+} from "lucide-react";
 import Logo from "./Logo";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-linear-to-br from-[#1A2A44] via-[#2A4066] to-[#3B5488] pt-20 pb-8 px-4 sm:px-6 overflow-hidden font-sans">
-      {/* Enhanced Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Floating Orbs */}
-        <div className="absolute top-10 left-8 w-64 h-64 rounded-full bg-linear-to-br from-[#4A8EBC]/15 to-[#2DD4BF]/10 animate-float blur-2xl"></div>
-        <div className="absolute bottom-20 right-8 w-80 h-80 rounded-full bg-linear-to-br from-[#3B5488]/15 to-[#8B5CF6]/10 animate-float blur-2xl" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/3 w-48 h-48 rounded-full bg-linear-to-br from-[#F59E0B]/10 to-[#EF4444]/8 animate-float blur-xl" style={{animationDelay: '4s'}}></div>
+    <footer className="relative bg-[#050810] pt-24 pb-8 px-6 overflow-hidden border-t border-white/5 font-sans">
 
-        {/* Animated Dots */}
-        <div className="w-2 h-2 bg-[#4A8EBC] rounded-full absolute top-1/4 left-1/3 animate-bounce"></div>
-        <div className="w-1.5 h-1.5 bg-[#2DD4BF] rounded-full absolute bottom-1/3 right-1/4 animate-bounce" style={{animationDelay: '1s'}}></div>
-        <div className="w-1 h-1 bg-[#8B5CF6] rounded-full absolute top-1/2 left-1/5 animate-bounce" style={{animationDelay: '2s'}}></div>
+      {/* --- LAYER 0: THE GRID ENGINE --- */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Grain Texture */}
+        <div className="absolute inset-0 opacity-[0.07] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-8 bg-[radial-gradient(rgba(255,255,255,0.1)_1px,transparent_1px)] bg-size-[40px_40px]"></div>
+        {/* Spatial Depth Orbs */}
+        <div className="absolute top-[-20%] left-[10%] w-[600px] h-[600px] bg-[#4A8EBC]/10 blur-[120px] rounded-full mix-blend-screen"></div>
+        <div className="absolute bottom-[-10%] right-[5%] w-[400px] h-[400px] bg-[#8B5CF6]/5 blur-[100px] rounded-full mix-blend-screen"></div>
+
+        {/* Engineering Mesh Background */}
+        <div className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
       </div>
 
-      {/* Top Gradient Border */}
-      <div className="absolute inset-x-0 top-0 h-1 bg-linear-to-r from-[#4A8EBC] via-[#2DD4BF] to-[#8B5CF6]"></div>
+      <div className="max-w-7xl mx-auto relative z-10">
 
-      <div className="container relative z-10 grid grid-cols-1 gap-12 mx-auto md:grid-cols-2 lg:grid-cols-4">
-        {/* Enhanced Company Info */}
-        <div className="space-y-6 animate-slide-in-left">
-          <div className="flex items-center gap-4 group">
-            <div className="p-2 rounded-2xl bg-linear-to-br from-[#4A8EBC]/20 to-[#2DD4BF]/20 group-hover:scale-110 transition-transform duration-300">
-              <Logo className="w-auto h-12" />
-            </div>
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-transparent bg-linear-to-r from-[#4A8EBC] via-[#2DD4BF] to-white bg-clip-text">
-                Nepal Digital Heights
-              </h2>
-              <p className="text-sm text-[#4A8EBC] font-medium">Technologies</p>
-            </div>
+        {/* --- LAYER 1: BRAND HUB & NEWSLETTER --- */}
+        <div className="flex flex-col lg:flex-row justify-between items-start gap-16 mb-20 pb-12 border-b border-white/5">
+          <div className="max-w-md">
+            <Link to="/" className="flex items-center gap-4 mb-6 group w-fit">
+              {/* White Lined Logo Container */}
+              <div className="p-3 bg-white/5 rounded-2xl border border-white/10 ring-1 ring-white/5 group-hover:border-[#4A8EBC]/50 transition-all duration-500 shadow-[0_0_20px_rgba(255,255,255,0.02)]">
+                <Logo className="h-16 w-auto" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-black text-white tracking-tighter">
+                  NDH<span className="text-[#4A8EBC]">.</span>
+                </h2>
+                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">Digital Infrastructure</span>
+              </div>
+            </Link>
+            <p className="text-lg text-gray-400 font-medium leading-relaxed">
+              We are a collective of digital architects engineering <span className="text-white">autonomous ecosystems</span> for the global frontier.
+            </p>
           </div>
 
-          <p className="max-w-xs text-gray-300 leading-relaxed">
-            Innovating technology solutions for a sustainable future. We deliver cutting-edge digital experiences that drive your business forward.
-          </p>
-
-          <div className="space-y-4">
-            {[
-              { icon: MapPin, text: "Tilottama, Nepal", color: "from-[#4A8EBC] to-[#3B5488]" },
-              { icon: Phone, text: "+977 9857089898", color: "from-[#2DD4BF] to-[#8B5CF6]" },
-              { icon: Mail, text: "support@ndhtechnologies.com", color: "from-[#8B5CF6] to-[#F59E0B]" },
-              { icon: Globe, text: "www.ndhtechnologies.com", href: "https://www.ndhtechnologies.com", color: "from-[#F59E0B] to-[#EF4444]" },
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-center group hover:scale-105 transition-all duration-300">
-                <div className={`w-10 h-10 rounded-xl bg-linear-to-br ${item.color} flex items-center justify-center mr-3 shadow-lg group-hover:shadow-xl transition-all duration-300`}>
-                  <item.icon size={16} className="text-white" />
-                </div>
-                <div className="text-gray-300 group-hover:text-white transition-colors duration-300">
-                  {item.href ? (
-                    <a href={item.href} className="hover:underline">{item.text}</a>
-                  ) : (
-                    <span>{item.text}</span>
-                  )}
-                </div>
-              </div>
-            ))}
+          {/* Newsletter */}
+          <div className="w-full lg:w-auto">
+            <div className="bg-white/[0.02] border border-white/5 rounded-[2rem] p-6 backdrop-blur-sm relative group max-w-md">
+              <h4 className="flex items-center gap-3 text-white font-bold mb-4 text-sm uppercase tracking-widest">
+                <Terminal size={16} className="text-[#4A8EBC]" /> [Subscribe_to_Core]
+              </h4>
+              <form className="flex flex-col sm:flex-row gap-3 relative z-10">
+                <input
+                  type="email"
+                  placeholder="name@enterprise.io"
+                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-[#4A8EBC]/50 transition-all w-full font-mono text-sm"
+                />
+                <button className="bg-white text-black px-6 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#4A8EBC] hover:text-white transition-all active:scale-95 shadow-lg whitespace-nowrap">
+                  Join <ArrowUpRight size={16} />
+                </button>
+              </form>
+            </div>
           </div>
         </div>
 
-        {/* Enhanced Quick Links */}
-        <div className="animate-fade-in" style={{animationDelay: '0.2s'}}>
-          <div className="relative inline-block mb-6">
-            <h3 className="text-xl font-bold text-white mb-2">
-              Quick Links
-            </h3>
-            <div className="w-12 h-1 bg-linear-to-r from-[#4A8EBC] to-[#2DD4BF] rounded-full"></div>
-          </div>
-          <ul className="space-y-4">
-            {[
-              { name: "About Us", url: "/about-us" },
-              { name: "E-Services", url: "/E-Services" },
-              { name: "Case Studies", url: "/case-studies" },
-              { name: "Careers", url: "/careers" },
-              { name: "Contact", url: "/contact" },
-              { name: "Our Teams", url: "/our-teams" },
-            ].map((link, idx) => (
-              <li key={link.name}>
-                <Link
-                  to={link.url}
-                  className="group flex items-center text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-2"
-                  aria-label={`Navigate to ${link.name}`}
-                >
-                  <div className="w-6 h-6 rounded-full bg-linear-to-r from-[#4A8EBC]/0 to-[#4A8EBC]/0 group-hover:from-[#4A8EBC]/20 group-hover:to-[#2DD4BF]/20 flex items-center justify-center mr-3 transition-all duration-300">
-                    <ChevronRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  </div>
-                  <span className="font-medium">{link.name}</span>
+        {/* --- LAYER 2: BENTO GRID NODE DISTRIBUTION --- */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+          {/* Services */}
+          <div className="space-y-6">
+            <h5 className="text-white/40 font-mono text-[10px] font-black uppercase tracking-[0.2em] mb-4">Services</h5>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/services" className="text-gray-500 hover:text-white transition-colors flex items-center group text-sm font-medium">
+                  All Services
                 </Link>
               </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Enhanced Newsletter & Social */}
-        <div className="animate-slide-in-right" style={{animationDelay: '0.4s'}}>
-          <div className="relative inline-block mb-6">
-            <h3 className="text-xl font-bold text-white mb-2">
-              Stay Connected
-            </h3>
-            <div className="w-12 h-1 bg-linear-to-r from-[#8B5CF6] to-[#F59E0B] rounded-full"></div>
+              <li>
+                <Link to="/services#web-development" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  Web Development
+                </Link>
+              </li>
+              <li>
+                <Link to="/services#mobile-apps" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  Mobile Apps
+                </Link>
+              </li>
+              <li>
+                <Link to="/services#digital-marketing" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  Digital Marketing
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          <p className="text-gray-300 mb-6 leading-relaxed">
-            Subscribe for the latest updates, insights, and exclusive content from our team.
-          </p>
-
-          <form className="relative mb-8">
-            <div className="relative">
-              <input
-                type="email"
-                placeholder="Enter your email address"
-                className="w-full bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl px-6 py-4 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent transition-all duration-300 text-sm"
-                aria-label="Email address for newsletter"
-              />
-              <button
-                type="submit"
-                className="absolute right-2 top-1/2 -translate-y-1/2 h-10 px-4 bg-linear-to-r from-[#4A8EBC] to-[#2DD4BF] hover:from-[#2DD4BF] hover:to-[#8B5CF6] text-white rounded-xl flex items-center justify-center transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-                aria-label="Subscribe to newsletter"
-              >
-                <span className="hidden sm:inline mr-2 text-sm font-medium">Subscribe</span>
-                <Send size={16} />
-              </button>
-            </div>
-          </form>
-
-          <div>
-            <h4 className="mb-4 text-lg font-semibold text-white">Follow Us</h4>
-            <div className="flex space-x-3">
-              {[
-                { icon: Facebook, name: "Facebook", href: "http://Facebook.com/techbyndh", color: "from-[#1877F2] to-[#42A5F5]" },
-                { icon: Instagram, name: "Instagram", href: "http://Instagram.com/techbyndh", color: "from-[#E4405F] to-[#F77737]" },
-                { icon: Twitter, name: "Twitter", href: "https://twitter.com/techbyndh", color: "from-[#1DA1F2] to-[#42A5F5]" },
-                { icon: Linkedin, name: "LinkedIn", href: "https://linkedin.com/company/techbyndh", color: "from-[#0077B5] to-[#42A5F5]" },
-              ].map((social, idx) => (
-                <a
-                  key={idx}
-                  href={social.href}
-                  aria-label={`Follow us on ${social.name}`}
-                  className={`w-12 h-12 rounded-xl bg-linear-to-br ${social.color} flex items-center justify-center hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl group`}>
-                
-                  <social.icon size={20} className="text-white group-hover:animate-bounce" />
-                </a>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Services Preview */}
-        <div className="animate-fade-in" style={{animationDelay: '0.6s'}}>
-          <div className="relative inline-block mb-6">
-            <h3 className="text-xl font-bold text-white mb-2">
-              Our Services
-            </h3>
-            <div className="w-12 h-1 bg-linear-to-r from-[#F59E0B] to-[#EF4444] rounded-full"></div>
+          {/* Company */}
+          <div className="space-y-6">
+            <h5 className="text-white/40 font-mono text-[10px] font-black uppercase tracking-[0.2em] mb-4">Company</h5>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/about" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/our-teams" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  Our Team
+                </Link>
+              </li>
+              <li>
+                <Link to="/careers" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  Careers
+                </Link>
+              </li>
+              <li>
+                <Link to="/case-studies" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  Case Studies
+                </Link>
+              </li>
+            </ul>
           </div>
 
-          <div className="space-y-4">
-            {[
-              "Web Development",
-              "Mobile Apps",
-              "Digital Marketing",
-              "UI/UX Design",
-              "Cloud Solutions",
-              "IT Consulting"
-            ].map((service, idx) => (
-              <div key={service} className="flex items-center group">
-                <div className="w-2 h-2 rounded-full bg-linear-to-r from-[#4A8EBC] to-[#2DD4BF] mr-3 group-hover:scale-150 transition-transform duration-300"></div>
-                <span className="text-gray-300 group-hover:text-white transition-colors duration-300 text-sm">
-                  {service}
-                </span>
+          {/* Resources */}
+          <div className="space-y-6">
+            <h5 className="text-white/40 font-mono text-[10px] font-black uppercase tracking-[0.2em] mb-4">Resources</h5>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/blog" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  FAQs
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  Contact Us
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  Privacy Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Contact Nodes */}
+          <div className="col-span-2 md:col-span-1 space-y-6">
+            <h5 className="text-white/40 font-mono text-[10px] font-black uppercase tracking-[0.2em] mb-4">Base Coordinates</h5>
+            <div className="space-y-4">
+              <div className="group bg-white/[0.02] border border-white/5 hover:border-white/10 p-5 rounded-2xl transition-colors">
+                <p className="text-white font-bold mb-1 flex items-center gap-2 text-sm">
+                  <MapPin size={14} className="text-[#4A8EBC]" /> Tilottama, Manigram-5
+                </p>
+                <p className="text-gray-500 text-xs leading-relaxed pl-6">
+                  Rupandehi, Nepal<br />
+                  <span className="text-white/20 font-mono tracking-tighter italic">27.64° N | 83.47° E</span>
+                </p>
               </div>
+
+              <div className="group bg-white/[0.02] border border-white/5 hover:border-white/10 p-5 rounded-2xl transition-colors">
+                <p className="text-white font-bold mb-1 flex items-center gap-2 text-sm">
+                  <Mail size={14} className="text-[#4A8EBC]" /> Transmission
+                </p>
+                <a href="mailto:info@ndhtechnologies.com" className="text-gray-500 text-xs pl-6 hover:text-[#4A8EBC] transition-colors block">
+                  info@ndhtechnologies.com
+                </a>
+                <a href="tel:+9779815408990" className="text-gray-500 text-xs pl-6 hover:text-[#4A8EBC] transition-colors block mt-1">
+                  +977 9815408990
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* --- LAYER 3: TELEMETRY & SYSTEM STATUS --- */}
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+
+          <div className="flex items-center gap-4 order-2 md:order-1 w-full md:w-auto justify-center md:justify-start">
+            <p className="text-white/20 text-[10px] font-bold uppercase tracking-widest text-center">
+              © {currentYear} Nepal Digital Heights. All rights reserved.
+            </p>
+          </div>
+
+          <div className="flex items-center gap-3 order-1 md:order-2">
+            {[Github, Linkedin, Globe].map((Icon, i) => (
+              <a key={i} href="#" className="w-8 h-8 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 hover:scale-105 transition-all">
+                <Icon size={14} />
+              </a>
             ))}
           </div>
 
-          <div className="mt-8 p-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
-            <p className="text-xs text-gray-400 mb-2">Ready to get started?</p>
-            <Link
-              to="/contact"
-              className="inline-block w-full px-4 py-2 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#1A2A44] text-white text-sm font-medium rounded-xl text-center transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl">
-            
-              Contact Us Today
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* Enhanced Bottom Bar */}
-      <div className="container mx-auto mt-16 pt-8 border-t border-white/10 flex flex-col gap-6 sm:flex-row justify-between items-center text-gray-300 text-sm relative z-10">
-        <div className="flex flex-col sm:flex-row items-center gap-4">
-          <span>© {currentYear} Nepal Digital Heights. All rights reserved.</span>
-          <div className="flex items-center gap-4 text-xs">
-            <Link to="/privacy-policy" className="hover:text-white transition-colors duration-300">Privacy Policy</Link>
-            <span className="text-white/50">•</span>
-            <Link to="/terms" className="hover:text-white transition-colors duration-300">Terms of Service</Link>
-            <span className="text-white/50">•</span>
-            <Link to="/admin/login" className="hover:text-[#4A8EBC] transition-colors duration-300 flex items-center gap-1">
-              <span>Admin</span>
-              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-4 text-xs text-gray-400">
-          <span>Made with ❤️ in Nepal</span>
-          <div className="flex items-center gap-1">
-            <div className="w-1.5 h-1.5 bg-[#4A8EBC] rounded-full animate-pulse"></div>
-            <div className="w-1.5 h-1.5 bg-[#2DD4BF] rounded-full animate-pulse" style={{animationDelay: '0.5s'}}></div>
-            <div className="w-1.5 h-1.5 bg-[#8B5CF6] rounded-full animate-pulse" style={{animationDelay: '1s'}}></div>
+          <div className="hidden md:flex items-center gap-2 text-white/20 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full border border-white/5 order-3">
+            <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+            <span>Systems Normal</span>
           </div>
         </div>
       </div>

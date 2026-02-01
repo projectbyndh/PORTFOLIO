@@ -1,70 +1,109 @@
-import React, { useEffect, useState } from "react";
-import numazu from '../assets/numazu.png';
-import trailblazers from '../assets/trailblazers.png';
-import appleday from '../assets/appleday.png';
-import epasaley from '../assets/epasaley.png';
-import resunga from '../assets/resunga.jpeg';
-import siddhartha from '../assets/siddhartha.jpeg';
-import school from '../assets/school.jpeg';
-import selection from '../assets/selection.jpeg';
+import React from 'react';
+import { motion } from 'framer-motion';
+import usePartners from '../hooks/usePartners';
+import Loader from './Loader';
+import { Sparkles } from 'lucide-react';
 
 export default function CompaniesSection() {
-  const [displayCompanies, setDisplayCompanies] = useState([]);
+  const { partners, loading } = usePartners();
 
-  // Use default partners
-  useEffect(() => {
-    const defaultPartners = [
-      { id: '1', name: 'Numazu', logoUrl: numazu },
-      { id: '2', name: 'Trailblazers', logoUrl: trailblazers },
-      { id: '3', name: 'Apple Day', logoUrl: appleday },
-      { id: '4', name: 'Epasaley', logoUrl: epasaley },
-      { id: '5', name: 'Selection Clothing', logoUrl: selection },
-      { id: '6', name: 'Siddhartha College', logoUrl: siddhartha },
-      { id: '7', name: 'Siddhartha School', logoUrl: school },
-      { id: '8', name: 'Resunga Pharmacy', logoUrl: resunga },
-    ];
-    setDisplayCompanies(defaultPartners);
-  }, [])
+  // Duplicate the array for seamless looping if we have partners
+  const marqueePartners = partners && partners.length > 0 ? [...partners, ...partners, ...partners] : [];
 
-  // Combine display companies with default partners
-  const partners = displayCompanies;
+  if (loading && partners.length === 0) {
+    return (
+      <section className="py-20 bg-[#FAFAFA] relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+        <div className="max-w-6xl mx-auto px-4 text-center relative z-10">
+          <Loader />
+        </div>
+      </section>
+    );
+  }
 
-  // Duplicate the array for seamless looping
-  const marqueePartners = partners && partners.length > 0 ? [...partners, ...partners] : [];
+  if (!partners || partners.length === 0) {
+    return null; // Don't show section if no partners
+  }
 
   return (
-    <section className="py-12 bg-white/80">
-      <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-2xl font-bold mb-8 text-center text-[#1A2A44]">Our Partners</h2>
-        <div className="overflow-hidden relative">
-          <div
-            className="flex items-center gap-12 animate-marquee"
-            style={{
-              width: 'max-content',
-              animation: 'marquee 25s linear infinite',
-            }}
-          >
-            {marqueePartners.map((company, idx) => (
-              <div key={company.id + '-' + idx} className="flex flex-col items-center min-w-[120px]">
-                <img
-                  src={company.logoUrl}
-                  alt={company.name}
-                  className="h-20 w-20 object-contain mb-2 rounded-full border border-[#4A8EBC]/20 bg-white"
-                />
-                <span className="text-[#2B4066] font-medium text-center whitespace-nowrap">{company.name}</span>
-              </div>
-            ))}
+    <section className="relative pt-32 pb-20 bg-[#FAFAFA] overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#4A8EBC]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#3B7AA8]/5 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-sm border border-white/40 rounded-full mb-6 shadow-sm">
+            <Sparkles size={14} className="text-[#4A8EBC]" />
+            <span className="text-xs font-bold uppercase tracking-widest text-neutral-600">Trusted By</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black text-neutral-900 tracking-tight">
+            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8]">Partners</span>
+          </h2>
+        </motion.div>
+
+        {/* Marquee Container with Glassmorphic Border */}
+        <div className="relative">
+          <div className="absolute inset-0 bg-white/40 backdrop-blur-sm rounded-3xl border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.06)]" />
+
+          <div className="relative overflow-hidden py-12 px-8">
+            {/* Gradient Fade Edges */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#FAFAFA] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#FAFAFA] to-transparent z-10 pointer-events-none" />
+
+            <div
+              className="flex items-center gap-16"
+              style={{
+                width: 'max-content',
+                animation: `marquee ${Math.max(30, partners.length * 6)}s linear infinite`,
+              }}
+            >
+              {marqueePartners.map((company, idx) => (
+                <motion.div
+                  key={(company._id || company.id) + '-' + idx}
+                  className="group flex flex-col items-center min-w-[140px]"
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <div className="relative mb-3">
+                    {/* Glow effect on hover */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#4A8EBC]/20 to-[#3B7AA8]/20 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                    <div className="relative w-24 h-24 rounded-2xl bg-white border border-neutral-200/50 shadow-lg group-hover:shadow-xl group-hover:border-[#4A8EBC]/30 transition-all duration-300 p-3 flex items-center justify-center overflow-hidden">
+                      <img
+                        src={company.image || company.logoUrl}
+                        alt={company.name}
+                        className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-110"
+                        onError={(e) => {
+                          e.target.style.display = 'none';
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <span className="text-sm font-bold text-neutral-600 group-hover:text-[#4A8EBC] text-center whitespace-nowrap transition-colors duration-300">
+                    {company.name}
+                  </span>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
+
       {/* Marquee animation keyframes */}
       <style>{`
         @keyframes marquee {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-50%); }
-        }
-        .animate-marquee {
-          will-change: transform;
+          100% { transform: translateX(-33.333%); }
         }
       `}</style>
     </section>
