@@ -8,6 +8,7 @@ import {
   Sparkles, Globe, ArrowRight, ShieldCheck
 } from "lucide-react"
 import toast from 'react-hot-toast'
+import axiosInstance from '../api/axios'
 
 
 // Engineering Note: Centralized Animation Variants
@@ -39,12 +40,34 @@ export default function ContactAdvanced() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setIsSubmitting(true)
-    // Simulated Engineering Logic for API Submission
-    setTimeout(() => {
+
+    try {
+      // Map frontend field names to backend schema
+      const contactData = {
+        name: formData.name,
+        email: formData.email,
+        phoneNumber: formData.phone,
+        companyName: formData.company,
+        serviceInterested: formData.service,
+        message: formData.message
+      }
+
+      const response = await axiosInstance.post('/api/contacts', contactData)
+
+      if (response.data.success) {
+        setSubmitted(true)
+        toast.success('Communication Channel Established!')
+        // Reset form
+        setFormData({
+          name: "", email: "", phone: "", company: "", service: "", message: ""
+        })
+      }
+    } catch (error) {
+      console.error('Contact submission error:', error)
+      toast.error(error.response?.data?.message || 'Failed to send message. Please try again.')
+    } finally {
       setIsSubmitting(false)
-      setSubmitted(true)
-      toast.success('Communication Channel Established!')
-    }, 1500)
+    }
   }
 
   return (
@@ -143,8 +166,11 @@ export default function ContactAdvanced() {
                   <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <InputField icon={<User />} label="Full Name" name="name" placeholder="Nikola Tesla" value={formData.name} onChange={handleChange} required />
                     <InputField icon={<Mail />} label="Email Address" name="email" type="email" placeholder="nikola@wardenclyffe.com" value={formData.email} onChange={handleChange} required />
+                    <InputField icon={<Phone />} label="Phone Number" name="phone" type="tel" placeholder="+977-9876543210" value={formData.phone} onChange={handleChange} required />
                     <InputField icon={<Briefcase />} label="Company" name="company" placeholder="Tesla Electric" value={formData.company} onChange={handleChange} />
-                    <InputField icon={<FileText />} label="Service Area" name="service" isSelect options={['Web Ecosystems', 'Mobile Apps', 'Cloud Architecture', 'UI/UX Engineering']} value={formData.service} onChange={handleChange} required />
+                    <div className="md:col-span-2">
+                      <InputField icon={<FileText />} label="Service Area" name="service" isSelect options={['Web Ecosystems', 'Mobile Apps', 'Cloud Architecture', 'UI/UX Engineering']} value={formData.service} onChange={handleChange} required />
+                    </div>
 
                     <div className="md:col-span-2">
                       <label className="block text-xs font-black uppercase tracking-widest text-neutral-400 mb-3">Project Scope</label>
