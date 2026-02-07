@@ -9,7 +9,7 @@ export default function BlogEditor() {
   const { id } = useParams();
   const { isAuthenticated } = useAuthStore();
   const { selectedBlog, createBlog, updateBlog, fetchBlogById } = useBlogStore();
-  
+
   const [formData, setFormData] = useState({
     title: '',
     author: 'NDH Technologies',
@@ -22,7 +22,7 @@ export default function BlogEditor() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/admin/login');
+      navigate('/ndh-admin/login');
       return;
     }
 
@@ -80,61 +80,42 @@ export default function BlogEditor() {
     setIsLoading(true);
 
     try {
-      let imageUrl = formData.image;
+      console.log('🔍 selectedFile:', selectedFile);
+      console.log('🔍 formData.image:', formData.image);
 
-// If a file is selected, try to upload it to the server
+      const blogData = new FormData();
+      blogData.append('title', formData.title);
+      blogData.append('author', formData.author);
+      blogData.append('description', formData.description);
+
       if (selectedFile) {
-        console.log('📤 Processing image upload...');
-        try {
-          const { uploadImage } = useBlogStore.getState();
-          const uploadedUrl = await uploadImage(selectedFile);
-
-          if (uploadedUrl) {
-            // Upload successful - use server URL
-            imageUrl = uploadedUrl;
-            console.log('✅ Image uploaded to server:', uploadedUrl);
-          } else {
-            // Backend not available - convert to base64 for local storage
-            console.log('🔄 Converting image to base64 for local storage...');
-            const reader = new FileReader();
-            const base64Promise = new Promise((resolve, reject) => {
-              reader.onloadend = () => resolve(reader.result);
-              reader.onerror = reject;
-              reader.readAsDataURL(selectedFile);
-            });
-
-            imageUrl = await base64Promise;
-            console.log('✅ Image converted to base64 (local storage)');
-          }
-        } catch (error) {
-          console.warn('⚠️ Image processing warning:', error.message);
-          // Use the preview URL as fallback
-          imageUrl = previewImage || '';
-        }
+        console.log('✅ Appending file to FormData:', selectedFile.name);
+        blogData.append('image', selectedFile);
+      } else if (formData.image) {
+        console.log('⚠️ No file selected, appending URL string:', formData.image);
+        blogData.append('image', formData.image);
+      } else {
+        console.log('❌ No image file or URL available');
       }
 
-      const blogData = {
-        title: formData.title,
-        author: formData.author,
-        image: imageUrl || '', // Make image optional
-        description: formData.description,
-        content: formData.description, // Use description as content
-        date: new Date(),
-      };
+      console.log('📤 Sending FormData to backend...');
+      // Log FormData contents
+      for (let pair of blogData.entries()) {
+        console.log(`  ${pair[0]}:`, pair[1]);
+      }
 
       if (id) {
-        // Update existing blog
         await updateBlog(id, blogData);
         alert('Blog updated successfully!');
       } else {
-        // Create new blog
         await createBlog(blogData);
         alert('Blog created successfully!');
       }
-      
-      navigate('/admin/dashboard');
+
+      navigate('/ndh-admin/dashboard');
     } catch (err) {
       console.error('❌ Submit error:', err);
+      // Show more detailed error from the store if available, or the err object
       alert(`Failed to ${id ? 'update' : 'create'} blog: ${err.message || 'Unknown error'}`);
     } finally {
       setIsLoading(false);
@@ -235,7 +216,7 @@ export default function BlogEditor() {
                 <div className="text-center">
                   <span className="text-sm text-[#2B4066]/60">or</span>
                 </div>
-                
+
                 <div className="flex gap-2">
                   <input
                     id="image-url"
@@ -257,7 +238,7 @@ export default function BlogEditor() {
                   )}
                 </div>
               </div>
-              
+
               {/* Image Preview */}
               {previewImage && (
                 <div className="mt-4">

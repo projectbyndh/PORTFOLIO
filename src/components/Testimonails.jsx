@@ -3,8 +3,9 @@ import { Link } from "react-router-dom"
 import { useState, useEffect, useRef } from "react"
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react"
 import React from "react"
+import useTestimonials from "../hooks/useTestimonials"
 
-// Fallback testimonial data
+// Fallback testimonial data (used if API fails)
 const FALLBACK_TESTIMONIALS = [
   {
     id: 1,
@@ -52,10 +53,19 @@ const FALLBACK_TESTIMONIALS = [
 ]
 
 export default function Testimonials() {
-  const displayTestimonials = FALLBACK_TESTIMONIALS
+  const { testimonials, loading, fetchTestimonials } = useTestimonials();
+
+  // Use API testimonials if available, otherwise use fallback
+  const displayTestimonials = testimonials.length > 0 ? testimonials : FALLBACK_TESTIMONIALS;
+
   const [currentIndex, setCurrentIndex] = useState(0)
   const [animatedItems, setAnimatedItems] = useState([])
   const testimonialsRef = useRef(null)
+
+  // Fetch testimonials on component mount
+  useEffect(() => {
+    fetchTestimonials();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

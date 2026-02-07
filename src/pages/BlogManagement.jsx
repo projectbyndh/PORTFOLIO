@@ -34,7 +34,7 @@ const BlogManagement = () => {
   // Redirect if not authenticated
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/admin/login');
+      navigate('/ndh-admin/login');
       return;
     }
 

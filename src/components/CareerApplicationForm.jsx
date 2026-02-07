@@ -1,96 +1,238 @@
 import React, { useState } from "react";
-import { generateApplicationPDF } from "../utils/pdf";
+import { Upload, Send, Loader2, CheckCircle, FileText, Mail, User, Phone, MessageSquare } from "lucide-react";
+import axios from "../api/axios";
+import toast from "react-hot-toast";
 
-
-export default function CareerApplicationForm({ position = "", onSuccess }) {
-  const [form, setForm] = useState({ name: "", email: "", resume: null, message: "", position });
-  const [success, setSuccess] = useState("");
+export default function CareerApplicationForm({ career, onClose }) {
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    coverLetter: "",
+  });
+  const [cvFile, setCvFile] = useState(null);
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setForm((prev) => ({
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: files ? files[0] : value,
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Store application in localStorage (simulate backend)
-    const prev = JSON.parse(localStorage.getItem("careerApplications") || "[]");
-    const newApp = {
-      ...form,
-      position: form.position || position,
-      id: Date.now(),
-      resumeName: form.resume ? form.resume.name : "",
-    };
-    localStorage.setItem("careerApplications", JSON.stringify([...prev, newApp]));
-    // Auto-generate a PDF summary for user convenience
-    try {
-      generateApplicationPDF(newApp);
-    } catch (err) {
-      // Fail gracefully without blocking submission
-      // eslint-disable-next-line no-console
-      console.warn("PDF generation failed:", err);
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      // Validate file type
+      const allowedTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+      if (!allowedTypes.includes(file.type)) {
+        toast.error('Please upload a PDF or Word document');
+        return;
+      }
+
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        toast.error('File size must be less than 5MB');
+        return;
+      }
+
+      setCvFile(file);
     }
-    setSuccess("Application submitted successfully!");
-    setForm({ name: "", email: "", resume: null, message: "", position });
-    if (onSuccess) onSuccess();
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!cvFile) {
+      toast.error('Please upload your CV');
+      return;
+    }
+
+    try {
+      setSubmitting(true);
+
+      // Create FormData for file upload
+      const data = new FormData();
+      data.append('careerId', career.id);
+      data.append('careerTitle', career.title);
+      data.append('fullName', formData.fullName);
+      data.append('email', formData.email);
+      data.append('phone', formData.phone);
+      data.append('coverLetter', formData.coverLetter);
+      data.append('cv', cvFile);
+
+      const response = await axios.post('/api/career-applications', data);
+
+      if (response.data.success) {
+        setSuccess(true);
+        toast.success('Application submitted successfully!');
+
+        // Reset form after 2 seconds
+        setTimeout(() => {
+          setFormData({
+            fullName: "",
+            email: "",
+            phone: "",
+            coverLetter: "",
+          });
+          setCvFile(null);
+          setSuccess(false);
+          if (onClose) onClose();
+        }, 2000);
+      }
+    } catch (error) {
+      console.error('Application submission error:', error);
+      toast.error(error.response?.data?.message || 'Failed to submit application');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  if (success) {
+    return (
+      <div className="text-center py-12">
+        <CheckCircle size={64} className="mx-auto text-green-500 mb-4" />
+        <h3 className="text-2xl font-bold text-[#1A2A44] mb-2">Application Submitted!</h3>
+        <p className="text-[#2B4066]/70">We'll review your application and get back to you soon.</p>
+      </div>
+    );
+  }
+
   return (
-    <section className="max-w-2xl mx-auto my-8 bg-white/80 rounded-2xl shadow-xl border border-[#4A8EBC]/10 p-8">
-      <h2 className="text-2xl font-bold text-[#1A2A44] mb-4">Apply for a Career</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="name"
-          value={form.name}
-          onChange={handleChange}
-          placeholder="Your Name"
-          className="border p-3 w-full rounded-lg"
-          required
-        />
-        <input
-          type="email"
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-          placeholder="Your Email"
-          className="border p-3 w-full rounded-lg"
-          required
-        />
-        <input
-          type="file"
-          name="resume"
-          accept=".pdf,.doc,.docx"
-          onChange={handleChange}
-          className="border p-3 w-full rounded-lg"
-          required
-        />
-        <input
-          type="text"
-          name="position"
-          value={form.position}
-          onChange={handleChange}
-          placeholder="Position Applying For"
-          className="border p-3 w-full rounded-lg"
-          required
-          readOnly={!!position}
-        />
-        <textarea
-          name="message"
-          value={form.message}
-          onChange={handleChange}
-          placeholder="Tell us about yourself or your motivation"
-          className="border p-3 w-full rounded-lg"
-          rows={4}
-        />
-        <button type="submit" className="bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white px-6 py-2 rounded-full font-semibold shadow hover:scale-105 transition-all">
-          Submit Application
-        </button>
-        {success && <div className="text-green-600 font-semibold mt-2">{success}</div>}
+    <div className="max-w-2xl mx-auto">
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-[#1A2A44] mb-2">Apply for {career.title}</h2>
+        <p className="text-[#2B4066]/70">Fill in your details and upload your CV to apply</p>
+      </div>
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Full Name */}
+        <div>
+          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <User className="inline w-4 h-4 mr-1" />
+            Full Name *
+          </label>
+          <input
+            type="text"
+            name="fullName"
+            value={formData.fullName}
+            onChange={handleChange}
+            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+            placeholder="Enter your full name"
+            required
+          />
+        </div>
+
+        {/* Email */}
+        <div>
+          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <Mail className="inline w-4 h-4 mr-1" />
+            Email Address *
+          </label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+            placeholder="your.email@example.com"
+            required
+          />
+        </div>
+
+        {/* Phone */}
+        <div>
+          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <Phone className="inline w-4 h-4 mr-1" />
+            Phone Number *
+          </label>
+          <input
+            type="tel"
+            name="phone"
+            value={formData.phone}
+            onChange={handleChange}
+            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+            placeholder="+977 98XXXXXXXX"
+            required
+          />
+        </div>
+
+        {/* CV Upload */}
+        <div>
+          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <FileText className="inline w-4 h-4 mr-1" />
+            Upload CV/Resume *
+          </label>
+          <div className="relative">
+            <input
+              type="file"
+              accept=".pdf,.doc,.docx"
+              onChange={handleFileChange}
+              className="hidden"
+              id="cv-upload"
+              required
+            />
+            <label
+              htmlFor="cv-upload"
+              className="flex items-center justify-center gap-2 w-full px-4 py-3 border-2 border-dashed border-[#4A8EBC]/30 rounded-xl cursor-pointer hover:border-[#4A8EBC] hover:bg-[#4A8EBC]/5 transition-all"
+            >
+              <Upload size={20} className="text-[#4A8EBC]" />
+              <span className="text-[#2B4066]">
+                {cvFile ? cvFile.name : 'Click to upload CV (PDF, DOC, DOCX - Max 5MB)'}
+              </span>
+            </label>
+          </div>
+        </div>
+
+        {/* Cover Letter */}
+        <div>
+          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <MessageSquare className="inline w-4 h-4 mr-1" />
+            Cover Letter (Optional)
+          </label>
+          <textarea
+            name="coverLetter"
+            value={formData.coverLetter}
+            onChange={handleChange}
+            rows={5}
+            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all resize-none"
+            placeholder="Tell us why you're a great fit for this position..."
+          />
+        </div>
+
+        {/* Submit Button */}
+        <div className="flex gap-3 pt-4">
+          {onClose && (
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-6 py-3 text-[#4A8EBC] bg-[#4A8EBC]/10 hover:bg-[#4A8EBC]/20 rounded-xl font-semibold transition-all"
+              disabled={submitting}
+            >
+              Cancel
+            </button>
+          )}
+          <button
+            type="submit"
+            disabled={submitting}
+            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+          >
+            {submitting ? (
+              <>
+                <Loader2 className="w-5 h-5 animate-spin" />
+                Submitting...
+              </>
+            ) : (
+              <>
+                <Send className="w-5 h-5" />
+                Submit Application
+              </>
+            )}
+          </button>
+        </div>
       </form>
-    </section>
+    </div>
   );
 }

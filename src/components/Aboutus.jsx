@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform, useInView } from "framer-motion";
 import { Target, Eye, Compass, Rocket, Zap, Globe, ShieldCheck } from "lucide-react";
+import FAQSection from "./FAQSection";
 
 const STRATEGY_DATA = [
   {
@@ -87,6 +88,9 @@ export default function AdvancedPath() {
 
       {/* Industry Comparison Component */}
       <IndustryContext />
+
+      {/* FAQ Section */}
+      <FAQSection />
 
       {/* CTA Section - Added for consistency and user request */}
       <div className="mt-32 mb-10 max-w-4xl mx-auto text-center">

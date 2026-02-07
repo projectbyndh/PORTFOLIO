@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Lock, User, Eye, EyeOff, ShieldCheck } from 'lucide-react';
 import useAuthStore from '../Store/useAuthStore';
@@ -14,6 +14,15 @@ export default function AdminLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  // Check if user is already logged in
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      // User is already logged in, redirect to dashboard
+      navigate('/admin/dashboard', { replace: true });
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     setFormData({

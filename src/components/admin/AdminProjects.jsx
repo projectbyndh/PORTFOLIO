@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { PlusCircle, Edit, Trash2, RefreshCw, Eye } from 'lucide-react';
+import { PlusCircle, Edit, Trash2, RefreshCw, Eye, FolderKanban, Search } from 'lucide-react';
 import AdminLayout from './AdminLayout';
 import ProjectForm from '../ProjectForm';
 import useProjects from '../../hooks/useProjects';
@@ -10,6 +10,7 @@ export default function AdminProjects() {
     const [showForm, setShowForm] = useState(false);
     const [selectedProject, setSelectedProject] = useState(null);
     const [deleteLoading, setDeleteLoading] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
         fetchProjects();
@@ -40,26 +41,41 @@ export default function AdminProjects() {
         fetchProjects();
     };
 
+    const filteredProjects = projects.filter(project =>
+        project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        project.category.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
     return (
         <AdminLayout>
             <div className="space-y-6">
                 {/* Header */}
-                <div className="flex items-center justify-between">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div>
-                        <h1 className="text-3xl font-black text-[#1A2A44]">Projects</h1>
+                        <h1 className="text-3xl font-bold text-[#1A2A44]">Projects</h1>
                         <p className="text-[#2B4066]/60 mt-1">Manage your portfolio projects</p>
                     </div>
-                    <div className="flex gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3">
+                        <div className="relative">
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+                            <input
+                                type="text"
+                                placeholder="Search projects..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/20 w-full sm:w-64"
+                            />
+                        </div>
                         <button
                             onClick={() => fetchProjects()}
                             disabled={loading}
-                            className="px-4 py-2 bg-white border border-[#4A8EBC]/20 text-[#4A8EBC] rounded-xl hover:bg-[#4A8EBC]/10 transition-all font-semibold"
+                            className="px-4 py-2 bg-white border border-[#4A8EBC]/20 text-[#4A8EBC] rounded-xl hover:bg-[#4A8EBC]/10 transition-all font-semibold flex items-center justify-center"
                         >
                             <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
                         </button>
                         <button
                             onClick={() => setShowForm(true)}
-                            className="px-6 py-3 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4A8EBC]/30 transition-all flex items-center gap-2"
+                            className="px-6 py-2 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4A8EBC]/30 transition-all flex items-center justify-center gap-2"
                         >
                             <PlusCircle className="w-5 h-5" />
                             Add Project
@@ -73,23 +89,41 @@ export default function AdminProjects() {
                         <div className="flex justify-center items-center h-full">
                             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4A8EBC]"></div>
                         </div>
-                    ) : projects.length === 0 ? (
+                    ) : filteredProjects.length === 0 ? (
                         <div className="flex flex-col items-center justify-center h-full text-center py-20">
-                            <div className="w-20 h-20 bg-[#F5FAFF] rounded-full flex items-center justify-center mb-4">
-                                <FolderKanban className="w-10 h-10 text-[#4A8EBC]/40" />
-                            </div>
-                            <p className="text-[#2B4066] font-semibold text-lg mb-2">No projects found</p>
-                            <p className="text-[#2B4066]/60 mb-6 max-w-sm">Showcase your work by adding your first project.</p>
-                            <button
-                                onClick={() => setShowForm(true)}
-                                className="px-6 py-3 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white rounded-xl font-semibold hover:shadow-lg transition-all"
-                            >
-                                Add First Project
-                            </button>
+                            {searchTerm ? (
+                                <>
+                                    <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mb-4">
+                                        <Search className="w-10 h-10 text-gray-400" />
+                                    </div>
+                                    <p className="text-[#2B4066] font-semibold text-lg mb-2">No projects found</p>
+                                    <p className="text-[#2B4066]/60 mb-6">No projects match "{searchTerm}"</p>
+                                    <button
+                                        onClick={() => setSearchTerm('')}
+                                        className="px-6 py-2 bg-white border border-[#4A8EBC]/20 text-[#4A8EBC] rounded-xl font-semibold hover:bg-[#4A8EBC]/10 transition-all"
+                                    >
+                                        Clear Search
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="w-20 h-20 bg-[#F5FAFF] rounded-full flex items-center justify-center mb-4">
+                                        <FolderKanban className="w-10 h-10 text-[#4A8EBC]/40" />
+                                    </div>
+                                    <p className="text-[#2B4066] font-semibold text-lg mb-2">No projects yet</p>
+                                    <p className="text-[#2B4066]/60 mb-6 max-w-sm">Showcase your work by adding your first project.</p>
+                                    <button
+                                        onClick={() => setShowForm(true)}
+                                        className="px-6 py-3 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white rounded-xl font-semibold hover:shadow-lg transition-all"
+                                    >
+                                        Add First Project
+                                    </button>
+                                </>
+                            )}
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-                            {projects.map((project) => (
+                            {filteredProjects.map((project) => (
                                 <div
                                     key={project._id}
                                     className="group relative bg-white border border-[#4A8EBC]/10 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-[#4A8EBC]/10 transition-all duration-300 flex flex-col"
@@ -114,7 +148,7 @@ export default function AdminProjects() {
                                             <p className="text-sm text-[#2B4066]/70 line-clamp-2">{project.description}</p>
                                         </div>
 
-                                        <div className="mt-auto flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                                        <div className="mt-auto flex gap-2 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200">
                                             <button
                                                 onClick={() => handleEdit(project)}
                                                 className="flex-1 px-4 py-2 bg-[#4A8EBC]/10 text-[#4A8EBC] rounded-lg hover:bg-[#4A8EBC]/20 transition-all flex items-center justify-center gap-2 font-medium"

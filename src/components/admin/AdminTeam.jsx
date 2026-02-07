@@ -91,7 +91,7 @@ export default function AdminTeam() {
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
                             {teams.map((team) => (
                                 <div
-                                    key={team._id}
+                                    key={team.id}
                                     className="group relative bg-white border border-[#4A8EBC]/10 rounded-2xl p-6 hover:shadow-xl hover:shadow-[#4A8EBC]/10 transition-all duration-300"
                                 >
                                     <div className="aspect-square bg-[#F5FAFF] rounded-xl mb-4 overflow-hidden border border-[#4A8EBC]/5">
@@ -115,11 +115,11 @@ export default function AdminTeam() {
                                             Edit
                                         </button>
                                         <button
-                                            onClick={() => handleDelete(team._id)}
-                                            disabled={deleteLoading === team._id}
+                                            onClick={() => handleDelete(team.id)}
+                                            disabled={deleteLoading === team.id}
                                             className="flex-1 px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-all flex items-center justify-center gap-2 font-medium disabled:opacity-50"
                                         >
-                                            {deleteLoading === team._id ? (
+                                            {deleteLoading === team.id ? (
                                                 <div className="w-4 h-4 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
                                             ) : (
                                                 <>

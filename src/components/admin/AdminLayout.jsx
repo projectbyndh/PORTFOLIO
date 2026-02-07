@@ -16,7 +16,8 @@ import {
   MessageSquare,
   Phone,
   BookOpen,
-  Star
+  Star,
+  UserCheck
 } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import useAuthStore from '../../Store/useAuthStore';
@@ -28,7 +29,7 @@ export default function AdminLayout({ children }) {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/admin/login');
+      navigate('/ndh-admin/login');
     }
   }, [isAuthenticated, navigate]);
 
@@ -45,6 +46,7 @@ export default function AdminLayout({ children }) {
     { icon: FolderKanban, label: 'Projects', path: '/admin/projects' },
     { icon: Wrench, label: 'Services', path: '/admin/services' },
     { icon: Briefcase, label: 'Careers', path: '/admin/careers' },
+    { icon: UserCheck, label: 'Applications', path: '/admin/career-applications' },
     { icon: HelpCircle, label: 'FAQs', path: '/admin/faqs' },
     { icon: Star, label: 'Testimonials', path: '/admin/testimonials' },
     { icon: MessageSquare, label: 'Contacts', path: '/admin/contacts' },

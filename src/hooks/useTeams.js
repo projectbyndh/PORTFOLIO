@@ -60,9 +60,6 @@ const useTeams = () => {
       setError(null);
 
       const response = await axios.post('/api/team', teamData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
         timeout: 10000, // 10 second timeout
       });
 
@@ -90,9 +87,6 @@ const useTeams = () => {
       setError(null);
 
       const response = await axios.put(`/api/team/${id}`, teamData, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
         timeout: 10000, // 10 second timeout
       });
 

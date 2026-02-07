@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { 
-  LogOut, 
-  FileText, 
-  PlusCircle, 
-  Edit, 
-  Trash2, 
+import {
+  LogOut,
+  FileText,
+  PlusCircle,
+  Edit,
+  Trash2,
   Eye,
   Calendar,
   User as UserIcon,
@@ -27,7 +27,7 @@ export default function AdminDashboard() {
   const location = useLocation();
   const { isAuthenticated, logout, user } = useAuthStore();
   const { blogs, loading, error, fetchBlogs, deleteBlog } = useBlogStore();
-  
+
   const [activeTab, setActiveTab] = useState('dashboard');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(null);
@@ -37,7 +37,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/admin/login');
+      navigate('/ndh-admin/login');
       return;
     }
 
@@ -116,9 +116,9 @@ export default function AdminDashboard() {
               </button>
               <div>
                 <h1 className="text-2xl font-bold bg-linear-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">
-                  {activeTab === 'dashboard' ? 'Dashboard' : 
-                   activeTab === 'blogs' ? 'Manage Blogs' : 
-                   activeTab === 'settings' ? 'Settings' : 'Admin Panel'}
+                  {activeTab === 'dashboard' ? 'Dashboard' :
+                    activeTab === 'blogs' ? 'Manage Blogs' :
+                      activeTab === 'settings' ? 'Settings' : 'Admin Panel'}
                 </h1>
                 <p className="text-sm text-[#2B4066]/70">Welcome back, {user?.username}</p>
               </div>
@@ -306,11 +306,10 @@ export default function AdminDashboard() {
                                 </div>
                               </td>
                               <td className="py-4 px-4">
-                                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                                  blog._id?.startsWith('local-') 
-                                    ? 'bg-green-100 text-green-800' 
+                                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${blog._id?.startsWith('local-')
+                                    ? 'bg-green-100 text-green-800'
                                     : 'bg-blue-100 text-blue-800'
-                                }`}>
+                                  }`}>
                                   {blog._id?.startsWith('local-') ? 'Local' : 'Published'}
                                 </span>
                               </td>
@@ -383,7 +382,7 @@ export default function AdminDashboard() {
 
       {/* Mobile Overlay */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-[#1A2A44]/40 backdrop-blur-md z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />

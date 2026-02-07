@@ -57,6 +57,16 @@ export const useBlogs = () => {
    * Create a new blog
    */
   const createBlog = useCallback(async (blogData) => {
+    console.log('🔍 useBlogs createBlog - blogData type:', blogData instanceof FormData ? 'FormData' : typeof blogData);
+    console.log('🔍 useBlogs createBlog - blogData:', blogData);
+
+    if (blogData instanceof FormData) {
+      console.log('📦 FormData entries:');
+      for (let pair of blogData.entries()) {
+        console.log(`  ${pair[0]}:`, pair[1]);
+      }
+    }
+
     setLoading(true);
     setError(null);
 

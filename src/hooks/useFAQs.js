@@ -16,6 +16,7 @@ const useFAQs = () => {
         timeout: 5000, // 5 second timeout
       });
       if (response.data.success) {
+        console.log('FAQs fetched:', response.data.data);
         setFaqs(response.data.data);
       }
     } catch (err) {
@@ -98,7 +99,7 @@ const useFAQs = () => {
 
       if (response.data.success) {
         setFaqs(prev => prev.map(faq =>
-          faq._id === id ? response.data.data : faq
+          faq.id === id ? response.data.data : faq
         ));
         toast.success('FAQ updated successfully');
         return response.data.data;
@@ -125,7 +126,7 @@ const useFAQs = () => {
       });
 
       if (response.data.success) {
-        setFaqs(prev => prev.filter(faq => faq._id !== id));
+        setFaqs(prev => prev.filter(faq => faq.id !== id));
         toast.success('FAQ deleted successfully');
         return true;
       }
@@ -142,14 +143,7 @@ const useFAQs = () => {
   };
 
   useEffect(() => {
-    // Only fetch FAQs automatically in production or when explicitly requested
-    // In development, avoid spamming the console with backend errors
-    const shouldFetchAutomatically = process.env.NODE_ENV === 'production' ||
-      localStorage.getItem('enable-api-calls') === 'true';
-
-    if (shouldFetchAutomatically) {
-      fetchFAQs();
-    }
+    fetchFAQs();
   }, []);
 
   return {

@@ -1,15 +1,12 @@
 "use client"
 import React, { useState, useEffect } from "react"
-import { Briefcase, Mail, Phone, FileText, User, X, Upload, CheckCircle, MapPin, Clock, Loader2 } from "lucide-react"
-import { generateApplicationPDF } from "../utils/pdf"
+import { Briefcase, Mail, MapPin, Clock, Loader2, X, CheckCircle } from "lucide-react"
 import { useCareers } from "../hooks/useCareers"
+import CareerApplicationForm from "./CareerApplicationForm"
 
 export default function Careers() {
   const [showForm, setShowForm] = useState(false)
-  const [selectedPosition, setSelectedPosition] = useState("")
-  const [form, setForm] = useState({ name: "", email: "", phone: "", resume: null })
-  const [success, setSuccess] = useState(false)
-  const [dragActive, setDragActive] = useState(false)
+  const [selectedCareer, setSelectedCareer] = useState(null)
 
   // Use the careers hook to fetch data from API
   const { careers, loading, error, fetchCareers } = useCareers()
@@ -21,80 +18,16 @@ export default function Careers() {
     })
   }, [fetchCareers])
 
-  const handleApplyNow = (position) => {
-    setSelectedPosition(position)
+  const handleApplyNow = (career) => {
+    setSelectedCareer(career)
     setShowForm(true)
-    setSuccess(false)
   }
 
   const handleCloseForm = () => {
     setShowForm(false)
-    setSelectedPosition("")
-    setForm({ name: "", email: "", phone: "", resume: null })
-    setSuccess(false)
+    setSelectedCareer(null)
   }
 
-  const handleChange = (e) => {
-    const { name, value, files } = e.target
-    setForm((prev) => ({
-      ...prev,
-      [name]: files ? files[0] : value,
-    }))
-  }
-
-  const handleDrag = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    if (e.type === "dragenter" || e.type === "dragover") {
-      setDragActive(true)
-    } else if (e.type === "dragleave") {
-      setDragActive(false)
-    }
-  }
-
-  const handleDrop = (e) => {
-    e.preventDefault()
-    e.stopPropagation()
-    setDragActive(false)
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      setForm((prev) => ({ ...prev, resume: e.dataTransfer.files[0] }))
-    }
-  }
-
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-
-    // Convert resume file to base64 for storage
-    let resumeData = null
-    if (form.resume) {
-      resumeData = await new Promise((resolve) => {
-        const reader = new FileReader()
-        reader.onloadend = () => resolve(reader.result)
-        reader.readAsDataURL(form.resume)
-      })
-    }
-
-    const prev = JSON.parse(localStorage.getItem("careerApplications") || "[]")
-    const newApp = {
-      ...form,
-      position: selectedPosition,
-      id: Date.now(),
-      resumeName: form.resume ? form.resume.name : "",
-      resumeData: resumeData, // Store the actual file as base64
-    }
-    localStorage.setItem("careerApplications", JSON.stringify([...prev, newApp]))
-
-    try {
-      generateApplicationPDF(newApp)
-    } catch (err) {
-      console.warn("PDF generation failed:", err)
-    }
-
-    setSuccess(true)
-    setTimeout(() => {
-      handleCloseForm()
-    }, 2000)
-  }
 
   return (
     <div className="w-full min-h-screen bg-[#FAFAFA] relative overflow-hidden pt-32">
@@ -235,7 +168,7 @@ export default function Careers() {
                       className="w-full py-3 px-6 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-semibold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105 mt-auto"
                       onClick={(e) => {
                         e.stopPropagation();
-                        handleApplyNow(career.title);
+                        handleApplyNow(career);
                       }}
                     >
                       Apply Now
@@ -291,152 +224,27 @@ export default function Careers() {
       </div>
 
       {/* Application Modal */}
-      {showForm && (
+      {showForm && selectedCareer && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-[#1A2A44]/40 backdrop-blur-md" onClick={handleCloseForm} />
 
-          <div className="relative w-full max-w-lg bg-white rounded-2xl shadow-2xl overflow-hidden">
+          <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden max-h-[90vh] overflow-y-auto">
             {/* Modal Header */}
-            <div className="relative bg-linear-to-r from-[#4A8EBC] to-[#3B5488] px-8 py-6">
+            <div className="sticky top-0 z-10 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] px-8 py-6">
               <button
                 onClick={handleCloseForm}
                 className="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
               >
                 <X className="w-5 h-5 text-white" />
               </button>
-              <h2 className="text-2xl font-bold text-white">Apply for a Position</h2>
+              <h2 className="text-2xl font-bold text-white">Apply for Position</h2>
               <p className="text-white/80 mt-1">Join the NDH Tech team</p>
             </div>
 
-            {/* Success State */}
-            {success ? (
-              <div className="p-8 text-center">
-                <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-10 h-10 text-green-500" />
-                </div>
-                <h3 className="text-xl font-bold text-[#1A2A44] mb-2">Application Submitted!</h3>
-                <p className="text-[#2B4066]/80">Your PDF summary is downloading. We'll be in touch soon!</p>
-              </div>
-            ) : (
-              /* Form */
-              <form onSubmit={handleSubmit} className="p-8 space-y-5">
-                {/* Name Field */}
-                <div>
-                  <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
-                    Full Name
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#4A8EBC]/50" />
-                    <input
-                      type="text"
-                      name="name"
-                      value={form.name}
-                      onChange={handleChange}
-                      placeholder="John Doe"
-                      required
-                      className="w-full pl-12 pr-4 py-3 border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent transition-all outline-none"
-                    />
-                  </div>
-                </div>
-
-                {/* Email Field */}
-                <div>
-                  <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
-                    Email Address
-                  </label>
-                  <div className="relative">
-                    <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#4A8EBC]/50" />
-                    <input
-                      type="email"
-                      name="email"
-                      value={form.email}
-                      onChange={handleChange}
-                      placeholder="john@example.com"
-                      required
-                      className="w-full pl-12 pr-4 py-3 border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent transition-all outline-none"
-                    />
-                  </div>
-                </div>
-
-                {/* Phone Field */}
-                <div>
-                  <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
-                    Phone Number
-                  </label>
-                  <div className="relative">
-                    <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#4A8EBC]/50" />
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={form.phone}
-                      onChange={handleChange}
-                      placeholder="+977 98XXXXXXXX"
-                      required
-                      className="w-full pl-12 pr-4 py-3 border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent transition-all outline-none"
-                    />
-                  </div>
-                </div>
-
-                {/* CV Upload */}
-                <div>
-                  <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
-                    Upload CV / Resume
-                  </label>
-                  <div
-                    onDragEnter={handleDrag}
-                    onDragLeave={handleDrag}
-                    onDragOver={handleDrag}
-                    onDrop={handleDrop}
-                    className={`relative border-2 border-dashed rounded-lg p-6 text-center transition-all cursor-pointer ${dragActive
-                        ? "border-[#4A8EBC] bg-[#E0F0FF]"
-                        : form.resume
-                          ? "border-green-500 bg-green-50"
-                          : "border-[#4A8EBC]/30 hover:border-[#4A8EBC] hover:bg-[#E0F0FF]/50"
-                      }`}
-                  >
-                    <input
-                      type="file"
-                      name="resume"
-                      accept=".pdf,.doc,.docx"
-                      onChange={handleChange}
-                      required
-                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                    />
-                    {form.resume ? (
-                      <div className="flex items-center justify-center gap-3">
-                        <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                          <FileText className="w-5 h-5 text-green-600" />
-                        </div>
-                        <div className="text-left">
-                          <p className="font-medium text-[#1A2A44] truncate max-w-[200px]">
-                            {form.resume.name}
-                          </p>
-                          <p className="text-xs text-[#2B4066]/60">
-                            {(form.resume.size / 1024).toFixed(1)} KB
-                          </p>
-                        </div>
-                      </div>
-                    ) : (
-                      <>
-                        <Upload className="w-10 h-10 text-[#4A8EBC]/50 mx-auto mb-3" />
-                        <p className="text-[#2B4066] font-medium">
-                          Drop your CV here or <span className="text-[#4A8EBC]">browse</span>
-                        </p>
-                        <p className="text-xs text-[#2B4066]/60 mt-1">PDF, DOC, DOCX (Max 5MB)</p>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                {/* Submit Button */}
-                <button
-                  type="submit"
-                  className="w-full py-4 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105">
-
-                  Submit Application
-                </button>
-              </form>
-            )}
+            {/* Application Form */}
+            <div className="p-8">
+              <CareerApplicationForm career={selectedCareer} onClose={handleCloseForm} />
+            </div>
           </div>
         </div>
       )}

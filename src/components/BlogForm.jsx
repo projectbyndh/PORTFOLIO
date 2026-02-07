@@ -43,6 +43,8 @@ const BlogForm = ({
   });
 
   const currentImage = watch('image');
+  const [selectedFile, setSelectedFile] = React.useState(null);
+  const [previewUrl, setPreviewUrl] = React.useState('');
 
   // Reset form when modal opens/closes or initialData changes
   useEffect(() => {
@@ -55,6 +57,8 @@ const BlogForm = ({
           description: initialData.description || initialData.content || '',
           image: initialData.image || '',
         });
+        setPreviewUrl(initialData.image || '');
+        setSelectedFile(null);
       } else {
         // Create mode
         reset({
@@ -63,6 +67,8 @@ const BlogForm = ({
           description: '',
           image: '',
         });
+        setPreviewUrl('');
+        setSelectedFile(null);
       }
     }
   }, [isOpen, initialData, reset]);
@@ -70,7 +76,32 @@ const BlogForm = ({
   // Handle form submission
   const handleFormSubmit = async (data) => {
     try {
-      await onSubmit(data);
+      console.log('🔍 BlogForm Submit - data:', data);
+      console.log('🔍 BlogForm Submit - selectedFile:', selectedFile);
+
+      // Create FormData to send file with other fields
+      const formData = new FormData();
+      formData.append('title', data.title);
+      formData.append('author', data.author);
+      formData.append('description', data.description);
+
+      if (selectedFile) {
+        console.log('✅ Appending file to FormData:', selectedFile.name, selectedFile.type, selectedFile.size);
+        formData.append('image', selectedFile);
+      } else if (data.image) {
+        console.log('⚠️ No file selected, appending URL string:', data.image);
+        // If editing and no new file, send existing URL
+        formData.append('image', data.image);
+      } else {
+        console.log('❌ No image file or URL');
+      }
+
+      console.log('📤 FormData contents:');
+      for (let pair of formData.entries()) {
+        console.log(`  ${pair[0]}:`, pair[1]);
+      }
+
+      await onSubmit(formData);
       onClose(); // Close modal on success
     } catch (error) {
       // Error is handled by the hook
@@ -78,21 +109,21 @@ const BlogForm = ({
     }
   };
 
-  // Handle image upload
-  const handleImageUpload = async (file) => {
-    try {
-      const result = await uploadImage(file);
-      if (result?.imageUrl) {
-        setValue('image', result.imageUrl);
-      }
-      return result;
-    } catch (error) {
-      throw error;
-    }
+  // Handle image file selection
+  const handleImageSelect = (file) => {
+    console.log('🖼️ handleImageSelect called with file:', file);
+    console.log('🖼️ File details:', file?.name, file?.type, file?.size);
+    setSelectedFile(file);
+    const preview = URL.createObjectURL(file);
+    setPreviewUrl(preview);
+    setValue('image', ''); // Clear URL since we have a file
+    console.log('🖼️ selectedFile state updated');
   };
 
   // Handle image removal
   const handleImageRemove = () => {
+    setSelectedFile(null);
+    setPreviewUrl('');
     setValue('image', '');
   };
 
@@ -122,10 +153,11 @@ const BlogForm = ({
               Blog Image
             </label>
             <ImageUploadPreview
-              currentImage={currentImage}
-              onImageUpload={handleImageUpload}
+              currentImage={previewUrl || currentImage}
+              onImageUpload={handleImageSelect}
               onImageRemove={handleImageRemove}
-              uploading={uploadingImage}
+              uploading={false}
+              showUploadButton={false}
             />
           </div>
 
@@ -138,9 +170,8 @@ const BlogForm = ({
               {...register('title')}
               type="text"
               id="title"
-              className={`w-full px-4 py-2.5 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all ${
-                errors.title ? 'border-red-500' : 'border-[#4A8EBC]/20'
-              }`}
+              className={`w-full px-4 py-2.5 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all ${errors.title ? 'border-red-500' : 'border-[#4A8EBC]/20'
+                }`}
               placeholder="Enter blog title"
             />
             {errors.title && (
@@ -157,9 +188,8 @@ const BlogForm = ({
               {...register('author')}
               type="text"
               id="author"
-              className={`w-full px-4 py-2.5 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all ${
-                errors.author ? 'border-red-500' : 'border-[#4A8EBC]/20'
-              }`}
+              className={`w-full px-4 py-2.5 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all ${errors.author ? 'border-red-500' : 'border-[#4A8EBC]/20'
+                }`}
               placeholder="Enter author name"
             />
             {errors.author && (
@@ -176,9 +206,8 @@ const BlogForm = ({
               {...register('description')}
               id="description"
               rows={6}
-              className={`w-full px-4 py-2.5 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all ${
-                errors.description ? 'border-red-500' : 'border-[#4A8EBC]/20'
-              }`}
+              className={`w-full px-4 py-2.5 border rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all ${errors.description ? 'border-red-500' : 'border-[#4A8EBC]/20'
+                }`}
               placeholder="Enter blog description or content"
             />
             {errors.description && (

@@ -12,7 +12,6 @@ const careerSchema = z.object({
   image: z.string().optional(),
   requirements: z.array(z.string().min(1, 'Requirement cannot be empty')).min(1, 'At least one requirement is required'),
   responsibilities: z.array(z.string().min(1, 'Responsibility cannot be empty')).min(1, 'At least one responsibility is required'),
-  applyLink: z.string().url('Must be a valid URL').min(1, 'Apply link is required'),
   location: z.string().min(1, 'Location is required').max(100, 'Location must be less than 100 characters'),
 });
 
@@ -44,7 +43,6 @@ const CareerForm = ({
       image: '',
       requirements: [''],
       responsibilities: [''],
-      applyLink: '',
       location: '',
     },
   });
@@ -80,7 +78,6 @@ const CareerForm = ({
           image: initialData.image || '',
           requirements: initialData.requirements || [''],
           responsibilities: initialData.responsibilities || [''],
-          applyLink: initialData.applyLink || '',
           location: initialData.location || '',
         });
       } else {
@@ -91,7 +88,6 @@ const CareerForm = ({
           image: '',
           requirements: [''],
           responsibilities: [''],
-          applyLink: '',
           location: '',
         });
       }
@@ -172,9 +168,8 @@ const CareerForm = ({
               {...register('title')}
               type="text"
               id="title"
-              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${
-                errors.title ? 'border-red-400' : 'border-[#4A8EBC]/20'
-              }`}
+              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.title ? 'border-red-400' : 'border-[#4A8EBC]/20'
+                }`}
               placeholder="Enter job title"
             />
             {errors.title && (
@@ -191,9 +186,8 @@ const CareerForm = ({
               {...register('location')}
               type="text"
               id="location"
-              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${
-                errors.location ? 'border-red-400' : 'border-[#4A8EBC]/20'
-              }`}
+              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.location ? 'border-red-400' : 'border-[#4A8EBC]/20'
+                }`}
               placeholder="Enter job location"
             />
             {errors.location && (
@@ -210,9 +204,8 @@ const CareerForm = ({
               {...register('description')}
               id="description"
               rows={4}
-              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${
-                errors.description ? 'border-red-400' : 'border-[#4A8EBC]/20'
-              }`}
+              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.description ? 'border-red-400' : 'border-[#4A8EBC]/20'
+                }`}
               placeholder="Enter job description"
             />
             {errors.description && (
@@ -231,9 +224,8 @@ const CareerForm = ({
                   <input
                     {...register(`requirements.${index}`)}
                     type="text"
-                    className={`flex-1 px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${
-                      errors.requirements?.[index] ? 'border-red-400' : 'border-[#4A8EBC]/20'
-                    }`}
+                    className={`flex-1 px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.requirements?.[index] ? 'border-red-400' : 'border-[#4A8EBC]/20'
+                      }`}
                     placeholder={`Requirement ${index + 1}`}
                   />
                   {requirementFields.length > 1 && (
@@ -272,9 +264,8 @@ const CareerForm = ({
                   <input
                     {...register(`responsibilities.${index}`)}
                     type="text"
-                    className={`flex-1 px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${
-                      errors.responsibilities?.[index] ? 'border-red-400' : 'border-[#4A8EBC]/20'
-                    }`}
+                    className={`flex-1 px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.responsibilities?.[index] ? 'border-red-400' : 'border-[#4A8EBC]/20'
+                      }`}
                     placeholder={`Responsibility ${index + 1}`}
                   />
                   {responsibilityFields.length > 1 && (
@@ -299,25 +290,6 @@ const CareerForm = ({
             </div>
             {errors.responsibilities && (
               <p className="mt-1 text-sm text-red-500">{errors.responsibilities.message}</p>
-            )}
-          </div>
-
-          {/* Apply Link */}
-          <div>
-            <label htmlFor="applyLink" className="block text-sm font-semibold text-[#1A2A44] mb-2">
-              Apply Link *
-            </label>
-            <input
-              {...register('applyLink')}
-              type="url"
-              id="applyLink"
-              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${
-                errors.applyLink ? 'border-red-400' : 'border-[#4A8EBC]/20'
-              }`}
-              placeholder="https://example.com/apply"
-            />
-            {errors.applyLink && (
-              <p className="mt-1 text-sm text-red-500">{errors.applyLink.message}</p>
             )}
           </div>
 

@@ -5,6 +5,8 @@ import toast from 'react-hot-toast';
 import { Edit, Trash2, Plus, MapPin, Mail, Phone, Clock } from 'lucide-react';
 import React from 'react';
 
+import AdminLayout from '../components/admin/AdminLayout';
+
 const ContactInfoManagement = () => {
   const { fetchContactInfo, deleteContactInfo } = useContactInfo();
   const [contactInfos, setContactInfos] = useState([]);
@@ -65,96 +67,98 @@ const ContactInfoManagement = () => {
   }
 
   return (
-    <div className="container mx-auto p-6">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Contact Info Management</h1>
-        <button
-          onClick={handleAdd}
-          className="flex items-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          <Plus className="w-4 h-4 mr-2" />
-          Add Contact Info
-        </button>
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {contactInfos.map((info) => (
-          <div key={info._id} className="bg-white p-4 rounded-lg shadow-md">
-            <div className="space-y-3">
-              <div className="flex items-start space-x-2">
-                <MapPin className="w-4 h-4 mt-1 text-gray-500" />
-                <div>
-                  <p className="text-sm font-medium">Address</p>
-                  <p className="text-sm text-gray-600">{info.location?.address}</p>
-                  <p className="text-xs text-gray-500">
-                    Lat: {info.location?.latitude}, Lng: {info.location?.longitude}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Mail className="w-4 h-4 text-gray-500" />
-                <div>
-                  <p className="text-sm font-medium">Email</p>
-                  <p className="text-sm text-gray-600">{info.email}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Phone className="w-4 h-4 text-gray-500" />
-                <div>
-                  <p className="text-sm font-medium">Phone</p>
-                  <p className="text-sm text-gray-600">{info.phone}</p>
-                </div>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <Clock className="w-4 h-4 text-gray-500" />
-                <div>
-                  <p className="text-sm font-medium">Working Hours</p>
-                  <p className="text-sm text-gray-600">{info.workingHours}</p>
-                </div>
-              </div>
-            </div>
-
-            <p className="text-xs text-gray-500 mt-4">
-              Created: {new Date(info.createdAt).toLocaleDateString()}
-            </p>
-
-            <div className="flex space-x-2 mt-4">
-              <button
-                onClick={() => handleEdit(info)}
-                className="flex items-center px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
-              >
-                <Edit className="w-4 h-4 mr-1" />
-                Edit
-              </button>
-              <button
-                onClick={() => handleDelete(info._id)}
-                className="flex items-center px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
-              >
-                <Trash2 className="w-4 h-4 mr-1" />
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {contactInfos.length === 0 && (
-        <div className="text-center py-8">
-          <p className="text-gray-500">No contact info found.</p>
+    <AdminLayout>
+      <div className="container mx-auto p-6">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-2xl font-bold">Contact Info Management</h1>
+          <button
+            onClick={handleAdd}
+            className="flex items-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+          >
+            <Plus className="w-4 h-4 mr-2" />
+            Add Contact Info
+          </button>
         </div>
-      )}
 
-      {showForm && (
-        <ContactInfoForm
-          contactInfo={editingContactInfo}
-          onClose={handleFormClose}
-          onSuccess={handleFormSuccess}
-        />
-      )}
-    </div>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {contactInfos.map((info) => (
+            <div key={info._id} className="bg-white p-4 rounded-lg shadow-md">
+              <div className="space-y-3">
+                <div className="flex items-start space-x-2">
+                  <MapPin className="w-4 h-4 mt-1 text-gray-500" />
+                  <div>
+                    <p className="text-sm font-medium">Address</p>
+                    <p className="text-sm text-gray-600">{info.location?.address}</p>
+                    <p className="text-xs text-gray-500">
+                      Lat: {info.location?.latitude}, Lng: {info.location?.longitude}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <Mail className="w-4 h-4 text-gray-500" />
+                  <div>
+                    <p className="text-sm font-medium">Email</p>
+                    <p className="text-sm text-gray-600">{info.email}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <Phone className="w-4 h-4 text-gray-500" />
+                  <div>
+                    <p className="text-sm font-medium">Phone</p>
+                    <p className="text-sm text-gray-600">{info.phone}</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <Clock className="w-4 h-4 text-gray-500" />
+                  <div>
+                    <p className="text-sm font-medium">Working Hours</p>
+                    <p className="text-sm text-gray-600">{info.workingHours}</p>
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-xs text-gray-500 mt-4">
+                Created: {new Date(info.createdAt).toLocaleDateString()}
+              </p>
+
+              <div className="flex space-x-2 mt-4">
+                <button
+                  onClick={() => handleEdit(info)}
+                  className="flex items-center px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
+                >
+                  <Edit className="w-4 h-4 mr-1" />
+                  Edit
+                </button>
+                <button
+                  onClick={() => handleDelete(info._id)}
+                  className="flex items-center px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                >
+                  <Trash2 className="w-4 h-4 mr-1" />
+                  Delete
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {contactInfos.length === 0 && (
+          <div className="text-center py-8">
+            <p className="text-gray-500">No contact info found.</p>
+          </div>
+        )}
+
+        {showForm && (
+          <ContactInfoForm
+            contactInfo={editingContactInfo}
+            onClose={handleFormClose}
+            onSuccess={handleFormSuccess}
+          />
+        )}
+      </div>
+    </AdminLayout>
   );
 };
 

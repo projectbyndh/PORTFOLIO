@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useTeams from '../hooks/useTeams';
+import ImageUploadPreview from './ImageUploadPreview';
 
 const TeamForm = ({ team, onClose }) => {
   const { createTeam, updateTeam } = useTeams();
@@ -10,6 +11,8 @@ const TeamForm = ({ team, onClose }) => {
     description: team?.description || '',
     image: team?.image || ''
   });
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(team?.image || '');
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
@@ -27,6 +30,23 @@ const TeamForm = ({ team, onClose }) => {
     }
   };
 
+  const handleImageSelect = (file) => {
+    setSelectedFile(file);
+    const preview = URL.createObjectURL(file);
+    setPreviewUrl(preview);
+    setFormData(prev => ({ ...prev, image: '' }));
+    // Clear image error when file is selected
+    if (errors.image) {
+      setErrors(prev => ({ ...prev, image: '' }));
+    }
+  };
+
+  const handleImageRemove = () => {
+    setSelectedFile(null);
+    setPreviewUrl('');
+    setFormData(prev => ({ ...prev, image: '' }));
+  };
+
   const validateForm = () => {
     const newErrors = {};
     if (!formData.name.trim()) {
@@ -38,8 +58,9 @@ const TeamForm = ({ team, onClose }) => {
     if (!formData.description.trim()) {
       newErrors.description = 'Description is required';
     }
-    if (!formData.image.trim()) {
-      newErrors.image = 'Profile image URL is required';
+    // Check if we have either a file or an existing image URL
+    if (!selectedFile && !formData.image.trim() && !previewUrl) {
+      newErrors.image = 'Profile image is required';
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -51,12 +72,19 @@ const TeamForm = ({ team, onClose }) => {
 
     try {
       setSubmitting(true);
-      const teamData = {
-        name: formData.name,
-        position: formData.position,
-        description: formData.description,
-        image: formData.image
-      };
+
+      // Create FormData to send file with other fields
+      const teamData = new FormData();
+      teamData.append('name', formData.name);
+      teamData.append('position', formData.position);
+      teamData.append('description', formData.description);
+
+      if (selectedFile) {
+        teamData.append('image', selectedFile);
+      } else if (formData.image) {
+        // If editing and no new file, send existing URL
+        teamData.append('image', formData.image);
+      }
 
       if (team) {
         await updateTeam(team._id, teamData);
@@ -136,15 +164,14 @@ const TeamForm = ({ team, onClose }) => {
 
         <div>
           <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
-            Profile Image URL
+            Profile Image
           </label>
-          <input
-            type="url"
-            name="image"
-            value={formData.image}
-            onChange={handleInputChange}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
-            placeholder="Enter image URL (e.g., https://example.com/image.jpg)"
+          <ImageUploadPreview
+            currentImage={previewUrl || formData.image}
+            onImageUpload={handleImageSelect}
+            onImageRemove={handleImageRemove}
+            uploading={false}
+            showUploadButton={false}
           />
           {errors.image && (
             <p className="text-red-500 text-sm mt-1">{errors.image}</p>

@@ -11,6 +11,7 @@ const useBlogStore = create((set, get) => ({
   // Fallback demo data
   demoBlogs: [
     {
+      id: 'demo-1',
       _id: 'demo-1',
       title: 'Welcome to NDH Technologies',
       author: 'NDH Technologies',
@@ -21,6 +22,7 @@ const useBlogStore = create((set, get) => ({
       createdAt: new Date('2024-01-15')
     },
     {
+      id: 'demo-2',
       _id: 'demo-2',
       title: 'The Future of Web Development',
       author: 'Tech Team',
@@ -31,6 +33,7 @@ const useBlogStore = create((set, get) => ({
       createdAt: new Date('2024-01-20')
     },
     {
+      id: 'demo-3',
       _id: 'demo-3',
       title: 'Digital Transformation Success Stories',
       author: 'NDH Technologies',
@@ -122,11 +125,17 @@ const useBlogStore = create((set, get) => ({
 
   // Create new blog
   createBlog: async (blogData) => {
-    console.log('📝 Creating blog:', blogData.title);
+    // Check if blogData is FormData (it might be plain object if coming from elsewhere, but editor sends FormData)
+    const isFormData = blogData instanceof FormData;
+    console.log('📝 Creating blog:', isFormData ? blogData.get('title') : blogData.title);
+
     set({ loading: true, error: null });
     try {
-      const response = await axiosInstance.post('/api/blogs', blogData);
-      const newBlog = response.data;
+      // Axios automatically sets Content-Type: multipart/form-data when data is FormData
+      const response = await axiosInstance.post('/api/blogs', blogData, {
+        headers: isFormData ? { 'Content-Type': 'multipart/form-data' } : {}
+      });
+      const newBlog = response.data?.data || response.data;
       console.log('✅ Blog created via API:', newBlog._id);
 
       // Add new blog to the list
@@ -136,13 +145,14 @@ const useBlogStore = create((set, get) => ({
       }));
 
       return newBlog;
-    } catch {
-      console.log('❌ Backend not available, cannot create blog');
+    } catch (error) {
+      console.error('❌ Backend error creating blog:', error);
+      const errorMessage = error.response?.data?.message || error.message || 'Unknown error';
       set({
         loading: false,
-        error: 'Cannot create blog: Backend is not available. Please check your connection.'
+        error: `Cannot create blog: ${errorMessage}`
       });
-      throw new Error('Backend not available. Blog creation failed.');
+      throw error; // Re-throw to let component handle alert
     }
   },
 
@@ -167,10 +177,15 @@ const useBlogStore = create((set, get) => ({
 
   // Update existing blog
   updateBlog: async (id, blogData) => {
+    // Check if blogData is FormData
+    const isFormData = blogData instanceof FormData;
     set({ loading: true, error: null });
+
     try {
-      const response = await axiosInstance.put(`/api/blogs/${id}`, blogData);
-      const updatedBlog = response.data;
+      const response = await axiosInstance.put(`/api/blogs/${id}`, blogData, {
+        headers: isFormData ? { 'Content-Type': 'multipart/form-data' } : {}
+      });
+      const updatedBlog = response.data?.data || response.data;
 
       // Update blog in the list
       set((state) => ({
@@ -182,24 +197,14 @@ const useBlogStore = create((set, get) => ({
       }));
 
       return updatedBlog;
-    } catch {
-      console.log('Backend not available, updating blog locally');
-      // Update blog locally
-      const updatedBlog = {
-        ...blogData,
-        _id: id,
-        updatedAt: new Date()
-      };
-
-      set((state) => ({
-        blogs: state.blogs.map(blog =>
-          blog._id === id ? updatedBlog : blog
-        ),
-        selectedBlog: state.selectedBlog?._id === id ? updatedBlog : state.selectedBlog,
-        loading: false
-      }));
-
-      return updatedBlog;
+    } catch (error) {
+      console.error('❌ Backend error updating blog:', error);
+      const errorMessage = error.response?.data?.message || error.message || 'Unknown error';
+      set({
+        loading: false,
+        error: `Cannot update blog: ${errorMessage}`
+      });
+      throw error;
     }
   },
 

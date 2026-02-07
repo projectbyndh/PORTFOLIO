@@ -49,7 +49,7 @@ const FAQForm = ({ faq, onClose }) => {
       };
 
       if (faq) {
-        await updateFAQ(faq._id, faqData);
+        await updateFAQ(faq.id, faqData);
       } else {
         await createFAQ(faqData);
       }
