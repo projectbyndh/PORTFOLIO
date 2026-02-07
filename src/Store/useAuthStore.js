@@ -9,23 +9,23 @@ const useAuthStore = create(
       isAuthenticated: false,
       user: null,
       token: null,
-      
+
       // Admin credentials (in production, verify against backend)
       ADMIN_USERNAME: 'admin',
-      ADMIN_PASSWORD: 'admin',
+      ADMIN_PASSWORD: 'manigram#2025@ndhadmin',
 
       // Actions
       login: async (username, password) => {
         console.log('Login attempt:', { username, password });
-        
+
         // Simple admin login validation
-        if (username === 'admin' && password === 'admin') {
+        if (username === 'admin' && password === 'manigram#2025@ndhadmin') {
           console.log('Login successful');
-          
+
           // Set mock token for backend auth
           const mockToken = 'mock-admin-token-' + Date.now();
           localStorage.setItem('token', mockToken);
-          
+
           set({
             isAuthenticated: true,
             user: { username: 'admin', role: 'admin' },
@@ -33,7 +33,7 @@ const useAuthStore = create(
           });
           return { success: true };
         }
-        
+
         console.log('Login failed - invalid credentials');
         return { success: false, message: 'Invalid credentials' };
       },
@@ -41,7 +41,7 @@ const useAuthStore = create(
       logout: () => {
         // Clear token from localStorage
         localStorage.removeItem('token');
-        
+
         set({
           isAuthenticated: false,
           user: null,

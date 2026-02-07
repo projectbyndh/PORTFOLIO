@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Mail, Phone, MapPin, Send, Code2,
-  Github, Linkedin, Globe, Terminal, ArrowUpRight
+  Linkedin, Globe, Terminal, ArrowUpRight
 } from "lucide-react";
 import Logo from "./Logo";
 
@@ -34,7 +34,7 @@ const Footer = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
 
-        {/* --- LAYER 1: BRAND HUB & NEWSLETTER --- */}
+        {/* --- LAYER 1: BRAND HUB --- */}
         <div className="flex flex-col lg:flex-row justify-between items-start gap-16 mb-20 pb-12 border-b border-white/5">
           <div className="max-w-md">
             <Link to="/" className="flex items-center gap-4 mb-6 group w-fit">
@@ -42,35 +42,10 @@ const Footer = () => {
               <div className="p-3 bg-white/5 rounded-2xl border border-white/10 ring-1 ring-white/5 group-hover:border-[#4A8EBC]/50 transition-all duration-500 shadow-[0_0_20px_rgba(255,255,255,0.02)]">
                 <Logo className="h-16 w-auto" />
               </div>
-              <div>
-                <h2 className="text-2xl font-black text-white tracking-tighter">
-                  NDH<span className="text-[#4A8EBC]">.</span>
-                </h2>
-                <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/30">Digital Infrastructure</span>
-              </div>
             </Link>
             <p className="text-lg text-gray-400 font-medium leading-relaxed">
               We are a collective of digital architects engineering <span className="text-white">autonomous ecosystems</span> for the global frontier.
             </p>
-          </div>
-
-          {/* Newsletter */}
-          <div className="w-full lg:w-auto">
-            <div className="bg-white/[0.02] border border-white/5 rounded-[2rem] p-6 backdrop-blur-sm relative group max-w-md">
-              <h4 className="flex items-center gap-3 text-white font-bold mb-4 text-sm uppercase tracking-widest">
-                <Terminal size={16} className="text-[#4A8EBC]" /> [Subscribe_to_Core]
-              </h4>
-              <form className="flex flex-col sm:flex-row gap-3 relative z-10">
-                <input
-                  type="email"
-                  placeholder="name@enterprise.io"
-                  className="bg-black/20 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-[#4A8EBC]/50 transition-all w-full font-mono text-sm"
-                />
-                <button className="bg-white text-black px-6 py-3 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-[#4A8EBC] hover:text-white transition-all active:scale-95 shadow-lg whitespace-nowrap">
-                  Join <ArrowUpRight size={16} />
-                </button>
-              </form>
-            </div>
           </div>
         </div>
 
@@ -81,24 +56,24 @@ const Footer = () => {
             <h5 className="text-white/40 font-mono text-[10px] font-black uppercase tracking-[0.2em] mb-4">Services</h5>
             <ul className="space-y-3">
               <li>
-                <Link to="/services" className="text-gray-500 hover:text-white transition-colors flex items-center group text-sm font-medium">
+                <span className="text-gray-500 text-sm font-medium cursor-default">
                   All Services
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to="/services#web-development" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                <span className="text-gray-500 text-sm font-medium cursor-default">
                   Web Development
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to="/services#mobile-apps" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                <span className="text-gray-500 text-sm font-medium cursor-default">
                   Mobile Apps
-                </Link>
+                </span>
               </li>
               <li>
-                <Link to="/services#digital-marketing" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                <span className="text-gray-500 text-sm font-medium cursor-default">
                   Digital Marketing
-                </Link>
+                </span>
               </li>
             </ul>
           </div>
@@ -108,7 +83,7 @@ const Footer = () => {
             <h5 className="text-white/40 font-mono text-[10px] font-black uppercase tracking-[0.2em] mb-4">Company</h5>
             <ul className="space-y-3">
               <li>
-                <Link to="/about" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                <Link to="/about-us" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
                   About Us
                 </Link>
               </li>
@@ -140,18 +115,18 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/faq" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
-                  FAQs
-                </Link>
-              </li>
-              <li>
                 <Link to="/contact" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
                   Contact Us
                 </Link>
               </li>
               <li>
-                <Link to="/privacy" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                <Link to="/privacy-policy" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
                   Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="text-gray-500 hover:text-white transition-colors text-sm font-medium">
+                  Terms & Conditions
                 </Link>
               </li>
             </ul>
@@ -196,7 +171,7 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center gap-3 order-1 md:order-2">
-            {[Github, Linkedin, Globe].map((Icon, i) => (
+            {[Linkedin, Globe].map((Icon, i) => (
               <a key={i} href="#" className="w-8 h-8 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 hover:scale-105 transition-all">
                 <Icon size={14} />
               </a>

@@ -1,0 +1,31 @@
+{
+    "name": "NDH Technologies - Digital Excellence",
+    "short_name": "NDH Tech",
+    "description": "Transform your business with innovative digital solutions. Web development, mobile apps, SaaS, ERP, and digital marketing services.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#FAFAFA",
+    "theme_color": "#4A8EBC",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/favicon.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/favicon.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": [
+        "business",
+        "technology",
+        "productivity"
+    ],
+    "lang": "en-US",
+    "dir": "ltr"
+}

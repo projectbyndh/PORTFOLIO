@@ -44,6 +44,11 @@ const ImageUploadPreview = ({
       // Create preview URL
       const url = URL.createObjectURL(file);
       setPreviewUrl(url);
+
+      // If showUploadButton is false, immediately pass the file to parent
+      if (!showUploadButton && onImageUpload) {
+        onImageUpload(file);
+      }
     }
   };
 

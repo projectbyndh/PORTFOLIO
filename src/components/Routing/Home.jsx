@@ -8,6 +8,7 @@ import Refer from "../Refer";
 import AboutUs from "../Aboutus";
 import Blogsection from "../Blogsection";
 import CompaniesSection from "../CompaniesSection";
+import PartnersSection from "../PartnersSection";
 
 
 function Home() {
@@ -16,6 +17,7 @@ function Home() {
       <First />
       <Services />
       <CompaniesSection />
+      <PartnersSection />
       <NepalMap />
       <Refer />
       <Testimonails />

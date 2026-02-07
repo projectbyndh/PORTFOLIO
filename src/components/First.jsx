@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Globe, Shield, Zap } from 'lucide-react';
-import logo from '../assets/logo.png';
+import Logo from './Logo';
 
 const HeroSection = () => {
   return (
@@ -140,7 +140,7 @@ const HeroSection = () => {
 
             <div className="relative z-10 space-y-6">
               <div className="w-16 h-16 rounded-2xl bg-white shadow-xl flex items-center justify-center p-3 border border-white/50">
-                <img src={logo} alt="NDH" className="w-full h-full object-contain" />
+                <Logo className="w-full h-full object-contain" />
               </div>
 
               <div className="space-y-3">

@@ -6,7 +6,7 @@ import useAuthStore from '../Store/useAuthStore';
 export default function AdminLogin() {
   const navigate = useNavigate();
   const { login } = useAuthStore();
-  
+
   const [formData, setFormData] = useState({
     username: '',
     password: '',
@@ -30,7 +30,7 @@ export default function AdminLogin() {
 
     try {
       const result = await login(formData.username, formData.password);
-      
+
       if (result.success) {
         navigate('/admin/dashboard');
       } else {
@@ -155,7 +155,6 @@ export default function AdminLogin() {
           {/* Info Note */}
           <div className="mt-6 pt-6 border-t border-[#4A8EBC]/10">
             <p className="text-xs text-[#2B4066]/60 text-center">
-              Default credentials: <span className="font-semibold">admin / NDH@2024</span>
             </p>
           </div>
         </div>

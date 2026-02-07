@@ -151,21 +151,26 @@ const TeamForm = ({ team, onClose }) => {
           )}
         </div>
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-[#4A8EBC]/10">
+        <div className="flex justify-end gap-3 pt-6 border-t border-[#4A8EBC]/10">
           <button
             type="button"
             onClick={onClose}
             disabled={submitting}
-            className="px-5 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/10 hover:bg-[#4A8EBC]/20 rounded-xl transition-all duration-200 border border-[#4A8EBC]/20 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-6 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/5 hover:bg-[#4A8EBC]/10 rounded-xl transition-all duration-200 border border-[#4A8EBC]/20 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={submitting}
-            className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all duration-200 shadow-lg shadow-[#4A8EBC]/25"
+            className="px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] hover:shadow-lg hover:shadow-[#4A8EBC]/25 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all duration-200"
           >
-            {submitting ? 'Saving...' : (team ? 'Update' : 'Create')}
+            {submitting ? (
+              <div className="flex items-center gap-2">
+                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                Saving...
+              </div>
+            ) : (team ? 'Update Member' : 'Add Member')}
           </button>
         </div>
       </form>

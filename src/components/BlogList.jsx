@@ -28,9 +28,8 @@ const BlogList = ({
   // Loading state
   if (loading && blogs.length === 0) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
-        <span className="ml-2 text-gray-600">Loading blogs...</span>
+      <div className="flex justify-center items-center h-full py-20">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4A8EBC]"></div>
       </div>
     );
   }
@@ -38,12 +37,12 @@ const BlogList = ({
   // Empty state
   if (!loading && blogs.length === 0) {
     return (
-      <div className="text-center py-12">
-        <div className="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full flex items-center justify-center">
-          <Eye className="w-8 h-8 text-gray-400" />
+      <div className="flex flex-col items-center justify-center h-full text-center py-20">
+        <div className="w-20 h-20 bg-[#F5FAFF] rounded-full flex items-center justify-center mb-4">
+          <Eye className="w-10 h-10 text-[#4A8EBC]/40" />
         </div>
-        <h3 className="text-lg font-medium text-gray-900 mb-2">No blogs found</h3>
-        <p className="text-gray-500">Get started by creating your first blog post.</p>
+        <p className="text-[#2B4066] font-semibold text-lg mb-2">No blogs found</p>
+        <p className="text-[#2B4066]/60 mb-6 max-w-sm">Get started by creating your first blog post.</p>
       </div>
     );
   }
@@ -51,30 +50,30 @@ const BlogList = ({
   return (
     <div className="overflow-x-auto">
       <table className="w-full">
-        <thead>
-          <tr className="border-b border-gray-200">
-            <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">
+        <thead className="bg-[#F5FAFF] border-b border-[#4A8EBC]/10">
+          <tr>
+            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
               Blog Details
             </th>
-            <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">
+            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
               Author
             </th>
-            <th className="text-left py-3 px-4 text-sm font-semibold text-gray-900">
+            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
               Date
             </th>
-            <th className="text-right py-3 px-4 text-sm font-semibold text-gray-900">
+            <th className="px-6 py-4 text-right text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
               Actions
             </th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="divide-y divide-[#4A8EBC]/5">
           {blogs.map((blog) => (
             <tr
               key={blog._id || blog.id}
-              className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
+              className="hover:bg-[#F5FAFF]/50 transition-colors group"
             >
               {/* Blog Details */}
-              <td className="py-4 px-4">
+              <td className="px-6 py-4">
                 <div className="flex items-center gap-3">
                   {/* Image Preview */}
                   {blog.image ? (
@@ -82,28 +81,28 @@ const BlogList = ({
                       <img
                         src={blog.image}
                         alt={blog.title}
-                        className="w-12 h-12 object-cover rounded-lg border border-gray-200 flex-shrink-0"
+                        className="w-12 h-12 object-cover rounded-lg border border-[#4A8EBC]/10 flex-shrink-0"
                         onError={(e) => {
                           e.target.style.display = 'none';
                           e.target.nextElementSibling.style.display = 'flex';
                         }}
                       />
-                      <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0 hidden">
-                        <Eye className="w-6 h-6 text-gray-400" />
+                      <div className="w-12 h-12 bg-[#F5FAFF] rounded-lg flex items-center justify-center flex-shrink-0 hidden border border-[#4A8EBC]/5">
+                        <Eye className="w-6 h-6 text-[#4A8EBC]/40" />
                       </div>
                     </>
                   ) : (
-                    <div className="w-12 h-12 bg-gray-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <Eye className="w-6 h-6 text-gray-400" />
+                    <div className="w-12 h-12 bg-[#F5FAFF] rounded-lg flex items-center justify-center flex-shrink-0 border border-[#4A8EBC]/5">
+                      <Eye className="w-6 h-6 text-[#4A8EBC]/40" />
                     </div>
                   )}
 
                   {/* Title and Description */}
                   <div className="min-w-0 flex-1">
-                    <h4 className="font-semibold text-gray-900 truncate">
+                    <h4 className="font-semibold text-[#1A2A44] truncate group-hover:text-[#4A8EBC] transition-colors">
                       {blog.title || 'Untitled'}
                     </h4>
-                    <p className="text-sm text-gray-600 line-clamp-2 mt-1">
+                    <p className="text-sm text-[#2B4066]/70 line-clamp-2 mt-1">
                       {blog.description || blog.content || 'No description available'}
                     </p>
                   </div>
@@ -111,47 +110,49 @@ const BlogList = ({
               </td>
 
               {/* Author */}
-              <td className="py-4 px-4">
+              <td className="px-6 py-4">
                 <div className="flex items-center gap-2">
-                  <User className="w-4 h-4 text-gray-400" />
-                  <span className="text-sm text-gray-900">
+                  <User className="w-4 h-4 text-[#4A8EBC]/60" />
+                  <span className="text-sm text-[#2B4066]">
                     {blog.author || 'Unknown'}
                   </span>
                 </div>
               </td>
 
               {/* Date */}
-              <td className="py-4 px-4">
+              <td className="px-6 py-4">
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-gray-400" />
-                  <span className="text-sm text-gray-600">
+                  <Calendar className="w-4 h-4 text-[#4A8EBC]/60" />
+                  <span className="text-sm text-[#2B4066]/70">
                     {formatDate(blog.createdAt || blog.date)}
                   </span>
                 </div>
               </td>
 
               {/* Actions */}
-              <td className="py-4 px-4">
-                <div className="flex items-center justify-end gap-2">
+              <td className="px-6 py-4">
+                <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button
                     onClick={() => onEdit(blog)}
-                    className="p-2 text-blue-600 hover:bg-blue-50 rounded-md transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:ring-offset-2 focus:ring-offset-white/50"
+                    className="px-4 py-2 bg-[#4A8EBC]/10 text-[#4A8EBC] rounded-lg hover:bg-[#4A8EBC]/20 transition-all flex items-center gap-2 font-medium"
                     title="Edit blog"
-                    aria-label={`Edit blog: ${blog.title}`}
                   >
                     <Edit className="w-4 h-4" />
+                    Edit
                   </button>
                   <button
                     onClick={() => onDelete(blog._id || blog.id)}
                     disabled={deletingId === (blog._id || blog.id)}
-                    className="p-2 text-red-600 hover:bg-red-50 rounded-md transition-colors disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-2 focus:ring-red-500/50 focus:ring-offset-2 focus:ring-offset-white/50"
+                    className="px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-all flex items-center gap-2 font-medium disabled:opacity-50"
                     title="Delete blog"
-                    aria-label={`Delete blog: ${blog.title}`}
                   >
                     {deletingId === (blog._id || blog.id) ? (
                       <Loader2 className="w-4 h-4 animate-spin" />
                     ) : (
-                      <Trash2 className="w-4 h-4" />
+                      <>
+                        <Trash2 className="w-4 h-4" />
+                        Delete
+                      </>
                     )}
                   </button>
                 </div>

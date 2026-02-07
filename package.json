@@ -32,6 +32,7 @@
     "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.6.2",
     "react-slick": "^0.30.3",
+    "react-top-loading-bar": "^3.0.2",
     "shadcn-ui": "^0.9.5",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.2.8",

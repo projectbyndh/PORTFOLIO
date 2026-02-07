@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useContacts } from '../hooks/useContacts';
 import toast from 'react-hot-toast';
 

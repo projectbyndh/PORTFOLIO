@@ -172,28 +172,7 @@ const useTestimonials = () => {
         }
     };
 
-    // Toggle featured status
-    const toggleFeatured = async (id) => {
-        try {
-            setLoading(true);
-            clearError();
-            const response = await axios.patch(`/api/testimonials/${id}/toggle-featured`, {}, {
-                timeout: 10000,
-            });
-            if (response.data.success) {
-                updateTestimonial(response.data.data);
-                toast.success(response.data.message);
-                return response.data.data;
-            }
-        } catch (err) {
-            const errorMessage = err.response?.data?.message || 'Failed to toggle featured status';
-            setError(errorMessage);
-            toast.error(errorMessage);
-            throw err;
-        } finally {
-            setLoading(false);
-        }
-    };
+
 
     return {
         testimonials,
@@ -205,7 +184,7 @@ const useTestimonials = () => {
         createTestimonial,
         updateTestimonialById,
         deleteTestimonial,
-        toggleFeatured,
+        // toggleFeatured,
         clearError
     };
 };
