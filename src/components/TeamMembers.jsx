@@ -172,7 +172,7 @@ export default function TeamMembers() {
 }
 
 function MemberCard({ member, index }) {
-  const roleTitle = member.roleTitle || 'Team Member';
+  const jobTitle = member.title || 'Team Member';
 
   return (
     <motion.div
@@ -207,7 +207,7 @@ function MemberCard({ member, index }) {
         </h3>
 
         <div className="inline-block px-3 py-1 rounded-full bg-[#4A8EBC]/10 text-[#4A8EBC] text-xs font-bold uppercase tracking-wide mb-4">
-          {roleTitle}
+          {jobTitle}
         </div>
 
         {member.bio && (

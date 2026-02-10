@@ -68,8 +68,8 @@ function Blogsection() {
   };
 
   const formatDate = (blog) => {
-    // Use the date field from the blog object, fallback to createdAt or _id
-    const dateString = blog.date || blog.createdAt || blog._id;
+    // Use the date field from the blog object, fallback to createdAt or id
+    const dateString = blog.date || blog.createdAt || blog.id || blog._id;
     const date = new Date(dateString)
     return date.toLocaleDateString("en-US", {
       month: "short",
@@ -88,8 +88,8 @@ function Blogsection() {
     return content.length > maxLength ? content.substring(0, maxLength) + "..." : content
   }
 
-  // Use blogs from API only
-  const displayBlogs = blogs;
+  // Use blogs from API only, filter out any without valid IDs
+  const displayBlogs = blogs.filter(blog => blog.id || blog._id);
 
   // Show loading state
   if (loading && blogs.length === 0) {
@@ -222,7 +222,7 @@ function Blogsection() {
               >
                 {displayBlogs.map((blog) => (
                   <div
-                    key={blog._id}
+                    key={blog._id || blog.id}
                     className="shrink-0 w-full sm:px-4"
                     style={{ width: slidesToShow === 1 ? '100%' : `${100 / slidesToShow}%` }}
                   >
@@ -278,7 +278,7 @@ function Blogsection() {
                           </div>
 
                           <Link
-                            to={`/blog-details?id=${blog._id}`}
+                            to={`/blog-details?id=${blog.id || blog._id}`}
                             className="group/link inline-flex items-center gap-1.5 text-[#4A8EBC] hover:text-[#3B5488] font-bold text-xs uppercase tracking-wider transition-all duration-300"
                           >
                             <span>Read</span>

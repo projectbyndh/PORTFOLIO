@@ -5,7 +5,7 @@ import useAuthStore from '../Store/useAuthStore';
 
 export default function AdminLogin() {
   const navigate = useNavigate();
-  const { login } = useAuthStore();
+  const { login, verifyToken } = useAuthStore();
 
   const [formData, setFormData] = useState({
     username: '',
@@ -14,15 +14,21 @@ export default function AdminLogin() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
-  // Check if user is already logged in
+  // Check if user is already logged in by verifying with backend
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      // User is already logged in, redirect to dashboard
-      navigate('/admin/dashboard', { replace: true });
-    }
-  }, [navigate]);
+    const checkAuthentication = async () => {
+      const result = await verifyToken();
+      if (result.success) {
+        // User is already logged in, redirect to dashboard
+        navigate('/admin/dashboard', { replace: true });
+      }
+      setIsCheckingAuth(false);
+    };
+    
+    checkAuthentication();
+  }, [navigate, verifyToken]);
 
   const handleChange = (e) => {
     setFormData({
@@ -41,16 +47,29 @@ export default function AdminLogin() {
       const result = await login(formData.username, formData.password);
 
       if (result.success) {
-        navigate('/admin/dashboard');
+        // Redirect to dashboard with replace to prevent going back to login
+        navigate('/admin/dashboard', { replace: true });
       } else {
         setError(result.message || 'Invalid credentials');
+        setIsLoading(false);
       }
     } catch (error) {
       setError('Login failed. Please try again.');
-    } finally {
       setIsLoading(false);
     }
   };
+
+  // Show loading while checking authentication
+  if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] via-white to-[#F0F7FF] flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-[#4A8EBC] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-[#2B4066] font-semibold">Checking authentication...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-linear-to-br from-[#F5FAFF] via-white to-[#F0F7FF] flex items-center justify-center px-4 relative overflow-hidden">
@@ -85,7 +104,7 @@ export default function AdminLogin() {
             {/* Username */}
             <div>
               <label htmlFor="username" className="block text-sm font-semibold text-[#1A2A44] mb-2">
-                Username
+                Email Address
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -94,12 +113,12 @@ export default function AdminLogin() {
                 <input
                   id="username"
                   name="username"
-                  type="text"
+                  type="email"
                   required
                   value={formData.username}
                   onChange={handleChange}
                   className="block w-full pl-10 pr-3 py-3 border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300"
-                  placeholder="Enter username"
+                  placeholder="Enter admin email"
                 />
               </div>
             </div>

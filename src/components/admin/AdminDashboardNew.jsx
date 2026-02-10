@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import AdminLayout from './AdminLayout';
 import usePartners from '../../hooks/usePartners';
-import useTeamStructure from '../../hooks/useTeamStructure';
+import useTeamStructureSimplified from '../../hooks/useTeamStructureSimplified';
 import useProjects from '../../hooks/useProjects';
 import useServices from '../../hooks/useServices';
 import useBlogStore from '../../Store/useBlogStore';
@@ -22,7 +22,7 @@ import useBlogStore from '../../Store/useBlogStore';
 export default function AdminDashboard() {
     const navigate = useNavigate();
     const { partners } = usePartners();
-    const { members: teams } = useTeamStructure();
+    const { members: teams } = useTeamStructureSimplified();
     const { projects } = useProjects();
     const { services } = useServices();
     const { blogs } = useBlogStore();
@@ -105,7 +105,7 @@ export default function AdminDashboard() {
                     <h2 className="text-2xl font-bold text-neutral-900 mb-6">Recent Activity</h2>
                     <div className="space-y-4">
                         {blogs?.slice(0, 5).map((blog) => (
-                            <div key={blog._id} className="flex items-center gap-4 p-4 bg-neutral-50 rounded-xl">
+                            <div key={blog.id || blog._id} className="flex items-center gap-4 p-4 bg-neutral-50 rounded-xl">
                                 <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] flex items-center justify-center">
                                     <FileText className="w-6 h-6 text-white" />
                                 </div>

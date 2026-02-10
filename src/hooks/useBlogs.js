@@ -1,10 +1,9 @@
 import { useState, useCallback } from 'react';
-import axiosInstance from '../api/axios';
+import apiClient from '../api/apiClient';
 import toast from 'react-hot-toast';
 
 /**
  * Custom hook for blog management operations
- * Handles all CRUD operations for blogs with proper error handling and loading states
  */
 export const useBlogs = () => {
   const [blogs, setBlogs] = useState([]);
@@ -19,12 +18,12 @@ export const useBlogs = () => {
     setError(null);
 
     try {
-      const response = await axiosInstance.get('/api/blogs');
-      const blogData = response.data?.data || [];
-      setBlogs(blogData);
-      return blogData;
+      const data = await apiClient('/blogs');
+      const blogsData = data?.data || [];
+      setBlogs(blogsData);
+      return blogsData;
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to fetch blogs';
+      const errorMessage = err.data?.message || 'Failed to fetch blogs';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -41,10 +40,10 @@ export const useBlogs = () => {
     setError(null);
 
     try {
-      const response = await axiosInstance.get(`/api/blogs/${id}`);
-      return response.data?.data || response.data;
+      const data = await apiClient(`/blogs/${id}`);
+      return data?.data || data;
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to fetch blog';
+      const errorMessage = err.data?.message || 'Failed to fetch blog';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -57,30 +56,21 @@ export const useBlogs = () => {
    * Create a new blog
    */
   const createBlog = useCallback(async (blogData) => {
-    console.log('🔍 useBlogs createBlog - blogData type:', blogData instanceof FormData ? 'FormData' : typeof blogData);
-    console.log('🔍 useBlogs createBlog - blogData:', blogData);
-
-    if (blogData instanceof FormData) {
-      console.log('📦 FormData entries:');
-      for (let pair of blogData.entries()) {
-        console.log(`  ${pair[0]}:`, pair[1]);
-      }
-    }
-
     setLoading(true);
     setError(null);
 
     try {
-      const response = await axiosInstance.post('/api/blogs', blogData);
-      const newBlog = response.data?.data || response.data;
+      const data = await apiClient('/blogs', {
+        method: 'POST',
+        body: blogData
+      });
+      const newBlog = data?.data || data;
 
-      // Add to local state
       setBlogs(prev => [newBlog, ...prev]);
-
       toast.success('Blog created successfully!');
       return newBlog;
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to create blog';
+      const errorMessage = err.data?.message || 'Failed to create blog';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -97,18 +87,20 @@ export const useBlogs = () => {
     setError(null);
 
     try {
-      const response = await axiosInstance.put(`/api/blogs/${id}`, blogData);
-      const updatedBlog = response.data?.data || response.data;
+      const data = await apiClient(`/blogs/${id}`, {
+        method: 'PUT',
+        body: blogData
+      });
+      const updatedBlog = data?.data || data;
 
-      // Update local state
       setBlogs(prev => prev.map(blog =>
-        blog._id === id ? updatedBlog : blog
+        (blog.id || blog._id) === id ? updatedBlog : blog
       ));
 
       toast.success('Blog updated successfully!');
       return updatedBlog;
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to update blog';
+      const errorMessage = err.data?.message || 'Failed to update blog';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -125,14 +117,11 @@ export const useBlogs = () => {
     setError(null);
 
     try {
-      await axiosInstance.delete(`/api/blogs/${id}`);
-
-      // Remove from local state
-      setBlogs(prev => prev.filter(blog => blog._id !== id));
-
+      await apiClient(`/blogs/${id}`, { method: 'DELETE' });
+      setBlogs(prev => prev.filter(blog => (blog.id || blog._id) !== id));
       toast.success('Blog deleted successfully!');
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to delete blog';
+      const errorMessage = err.data?.message || 'Failed to delete blog';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -149,20 +138,19 @@ export const useBlogs = () => {
     formData.append('image', file);
 
     try {
-      const response = await axiosInstance.post('/api/upload/image', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      const data = await apiClient('/upload/image', {
+        method: 'POST',
+        body: formData
       });
 
-      if (response.data?.success) {
+      if (data?.success) {
         toast.success('Image uploaded successfully!');
-        return response.data;
+        return data;
       } else {
         throw new Error('Upload failed');
       }
     } catch (err) {
-      const errorMessage = err.response?.data?.message || 'Failed to upload image';
+      const errorMessage = err.data?.message || 'Failed to upload image';
       toast.error(errorMessage);
       throw err;
     }

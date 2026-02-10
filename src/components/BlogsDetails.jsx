@@ -17,16 +17,21 @@ export default function BlogDetails() {
   const { selectedBlog, loading, error, fetchBlogById, clearSelectedBlog } = useBlogStore();
 
   useEffect(() => {
-    if (id) {
+    // Only fetch if we have a valid ID
+    if (id && id !== 'undefined') {
       fetchBlogById(id).catch(err => {
         console.error('Failed to fetch blog by ID:', err);
       });
+    } else if (!id) {
+      // If no ID is provided, redirect back to blogs
+      console.warn('No blog ID provided, redirecting to blogs page');
+      navigate('/blog');
     }
 
     return () => {
       clearSelectedBlog();
     };
-  }, [id, fetchBlogById, clearSelectedBlog]);
+  }, [id, fetchBlogById, clearSelectedBlog, navigate]);
 
   // Handle image load error
   const handleImageError = (e) => {

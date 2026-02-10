@@ -3,7 +3,7 @@ import ImageUploadPreview from './ImageUploadPreview';
 import { Linkedin, Github, Mail } from 'lucide-react';
 import { getImageUrl } from '../utils/getImageUrl';
 
-const TeamForm = ({ member, roles = [], layers = [], onClose, onSubmit }) => {
+const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
   const [submitting, setSubmitting] = useState(false);
 
   // Parse social links if they exist
@@ -11,8 +11,8 @@ const TeamForm = ({ member, roles = [], layers = [], onClose, onSubmit }) => {
 
   const [formData, setFormData] = useState({
     name: '',
-    roleId: '',
-    designation: '',
+    layerId: '',
+    title: '',
     bio: '',
     image: '',
     isPublic: true,
@@ -30,8 +30,8 @@ const TeamForm = ({ member, roles = [], layers = [], onClose, onSubmit }) => {
     const socials = member?.socialLinks || {};
     setFormData({
       name: member?.name || '',
-      roleId: member?.roleId ? String(member.roleId) : '',
-      designation: member?.designation || '',
+      layerId: member?.layerId ? String(member.layerId) : '',
+      title: member?.title || '',
       bio: member?.bio || member?.description || '',
       image: member?.image || '',
       isPublic: member?.isPublic !== undefined ? member.isPublic : true,
@@ -72,7 +72,8 @@ const TeamForm = ({ member, roles = [], layers = [], onClose, onSubmit }) => {
   const validateForm = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = 'Name is required';
-    if (!formData.roleId) newErrors.roleId = 'Role selection is required';
+    if (!formData.layerId) newErrors.layerId = 'Category selection is required';
+    if (!formData.title.trim()) newErrors.title = 'Job title is required';
     if (!formData.bio.trim()) newErrors.bio = 'Bio is required';
 
     // Check if we have either a file or an existing image URL or preview
@@ -92,13 +93,11 @@ const TeamForm = ({ member, roles = [], layers = [], onClose, onSubmit }) => {
       setSubmitting(true);
       const data = new FormData();
       data.append('name', formData.name);
-      data.append('roleId', formData.roleId);
+      data.append('layerId', formData.layerId);
+      data.append('title', formData.title);
       data.append('bio', formData.bio);
       data.append('isPublic', formData.isPublic);
       data.append('order', formData.order);
-      if (formData.designation.trim()) {
-        data.append('designation', formData.designation);
-      }
 
       const socialLinks = JSON.stringify({
         linkedin: formData.linkedin,
@@ -126,29 +125,6 @@ const TeamForm = ({ member, roles = [], layers = [], onClose, onSubmit }) => {
     }
   };
 
-  // Group roles by layer with type-safe comparison
-  const rolesByLayer = layers.map(layer => {
-    const layerRoles = roles.filter(r => String(r.layerId) === String(layer.id));
-    return { layer, roles: layerRoles };
-  }).filter(group => group.roles.length > 0);
-
-  console.log('🏗️ TeamForm Data:', {
-    totalRoles: roles.length,
-    groupedLayers: rolesByLayer.length,
-    layers: layers.length
-  });
-
-  // Check for roles that might not have a matching layer
-  const assignedRoleIds = new Set(rolesByLayer.flatMap(g => g.roles.map(r => r.id)));
-  const unassignedRoles = roles.filter(r => !assignedRoleIds.has(r.id));
-
-  if (unassignedRoles.length > 0) {
-    rolesByLayer.push({
-      layer: { id: 'unassigned', title: 'Other/Newly Added Roles' },
-      roles: unassignedRoles
-    });
-  }
-
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Name */}
@@ -167,53 +143,49 @@ const TeamForm = ({ member, roles = [], layers = [], onClose, onSubmit }) => {
         {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
       </div>
 
-      {/* Role Select */}
+      {/* Category Select */}
       <div>
-        <label htmlFor="roleId" className="block text-sm font-semibold text-[#1A2A44] mb-2">
-          Role <span className="text-red-500">*</span>
+        <label htmlFor="layerId" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          Category <span className="text-red-500">*</span>
         </label>
         <select
-          name="roleId"
-          id="roleId"
-          key={roles.length}
-          value={formData.roleId || ''}
+          name="layerId"
+          id="layerId"
+          value={formData.layerId || ''}
           onChange={handleInputChange}
           className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all bg-white text-[#1A2A44] font-medium block"
           required
         >
-          <option value="">-- Click to Select a Role --</option>
-          {rolesByLayer.map(({ layer, roles }) => (
-            <optgroup key={layer.id} label={layer.title}>
-              {roles.map(role => (
-                <option key={role.id} value={String(role.id)}>
-                  {role.title}
-                </option>
-              ))}
-            </optgroup>
+          <option value="">-- Select a Category --</option>
+          {categories.map(category => (
+            <option key={category.id} value={String(category.id)}>
+              {category.title}
+            </option>
           ))}
         </select>
-        {roles.length === 0 && (
+        {categories.length === 0 && (
           <p className="text-amber-500 text-xs mt-2 italic">
-            ⚠️ Setup Required: Go to the "Structure" tab to create roles first.
+            ⚠️ Setup Required: Create categories first (e.g., CEO, Developer, Marketing).
           </p>
         )}
-        {errors.roleId && <p className="text-red-500 text-xs mt-1">{errors.roleId}</p>}
+        {errors.layerId && <p className="text-red-500 text-xs mt-1">{errors.layerId}</p>}
       </div>
 
-      {/* Designation Override */}
+      {/* Job Title */}
       <div>
         <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
-          Custom Designation <span className="text-neutral-400 text-xs font-normal">(optional)</span>
+          Job Title <span className="text-red-500">*</span>
         </label>
         <input
           type="text"
-          name="designation"
-          value={formData.designation}
+          name="title"
+          value={formData.title}
           onChange={handleInputChange}
           className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
-          placeholder="Overrides role title on public page (e.g., Lead Developer)"
+          placeholder="e.g., Chief Executive Officer, Senior Developer, Marketing Manager"
         />
-        <p className="text-xs text-neutral-400 mt-1">Leave empty to use the role title as designation</p>
+        {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title}</p>}
+        <p className="text-xs text-neutral-400 mt-1">This will be displayed on the team member card</p>
       </div>
 
       {/* Visibility & Order Row */}

@@ -4,12 +4,12 @@ import { ArrowRight, Sparkles, Users, Award, Zap, CheckCircle2, Users2 } from 'l
 import { Link } from 'react-router-dom';
 import usePartners from '../hooks/usePartners';
 import useProjects from '../hooks/useProjects';
-import useTeamStructure from '../hooks/useTeamStructure';
+import useTeamStructureSimplified from '../hooks/useTeamStructureSimplified';
 
 function Refer() {
   const { partners } = usePartners();
   const { projects } = useProjects();
-  const { members: teams } = useTeamStructure();
+  const { members: teams } = useTeamStructureSimplified();
 
   const stats = useMemo(() => [
     { icon: Users, value: partners.length > 5 ? `${partners.length}+` : partners.length || '50+', label: 'Clients' },

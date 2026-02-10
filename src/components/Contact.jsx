@@ -8,7 +8,7 @@ import {
   Sparkles, Globe, ArrowRight, ShieldCheck
 } from "lucide-react"
 import toast from 'react-hot-toast'
-import axiosInstance from '../api/axios'
+import apiClient from '../api/apiClient'
 
 
 // Engineering Note: Centralized Animation Variants
@@ -52,9 +52,12 @@ export default function ContactAdvanced() {
         message: formData.message
       }
 
-      const response = await axiosInstance.post('/api/contacts', contactData)
+      const response = await apiClient('/contacts', {
+        method: 'POST',
+        body: contactData
+      })
 
-      if (response.data.success) {
+      if (response.success) {
         setSubmitted(true)
         toast.success('Communication Channel Established!')
         // Reset form
@@ -64,7 +67,7 @@ export default function ContactAdvanced() {
       }
     } catch (error) {
       console.error('Contact submission error:', error)
-      toast.error(error.response?.data?.message || 'Failed to send message. Please try again.')
+      toast.error(error.data?.message || 'Failed to send message. Please try again.')
     } finally {
       setIsSubmitting(false)
     }

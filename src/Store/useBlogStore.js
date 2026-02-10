@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import axiosInstance from '../api/axios';
+import apiClient from '../api/apiClient';
 
 const useBlogStore = create((set, get) => ({
   // State
@@ -52,8 +52,8 @@ const useBlogStore = create((set, get) => ({
     console.log('🔄 Fetching blogs from backend only...');
     set({ loading: true, error: null });
     try {
-      const response = await axiosInstance.get('/api/blogs');
-      const blogsData = response.data?.data || [];
+      const data = await apiClient('/blogs');
+      const blogsData = data?.data || [];
       console.log('✅ API returned blogs:', blogsData.length);
 
       if (blogsData.length === 0) {
@@ -71,19 +71,18 @@ const useBlogStore = create((set, get) => ({
       });
       return blogsData;
     } catch (error) {
-      // Handle 304 responses (cached content)
-      if (error.response?.status === 304) {
+      // Handle potential 304 or other errors
+      if (error.status === 304) {
         console.log('📚 Blog data not modified, using existing data');
         set({ loading: false });
-        return get().blogs; // Return existing blogs
+        return get().blogs;
       }
 
       console.log('❌ Backend not available/error, using demo data fallback');
-      // Fallback to demo data on error
       set({
         blogs: get().demoBlogs,
         loading: false,
-        error: null // Clear error to show demo blogs
+        error: null
       });
       return get().demoBlogs;
     }
@@ -93,24 +92,24 @@ const useBlogStore = create((set, get) => ({
   fetchBlogById: async (id) => {
     set({ loading: true, error: null });
     try {
-      const response = await axiosInstance.get(`/api/blogs/${id}`);
-      const blogData = response.data?.data || response.data;
+      const data = await apiClient(`/blogs/${id}`);
+      const blogData = data?.data || data;
       set({
         selectedBlog: blogData,
         loading: false
       });
       return blogData;
     } catch (error) {
-      // Handle 304 responses
-      if (error.response?.status === 304) {
+      if (error.status === 304) {
         console.log('📄 Blog not modified, using existing data');
         set({ loading: false });
-        return get().selectedBlog; // Return existing selected blog
+        return get().selectedBlog;
       }
 
       console.log('Backend not available, fetching blog locally');
-      // Find blog locally
-      const localBlog = get().blogs.find(blog => blog._id === id);
+      const localBlog = get().blogs.find(blog =>
+        String(blog.id) === String(id) || String(blog._id) === String(id)
+      );
       if (localBlog) {
         set({
           selectedBlog: localBlog,
@@ -125,20 +124,15 @@ const useBlogStore = create((set, get) => ({
 
   // Create new blog
   createBlog: async (blogData) => {
-    // Check if blogData is FormData (it might be plain object if coming from elsewhere, but editor sends FormData)
     const isFormData = blogData instanceof FormData;
-    console.log('📝 Creating blog:', isFormData ? blogData.get('title') : blogData.title);
-
     set({ loading: true, error: null });
     try {
-      // Axios automatically sets Content-Type: multipart/form-data when data is FormData
-      const response = await axiosInstance.post('/api/blogs', blogData, {
-        headers: isFormData ? { 'Content-Type': 'multipart/form-data' } : {}
+      const data = await apiClient('/blogs', {
+        method: 'POST',
+        body: blogData
       });
-      const newBlog = response.data?.data || response.data;
-      console.log('✅ Blog created via API:', newBlog._id);
+      const newBlog = data?.data || data;
 
-      // Add new blog to the list
       set((state) => ({
         blogs: [newBlog, ...state.blogs],
         loading: false
@@ -147,12 +141,12 @@ const useBlogStore = create((set, get) => ({
       return newBlog;
     } catch (error) {
       console.error('❌ Backend error creating blog:', error);
-      const errorMessage = error.response?.data?.message || error.message || 'Unknown error';
+      const errorMessage = error.data?.message || error.message || 'Unknown error';
       set({
         loading: false,
         error: `Cannot create blog: ${errorMessage}`
       });
-      throw error; // Re-throw to let component handle alert
+      throw error;
     }
   },
 
@@ -162,13 +156,12 @@ const useBlogStore = create((set, get) => ({
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await axiosInstance.post('/api/upload/image', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
+      const data = await apiClient('/upload/image', {
+        method: 'POST',
+        body: formData
       });
 
-      return response.data.url || response.data.imageUrl;
+      return data.url || data.imageUrl;
     } catch {
       console.log('📁 Backend upload not available, will use local storage');
       return null;
@@ -177,17 +170,15 @@ const useBlogStore = create((set, get) => ({
 
   // Update existing blog
   updateBlog: async (id, blogData) => {
-    // Check if blogData is FormData
-    const isFormData = blogData instanceof FormData;
     set({ loading: true, error: null });
 
     try {
-      const response = await axiosInstance.put(`/api/blogs/${id}`, blogData, {
-        headers: isFormData ? { 'Content-Type': 'multipart/form-data' } : {}
+      const data = await apiClient(`/blogs/${id}`, {
+        method: 'PUT',
+        body: blogData
       });
-      const updatedBlog = response.data?.data || response.data;
+      const updatedBlog = data?.data || data;
 
-      // Update blog in the list
       set((state) => ({
         blogs: state.blogs.map(blog =>
           blog._id === id ? updatedBlog : blog
@@ -199,7 +190,7 @@ const useBlogStore = create((set, get) => ({
       return updatedBlog;
     } catch (error) {
       console.error('❌ Backend error updating blog:', error);
-      const errorMessage = error.response?.data?.message || error.message || 'Unknown error';
+      const errorMessage = error.data?.message || error.message || 'Unknown error';
       set({
         loading: false,
         error: `Cannot update blog: ${errorMessage}`
@@ -212,9 +203,8 @@ const useBlogStore = create((set, get) => ({
   deleteBlog: async (id) => {
     set({ loading: true, error: null });
     try {
-      await axiosInstance.delete(`/api/blogs/${id}`);
+      await apiClient(`/blogs/${id}`, { method: 'DELETE' });
 
-      // Remove blog from the list
       set((state) => ({
         blogs: state.blogs.filter(blog => blog._id !== id),
         selectedBlog: state.selectedBlog?._id === id ? null : state.selectedBlog,
@@ -224,7 +214,6 @@ const useBlogStore = create((set, get) => ({
       return true;
     } catch {
       console.log('Backend not available, deleting blog locally');
-      // Delete blog locally
       set((state) => ({
         blogs: state.blogs.filter(blog => blog._id !== id),
         selectedBlog: state.selectedBlog?._id === id ? null : state.selectedBlog,

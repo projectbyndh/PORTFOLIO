@@ -161,7 +161,7 @@ export default function OurTeams() {
 
                         <div className="font-bold text-lg text-[#1A2A44] mb-1 text-center relative z-10">{member.name}</div>
                         <div className="text-[#4A8EBC] text-sm font-bold mb-3 uppercase tracking-wider relative z-10">
-                          {member.roleTitle || 'Team Member'}
+                          {member.title || 'Team Member'}
                         </div>
                         {member.bio && (
                           <div className="text-sm leading-relaxed text-center text-gray-500 relative z-10 line-clamp-3">
