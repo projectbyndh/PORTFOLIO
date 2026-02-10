@@ -153,7 +153,8 @@ export default function WorldMap() {
         </div>
       </div>
 
-      <style jsx global>{`
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .custom-marker .marker-container {
           position: relative;
           display: flex;
@@ -203,7 +204,7 @@ export default function WorldMap() {
         }
         .tooltip-name { font-weight: 800; font-size: 14px; margin: 0; color: #1A2A44; }
         .tooltip-status { font-size: 10px; color: #4A8EBC; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px; }
-      `}</style>
+      `}} />
     </div>
   )
 }

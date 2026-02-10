@@ -4,226 +4,50 @@ import React, { useEffect, useState } from "react"
 import Logo from "./Logo"
 // eslint-disable-next-line no-unused-vars
 import { motion } from "framer-motion"
-import useTeams from "../hooks/useTeams"
+import axiosInstance from "../api/axios"
+import { getImageUrl } from "../utils/getImageUrl"
 import Loader from "./Loader"
 
-// Animated NDH Character Component
-const AnimatedNDHCharacter = () => {
-  return (
-    <motion.svg
-      width="120"
-      height="120"
-      viewBox="0 0 120 120"
-      className="w-24 h-24"
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{
-        opacity: 1,
-        scale: 1,
-      }}
-      transition={{
-        duration: 0.5,
-        ease: "easeOut",
-      }}
-    >
-      {/* Head */}
-      <motion.circle
-        cx="60"
-        cy="35"
-        r="20"
-        fill="#FFD7A8"
-        animate={{
-          y: [0, -2, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-      />
-
-      {/* Eyes */}
-      <motion.g
-        animate={{
-          scaleY: [1, 0.1, 1],
-        }}
-        transition={{
-          duration: 3,
-          repeat: Number.POSITIVE_INFINITY,
-          repeatDelay: 2,
-        }}
-      >
-        <circle cx="53" cy="32" r="2.5" fill="#333" />
-        <circle cx="67" cy="32" r="2.5" fill="#333" />
-      </motion.g>
-
-      {/* Smile */}
-      <path d="M 52 40 Q 60 44 68 40" stroke="#333" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-
-      {/* Hoodie Body */}
-      <motion.g
-        animate={{
-          y: [0, -2, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-          delay: 0.1,
-        }}
-      >
-        {/* Main Hoodie */}
-        <path
-          d="M 35 55 L 30 95 L 50 95 L 50 58 L 60 50 L 70 50 L 70 58 L 70 95 L 90 95 L 85 55 Q 80 48 60 48 Q 40 48 35 55"
-          fill="#1a1a1a"
-        />
-
-        {/* Hood */}
-        <ellipse cx="60" cy="48" rx="25" ry="15" fill="#1a1a1a" />
-
-        {/* Hood Opening */}
-        <ellipse cx="60" cy="48" rx="20" ry="13" fill="#2a2a2a" />
-
-        {/* NDH Text on Hoodie */}
-        <text
-          x="60"
-          y="75"
-          fontSize="12"
-          fontWeight="bold"
-          fill="#fff"
-          textAnchor="middle"
-          fontFamily="Arial, sans-serif"
-        >
-          NDH
-        </text>
-
-        {/* Hoodie Strings */}
-        <line x1="52" y1="50" x2="48" y2="60" stroke="#444" strokeWidth="1.5" />
-        <line x1="68" y1="50" x2="72" y2="60" stroke="#444" strokeWidth="1.5" />
-        <circle cx="48" cy="60" r="2" fill="#444" />
-        <circle cx="72" cy="60" r="2" fill="#444" />
-
-        {/* Center Zipper */}
-        <line x1="60" y1="55" x2="60" y2="95" stroke="#555" strokeWidth="1" />
-      </motion.g>
-
-      {/* Arms with wave animation */}
-      <motion.g
-        animate={{
-          rotate: [0, 15, 0],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-        }}
-        style={{ originX: "25px", originY: "60px" }}
-      >
-        <ellipse cx="25" cy="60" rx="8" ry="18" fill="#1a1a1a" transform="rotate(-20 25 60)" />
-      </motion.g>
-
-      <motion.g
-        animate={{
-          rotate: [0, -15, 0],
-        }}
-        transition={{
-          duration: 1.5,
-          repeat: Number.POSITIVE_INFINITY,
-          ease: "easeInOut",
-          delay: 0.75,
-        }}
-        style={{ originX: "95px", originY: "60px" }}
-      >
-        <ellipse cx="95" cy="60" rx="8" ry="18" fill="#1a1a1a" transform="rotate(20 95 60)" />
-      </motion.g>
-
-      {/* Sparkles around character */}
-      <motion.circle
-        cx="20"
-        cy="30"
-        r="2"
-        fill="#4A8EBC"
-        animate={{
-          scale: [0, 1, 0],
-          opacity: [0, 1, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Number.POSITIVE_INFINITY,
-          delay: 0,
-        }}
-      />
-      <motion.circle
-        cx="100"
-        cy="40"
-        r="2"
-        fill="#4A8EBC"
-        animate={{
-          scale: [0, 1, 0],
-          opacity: [0, 1, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Number.POSITIVE_INFINITY,
-          delay: 0.7,
-        }}
-      />
-      <motion.circle
-        cx="25"
-        cy="80"
-        r="1.5"
-        fill="#4A8EBC"
-        animate={{
-          scale: [0, 1, 0],
-          opacity: [0, 1, 0],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Number.POSITIVE_INFINITY,
-          delay: 1.4,
-        }}
-      />
-    </motion.svg>
-  )
-}
-
 export default function OurTeams() {
-  const { teams, loading, error, fetchTeams } = useTeams();
+  const [teamData, setTeamData] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
-  // Transform API data to match component structure
-  const displayMembers = teams.map(team => ({
-    name: team.name,
-    position: team.position,
-    level: team.position.toLowerCase().includes('ceo') || team.position.toLowerCase().includes('cto') || team.position.toLowerCase().includes('cfo') || team.position.toLowerCase().includes('head')
-      ? 'executive'
-      : team.position.toLowerCase().includes('lead') || team.position.toLowerCase().includes('manager')
-        ? 'management'
-        : 'staff',
-    bio: team.description,
-    image_url: team.image,
-  }));
+  useEffect(() => {
+    const fetchPublicTeam = async () => {
+      try {
+        setLoading(true)
+        const response = await axiosInstance.get('/api/team-structure/structure/public')
+        if (response.data.success) {
+          setTeamData(response.data.data)
+        }
+      } catch (err) {
+        console.error('Failed to fetch team structure:', err)
+        setError('Failed to load team data')
+      } finally {
+        setLoading(false)
+      }
+    }
+    fetchPublicTeam()
+  }, [])
 
-  const executiveTeam = displayMembers.filter((m) => m.level === "executive")
-  const managementTeam = displayMembers.filter((m) => m.level === "management")
-  const staffTeam = displayMembers.filter((m) => m.level === "staff")
+  if (loading) return <Loader />
 
-  if (loading) return <Loader />;
   if (error) {
     return (
       <div className="min-h-screen bg-[#FAFAFA] py-12 flex items-center justify-center relative">
-        {/* Grain texture */}
         <div className="fixed inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none z-0" />
         <div className="text-center">
           <div className="text-red-500 mb-4">{error}</div>
-          <button
-            onClick={fetchTeams}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          >
+          <button onClick={() => window.location.reload()} className="bg-[#4A8EBC] hover:bg-[#3B7AA8] text-white font-bold py-2 px-6 rounded-xl">
             Retry
           </button>
         </div>
       </div>
-    );
+    )
   }
+
+  const hasMembers = teamData.some(layer => layer.members && layer.members.length > 0)
 
   return (
     <div className="min-h-screen bg-[#FAFAFA] relative overflow-hidden pt-32 pb-20 px-4 sm:px-6 lg:px-8">
@@ -235,6 +59,7 @@ export default function OurTeams() {
         <div className="absolute top-20 left-20 w-96 h-96 bg-[#4A8EBC]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#3B7AA8]/10 rounded-full blur-3xl" />
       </div>
+
       <div className="mx-auto max-w-7xl">
         {/* Header with animation */}
         <motion.div
@@ -254,281 +79,124 @@ export default function OurTeams() {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            duration: 0.5,
-            ease: [0.25, 0.46, 0.45, 0.94],
-          }}
-          className="max-w-md mx-auto mb-12 sm:mb-16"
-        >
+        {!hasMembers ? (
           <motion.div
-            whileHover={{
-              y: -8,
-              scale: 1.02,
-              transition: { duration: 0.3, ease: "easeOut" },
-            }}
-            className="bg-linear-to-br from-white to-[#F0F9FF] rounded-3xl shadow-xl hover:shadow-2xl p-6 sm:p-8 flex flex-col items-center relative overflow-hidden group transition-all duration-300 border border-[#4A8EBC]/10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center py-20 bg-white/50 backdrop-blur-xl rounded-3xl border border-white/60 max-w-2xl mx-auto"
           >
-            {/* Decorative background element */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]" />
-
-            {/* Animated rings around mascot */}
-            <motion.div
-              className="absolute -translate-x-1/2 top-8 left-1/2"
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.3, 0, 0.3],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "easeInOut",
-              }}
-            >
-              <div className="w-32 h-32 rounded-full border-2 border-[#4A8EBC]" />
-            </motion.div>
-
-            <div className="relative z-10 flex items-center justify-center h-32 mb-6">
-              <AnimatedNDHCharacter />
-            </div>
-
-            <motion.div
-              className="font-bold text-xl sm:text-2xl text-[#1A2A44] mb-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.3 }}
-            >
-              NDH Team
-            </motion.div>
-
-            <motion.div
-              className="text-[#4A8EBC] font-semibold mb-3 text-sm sm:text-base"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-            >
-              Company Mascot
-            </motion.div>
-
-            <motion.div
-              className="px-2 text-sm leading-relaxed text-center text-gray-600 sm:text-base"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              Our creative spirit, always ready to innovate in the signature black hoodie!
-            </motion.div>
-
-            {/* Badge */}
-            <motion.div
-              className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-linear-to-r from-[#4A8EBC] to-[#2B4A6F] text-white text-xs px-3 py-1.5 rounded-full font-medium shadow-lg"
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6, type: "spring" }}
-            >
-              ⭐ Mascot
-            </motion.div>
+            <div className="text-6xl mb-6">👥</div>
+            <h3 className="text-2xl font-black text-neutral-900 mb-2">Team Coming Soon</h3>
+            <p className="text-neutral-500">We are currently updating our team directory.</p>
           </motion.div>
-        </motion.div>
+        ) : (
+          <>
+            {/* Dynamic Sections Based on Layers - fully from backend */}
+            {teamData.map((layer, layerIdx) => {
+              if (!layer.members || layer.members.length === 0) return null
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-12 sm:mb-16"
-        >
-          <div className="mb-6 text-center sm:mb-8">
-            <div className="flex items-center justify-center gap-2">
-              <Logo className="hidden sm:block h-6 w-auto" />
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-2">Executive Leadership</h2>
-            </div>
-            <div className="w-20 h-1 bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8] mx-auto rounded-full"></div>
-          </div>
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 sm:gap-8">
-            {executiveTeam.map((member, idx) => (
-              <motion.div
-                key={member.name + idx}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.3 + idx * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                }}
-                whileHover={{
-                  y: -8,
-                  scale: 1.02,
-                  transition: { duration: 0.3, ease: "easeOut" },
-                }}
-                className="relative flex flex-col items-center p-6 overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg rounded-2xl hover:shadow-2xl group"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[2rem]" />
-
-                <div className="relative z-10 mb-4">
-                  <motion.div
-                    whileHover={{ scale: 1.08, rotate: 3 }}
-                    transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
-                  >
-                    <div className="relative">
-                      <img
-                        src={member.image_url || "/placeholder.svg"}
-                        alt={member.name}
-                        className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-[#4A8EBC]/20 shadow-md"
-                        onError={(e) => {
-                          e.currentTarget.src = "/placeholder.svg?height=120&width=120"
-                        }}
-                      />
-                      <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              return (
+                <motion.div
+                  key={layer.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: layerIdx * 0.1 }}
+                  className="mb-16 sm:mb-24 last:mb-0"
+                >
+                  <div className="mb-8 text-center sm:mb-12">
+                    <div className="flex items-center justify-center gap-3 mb-4">
+                      {layer.image ? (
+                        <img
+                          src={getImageUrl(layer.image, 'default')}
+                          alt=""
+                          className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
+                        />
+                      ) : (
+                        <Logo className="hidden sm:block h-6 sm:h-8 w-auto" />
+                      )}
+                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#1A2A44] tracking-tight">
+                        {layer.title}
+                      </h2>
                     </div>
-                  </motion.div>
-                </div>
+                    {layer.description && (
+                      <p className="text-[#2B4A6F]/60 max-w-2xl mx-auto mb-4">{layer.description}</p>
+                    )}
+                    <div className="w-24 h-1.5 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] mx-auto rounded-full"></div>
+                  </div>
 
-                <div className="font-bold text-base sm:text-lg text-[#1A2A44] mb-1 text-center relative z-10">
-                  {member.name}
-                </div>
-                <div className="text-[#4A8EBC] font-semibold mb-3 text-xs sm:text-sm relative z-10">
-                  {member.position}
-                </div>
-                <div className="relative z-10 text-xs leading-relaxed text-center text-gray-600 sm:text-sm">
-                  {member.short_description || member.bio}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-12 sm:mb-16"
-        >
-          <div className="mb-6 text-center sm:mb-8">
-            <div className="flex items-center justify-center gap-2">
-              <Logo className="hidden sm:block h-6 w-auto" />
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-2">Department Leaders</h2>
-            </div>
-            <div className="w-20 h-1 bg-linear-to-r from-[#4A8EBC] to-[#2B4A6F] mx-auto rounded-full"></div>
-          </div>
-          <div className="grid max-w-3xl grid-cols-1 gap-6 mx-auto sm:grid-cols-2 sm:gap-8">
-            {managementTeam.map((member, idx) => (
-              <motion.div
-                key={member.name + idx}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.5 + idx * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                }}
-                whileHover={{
-                  y: -8,
-                  scale: 1.02,
-                  transition: { duration: 0.3, ease: "easeOut" },
-                }}
-                className="relative flex flex-col items-center p-6 overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg rounded-2xl hover:shadow-2xl group"
-              >
-                <div className="absolute inset-0 bg-linear-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                <div className="relative z-10 mb-4">
-                  <motion.div
-                    whileHover={{ scale: 1.08, rotate: -3 }}
-                    transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
-                  >
-                    <div className="relative">
-                      <img
-                        src={member.image_url || "/placeholder.svg"}
-                        alt={member.name}
-                        className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-[#4A8EBC]/20 shadow-md"
-                        onError={(e) => {
-                          e.currentTarget.src = "/placeholder.svg?height=120&width=120"
+                  <div className={`grid gap-6 sm:gap-8 max-w-7xl mx-auto ${
+                    layer.members.length === 1 ? 'grid-cols-1 max-w-md mx-auto' :
+                    layer.members.length === 2 ? 'grid-cols-1 sm:grid-cols-2 max-w-3xl mx-auto' :
+                    layer.members.length === 3 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' :
+                    'grid-cols-1 sm:grid-cols-2 lg:grid-cols-4'
+                  }`}>
+                    {layer.members.map((member, idx) => (
+                      <motion.div
+                        key={member.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.5,
+                          delay: 0.2 + idx * 0.05,
+                          ease: [0.25, 0.46, 0.45, 0.94],
                         }}
-                      />
-                      <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                  </motion.div>
-                </div>
+                        whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.3, ease: "easeOut" } }}
+                        className="relative flex flex-col items-center p-6 transition-all duration-300 bg-white border border-gray-100 shadow-md rounded-2xl hover:shadow-xl group overflow-hidden"
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                <div className="font-bold text-base sm:text-lg text-[#1A2A44] mb-1 text-center relative z-10">
-                  {member.name}
-                </div>
-                <div className="text-[#4A8EBC] font-semibold mb-3 text-xs sm:text-sm relative z-10">
-                  {member.position}
-                </div>
-                <div className="relative z-10 text-xs leading-relaxed text-center text-gray-600 sm:text-sm">
-                  {member.short_description || member.bio}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                        <div className="relative z-10 mb-5">
+                          <div className="relative">
+                            <img
+                              src={getImageUrl(member.image, 'team')}
+                              alt={member.name}
+                              className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-white shadow-lg"
+                              onError={(e) => { e.currentTarget.src = getImageUrl(null, 'team') }}
+                            />
+                            <div className="absolute inset-0 rounded-full border-2 border-[#4A8EBC]/10 group-hover:border-[#4A8EBC]/30 transition-colors duration-300"></div>
+                          </div>
+                        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-        >
-          <div className="mb-6 text-center sm:mb-8">
-            <div className="flex items-center justify-center gap-2">
-              <Logo className="hidden sm:block h-6 w-auto" />
-              <h2 className="text-2xl sm:text-3xl font-bold text-[#1A2A44] mb-2">Team Members</h2>
-            </div>
-            <div className="w-20 h-1 bg-linear-to-r from-[#4A8EBC] to-[#2B4A6F] mx-auto rounded-full"></div>
-          </div>
-          <div className="grid max-w-3xl grid-cols-1 gap-6 mx-auto sm:grid-cols-2 sm:gap-8">
-            {staffTeam.map((member, idx) => (
-              <motion.div
-                key={member.name + idx}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.7 + idx * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94],
-                }}
-                whileHover={{
-                  y: -8,
-                  scale: 1.02,
-                  transition: { duration: 0.3, ease: "easeOut" },
-                }}
-                className="relative flex flex-col items-center p-6 overflow-hidden transition-all duration-300 bg-white border border-gray-100 shadow-lg rounded-2xl hover:shadow-2xl group"
-              >
-                <div className="absolute inset-0 bg-linear-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="font-bold text-lg text-[#1A2A44] mb-1 text-center relative z-10">{member.name}</div>
+                        <div className="text-[#4A8EBC] text-sm font-bold mb-3 uppercase tracking-wider relative z-10">
+                          {member.roleTitle || 'Team Member'}
+                        </div>
+                        {member.bio && (
+                          <div className="text-sm leading-relaxed text-center text-gray-500 relative z-10 line-clamp-3">
+                            {member.bio}
+                          </div>
+                        )}
 
-                <div className="relative z-10 mb-4">
-                  <motion.div
-                    whileHover={{ scale: 1.08, rotate: 3 }}
-                    transition={{ duration: 0.3, type: "spring", stiffness: 300 }}
-                  >
-                    <div className="relative">
-                      <img
-                        src={member.image_url || "/placeholder.svg"}
-                        alt={member.name}
-                        className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover border-4 border-[#4A8EBC]/20 shadow-md"
-                        onError={(e) => {
-                          e.currentTarget.src = "/placeholder.svg?height=120&width=120"
-                        }}
-                      />
-                      <div className="absolute inset-0 rounded-full bg-linear-to-br from-[#4A8EBC]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                    </div>
-                  </motion.div>
-                </div>
-
-                <div className="font-bold text-base sm:text-lg text-[#1A2A44] mb-1 text-center relative z-10">
-                  {member.name}
-                </div>
-                <div className="text-[#4A8EBC] font-semibold mb-3 text-xs sm:text-sm relative z-10">
-                  {member.position}
-                </div>
-                <div className="relative z-10 text-xs leading-relaxed text-center text-gray-600 sm:text-sm">
-                  {member.short_description || member.bio}
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                        {/* Social Links */}
+                        {member.socialLinks && (member.socialLinks.linkedin || member.socialLinks.github || member.socialLinks.email) && (
+                          <div className="mt-4 flex gap-2 relative z-10">
+                            {member.socialLinks.linkedin && (
+                              <a href={member.socialLinks.linkedin} target="_blank" rel="noopener noreferrer" className="p-1.5 rounded-lg bg-neutral-100 hover:bg-[#0077B5] hover:text-white transition-all text-neutral-400 text-xs">
+                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                              </a>
+                            )}
+                            {member.socialLinks.github && (
+                              <a href={member.socialLinks.github} target="_blank" rel="noopener noreferrer" className="p-1.5 rounded-lg bg-neutral-100 hover:bg-[#333] hover:text-white transition-all text-neutral-400 text-xs">
+                                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                              </a>
+                            )}
+                            {member.socialLinks.email && (
+                              <a href={`mailto:${member.socialLinks.email}`} className="p-1.5 rounded-lg bg-neutral-100 hover:bg-neutral-800 hover:text-white transition-all text-neutral-400 text-xs">
+                                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                              </a>
+                            )}
+                          </div>
+                        )}
+                      </motion.div>
+                    ))}
+                  </div>
+                </motion.div>
+              )
+            })}
+          </>
+        )}
       </div>
     </div>
   )

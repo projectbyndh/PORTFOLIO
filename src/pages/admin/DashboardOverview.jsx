@@ -21,7 +21,7 @@ import { StatsCard, DataCard, EmptyState, LoadingSpinner } from '../admin/ui';
 import useBlogStore from '../../Store/useBlogStore';
 import { useContacts } from '../../hooks/useContacts';
 import useFAQs from '../../hooks/useFAQs';
-import useTeams from '../../hooks/useTeams';
+import useTeamStructure from '../../hooks/useTeamStructure';
 import { useCareers } from '../../hooks/useCareers';
 import axios from '../../api/axios';
 
@@ -32,7 +32,7 @@ const DashboardOverview = () => {
   const { blogs, fetchBlogs, loading: blogsLoading } = useBlogStore();
   const { fetchContacts } = useContacts();
   const { faqs, loading: faqsLoading } = useFAQs();
-  const { teams, loading: teamsLoading } = useTeams();
+  const { members: teams, loading: teamsLoading } = useTeamStructure();
   const { careers, loading: careersLoading } = useCareers();
 
   const [contacts, setContacts] = useState([]);

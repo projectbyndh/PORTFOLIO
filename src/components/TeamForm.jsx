@@ -1,19 +1,48 @@
 import React, { useState, useEffect } from 'react';
-import useTeams from '../hooks/useTeams';
 import ImageUploadPreview from './ImageUploadPreview';
+import { Linkedin, Github, Mail } from 'lucide-react';
+import { getImageUrl } from '../utils/getImageUrl';
 
-const TeamForm = ({ team, onClose }) => {
-  const { createTeam, updateTeam } = useTeams();
+const TeamForm = ({ member, roles = [], layers = [], onClose, onSubmit }) => {
   const [submitting, setSubmitting] = useState(false);
+
+  // Parse social links if they exist
+  const initialSocials = member?.socialLinks || {};
+
   const [formData, setFormData] = useState({
-    name: team?.name || '',
-    position: team?.position || '',
-    description: team?.description || '',
-    image: team?.image || ''
+    name: '',
+    roleId: '',
+    designation: '',
+    bio: '',
+    image: '',
+    isPublic: true,
+    order: 0,
+    linkedin: '',
+    github: '',
+    email: ''
   });
+
   const [selectedFile, setSelectedFile] = useState(null);
-  const [previewUrl, setPreviewUrl] = useState(team?.image || '');
+  const [previewUrl, setPreviewUrl] = useState('');
   const [errors, setErrors] = useState({});
+
+  useEffect(() => {
+    const socials = member?.socialLinks || {};
+    setFormData({
+      name: member?.name || '',
+      roleId: member?.roleId ? String(member.roleId) : '',
+      designation: member?.designation || '',
+      bio: member?.bio || member?.description || '',
+      image: member?.image || '',
+      isPublic: member?.isPublic !== undefined ? member.isPublic : true,
+      order: member?.order || 0,
+      linkedin: socials.linkedin || '',
+      github: socials.github || '',
+      email: socials.email || ''
+    });
+    setPreviewUrl(member?.image ? getImageUrl(member.image, 'team') : '');
+    setSelectedFile(null);
+  }, [member]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -21,12 +50,8 @@ const TeamForm = ({ team, onClose }) => {
       ...prev,
       [name]: value
     }));
-    // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => ({
-        ...prev,
-        [name]: ''
-      }));
+      setErrors(prev => ({ ...prev, [name]: '' }));
     }
   };
 
@@ -34,11 +59,8 @@ const TeamForm = ({ team, onClose }) => {
     setSelectedFile(file);
     const preview = URL.createObjectURL(file);
     setPreviewUrl(preview);
-    setFormData(prev => ({ ...prev, image: '' }));
-    // Clear image error when file is selected
-    if (errors.image) {
-      setErrors(prev => ({ ...prev, image: '' }));
-    }
+    setFormData(prev => ({ ...prev, image: '' })); // Clear string URL if new file selected
+    if (errors.image) setErrors(prev => ({ ...prev, image: '' }));
   };
 
   const handleImageRemove = () => {
@@ -49,19 +71,15 @@ const TeamForm = ({ team, onClose }) => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) {
-      newErrors.name = 'Team member name is required';
-    }
-    if (!formData.position.trim()) {
-      newErrors.position = 'Position is required';
-    }
-    if (!formData.description.trim()) {
-      newErrors.description = 'Description is required';
-    }
-    // Check if we have either a file or an existing image URL
-    if (!selectedFile && !formData.image.trim() && !previewUrl) {
+    if (!formData.name.trim()) newErrors.name = 'Name is required';
+    if (!formData.roleId) newErrors.roleId = 'Role selection is required';
+    if (!formData.bio.trim()) newErrors.bio = 'Bio is required';
+
+    // Check if we have either a file or an existing image URL or preview
+    if (!selectedFile && !formData.image && !previewUrl) {
       newErrors.image = 'Profile image is required';
     }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -72,136 +90,256 @@ const TeamForm = ({ team, onClose }) => {
 
     try {
       setSubmitting(true);
+      const data = new FormData();
+      data.append('name', formData.name);
+      data.append('roleId', formData.roleId);
+      data.append('bio', formData.bio);
+      data.append('isPublic', formData.isPublic);
+      data.append('order', formData.order);
+      if (formData.designation.trim()) {
+        data.append('designation', formData.designation);
+      }
 
-      // Create FormData to send file with other fields
-      const teamData = new FormData();
-      teamData.append('name', formData.name);
-      teamData.append('position', formData.position);
-      teamData.append('description', formData.description);
+      const socialLinks = JSON.stringify({
+        linkedin: formData.linkedin,
+        github: formData.github,
+        email: formData.email
+      });
+      data.append('socialLinks', socialLinks);
 
       if (selectedFile) {
-        teamData.append('image', selectedFile);
-      } else if (formData.image) {
-        // If editing and no new file, send existing URL
-        teamData.append('image', formData.image);
+        data.append('image', selectedFile);
+      } else if (member?.image) {
+        // Should backend handle "keep existing"? Usually yes if no file provided.
+        // But my controller checks `if (req.file)`. 
+        // So if I don't send `image` field, it just keeps old record data if this is an update.
+        // But if creating, image is required.
       }
 
-      if (team) {
-        await updateTeam(team._id, teamData);
-      } else {
-        await createTeam(teamData);
-      }
+      await onSubmit(data, member?.id);
       onClose();
     } catch (err) {
-      // Error handled in hook
+      console.error(err);
+      // Parent handles toast usually
     } finally {
       setSubmitting(false);
     }
   };
 
+  // Group roles by layer with type-safe comparison
+  const rolesByLayer = layers.map(layer => {
+    const layerRoles = roles.filter(r => String(r.layerId) === String(layer.id));
+    return { layer, roles: layerRoles };
+  }).filter(group => group.roles.length > 0);
+
+  console.log('🏗️ TeamForm Data:', {
+    totalRoles: roles.length,
+    groupedLayers: rolesByLayer.length,
+    layers: layers.length
+  });
+
+  // Check for roles that might not have a matching layer
+  const assignedRoleIds = new Set(rolesByLayer.flatMap(g => g.roles.map(r => r.id)));
+  const unassignedRoles = roles.filter(r => !assignedRoleIds.has(r.id));
+
+  if (unassignedRoles.length > 0) {
+    rolesByLayer.push({
+      layer: { id: 'unassigned', title: 'Other/Newly Added Roles' },
+      roles: unassignedRoles
+    });
+  }
+
   return (
-    <div className="relative">
-      {submitting && (
-        <div className="absolute inset-0 bg-white/75 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#4A8EBC] mx-auto mb-2"></div>
-            <p className="text-sm text-[#4A8EBC]">Saving...</p>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Name */}
+      <div>
+        <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          Name <span className="text-red-500">*</span>
+        </label>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleInputChange}
+          className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+          placeholder="John Doe"
+        />
+        {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
+      </div>
+
+      {/* Role Select */}
+      <div>
+        <label htmlFor="roleId" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          Role <span className="text-red-500">*</span>
+        </label>
+        <select
+          name="roleId"
+          id="roleId"
+          key={roles.length}
+          value={formData.roleId || ''}
+          onChange={handleInputChange}
+          className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all bg-white text-[#1A2A44] font-medium block"
+          required
+        >
+          <option value="">-- Click to Select a Role --</option>
+          {rolesByLayer.map(({ layer, roles }) => (
+            <optgroup key={layer.id} label={layer.title}>
+              {roles.map(role => (
+                <option key={role.id} value={String(role.id)}>
+                  {role.title}
+                </option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
+        {roles.length === 0 && (
+          <p className="text-amber-500 text-xs mt-2 italic">
+            ⚠️ Setup Required: Go to the "Structure" tab to create roles first.
+          </p>
+        )}
+        {errors.roleId && <p className="text-red-500 text-xs mt-1">{errors.roleId}</p>}
+      </div>
+
+      {/* Designation Override */}
+      <div>
+        <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          Custom Designation <span className="text-neutral-400 text-xs font-normal">(optional)</span>
+        </label>
+        <input
+          type="text"
+          name="designation"
+          value={formData.designation}
+          onChange={handleInputChange}
+          className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+          placeholder="Overrides role title on public page (e.g., Lead Developer)"
+        />
+        <p className="text-xs text-neutral-400 mt-1">Leave empty to use the role title as designation</p>
+      </div>
+
+      {/* Visibility & Order Row */}
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Display Order</label>
+          <input
+            type="number"
+            name="order"
+            value={formData.order}
+            onChange={handleInputChange}
+            min="0"
+            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+          />
+          <p className="text-xs text-neutral-400 mt-1">Lower number = shown first</p>
+        </div>
+        <div>
+          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Visibility</label>
+          <label className="flex items-center gap-3 px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl cursor-pointer hover:bg-[#F5FAFF] transition-all">
+            <input
+              type="checkbox"
+              checked={formData.isPublic}
+              onChange={(e) => setFormData(prev => ({ ...prev, isPublic: e.target.checked }))}
+              className="w-5 h-5 text-[#4A8EBC] rounded border-neutral-300 focus:ring-[#4A8EBC]"
+            />
+            <span className="text-sm font-medium text-[#1A2A44]">Show on public site</span>
+          </label>
+        </div>
+      </div>
+
+      {/* Bio */}
+      <div>
+        <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          Bio <span className="text-red-500">*</span>
+        </label>
+        <textarea
+          name="bio"
+          value={formData.bio}
+          onChange={handleInputChange}
+          rows={4}
+          className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+          placeholder="Brief professional biography..."
+        />
+        {errors.bio && <p className="text-red-500 text-xs mt-1">{errors.bio}</p>}
+      </div>
+
+      {/* Image */}
+      <div>
+        <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          Profile Image <span className="text-red-500">*</span>
+        </label>
+        <ImageUploadPreview
+          currentImage={previewUrl}
+          onImageUpload={handleImageSelect}
+          onImageRemove={handleImageRemove}
+          showUploadButton={false}
+        />
+        {errors.image && <p className="text-red-500 text-xs mt-1">{errors.image}</p>}
+      </div>
+
+      {/* Social Links */}
+      <div className="space-y-4 pt-4 border-t border-neutral-100">
+        <h4 className="text-sm font-semibold text-[#1A2A44]">Social Links</h4>
+
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
+            <Linkedin size={18} />
           </div>
-        </div>
-      )}
-
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
-            Name
-          </label>
           <input
             type="text"
-            name="name"
-            value={formData.name}
+            name="linkedin"
+            value={formData.linkedin}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
-            placeholder="Enter team member name"
+            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#4A8EBC]"
+            placeholder="LinkedIn URL"
           />
-          {errors.name && (
-            <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-          )}
         </div>
 
-        <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
-            Position
-          </label>
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-gray-100 text-gray-800 rounded-lg">
+            <Github size={18} />
+          </div>
           <input
             type="text"
-            name="position"
-            value={formData.position}
+            name="github"
+            value={formData.github}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
-            placeholder="Enter position (e.g., CEO, Developer, Manager)"
+            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#4A8EBC]"
+            placeholder="GitHub URL"
           />
-          {errors.position && (
-            <p className="text-red-500 text-sm mt-1">{errors.position}</p>
-          )}
         </div>
 
-        <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
-            Description
-          </label>
-          <textarea
-            name="description"
-            value={formData.description}
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-red-50 text-red-500 rounded-lg">
+            <Mail size={18} />
+          </div>
+          <input
+            type="text"
+            name="email"
+            value={formData.email}
             onChange={handleInputChange}
-            rows={4}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
-            placeholder="Enter team member description/bio"
+            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#4A8EBC]"
+            placeholder="Email Address"
           />
-          {errors.description && (
-            <p className="text-red-500 text-sm mt-1">{errors.description}</p>
-          )}
         </div>
+      </div>
 
-        <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
-            Profile Image
-          </label>
-          <ImageUploadPreview
-            currentImage={previewUrl || formData.image}
-            onImageUpload={handleImageSelect}
-            onImageRemove={handleImageRemove}
-            uploading={false}
-            showUploadButton={false}
-          />
-          {errors.image && (
-            <p className="text-red-500 text-sm mt-1">{errors.image}</p>
-          )}
-        </div>
-
-        <div className="flex justify-end gap-3 pt-6 border-t border-[#4A8EBC]/10">
-          <button
-            type="button"
-            onClick={onClose}
-            disabled={submitting}
-            className="px-6 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/5 hover:bg-[#4A8EBC]/10 rounded-xl transition-all duration-200 border border-[#4A8EBC]/20 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            Cancel
-          </button>
-          <button
-            type="submit"
-            disabled={submitting}
-            className="px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] hover:shadow-lg hover:shadow-[#4A8EBC]/25 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all duration-200"
-          >
-            {submitting ? (
-              <div className="flex items-center gap-2">
-                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                Saving...
-              </div>
-            ) : (team ? 'Update Member' : 'Add Member')}
-          </button>
-        </div>
-      </form>
-    </div>
+      {/* Actions */}
+      <div className="flex justify-end gap-3 pt-6 border-t border-[#4A8EBC]/10">
+        <button
+          type="button"
+          onClick={onClose}
+          disabled={submitting}
+          className="px-6 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/5 hover:bg-[#4A8EBC]/10 rounded-xl transition-all"
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          disabled={submitting}
+          className="px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] rounded-xl transition-all hover:shadow-lg disabled:opacity-50"
+        >
+          {submitting ? 'Saving...' : (member ? 'Update Member' : 'Add Member')}
+        </button>
+      </div>
+    </form>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, useScroll, useSpring, useTransform, useInView } from "framer-motion";
 import { Target, Eye, Compass, Rocket, Zap, Globe, ShieldCheck } from "lucide-react";
 import FAQSection from "./FAQSection";
@@ -101,12 +102,12 @@ export default function AdvancedPath() {
           Let's build something extraordinary together.
         </p>
         <div className="flex flex-wrap justify-center gap-6">
-          <a href="/contact" className="px-8 py-4 bg-[#1A2A44] text-white rounded-full font-bold shadow-lg hover:bg-[#4A8EBC] hover:scale-105 transition-all flex items-center gap-2">
+          <Link to="/contact" className="px-8 py-4 bg-[#1A2A44] text-white rounded-full font-bold shadow-lg hover:bg-[#4A8EBC] hover:scale-105 transition-all flex items-center gap-2">
             Contact Us <Zap size={18} />
-          </a>
-          <a href="/services" className="px-8 py-4 bg-white text-[#1A2A44] border border-neutral-200 rounded-full font-bold shadow-sm hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2">
+          </Link>
+          <Link to="/services" className="px-8 py-4 bg-white text-[#1A2A44] border border-neutral-200 rounded-full font-bold shadow-sm hover:shadow-xl hover:scale-105 transition-all flex items-center gap-2">
             Explore Services <Rocket size={18} />
-          </a>
+          </Link>
         </div>
       </div>
     </section>

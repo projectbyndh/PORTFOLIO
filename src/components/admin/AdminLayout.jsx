@@ -14,10 +14,10 @@ import {
   Wrench,
   HelpCircle,
   MessageSquare,
-  Phone,
   BookOpen,
   Star,
-  UserCheck
+  UserCheck,
+  Layers
 } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import useAuthStore from '../../Store/useAuthStore';
@@ -44,14 +44,14 @@ export default function AdminLayout({ children }) {
     { icon: Handshake, label: 'Partners', path: '/admin/partners' },
     { icon: Users, label: 'Team', path: '/admin/team' },
     { icon: FolderKanban, label: 'Projects', path: '/admin/projects' },
+    { icon: Layers, label: 'Categories', path: '/admin/categories' },
     { icon: Wrench, label: 'Services', path: '/admin/services' },
     { icon: Briefcase, label: 'Careers', path: '/admin/careers' },
     { icon: UserCheck, label: 'Applications', path: '/admin/career-applications' },
     { icon: HelpCircle, label: 'FAQs', path: '/admin/faqs' },
     { icon: Star, label: 'Testimonials', path: '/admin/testimonials' },
     { icon: MessageSquare, label: 'Contacts', path: '/admin/contacts' },
-    { icon: Phone, label: 'Contact Info', path: '/admin/contact-info' },
-    { icon: BookOpen, label: 'API Docs', path: 'http://localhost:5000/api-docs', external: true },
+    { icon: BookOpen, label: 'API Docs', path: 'http://127.0.0.1:5000/api-docs', external: true },
   ];
 
   return (
@@ -66,9 +66,19 @@ export default function AdminLayout({ children }) {
           {/* Logo */}
           <div className="p-6 border-b border-[#4A8EBC]/20">
             <div className="flex items-center justify-between">
-              <h2 className="text-2xl font-black bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">
-                NDH Admin
-              </h2>
+              <button
+                onClick={() => {
+                  navigate('/admin/dashboard');
+                  setSidebarOpen(false);
+                }}
+                className="flex items-center gap-3 group transition-all hover:scale-105"
+              >
+                <img
+                  src="/src/assets/NDH technologies_logo@4x-100.jpg"
+                  alt="NDH Technologies"
+                  className="h-12 w-auto object-contain"
+                />
+              </button>
               <button
                 onClick={() => setSidebarOpen(false)}
                 className="lg:hidden p-2 rounded-lg hover:bg-[#4A8EBC]/10"
@@ -76,7 +86,6 @@ export default function AdminLayout({ children }) {
                 <X className="w-5 h-5 text-[#4A8EBC]" />
               </button>
             </div>
-            <p className="text-xs text-[#2B4066]/60 mt-1">Content Management</p>
           </div>
 
           {/* Navigation */}

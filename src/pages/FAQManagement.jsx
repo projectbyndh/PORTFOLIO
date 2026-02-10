@@ -148,6 +148,7 @@ const FAQManagement = () => {
                 <FAQForm
                   faq={editingFAQ}
                   onClose={handleFormClose}
+                  onSuccess={fetchFAQs}
                 />
               </div>
             </div>

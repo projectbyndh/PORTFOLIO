@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { ArrowRight, Sparkles, Globe, Shield, Zap } from 'lucide-react';
 import Logo from './Logo';
 
@@ -76,16 +77,16 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <button className="group relative px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8] text-white rounded-2xl font-bold flex items-center gap-3 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_30px_rgba(74,142,188,0.4),0_8px_16px_rgba(74,142,188,0.2)] overflow-hidden">
+            <Link to="/contact" className="group relative px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8] text-white rounded-2xl font-bold flex items-center gap-3 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_30px_rgba(74,142,188,0.4),0_8px_16px_rgba(74,142,188,0.2)] overflow-hidden">
               {/* Animated glow */}
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#5A9ECC] to-[#4B84A8] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10">Start Building</span>
               <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
-            </button>
-            <button className="px-8 py-4 bg-white/80 backdrop-blur-sm text-neutral-700 border border-neutral-200/50 rounded-2xl font-bold hover:bg-white hover:border-neutral-300 hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
+            </Link>
+            <Link to="/services" className="px-8 py-4 bg-white/80 backdrop-blur-sm text-neutral-700 border border-neutral-200/50 rounded-2xl font-bold hover:bg-white hover:border-neutral-300 hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
               Our Capabilities
-            </button>
+            </Link>
           </motion.div>
         </motion.div>
 

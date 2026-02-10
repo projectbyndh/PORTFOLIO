@@ -3,7 +3,7 @@ import axios from 'axios';
 // Create axios instance with base configuration
 const axiosInstance = axios.create({
   // baseURL is omitted to use relative paths, handled by Vite proxy
-  timeout: 10000,
+  timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
     'Cache-Control': 'no-cache',
@@ -59,6 +59,18 @@ axiosInstance.interceptors.response.use(
     if (error.response) {
       // Server responded with error status
       console.error('API Error:', error.response.status, error.response.data);
+
+      // Auto logout on 401 Unauthorized (invalid or expired token)
+      if (error.response.status === 401) {
+        console.warn('🔑 Authentication failed - clearing token and redirecting to login');
+        localStorage.removeItem('token');
+        // We avoid hard redirect to allow app state to handle it, 
+        // but removing the token will cause ProtectedRoute to trigge redirect on next render
+        // To be safe, we can force a reload if we are in an admin path
+        if (window.location.pathname.startsWith('/admin')) {
+          window.location.href = '/ndh-admin/login';
+        }
+      }
     } else if (error.request) {
       // Request made but no response
       console.error('Network Error:', error.message);

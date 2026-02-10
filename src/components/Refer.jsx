@@ -1,15 +1,22 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Users, Award, Zap, CheckCircle2, Users2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import usePartners from '../hooks/usePartners';
+import useProjects from '../hooks/useProjects';
+import useTeamStructure from '../hooks/useTeamStructure';
 
 function Refer() {
-  const stats = [
-    { icon: Users, value: '50+', label: 'Clients' },
-    { icon: Award, value: '50+', label: 'Projects Delivered' },
+  const { partners } = usePartners();
+  const { projects } = useProjects();
+  const { members: teams } = useTeamStructure();
+
+  const stats = useMemo(() => [
+    { icon: Users, value: partners.length > 5 ? `${partners.length}+` : partners.length || '50+', label: 'Clients' },
+    { icon: Award, value: projects.length > 5 ? `${projects.length}+` : projects.length || '50+', label: 'Projects Delivered' },
     { icon: Zap, value: '99%', label: 'Client Satisfaction' },
-    { icon: Users2, value: '15+', label: 'Team Members' },
-  ];
+    { icon: Users2, value: teams.length > 5 ? `${teams.length}+` : teams.length || '15+', label: 'Team Members' },
+  ], [partners.length, projects.length, teams.length]);
 
   const benefits = [
     'Free Consultation & Strategy Session',

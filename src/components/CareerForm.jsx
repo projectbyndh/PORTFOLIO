@@ -13,6 +13,9 @@ const careerSchema = z.object({
   requirements: z.array(z.string().min(1, 'Requirement cannot be empty')).min(1, 'At least one requirement is required'),
   responsibilities: z.array(z.string().min(1, 'Responsibility cannot be empty')).min(1, 'At least one responsibility is required'),
   location: z.string().min(1, 'Location is required').max(100, 'Location must be less than 100 characters'),
+  category: z.enum(['CTO', 'CEO', 'CFO', 'Senior Developer', 'Developer', 'Intern'], {
+    errorMap: () => ({ message: 'Please select a valid category' }),
+  }),
 });
 
 /**
@@ -44,6 +47,7 @@ const CareerForm = ({
       requirements: [''],
       responsibilities: [''],
       location: '',
+      category: 'Developer',
     },
   });
 
@@ -65,6 +69,8 @@ const CareerForm = ({
     name: 'responsibilities',
   });
 
+  const [selectedFile, setSelectedFile] = React.useState(null);
+  const [previewUrl, setPreviewUrl] = React.useState('');
   const currentImage = watch('image');
 
   // Reset form when modal opens/closes or initialData changes
@@ -79,7 +85,10 @@ const CareerForm = ({
           requirements: initialData.requirements || [''],
           responsibilities: initialData.responsibilities || [''],
           location: initialData.location || '',
+          category: initialData.category || 'Developer',
         });
+        setPreviewUrl(initialData.image || '');
+        setSelectedFile(null);
       } else {
         // Create mode
         reset({
@@ -89,7 +98,10 @@ const CareerForm = ({
           requirements: [''],
           responsibilities: [''],
           location: '',
+          category: 'Developer',
         });
+        setPreviewUrl('');
+        setSelectedFile(null);
       }
     }
   }, [isOpen, initialData, reset]);
@@ -97,7 +109,15 @@ const CareerForm = ({
   // Handle form submission
   const handleFormSubmit = async (data) => {
     try {
-      await onSubmit(data);
+      // Create a copy of data to modify
+      const submissionData = { ...data };
+
+      // If we have a file selected, add it to the submission data
+      if (selectedFile) {
+        submissionData.image = selectedFile;
+      }
+
+      await onSubmit(submissionData);
       onClose(); // Close modal on success
     } catch (error) {
       // Error is handled by the hook
@@ -105,21 +125,18 @@ const CareerForm = ({
     }
   };
 
-  // Handle image upload
-  const handleImageUpload = async (file) => {
-    try {
-      const result = await uploadImage(file);
-      if (result?.imageUrl) {
-        setValue('image', result.imageUrl);
-      }
-      return result;
-    } catch (error) {
-      throw error;
-    }
+  // Handle image selection
+  const handleImageSelect = (file) => {
+    setSelectedFile(file);
+    const preview = URL.createObjectURL(file);
+    setPreviewUrl(preview);
+    setValue('image', ''); // Clear existing image URL
   };
 
   // Handle image removal
   const handleImageRemove = () => {
+    setSelectedFile(null);
+    setPreviewUrl('');
     setValue('image', '');
   };
 
@@ -149,10 +166,11 @@ const CareerForm = ({
               Career Image (Optional)
             </label>
             <ImageUploadPreview
-              currentImage={currentImage}
-              onImageUpload={handleImageUpload}
+              currentImage={previewUrl || currentImage}
+              onImageUpload={handleImageSelect}
               onImageRemove={handleImageRemove}
-              uploading={uploadingImage}
+              uploading={false}
+              showUploadButton={false}
             />
             {errors.image && (
               <p className="mt-1 text-sm text-red-500">{errors.image.message}</p>
@@ -192,6 +210,29 @@ const CareerForm = ({
             />
             {errors.location && (
               <p className="mt-1 text-sm text-red-500">{errors.location.message}</p>
+            )}
+          </div>
+
+          {/* Category */}
+          <div>
+            <label htmlFor="category" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+              Category *
+            </label>
+            <select
+              {...register('category')}
+              id="category"
+              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.category ? 'border-red-400' : 'border-[#4A8EBC]/20'
+                }`}
+            >
+              <option value="CTO">CTO</option>
+              <option value="CEO">CEO</option>
+              <option value="CFO">CFO</option>
+              <option value="Senior Developer">Senior Developer</option>
+              <option value="Developer">Developer</option>
+              <option value="Intern">Intern</option>
+            </select>
+            {errors.category && (
+              <p className="mt-1 text-sm text-red-500">{errors.category.message}</p>
             )}
           </div>
 

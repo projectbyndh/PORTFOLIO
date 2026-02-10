@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
+import { Link } from "react-router-dom"
 import { ChevronLeft, ChevronRight, ArrowRight, Calendar, Clock, User, Eye, Heart } from "lucide-react"
 import React from "react"
 import useBlogStore from "../Store/useBlogStore"
@@ -238,26 +239,6 @@ function Blogsection() {
                           alt={`Featured image for ${blog.title}`}
                           className="w-full h-44 sm:h-56 object-cover transition-transform duration-500 group-hover:scale-105"
                         />
-                        {/* Action Icons Overlay */}
-                        <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
-                          <button
-                            onClick={(e) => {
-                              const icon = e.currentTarget.querySelector('svg');
-                              if (icon) {
-                                icon.classList.toggle('fill-red-500');
-                                icon.classList.toggle('text-red-500');
-                                icon.classList.toggle('text-white');
-                              }
-                            }}
-                            className="p-2 rounded-full bg-white/20 backdrop-blur-md hover:bg-white/40 transition-colors group/btn"
-                          >
-                            <Heart className="w-4 h-4 text-white transition-colors duration-300" />
-                          </button>
-                          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/30 backdrop-blur-md text-white text-xs font-medium">
-                            <Eye className="w-3.5 h-3.5" />
-                            <span>{blog.views || '1.2k'}</span>
-                          </div>
-                        </div>
                       </div>
 
                       {/* Content */}
@@ -296,13 +277,13 @@ function Blogsection() {
                             </div>
                           </div>
 
-                          <a
-                            href={`/blogdetails?id=${blog._id}`}
+                          <Link
+                            to={`/blog-details?id=${blog._id}`}
                             className="group/link inline-flex items-center gap-1.5 text-[#4A8EBC] hover:text-[#3B5488] font-bold text-xs uppercase tracking-wider transition-all duration-300"
                           >
                             <span>Read</span>
                             <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform duration-300" />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -332,12 +313,12 @@ function Blogsection() {
         {/* Enhanced View All Button */}
         {displayBlogs.length > 0 && (
           <div className="text-center mt-16">
-            <a
-              href="/blog"
+            <Link
+              to="/blog"
               className="group inline-flex items-center gap-3 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] text-white px-10 py-4 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105">
               <span>View All Articles</span>
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-            </a>
+            </Link>
           </div>
         )}
 

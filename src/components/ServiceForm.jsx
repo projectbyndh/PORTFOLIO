@@ -8,7 +8,9 @@ const ServiceForm = ({ service, onClose }) => {
   const [selectedImageFile, setSelectedImageFile] = useState(null);
   const [formData, setFormData] = useState({
     title: service?.title || '',
-    description: service?.description || ''
+    description: service?.description || '',
+    tagline: service?.tagline || '',
+    capabilities: service?.capabilities ? service.capabilities.join(', ') : ''
   });
   const [errors, setErrors] = useState({});
 
@@ -48,11 +50,13 @@ const ServiceForm = ({ service, onClose }) => {
       const serviceData = {
         title: formData.title,
         description: formData.description,
+        tagline: formData.tagline,
+        capabilities: formData.capabilities.split(',').map(cap => cap.trim()).filter(cap => cap !== ''),
         logo: selectedImageFile
       };
 
       if (service) {
-        await updateService(service._id, serviceData);
+        await updateService(service.id || service._id, serviceData);
       } else {
         await createService(serviceData);
       }
@@ -95,6 +99,20 @@ const ServiceForm = ({ service, onClose }) => {
 
         <div>
           <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            Tagline
+          </label>
+          <input
+            type="text"
+            name="tagline"
+            value={formData.tagline}
+            onChange={handleInputChange}
+            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+            placeholder="Enter tagline (e.g. High-Availability Ecosystems)"
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
             Description
           </label>
           <textarea
@@ -108,6 +126,21 @@ const ServiceForm = ({ service, onClose }) => {
           {errors.description && (
             <p className="text-red-500 text-sm mt-1">{errors.description}</p>
           )}
+        </div>
+
+        <div>
+          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            Capabilities
+          </label>
+          <textarea
+            name="capabilities"
+            value={formData.capabilities}
+            onChange={handleInputChange}
+            rows={3}
+            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+            placeholder="Enter capabilities separated by commas (e.g. Edge Computing, Real-time Hydration)"
+          />
+          <p className="text-xs text-[#2B4066]/50 mt-1 italic">Separate each capability with a comma</p>
         </div>
 
         <div>

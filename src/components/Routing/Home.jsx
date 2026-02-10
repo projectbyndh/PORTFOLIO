@@ -16,7 +16,6 @@ function Home() {
     <>
       <First />
       <Services />
-      <CompaniesSection />
       <PartnersSection />
       <NepalMap />
       <Refer />

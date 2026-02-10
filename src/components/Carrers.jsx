@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react"
 import { Briefcase, Mail, MapPin, Clock, Loader2, X, CheckCircle } from "lucide-react"
 import { useCareers } from "../hooks/useCareers"
 import CareerApplicationForm from "./CareerApplicationForm"
+import { getImageUrl } from "../utils/getImageUrl"
 
 export default function Careers() {
   const [showForm, setShowForm] = useState(false)
@@ -133,7 +134,7 @@ export default function Careers() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {careers.map((career, index) => (
                 <div
-                  key={career._id}
+                  key={career.id || career._id}
                   className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 bg-white border border-[#4A8EBC]/10 h-full flex flex-col"
                   style={{ animationDelay: `${index * 100}ms` }}
                 >
@@ -141,9 +142,17 @@ export default function Careers() {
                   <div className="w-full h-64 relative overflow-hidden">
                     {career.image ? (
                       <img
-                        src={career.image.startsWith('http') ? career.image : `http://localhost:5000${career.image}`}
+                        src={getImageUrl(career.image, 'career')}
                         alt={career.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        onError={(e) => {
+                          const attemptedUrl = getImageUrl(career.image, 'career');
+                          console.error("Failed to load career image:", attemptedUrl);
+                          console.info("Original DB path was:", career.image);
+                          e.target.onerror = null;
+                          e.target.src = getImageUrl(null, 'career');
+                        }}
+                      // Force refresh link: v2
                       />
                     ) : (
                       <div className="w-full h-full bg-linear-to-br from-[#4A8EBC] to-[#3B5488] flex items-center justify-center">

@@ -10,32 +10,30 @@ const useAuthStore = create(
       user: null,
       token: null,
 
-      // Admin credentials (in production, verify against backend)
-      ADMIN_USERNAME: 'admin',
-      ADMIN_PASSWORD: 'manigram#2025@ndhadmin',
-
       // Actions
       login: async (username, password) => {
-        console.log('Login attempt:', { username, password });
+        try {
+          const response = await axiosInstance.post('/api/auth/login', { username, password });
 
-        // Simple admin login validation
-        if (username === 'admin' && password === 'manigram#2025@ndhadmin') {
-          console.log('Login successful');
+          if (response.data.success) {
+            const { token, user } = response.data;
+            localStorage.setItem('token', token);
 
-          // Set mock token for backend auth
-          const mockToken = 'mock-admin-token-' + Date.now();
-          localStorage.setItem('token', mockToken);
-
-          set({
-            isAuthenticated: true,
-            user: { username: 'admin', role: 'admin' },
-            token: mockToken,
-          });
-          return { success: true };
+            set({
+              isAuthenticated: true,
+              user,
+              token,
+            });
+            return { success: true };
+          }
+          return { success: false, message: response.data.message || 'Login failed' };
+        } catch (error) {
+          console.error('Login error:', error);
+          return {
+            success: false,
+            message: error.response?.data?.message || 'Login failed. Please try again.'
+          };
         }
-
-        console.log('Login failed - invalid credentials');
-        return { success: false, message: 'Invalid credentials' };
       },
 
       logout: () => {

@@ -4,6 +4,7 @@ import AdminLayout from './AdminLayout';
 import ProjectForm from '../ProjectForm';
 import useProjects from '../../hooks/useProjects';
 import toast from 'react-hot-toast';
+import { getImageUrl } from '../../utils/getImageUrl';
 
 export default function AdminProjects() {
     const { projects, loading, fetchProjects, deleteProject } = useProjects();
@@ -42,8 +43,9 @@ export default function AdminProjects() {
     };
 
     const filteredProjects = projects.filter(project =>
-        project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        project.category.toLowerCase().includes(searchTerm.toLowerCase())
+        (project.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (project.category || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (project.client || '').toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
@@ -60,10 +62,10 @@ export default function AdminProjects() {
                             <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
                             <input
                                 type="text"
-                                placeholder="Search projects..."
+                                placeholder="Search by name, category or client..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/20 w-full sm:w-64"
+                                className="pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/20 w-full sm:w-80"
                             />
                         </div>
                         <button
@@ -123,28 +125,36 @@ export default function AdminProjects() {
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-                            {filteredProjects.map((project) => (
+                            {filteredProjects.map((project, index) => (
                                 <div
-                                    key={project._id}
+                                    key={project.id || project._id || index}
                                     className="group relative bg-white border border-[#4A8EBC]/10 rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-[#4A8EBC]/10 transition-all duration-300 flex flex-col"
                                 >
                                     <div className="aspect-video bg-[#F5FAFF] overflow-hidden relative">
                                         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors z-10" />
                                         <img
-                                            src={project.image}
-                                            alt={project.title}
+                                            src={getImageUrl(project.image, 'project')}
+                                            alt={project.name}
                                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                                             onError={(e) => {
-                                                e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23F5FAFF" width="100" height="100"/%3E%3Ctext fill="%234A8EBC" font-family="Arial" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3ENo Image%3C/text%3E%3C/svg%3E';
+                                                e.target.onerror = null;
+                                                e.target.src = getImageUrl(null, 'project');
                                             }}
                                         />
                                     </div>
                                     <div className="p-6 flex flex-col flex-1">
                                         <div className="mb-4">
-                                            <span className="inline-block px-3 py-1 bg-[#4A8EBC]/10 text-[#4A8EBC] text-xs font-semibold rounded-full mb-2">
-                                                {project.category}
-                                            </span>
-                                            <h3 className="font-bold text-[#1A2A44] text-xl mb-2 group-hover:text-[#4A8EBC] transition-colors line-clamp-1">{project.title}</h3>
+                                            <div className="flex justify-between items-start mb-2">
+                                                <span className="inline-block px-3 py-1 bg-[#4A8EBC]/10 text-[#4A8EBC] text-[10px] font-black uppercase tracking-widest rounded-full">
+                                                    {project.category}
+                                                </span>
+                                                {project.client && (
+                                                    <span className="text-[10px] font-bold text-gray-400">
+                                                        Client: {project.client}
+                                                    </span>
+                                                )}
+                                            </div>
+                                            <h3 className="font-bold text-[#1A2A44] text-xl mb-2 group-hover:text-[#4A8EBC] transition-colors line-clamp-1">{project.name}</h3>
                                             <p className="text-sm text-[#2B4066]/70 line-clamp-2">{project.description}</p>
                                         </div>
 
@@ -157,11 +167,11 @@ export default function AdminProjects() {
                                                 Edit
                                             </button>
                                             <button
-                                                onClick={() => handleDelete(project._id)}
-                                                disabled={deleteLoading === project._id}
+                                                onClick={() => handleDelete(project.id || project._id)}
+                                                disabled={deleteLoading === (project.id || project._id)}
                                                 className="flex-1 px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-all flex items-center justify-center gap-2 font-medium disabled:opacity-50"
                                             >
-                                                {deleteLoading === project._id ? (
+                                                {deleteLoading === (project.id || project._id) ? (
                                                     <div className="w-4 h-4 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
                                                 ) : (
                                                     <>

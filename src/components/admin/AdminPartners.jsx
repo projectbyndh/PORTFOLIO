@@ -4,6 +4,7 @@ import AdminLayout from './AdminLayout';
 import PartnerForm from '../PartnerForm';
 import usePartners from '../../hooks/usePartners';
 import toast from 'react-hot-toast';
+import { getImageUrl } from '../../utils/getImageUrl';
 
 export default function AdminPartners() {
     const { partners, loading, fetchPartners, deletePartner } = usePartners();
@@ -89,18 +90,19 @@ export default function AdminPartners() {
                         </div>
                     ) : (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-                            {partners.map((partner) => (
+                            {partners.map((partner, index) => (
                                 <div
-                                    key={partner._id}
+                                    key={partner.id || partner._id || index}
                                     className="group relative bg-white border border-[#4A8EBC]/10 rounded-2xl p-6 hover:shadow-xl hover:shadow-[#4A8EBC]/10 transition-all duration-300"
                                 >
                                     <div className="aspect-video bg-[#F5FAFF] rounded-xl mb-4 flex items-center justify-center overflow-hidden border border-[#4A8EBC]/5">
                                         <img
-                                            src={partner.image}
+                                            src={getImageUrl(partner.image, 'service')}
                                             alt={partner.name}
                                             className="max-w-full max-h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
                                             onError={(e) => {
-                                                e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23F5FAFF" width="100" height="100"/%3E%3Ctext fill="%234A8EBC" font-family="Arial" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3ENo Image%3C/text%3E%3C/svg%3E';
+                                                e.target.onerror = null;
+                                                e.target.src = getImageUrl(null, 'service');
                                             }}
                                         />
                                     </div>
@@ -114,11 +116,11 @@ export default function AdminPartners() {
                                             Edit
                                         </button>
                                         <button
-                                            onClick={() => handleDelete(partner._id)}
-                                            disabled={deleteLoading === partner._id}
+                                            onClick={() => handleDelete(partner.id || partner._id)}
+                                            disabled={deleteLoading === (partner.id || partner._id)}
                                             className="flex-1 px-4 py-2 bg-red-50 text-red-600 rounded-lg hover:bg-red-100 transition-all flex items-center justify-center gap-2 font-medium disabled:opacity-50"
                                         >
-                                            {deleteLoading === partner._id ? (
+                                            {deleteLoading === (partner.id || partner._id) ? (
                                                 <div className="w-4 h-4 border-2 border-red-600 border-t-transparent rounded-full animate-spin"></div>
                                             ) : (
                                                 <>

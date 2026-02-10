@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import axios from '../api/axios';
 import toast from 'react-hot-toast';
 
@@ -6,9 +6,12 @@ const useProjects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const fetchedRef = useRef(false);
 
   // Fetch all projects
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async (force = false) => {
+    if (!force && fetchedRef.current) return;
+
     try {
       setLoading(true);
       setError(null);
@@ -17,19 +20,23 @@ const useProjects = () => {
       });
       if (response.data.success) {
         setProjects(response.data.data);
+        fetchedRef.current = true;
       }
     } catch (err) {
       const errorMessage = err.response?.data?.message || err.code === 'ECONNABORTED'
         ? 'Backend server is not available. Please start the server.'
         : 'Failed to fetch projects';
       setError(errorMessage);
-      toast.error(errorMessage);
+      // Only toast if it's not a rate limit error
+      if (err.response?.status !== 429) {
+        toast.error(errorMessage);
+      }
       // Set empty projects array on error
       setProjects([]);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   // Fetch project by ID
   const fetchProjectById = async (id) => {
@@ -82,14 +89,13 @@ const useProjects = () => {
       setError(null);
 
       const formData = new FormData();
-      formData.append('title', projectData.title);
+      formData.append('name', projectData.name);
+      formData.append('client', projectData.client || '');
       formData.append('description', projectData.description);
-      formData.append('techStack', JSON.stringify(projectData.techStack));
       formData.append('category', projectData.category);
-
-      if (projectData.links && projectData.links.length > 0) {
-        formData.append('links', JSON.stringify(projectData.links));
-      }
+      formData.append('techStack', JSON.stringify(projectData.techStack || []));
+      formData.append('categories', JSON.stringify(projectData.categories || [projectData.category]));
+      formData.append('services', JSON.stringify(projectData.services || []));
 
       if (projectData.image) {
         formData.append('image', projectData.image);
@@ -99,7 +105,7 @@ const useProjects = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        timeout: 10000, // 10 second timeout for file uploads
+        timeout: 10000,
       });
 
       if (response.data.success) {
@@ -108,9 +114,7 @@ const useProjects = () => {
         return response.data.data;
       }
     } catch (err) {
-      const errorMessage = err.response?.data?.message || err.code === 'ECONNABORTED'
-        ? 'Backend server is not available. Please start the server.'
-        : 'Failed to create project';
+      const errorMessage = err.response?.data?.message || 'Failed to create project';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -126,14 +130,13 @@ const useProjects = () => {
       setError(null);
 
       const formData = new FormData();
-      formData.append('title', projectData.title);
+      formData.append('name', projectData.name);
+      formData.append('client', projectData.client || '');
       formData.append('description', projectData.description);
-      formData.append('techStack', JSON.stringify(projectData.techStack));
       formData.append('category', projectData.category);
-
-      if (projectData.links && projectData.links.length > 0) {
-        formData.append('links', JSON.stringify(projectData.links));
-      }
+      formData.append('techStack', JSON.stringify(projectData.techStack || []));
+      formData.append('categories', JSON.stringify(projectData.categories || [projectData.category]));
+      formData.append('services', JSON.stringify(projectData.services || []));
 
       if (projectData.image) {
         formData.append('image', projectData.image);
@@ -143,20 +146,18 @@ const useProjects = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        timeout: 10000, // 10 second timeout for file uploads
+        timeout: 10000,
       });
 
       if (response.data.success) {
         setProjects(prev => prev.map(project =>
-          project._id === id ? response.data.data : project
+          (project.id === id || project._id === id) ? response.data.data : project
         ));
         toast.success('Project updated successfully');
         return response.data.data;
       }
     } catch (err) {
-      const errorMessage = err.response?.data?.message || err.code === 'ECONNABORTED'
-        ? 'Backend server is not available. Please start the server.'
-        : 'Failed to update project';
+      const errorMessage = err.response?.data?.message || 'Failed to update project';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -170,19 +171,15 @@ const useProjects = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.delete(`/api/projects/${id}`, {
-        timeout: 5000,
-      });
+      const response = await axios.delete(`/api/projects/${id}`);
 
       if (response.data.success) {
-        setProjects(prev => prev.filter(project => project._id !== id));
+        setProjects(prev => prev.filter(project => project.id !== id && project._id !== id));
         toast.success('Project deleted successfully');
         return true;
       }
     } catch (err) {
-      const errorMessage = err.response?.data?.message || err.code === 'ECONNABORTED'
-        ? 'Backend server is not available. Please start the server.'
-        : 'Failed to delete project';
+      const errorMessage = err.response?.data?.message || 'Failed to delete project';
       setError(errorMessage);
       toast.error(errorMessage);
       throw err;
@@ -192,14 +189,7 @@ const useProjects = () => {
   };
 
   useEffect(() => {
-    // Only fetch projects automatically in production or when explicitly requested
-    // In development, avoid spamming the console with backend errors
-    const shouldFetchAutomatically = process.env.NODE_ENV === 'production' ||
-      localStorage.getItem('enable-api-calls') === 'true';
-
-    if (shouldFetchAutomatically) {
-      fetchProjects();
-    }
+    fetchProjects();
   }, []);
 
   return {

@@ -59,15 +59,24 @@ export const useCareers = () => {
   const createCareer = useCallback(async (careerData) => {
     setLoading(true);
     setError(null);
-
     try {
-      // Ensure image is provided, use default if empty
-      const dataToSend = {
-        ...careerData,
-        image: careerData.image || 'https://via.placeholder.com/300x200?text=Career+Image'
-      };
+      let data = careerData;
+      let headers = {};
 
-      const response = await axiosInstance.post('/api/careers', dataToSend);
+      // If it's not already FormData, convert it to FormData to support file upload
+      if (!(careerData instanceof FormData)) {
+        data = new FormData();
+        Object.keys(careerData).forEach(key => {
+          if (Array.isArray(careerData[key])) {
+            data.append(key, JSON.stringify(careerData[key]));
+          } else if (careerData[key] !== undefined && careerData[key] !== null) {
+            data.append(key, careerData[key]);
+          }
+        });
+        headers = { 'Content-Type': 'multipart/form-data' };
+      }
+
+      const response = await axiosInstance.post('/api/careers', data, { headers });
       const newCareer = response.data?.data || response.data;
 
       // Add to local state
@@ -93,12 +102,28 @@ export const useCareers = () => {
     setError(null);
 
     try {
-      const response = await axiosInstance.put(`/api/careers/${id}`, careerData);
+      let data = careerData;
+      let headers = {};
+
+      // If it's not already FormData, convert it to FormData to support file upload
+      if (!(careerData instanceof FormData)) {
+        data = new FormData();
+        Object.keys(careerData).forEach(key => {
+          if (Array.isArray(careerData[key])) {
+            data.append(key, JSON.stringify(careerData[key]));
+          } else if (careerData[key] !== undefined && careerData[key] !== null) {
+            data.append(key, careerData[key]);
+          }
+        });
+        headers = { 'Content-Type': 'multipart/form-data' };
+      }
+
+      const response = await axiosInstance.put(`/api/careers/${id}`, data, { headers });
       const updatedCareer = response.data?.data || response.data;
 
       // Update local state
       setCareers(prev => prev.map(career =>
-        career._id === id ? updatedCareer : career
+        (career.id || career._id) === id ? updatedCareer : career
       ));
 
       toast.success('Career updated successfully!');
@@ -124,7 +149,7 @@ export const useCareers = () => {
       await axiosInstance.delete(`/api/careers/${id}`);
 
       // Remove from local state
-      setCareers(prev => prev.filter(career => career._id !== id));
+      setCareers(prev => prev.filter(career => (career.id || career._id) !== id));
 
       toast.success('Career deleted successfully!');
     } catch (err) {

@@ -1,6 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Marquee from 'react-fast-marquee';
 import { motion } from 'framer-motion';
-import { Sparkles } from 'lucide-react';
 import usePartners from '../hooks/usePartners';
 import Loader from './Loader';
 
@@ -8,123 +9,105 @@ const PartnersSection = () => {
     const { partners, loading, error } = usePartners();
 
     if (loading) return <Loader />;
-    if (error) return null; // Silently fail if no partners
+    if (error || !partners || partners.length === 0) return null;
 
-    if (partners.length === 0) return null; // Don't show section if no partners
+    // Split partners into 3 rows for the alternating effect
+    const count = partners.length;
+    const third = Math.ceil(count / 3);
+
+    const row1 = partners.slice(0, third);
+    const row2 = partners.slice(third, third * 2);
+    const row3 = partners.slice(third * 2);
+
+    const PartnerLogo = ({ partner }) => (
+        <div className="mx-12 flex items-center justify-center w-36 h-20 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 hover:scale-110 transition-all duration-500">
+            <img
+                src={partner.image}
+                alt={partner.name}
+                className="max-w-full max-h-full object-contain"
+                onError={(e) => {
+                    e.target.src = `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='30'%3E%3Ctext x='50%25' y='50%25' font-family='Arial' font-size='10' fill='%23ccc' text-anchor='middle' dominant-baseline='middle'%3E${partner.name}%3C/text%3E%3C/svg%3E`;
+                }}
+            />
+        </div>
+    );
 
     return (
-        <section className="relative w-full bg-[#FAFAFA] py-24 overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
-                <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]"
-                    style={{ backgroundImage: `radial-gradient(#4A8EBC 1.5px, transparent 1.5px)`, backgroundSize: '40px 40px' }} />
-                <div className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-[120px]" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[600px] h-[600px] bg-indigo-400/10 rounded-full blur-[120px]" />
-            </div>
+        <section className="bg-white py-24 overflow-hidden border-t border-gray-50 relative">
+            {/* Background decorative elements */}
+            <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
+                style={{ backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`, backgroundSize: '30px 30px' }} />
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-                {/* Header */}
-                <div className="mb-16 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
+            <div className="max-w-screen-2xl mx-auto relative z-10">
+                {/* Header Section */}
+                <div className="mb-20 text-center px-6">
+                    <motion.span
+                        initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-blue-100 shadow-sm mb-6 hover:shadow-md transition-shadow"
+                        className="text-[10px] font-bold tracking-[0.4em] uppercase text-blue-500 block mb-4"
                     >
-                        <Sparkles size={14} className="text-[#4A8EBC]" />
-                        <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#4A8EBC]">
-                            Trusted Partnerships
-                        </span>
-                    </motion.div>
-
+                        Global Network
+                    </motion.span>
                     <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-5xl md:text-6xl font-black text-neutral-900 tracking-tighter leading-tight mb-4"
+                        className="text-3xl md:text-5xl font-light text-gray-900 tracking-tight"
                     >
-                        Powering Success{' '}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A8EBC] via-[#3B7AA8] to-[#2D5F8C]">
-                            Together.
-                        </span>
+                        Our Strategic <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Partners</span>
                     </motion.h2>
-
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="text-lg text-neutral-500 max-w-2xl mx-auto font-medium"
-                    >
-                        Collaborating with industry leaders to deliver exceptional digital experiences.
-                    </motion.p>
                 </div>
 
-                {/* Partners Grid */}
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3 }}
-                    className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-                >
-                    {partners.map((partner, index) => (
-                        <motion.div
-                            key={partner._id}
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 }}
-                            whileHover={{ y: -8, scale: 1.02 }}
-                            className="group relative bg-white rounded-3xl p-8 border border-neutral-200 shadow-sm hover:shadow-xl transition-all duration-500 flex items-center justify-center overflow-hidden"
-                        >
-                            {/* Hover Gradient Effect */}
-                            <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Marquee Rows */}
+                <div className="flex flex-col space-y-8">
+                    {/* Row 1: Right to Left (direction="left" is default) */}
+                    <Marquee gradient={true} gradientColor="white" gradientWidth={100} speed={40} direction="left" pauseOnHover={true}>
+                        {row1.map((partner) => (
+                            <PartnerLogo key={partner.id || partner._id} partner={partner} />
+                        ))}
+                        {/* Repeat for smoother loop if items are few */}
+                        {row1.length < 5 && row1.map((partner) => (
+                            <PartnerLogo key={`${partner.id || partner._id}-dup`} partner={partner} />
+                        ))}
+                    </Marquee>
 
-                            {/* Spotlight Effect */}
-                            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-32 bg-[#4A8EBC]/10 rounded-full blur-3xl" />
-                            </div>
+                    {/* Row 2: Left to Right */}
+                    {row2.length > 0 && (
+                        <Marquee gradient={true} gradientColor="white" gradientWidth={100} speed={45} direction="right" pauseOnHover={true}>
+                            {row2.map((partner) => (
+                                <PartnerLogo key={partner.id || partner._id} partner={partner} />
+                            ))}
+                            {row2.length < 5 && row2.map((partner) => (
+                                <PartnerLogo key={`${partner.id || partner._id}-dup`} partner={partner} />
+                            ))}
+                        </Marquee>
+                    )}
 
-                            <div className="relative z-10 w-full h-32 flex items-center justify-center">
-                                <img
-                                    src={partner.image}
-                                    alt={partner.name}
-                                    className="max-w-full max-h-full object-contain grayscale group-hover:grayscale-0 transition-all duration-500 filter group-hover:brightness-100 brightness-75"
-                                    onError={(e) => {
-                                        e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23f0f0f0" width="100" height="100"/%3E%3Ctext fill="%234A8EBC" font-family="Arial" font-size="14" x="50%25" y="50%25" text-anchor="middle" dy=".3em"%3E' + partner.name + '%3C/text%3E%3C/svg%3E';
-                                    }}
-                                />
-                            </div>
-
-                            {/* Partner Name on Hover */}
-                            <div className="absolute bottom-4 left-0 right-0 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                                <p className="text-sm font-bold text-neutral-700">{partner.name}</p>
-                            </div>
-                        </motion.div>
-                    ))}
-                </motion.div>
+                    {/* Row 3: Right to Left (Adjusting speed) */}
+                    {row3.length > 0 && (
+                        <Marquee gradient={true} gradientColor="white" gradientWidth={100} speed={35} direction="left" pauseOnHover={true}>
+                            {row3.map((partner) => (
+                                <PartnerLogo key={partner.id || partner._id} partner={partner} />
+                            ))}
+                            {row3.length < 5 && row3.map((partner) => (
+                                <PartnerLogo key={`${partner.id || partner._id}-dup`} partner={partner} />
+                            ))}
+                        </Marquee>
+                    )}
+                </div>
 
                 {/* Bottom CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                    className="mt-16 text-center"
-                >
-                    <p className="text-neutral-500 font-medium mb-4">
-                        Want to partner with us?
-                    </p>
-                    <a
-                        href="/contact"
-                        className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8] text-white rounded-2xl font-bold hover:-translate-y-1 transition-all duration-300 shadow-[0_0_30px_rgba(74,142,188,0.4),0_8px_16px_rgba(74,142,188,0.2)]"
+                <div className="mt-24 flex flex-col items-center">
+                    <div className="h-px w-24 bg-gradient-to-r from-transparent via-gray-200 to-transparent mb-10" />
+                    <Link
+                        to="/contact"
+                        className="group relative px-8 py-3 bg-white border border-gray-200 rounded-full text-[11px] font-bold tracking-widest uppercase text-gray-500 hover:text-blue-600 hover:border-blue-200 transition-all duration-300 shadow-sm hover:shadow-md"
                     >
-                        Let's Collaborate
-                    </a>
-                </motion.div>
+                        Become a Partner —
+                    </Link>
+                </div>
             </div>
         </section>
     );

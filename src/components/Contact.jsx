@@ -116,8 +116,8 @@ export default function ContactAdvanced() {
             <ContactCard
               icon={<MapPin />}
               title="Location"
-              detail="Tilottama-5, Rupandehi"
-              subDetail="Lumbini Province, Nepal"
+              detail="Manigram-5, Tilottama"
+              subDetail="Opposite of New Environment School, Butwal 32903"
             />
             <ContactCard
               icon={<Mail />}
@@ -207,7 +207,7 @@ export default function ContactAdvanced() {
         <div className="max-w-7xl mx-auto rounded-[3rem] overflow-hidden border border-neutral-100 shadow-2xl h-[500px] relative group">
           <div className="absolute inset-0 bg-neutral-900/10 pointer-events-none z-10 group-hover:opacity-0 transition-opacity" />
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.222723795556!2d83.46995631506198!3d27.63384238282371!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3996860000000001%3A0xf6070737837077a5!2sTilottama%20Municipality!5e0!3m2!1sen!2snp!4v1620000000000!5m2!1sen!2snp"
+            src="https://maps.google.com/maps?q=JFHG%2BHC%20Butwal&t=&z=15&ie=UTF8&iwloc=&output=embed"
             width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy" title="Office Location"
           />
         </div>

@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import AdminLayout from './AdminLayout';
 import usePartners from '../../hooks/usePartners';
-import useTeams from '../../hooks/useTeams';
+import useTeamStructure from '../../hooks/useTeamStructure';
 import useProjects from '../../hooks/useProjects';
 import useServices from '../../hooks/useServices';
 import useBlogStore from '../../Store/useBlogStore';
@@ -22,7 +22,7 @@ import useBlogStore from '../../Store/useBlogStore';
 export default function AdminDashboard() {
     const navigate = useNavigate();
     const { partners } = usePartners();
-    const { teams } = useTeams();
+    const { members: teams } = useTeamStructure();
     const { projects } = useProjects();
     const { services } = useServices();
     const { blogs } = useBlogStore();

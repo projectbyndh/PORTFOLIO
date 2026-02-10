@@ -52,7 +52,7 @@ const CareerManagement = () => {
   // Handle update career
   const handleUpdateCareer = async (careerData) => {
     if (editingCareer) {
-      await updateCareer(editingCareer._id, careerData);
+      await updateCareer(editingCareer.id || editingCareer._id, careerData);
       setEditingCareer(null);
     }
   };

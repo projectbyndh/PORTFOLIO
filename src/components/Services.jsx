@@ -1,5 +1,5 @@
-"use client"
 import React, { useRef, useState, useEffect } from "react"
+import { Link } from "react-router-dom"
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 import {
   Globe, Smartphone, Layout, Share2, Search,
@@ -111,10 +111,10 @@ export default function Services() {
             <h3 className="text-4xl font-black mb-6 z-10 tracking-tight">Ready to scale?</h3>
             <p className="text-blue-100/80 mb-10 z-10 max-w-sm text-lg font-light">Experience the next generation of Nepali IT excellence.</p>
 
-            <button className="relative px-8 py-4 bg-white text-[#0F172A] rounded-2xl font-bold flex items-center gap-3 transition-all hover:scale-105 hover:bg-blue-50 z-10 shadow-lg shadow-blue-900/20 group/btn">
+            <Link to="/contact" className="relative px-8 py-4 bg-white text-[#0F172A] rounded-2xl font-bold flex items-center gap-3 transition-all hover:scale-105 hover:bg-blue-50 z-10 shadow-lg shadow-blue-900/20 group/btn">
               <span>Get Started</span>
               <ArrowRight size={20} className="group-hover/btn:translate-x-1 transition-transform" />
-            </button>
+            </Link>
           </motion.div>
         </motion.div>
       </div>

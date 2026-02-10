@@ -4,6 +4,7 @@ import AdminLayout from './AdminLayout';
 import ServiceForm from '../ServiceForm';
 import useServices from '../../hooks/useServices';
 import toast from 'react-hot-toast';
+import { getImageUrl } from '../../utils/getImageUrl';
 
 export default function AdminServices() {
     const { services, loading, fetchServices, deleteService } = useServices();
@@ -103,11 +104,12 @@ export default function AdminServices() {
                                                     {service.logo && (
                                                         <div className="w-10 h-10 rounded-lg bg-white border border-[#4A8EBC]/10 p-1 flex-shrink-0">
                                                             <img
-                                                                src={service.logo}
-                                                                alt={service.name}
+                                                                src={getImageUrl(service.logo, 'service')}
+                                                                alt={service.name || service.title}
                                                                 className="w-full h-full object-contain"
                                                                 onError={(e) => {
-                                                                    e.target.style.display = 'none';
+                                                                    e.target.onerror = null;
+                                                                    e.target.src = getImageUrl(null, 'service');
                                                                 }}
                                                             />
                                                         </div>

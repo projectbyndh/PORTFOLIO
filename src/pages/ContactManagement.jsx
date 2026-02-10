@@ -80,8 +80,8 @@ const ContactManagement = () => {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {contacts.map((contact) => (
-            <div key={contact._id} className="bg-white p-4 rounded-lg shadow-md">
+          {contacts.map((contact, index) => (
+            <div key={contact.id || contact._id || index} className="bg-white p-4 rounded-lg shadow-md">
               <h3 className="text-lg font-semibold mb-2">{contact.name}</h3>
               <p className="text-sm text-gray-600 mb-1"><strong>Email:</strong> {contact.email}</p>
               <p className="text-sm text-gray-600 mb-1"><strong>Phone:</strong> {contact.phoneNumber}</p>

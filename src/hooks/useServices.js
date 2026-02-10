@@ -62,6 +62,10 @@ const useServices = () => {
       const formData = new FormData();
       formData.append('title', serviceData.title);
       formData.append('description', serviceData.description);
+      if (serviceData.tagline) formData.append('tagline', serviceData.tagline);
+      if (serviceData.capabilities) {
+        formData.append('capabilities', JSON.stringify(serviceData.capabilities));
+      }
 
       if (serviceData.logo) {
         formData.append('logo', serviceData.logo);
@@ -100,6 +104,10 @@ const useServices = () => {
       const formData = new FormData();
       formData.append('title', serviceData.title);
       formData.append('description', serviceData.description);
+      if (serviceData.tagline) formData.append('tagline', serviceData.tagline);
+      if (serviceData.capabilities) {
+        formData.append('capabilities', JSON.stringify(serviceData.capabilities));
+      }
 
       if (serviceData.logo) {
         formData.append('logo', serviceData.logo);
@@ -109,12 +117,12 @@ const useServices = () => {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
-        timeout: 10000, // 10 second timeout for file uploads
+        timeout: 10000,
       });
 
       if (response.data.success) {
         setServices(prev => prev.map(service =>
-          service._id === id ? response.data.data : service
+          (service.id || service._id) === id ? response.data.data : service
         ));
         toast.success('Service updated successfully');
         return response.data.data;
@@ -141,7 +149,7 @@ const useServices = () => {
       });
 
       if (response.data.success) {
-        setServices(prev => prev.filter(service => service._id !== id));
+        setServices(prev => prev.filter(service => (service.id || service._id) !== id));
         toast.success('Service deleted successfully');
         return true;
       }
@@ -158,14 +166,7 @@ const useServices = () => {
   };
 
   useEffect(() => {
-    // Only fetch services automatically in production or when explicitly requested
-    // In development, avoid spamming the console with backend errors
-    const shouldFetchAutomatically = process.env.NODE_ENV === 'production' ||
-      localStorage.getItem('enable-api-calls') === 'true';
-
-    if (shouldFetchAutomatically) {
-      fetchServices();
-    }
+    fetchServices();
   }, []);
 
   return {

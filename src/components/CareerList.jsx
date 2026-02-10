@@ -1,6 +1,6 @@
-import React from 'react';
 import { Edit, Trash2, Calendar, MapPin, ExternalLink, Loader2 } from 'lucide-react';
-
+import { getImageUrl } from '../utils/getImageUrl';
+import React from 'react';
 /**
  * CareerList Component - Displays a table of careers with actions
  */
@@ -59,6 +59,9 @@ const CareerList = ({
               Location
             </th>
             <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+              Category
+            </th>
+            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
               Posted Date
             </th>
             <th className="px-6 py-4 text-right text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
@@ -79,7 +82,7 @@ const CareerList = ({
                   {career.image ? (
                     <>
                       <img
-                        src={career.image}
+                        src={getImageUrl(career.image, 'career')}
                         alt={career.title}
                         className="w-12 h-12 object-cover rounded-lg border border-[#4A8EBC]/10 flex-shrink-0"
                         onError={(e) => {
@@ -133,6 +136,18 @@ const CareerList = ({
                     {career.location || 'Not specified'}
                   </span>
                 </div>
+              </td>
+
+              {/* Category */}
+              <td className="px-6 py-4">
+                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${career.category === 'Intern'
+                  ? 'bg-blue-100 text-blue-800'
+                  : career.category?.includes('Developer')
+                    ? 'bg-purple-100 text-purple-800'
+                    : 'bg-green-100 text-green-800'
+                  }`}>
+                  {career.category || 'N/A'}
+                </span>
               </td>
 
               {/* Posted Date */}

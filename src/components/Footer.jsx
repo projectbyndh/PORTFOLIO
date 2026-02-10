@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   Mail, Phone, MapPin, Send, Code2,
-  Linkedin, Globe, Terminal, ArrowUpRight
+  Linkedin, Globe, Terminal, ArrowUpRight, Minus
 } from "lucide-react";
 import Logo from "./Logo";
 
@@ -56,24 +56,28 @@ const Footer = () => {
             <h5 className="text-white/40 font-mono text-[10px] font-black uppercase tracking-[0.2em] mb-4">Services</h5>
             <ul className="space-y-3">
               <li>
-                <span className="text-gray-500 text-sm font-medium cursor-default">
+                <div className="flex items-center gap-2 text-gray-600 text-sm font-medium cursor-default">
+                  <Minus size={10} className="text-white/20" />
                   All Services
-                </span>
+                </div>
               </li>
               <li>
-                <span className="text-gray-500 text-sm font-medium cursor-default">
+                <div className="flex items-center gap-2 text-gray-600 text-sm font-medium cursor-default">
+                  <Minus size={10} className="text-white/20" />
                   Web Development
-                </span>
+                </div>
               </li>
               <li>
-                <span className="text-gray-500 text-sm font-medium cursor-default">
+                <div className="flex items-center gap-2 text-gray-600 text-sm font-medium cursor-default">
+                  <Minus size={10} className="text-white/20" />
                   Mobile Apps
-                </span>
+                </div>
               </li>
               <li>
-                <span className="text-gray-500 text-sm font-medium cursor-default">
+                <div className="flex items-center gap-2 text-gray-600 text-sm font-medium cursor-default">
+                  <Minus size={10} className="text-white/20" />
                   Digital Marketing
-                </span>
+                </div>
               </li>
             </ul>
           </div>

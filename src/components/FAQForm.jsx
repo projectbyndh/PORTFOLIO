@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import useFAQs from '../hooks/useFAQs';
 
-const FAQForm = ({ faq, onClose }) => {
+const FAQForm = ({ faq, onClose, onSuccess }) => {
   const { createFAQ, updateFAQ } = useFAQs();
   const [submitting, setSubmitting] = useState(false);
   const [formData, setFormData] = useState({
@@ -53,6 +53,7 @@ const FAQForm = ({ faq, onClose }) => {
       } else {
         await createFAQ(faqData);
       }
+      if (onSuccess) onSuccess();
       onClose();
     } catch (err) {
       // Error handled in hook
