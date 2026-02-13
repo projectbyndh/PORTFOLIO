@@ -30,8 +30,8 @@ export default function CompaniesSection() {
       {/* Background Effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#4A8EBC]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#3B7AA8]/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#26a8df]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#26a8df]/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
@@ -43,11 +43,11 @@ export default function CompaniesSection() {
           className="text-center mb-10 sm:mb-12 md:mb-14 lg:mb-16"
         >
           <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/60 backdrop-blur-sm border border-white/40 rounded-full mb-4 sm:mb-5 md:mb-6 shadow-sm">
-            <Sparkles size={12} className="text-[#4A8EBC] sm:w-3.5 sm:h-3.5" />
+            <Sparkles size={12} className="text-[#26a8df] sm:w-3.5 sm:h-3.5" />
             <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-neutral-600">Trusted By</span>
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-neutral-900 tracking-tight px-4">
-            Our <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8]">Partners</span>
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-black text-[#26a8df] tracking-tight px-4">
+            Our <span className="text-brand-primary">Partners</span>
           </h2>
         </motion.div>
 
@@ -76,9 +76,9 @@ export default function CompaniesSection() {
                 >
                   <div className="relative mb-2 sm:mb-2.5 md:mb-3">
                     {/* Glow effect on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#4A8EBC]/20 to-[#3B7AA8]/20 rounded-xl sm:rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#26a8df]/20 to-[#26a8df]/20 rounded-xl sm:rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/50 shadow-lg group-hover:shadow-xl group-hover:border-[#4A8EBC]/30 transition-all duration-300 p-2 sm:p-2.5 md:p-3 flex items-center justify-center overflow-hidden">
+                    <div className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/50 shadow-lg group-hover:shadow-xl group-hover:border-[#26a8df]/30 transition-all duration-300 p-2 sm:p-2.5 md:p-3 flex items-center justify-center overflow-hidden">
                       <img
                         src={company.image || company.logoUrl}
                         alt={company.name}
@@ -89,7 +89,7 @@ export default function CompaniesSection() {
                       />
                     </div>
                   </div>
-                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-neutral-600 group-hover:text-[#4A8EBC] text-center whitespace-nowrap transition-colors duration-300">
+                  <span className="text-[10px] sm:text-xs md:text-sm font-bold text-neutral-600 group-hover:text-[#26a8df] text-center whitespace-nowrap transition-colors duration-300">
                     {company.name}
                   </span>
                 </motion.div>

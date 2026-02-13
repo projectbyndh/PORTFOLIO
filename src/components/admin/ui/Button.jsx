@@ -23,17 +23,17 @@ export const Button = ({
 
   const variants = {
     primary: `
-      bg-gradient-to-r from-[#4A8EBC] via-[#3B5488] to-[#2DD4BF] text-white
-      hover:from-[#3B5488] hover:via-[#4A8EBC] hover:to-[#8B5CF6]
-      shadow-lg shadow-[#4A8EBC]/25 hover:shadow-xl hover:shadow-[#4A8EBC]/30
+      bg-gradient-to-r from-[#26a8df] via-[#26a8df] to-[#2DD4BF] text-white
+      hover:from-[#26a8df] hover:via-[#26a8df] hover:to-[#8B5CF6]
+      shadow-lg shadow-[#26a8df]/25 hover:shadow-xl hover:shadow-[#26a8df]/30
     `,
     secondary: `
-      bg-white/80 backdrop-blur-sm text-[#4A8EBC] border border-[#4A8EBC]/20
-      hover:bg-[#4A8EBC]/5 hover:border-[#4A8EBC]/30 shadow-sm
+      bg-white/80 backdrop-blur-sm text-[#26a8df] border border-[#26a8df]/20
+      hover:bg-[#26a8df]/5 hover:border-[#26a8df]/30 shadow-sm
     `,
     ghost: `
-      bg-transparent text-[#2B4066]/70
-      hover:bg-[#4A8EBC]/10 hover:text-[#4A8EBC]
+      bg-transparent text-[#26a8df]/70
+      hover:bg-[#26a8df]/10 hover:text-[#26a8df]
     `,
     danger: `
       bg-gradient-to-r from-red-500 to-rose-600 text-white

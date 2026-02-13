@@ -94,8 +94,8 @@ export default function CareerApplicationForm({ career, onClose }) {
     return (
       <div className="text-center py-12">
         <CheckCircle size={64} className="mx-auto text-green-500 mb-4" />
-        <h3 className="text-2xl font-bold text-[#1A2A44] mb-2">Application Submitted!</h3>
-        <p className="text-[#2B4066]/70">We'll review your application and get back to you soon.</p>
+        <h3 className="text-2xl font-bold text-[#26a8df] mb-2">Application Submitted!</h3>
+        <p className="text-[#26a8df]/70">We'll review your application and get back to you soon.</p>
       </div>
     );
   }
@@ -103,14 +103,14 @@ export default function CareerApplicationForm({ career, onClose }) {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-[#1A2A44] mb-2">Apply for {career.title}</h2>
-        <p className="text-[#2B4066]/70">Fill in your details and upload your CV to apply</p>
+        <h2 className="text-2xl font-bold text-[#26a8df] mb-2">Apply for {career.title}</h2>
+        <p className="text-[#26a8df]/70">Fill in your details and upload your CV to apply</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Full Name */}
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">
             <User className="inline w-4 h-4 mr-1" />
             Full Name *
           </label>
@@ -119,7 +119,7 @@ export default function CareerApplicationForm({ career, onClose }) {
             name="fullName"
             value={formData.fullName}
             onChange={handleChange}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+            className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all"
             placeholder="Enter your full name"
             required
           />
@@ -127,7 +127,7 @@ export default function CareerApplicationForm({ career, onClose }) {
 
         {/* Email */}
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">
             <Mail className="inline w-4 h-4 mr-1" />
             Email Address *
           </label>
@@ -136,7 +136,7 @@ export default function CareerApplicationForm({ career, onClose }) {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+            className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all"
             placeholder="your.email@example.com"
             required
           />
@@ -144,7 +144,7 @@ export default function CareerApplicationForm({ career, onClose }) {
 
         {/* Phone */}
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">
             <Phone className="inline w-4 h-4 mr-1" />
             Phone Number *
           </label>
@@ -153,7 +153,7 @@ export default function CareerApplicationForm({ career, onClose }) {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+            className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all"
             placeholder="+977 98XXXXXXXX"
             required
           />
@@ -161,7 +161,7 @@ export default function CareerApplicationForm({ career, onClose }) {
 
         {/* CV Upload */}
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">
             <FileText className="inline w-4 h-4 mr-1" />
             Upload CV/Resume *
           </label>
@@ -176,10 +176,10 @@ export default function CareerApplicationForm({ career, onClose }) {
             />
             <label
               htmlFor="cv-upload"
-              className="flex items-center justify-center gap-2 w-full px-4 py-3 border-2 border-dashed border-[#4A8EBC]/30 rounded-xl cursor-pointer hover:border-[#4A8EBC] hover:bg-[#4A8EBC]/5 transition-all"
+              className="flex items-center justify-center gap-2 w-full px-4 py-3 border-2 border-dashed border-[#26a8df]/30 rounded-xl cursor-pointer hover:border-[#26a8df] hover:bg-[#26a8df]/5 transition-all"
             >
-              <Upload size={20} className="text-[#4A8EBC]" />
-              <span className="text-[#2B4066]">
+              <Upload size={20} className="text-[#26a8df]" />
+              <span className="text-[#26a8df]">
                 {cvFile ? cvFile.name : 'Click to upload CV (PDF, DOC, DOCX - Max 5MB)'}
               </span>
             </label>
@@ -188,7 +188,7 @@ export default function CareerApplicationForm({ career, onClose }) {
 
         {/* Cover Letter */}
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">
             <MessageSquare className="inline w-4 h-4 mr-1" />
             Cover Letter (Optional)
           </label>
@@ -197,7 +197,7 @@ export default function CareerApplicationForm({ career, onClose }) {
             value={formData.coverLetter}
             onChange={handleChange}
             rows={5}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all resize-none"
+            className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all resize-none"
             placeholder="Tell us why you're a great fit for this position..."
           />
         </div>
@@ -208,7 +208,7 @@ export default function CareerApplicationForm({ career, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 text-[#4A8EBC] bg-[#4A8EBC]/10 hover:bg-[#4A8EBC]/20 rounded-xl font-semibold transition-all"
+              className="flex-1 px-6 py-3 text-[#26a8df] bg-[#26a8df]/10 hover:bg-[#26a8df]/20 rounded-xl font-semibold transition-all"
               disabled={submitting}
             >
               Cancel
@@ -217,7 +217,7 @@ export default function CareerApplicationForm({ career, onClose }) {
           <button
             type="submit"
             disabled={submitting}
-            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           >
             {submitting ? (
               <>

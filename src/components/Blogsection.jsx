@@ -98,8 +98,8 @@ function Blogsection() {
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
           <div className="text-center py-12 sm:py-14 md:py-16 lg:py-20">
             <div className="inline-block">
-              <div className="w-16 h-16 border-4 border-[#4A8EBC] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-[#2B4066]/80">Loading blogs...</p>
+              <div className="w-16 h-16 border-4 border-[#26a8df] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-[#26a8df]/80">Loading blogs...</p>
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@ function Blogsection() {
           <div className="text-center py-12 sm:py-14 md:py-16 lg:py-20">
             <div className="inline-block">
               <p className="text-red-500 mb-4">⚠️ {error}</p>
-              <p className="text-[#2B4066]/80">Unable to load blogs from server.</p>
+              <p className="text-[#26a8df]/80">Unable to load blogs from server.</p>
             </div>
           </div>
         </div>
@@ -129,27 +129,27 @@ function Blogsection() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
-        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-linear-to-br from-[#4A8EBC]/10 to-[#3B5488]/5 blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-linear-to-tr from-[#4A8EBC]/10 to-[#3B5488]/5 blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-linear-to-r from-[#4A8EBC]/5 to-[#3B5488]/5 blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 rounded-full bg-linear-to-br from-[#26a8df]/10 to-[#26a8df]/5 blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 rounded-full bg-linear-to-tr from-[#26a8df]/10 to-[#26a8df]/5 blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full bg-linear-to-r from-[#26a8df]/5 to-[#26a8df]/5 blur-3xl"></div>
 
         {/* Animated dots pattern */}
         <div
           className="absolute inset-0 opacity-[0.03] animate-pulse"
           style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, #4A8EBC 2px, transparent 0)`,
+            backgroundImage: `radial-gradient(circle at 2px 2px, #26a8df 2px, transparent 0)`,
             backgroundSize: "50px 50px",
           }}
         />
 
         {/* Floating elements */}
-        <div className="absolute top-20 left-20 w-4 h-4 rounded-full bg-[#4A8EBC]/20 animate-bounce"></div>
+        <div className="absolute top-20 left-20 w-4 h-4 rounded-full bg-[#26a8df]/20 animate-bounce"></div>
         <div
-          className="absolute top-40 right-32 w-6 h-6 rounded-full bg-[#3B5488]/20 animate-bounce"
+          className="absolute top-40 right-32 w-6 h-6 rounded-full bg-[#26a8df]/20 animate-bounce"
           style={{ animationDelay: "1s" }}
         ></div>
         <div
-          className="absolute bottom-32 left-40 w-3 h-3 rounded-full bg-[#4A8EBC]/20 animate-bounce"
+          className="absolute bottom-32 left-40 w-3 h-3 rounded-full bg-[#26a8df]/20 animate-bounce"
           style={{ animationDelay: "2s" }}
         ></div>
       </div>
@@ -157,22 +157,22 @@ function Blogsection() {
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
         {/* Enhanced Header */}
         <div className="text-center mb-10 sm:mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-linear-to-r from-[#4A8EBC]/10 to-[#3B5488]/10 border border-[#4A8EBC]/20 mb-8 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-linear-to-r from-[#26a8df]/10 to-[#26a8df]/10 border border-[#26a8df]/20 mb-8 backdrop-blur-sm">
             <div className="flex gap-1">
-              <div className="w-2 h-2 rounded-full bg-[#4A8EBC] animate-pulse"></div>
-              <div className="w-2 h-2 rounded-full bg-[#4A8EBC] animate-pulse" style={{ animationDelay: "0.5s" }}></div>
-              <div className="w-2 h-2 rounded-full bg-[#4A8EBC] animate-pulse" style={{ animationDelay: "1s" }}></div>
+              <div className="w-2 h-2 rounded-full bg-[#26a8df] animate-pulse"></div>
+              <div className="w-2 h-2 rounded-full bg-[#26a8df] animate-pulse" style={{ animationDelay: "0.5s" }}></div>
+              <div className="w-2 h-2 rounded-full bg-[#26a8df] animate-pulse" style={{ animationDelay: "1s" }}></div>
             </div>
-            <span className="text-sm font-semibold text-[#4A8EBC] tracking-wide">LATEST INSIGHTS</span>
+            <span className="text-sm font-semibold text-[#26a8df] tracking-wide">LATEST INSIGHTS</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 sm:mb-8 leading-tight" id="blog-heading">
-            <span className="bg-linear-to-r from-[#1A2A44] via-[#4A8EBC] to-[#3B5488] bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-[#26a8df] via-[#26a8df] to-[#26a8df] bg-clip-text text-transparent">
               Our Blog
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-[#2B4066]/70 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed font-light">
+          <p className="text-base sm:text-lg md:text-xl text-[#26a8df]/70 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed font-light">
             Discover insights, tutorials, and industry trends from our team of experts.
             <br className="hidden md:block" />
             Stay ahead with the latest in technology and development.
@@ -187,16 +187,16 @@ function Blogsection() {
             {/* Navigation Buttons - smaller and repositioned for mobile */}
             <div className="hidden sm:block absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-20">
               <button
-                onClick={prevSlide} aria-label="Previous blog posts" className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#4A8EBC]/20 hover:bg-[#4A8EBC] hover:border-[#4A8EBC] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
+                onClick={prevSlide} aria-label="Previous blog posts" className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#26a8df]/20 hover:bg-[#26a8df] hover:border-[#26a8df] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
               >
-                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-[#4A8EBC] group-hover:text-white transition-colors duration-300" />
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-[#26a8df] group-hover:text-white transition-colors duration-300" />
               </button>
             </div>
             <div className="hidden sm:block absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-20">
               <button
-                onClick={nextSlide} aria-label="Next blog posts" className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#4A8EBC]/20 hover:bg-[#4A8EBC] hover:border-[#4A8EBC] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
+                onClick={nextSlide} aria-label="Next blog posts" className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#26a8df]/20 hover:bg-[#26a8df] hover:border-[#26a8df] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
               >
-                <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#4A8EBC] group-hover:text-white transition-colors duration-300" />
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#26a8df] group-hover:text-white transition-colors duration-300" />
               </button>
             </div>
 
@@ -230,7 +230,7 @@ function Blogsection() {
                       className="group h-full bg-white/70 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-2 sm:hover:-translate-y-3 rounded-xl sm:rounded-2xl relative"
                     >
                       {/* Card glow effect */}
-                      <div className="absolute inset-0 bg-linear-to-r from-[#4A8EBC]/0 via-[#4A8EBC]/5 to-[#3B5488]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl sm:rounded-2xl"></div>
+                      <div className="absolute inset-0 bg-linear-to-r from-[#26a8df]/0 via-[#26a8df]/5 to-[#26a8df]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl sm:rounded-2xl"></div>
 
                       {/* Image container */}
                       <div className="relative overflow-hidden rounded-t-xl sm:rounded-t-2xl">
@@ -244,7 +244,7 @@ function Blogsection() {
                       {/* Content */}
                       <div className="p-3 sm:p-5 md:p-7 relative font-sans">
                         {/* Meta information */}
-                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 text-[10px] sm:text-xs font-medium text-[#2B4066]/60 mb-2 sm:mb-3 md:mb-4">
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 text-[10px] sm:text-xs font-medium text-[#26a8df]/60 mb-2 sm:mb-3 md:mb-4">
                           <div className="flex items-center gap-1">
                             <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                             <span>{formatDate(blog)}</span>
@@ -256,30 +256,30 @@ function Blogsection() {
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-[#1A2A44] mb-2 sm:mb-3 leading-tight group-hover:text-[#4A8EBC] transition-colors duration-300 line-clamp-2">
+                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-[#26a8df] mb-2 sm:mb-3 leading-tight group-hover:text-[#26a8df] transition-colors duration-300 line-clamp-2">
                           {blog.title}
                         </h3>
 
                         {/* Content preview */}
-                        <p className="text-[#2B4066]/70 mb-3 sm:mb-4 md:mb-5 line-clamp-2 sm:line-clamp-3 leading-relaxed text-xs sm:text-sm">
+                        <p className="text-[#26a8df]/70 mb-3 sm:mb-4 md:mb-5 line-clamp-2 sm:line-clamp-3 leading-relaxed text-xs sm:text-sm">
                           {truncateContent(blog.content || blog.description || '')}
                         </p>
 
                         {/* Footer */}
-                        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-[#4A8EBC]/10">
+                        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-[#26a8df]/10">
                           <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-linear-to-r from-[#4A8EBC] to-[#3B5488] flex items-center justify-center shadow-md">
+                            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-linear-to-r from-[#26a8df] to-[#26a8df] flex items-center justify-center shadow-md">
                               <User className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                             </div>
                             <div>
-                              <div className="text-[10px] sm:text-xs font-bold text-[#1A2A44]">{blog.author || 'NDH Team'}</div>
-                              <div className="text-[8px] sm:text-[10px] text-[#4A8EBC] font-medium tracking-wide">AUTHOR</div>
+                              <div className="text-[10px] sm:text-xs font-bold text-[#26a8df]">{blog.author || 'NDH Team'}</div>
+                              <div className="text-[8px] sm:text-[10px] text-[#26a8df] font-medium tracking-wide">AUTHOR</div>
                             </div>
                           </div>
 
                           <Link
                             to={`/blog-details?id=${blog.id || blog._id}`}
-                            className="group/link inline-flex items-center gap-1.5 text-[#4A8EBC] hover:text-[#3B5488] font-bold text-xs sm:text-xs md:text-xs lg:text-[11px] uppercase tracking-wider transition-all duration-300"
+                            className="group/link inline-flex items-center gap-1.5 text-[#26a8df] hover:text-[#26a8df] font-bold text-xs sm:text-xs md:text-xs lg:text-[11px] uppercase tracking-wider transition-all duration-300"
                           >
                             <span>Read</span>
                             <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-3 lg:h-3 group-hover/link:translate-x-1 transition-transform duration-300" />
@@ -301,8 +301,8 @@ function Blogsection() {
                   aria-label={`Go to slide ${index + 1}`}
                   aria-current={Math.floor(currentIndex / slidesToShow) === index}
                   className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${Math.floor(currentIndex / slidesToShow) === index
-                    ? "bg-linear-to-r from-[#4A8EBC] to-[#3B5488] w-8 sm:w-12"
-                    : "bg-[#4A8EBC]/30 hover:bg-[#4A8EBC]/50 w-2 sm:w-3"
+                    ? "bg-linear-to-r from-[#26a8df] to-[#26a8df] w-8 sm:w-12"
+                    : "bg-[#26a8df]/30 hover:bg-[#26a8df]/50 w-2 sm:w-3"
                     }`}
                 />
               ))}
@@ -315,7 +315,7 @@ function Blogsection() {
           <div className="text-center mt-12 sm:mt-14 md:mt-16">
             <Link
               to="/blog"
-              className="group inline-flex items-center gap-2 sm:gap-2.5 md:gap-3 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] text-white px-6 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 lg:px-8 lg:py-2.5 rounded-full font-semibold text-sm sm:text-base md:text-base lg:text-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105">
+              className="group inline-flex items-center gap-2 sm:gap-2.5 md:gap-3 bg-linear-to-r from-[#26a8df] to-[#26a8df] hover:from-[#26a8df] hover:to-[#26a8df] text-white px-6 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 lg:px-8 lg:py-2.5 rounded-full font-semibold text-sm sm:text-base md:text-base lg:text-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105">
               <span>View All Articles</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-4 lg:h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
@@ -326,17 +326,17 @@ function Blogsection() {
         {displayBlogs.length === 0 && !error && !loading && (
           <div className="text-center py-16">
             <div className="max-w-md mx-auto">
-              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#4A8EBC]/10 flex items-center justify-center">
-                <svg className="w-12 h-12 text-[#4A8EBC]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#26a8df]/10 flex items-center justify-center">
+                <svg className="w-12 h-12 text-[#26a8df]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-[#2B4066] mb-2">No Blog Posts Yet</h3>
-              <p className="text-[#2B4066]/70 mb-6">We're working on bringing you amazing content. Check back soon for the latest insights and updates.</p>
+              <h3 className="text-xl font-semibold text-[#26a8df] mb-2">No Blog Posts Yet</h3>
+              <p className="text-[#26a8df]/70 mb-6">We're working on bringing you amazing content. Check back soon for the latest insights and updates.</p>
               <div className="flex justify-center gap-4">
                 <button
                   onClick={() => fetchBlogs()}
-                  className="inline-flex items-center gap-2 bg-[#4A8EBC] hover:bg-[#3B5488] text-white px-6 py-3 rounded-full font-medium transition-colors duration-300"
+                  className="inline-flex items-center gap-2 bg-[#26a8df] hover:bg-[#26a8df] text-white px-6 py-3 rounded-full font-medium transition-colors duration-300"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -357,12 +357,12 @@ function Blogsection() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-[#2B4066] mb-2">Unable to Load Blogs</h3>
-              <p className="text-[#2B4066]/70 mb-6">We're having trouble connecting to our servers. Please check your internet connection and try again.</p>
+              <h3 className="text-xl font-semibold text-[#26a8df] mb-2">Unable to Load Blogs</h3>
+              <p className="text-[#26a8df]/70 mb-6">We're having trouble connecting to our servers. Please check your internet connection and try again.</p>
               <div className="flex justify-center gap-4">
                 <button
                   onClick={() => fetchBlogs()}
-                  className="inline-flex items-center gap-2 bg-[#4A8EBC] hover:bg-[#3B5488] text-white px-6 py-3 rounded-full font-medium transition-colors duration-300"
+                  className="inline-flex items-center gap-2 bg-[#26a8df] hover:bg-[#26a8df] text-white px-6 py-3 rounded-full font-medium transition-colors duration-300"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -378,11 +378,11 @@ function Blogsection() {
         {loading && displayBlogs.length === 0 && (
           <div className="text-center py-16">
             <div className="max-w-md mx-auto">
-              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#4A8EBC]/10 flex items-center justify-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4A8EBC]"></div>
+              <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-[#26a8df]/10 flex items-center justify-center">
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#26a8df]"></div>
               </div>
-              <h3 className="text-xl font-semibold text-[#2B4066] mb-2">Loading Blog Posts</h3>
-              <p className="text-[#2B4066]/70">Please wait while we fetch the latest content...</p>
+              <h3 className="text-xl font-semibold text-[#26a8df] mb-2">Loading Blog Posts</h3>
+              <p className="text-[#26a8df]/70">Please wait while we fetch the latest content...</p>
             </div>
           </div>
         )}

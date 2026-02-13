@@ -100,7 +100,7 @@ export const DataTable = ({
                   onClick={() => column.sortable !== false && handleSort(column.key)}
                   className={`
                     px-4 py-3 text-left text-xs font-semibold text-slate-600 uppercase tracking-wider
-                    ${column.sortable !== false && sortable ? 'cursor-pointer hover:text-slate-900 select-none' : ''}
+                    ${column.sortable !== false && sortable ? 'cursor-pointer hover:text-[#0D1641] select-none' : ''}
                     ${column.className || ''}
                   `}
                   style={{ width: column.width }}

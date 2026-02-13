@@ -36,7 +36,7 @@ export default function AdminDashboard() {
     ];
 
     const quickActions = [
-        { icon: FileText, label: 'Create Blog', path: '/admin/blogs', color: 'from-[#4A8EBC] to-[#3B5488]' },
+        { icon: FileText, label: 'Create Blog', path: '/admin/blogs', color: 'from-[#26a8df] to-[#26a8df]' },
         { icon: Handshake, label: 'Add Partner', path: '/admin/partners', color: 'from-purple-500 to-purple-700' },
         { icon: Users, label: 'Add Team Member', path: '/admin/team', color: 'from-green-500 to-green-700' },
         { icon: FolderKanban, label: 'Add Project', path: '/admin/projects', color: 'from-orange-500 to-orange-700' },
@@ -49,7 +49,7 @@ export default function AdminDashboard() {
             <div className="space-y-8">
                 {/* Welcome Header */}
                 <div>
-                    <h1 className="text-4xl font-black text-neutral-900 mb-2">Dashboard</h1>
+                    <h1 className="text-4xl font-black text-[#26a8df] mb-2">Dashboard</h1>
                     <p className="text-neutral-500">Welcome back! Here's what's happening with your website.</p>
                 </div>
 
@@ -59,7 +59,7 @@ export default function AdminDashboard() {
                         <button
                             key={stat.label}
                             onClick={() => navigate(stat.path)}
-                            className="bg-white rounded-2xl border border-[#4A8EBC]/10 p-6 hover:shadow-xl hover:shadow-[#4A8EBC]/10 transition-all duration-300 group text-left relative overflow-hidden"
+                            className="bg-white rounded-2xl border border-[#26a8df]/10 p-6 hover:shadow-xl hover:shadow-[#26a8df]/10 transition-all duration-300 group text-left relative overflow-hidden"
                         >
                             <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                                 <stat.icon className={`w-24 h-24 text-${stat.color.split('-')[1]}-500`} />
@@ -76,8 +76,8 @@ export default function AdminDashboard() {
                             </div>
 
                             <div className="relative z-10">
-                                <p className="text-3xl font-black text-[#1A2A44] mb-1">{stat.count}</p>
-                                <p className="text-sm font-medium text-[#2B4066]/60">{stat.label}</p>
+                                <p className="text-3xl font-black text-[#26a8df] mb-1">{stat.count}</p>
+                                <p className="text-sm font-medium text-[#26a8df]/60">{stat.label}</p>
                             </div>
                         </button>
                     ))}
@@ -85,7 +85,7 @@ export default function AdminDashboard() {
 
                 {/* Quick Actions */}
                 <div className="bg-white rounded-2xl border border-neutral-200 p-6">
-                    <h2 className="text-2xl font-bold text-neutral-900 mb-6">Quick Actions</h2>
+                    <h2 className="text-2xl font-bold text-[#26a8df] mb-6">Quick Actions</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                         {quickActions.map((action) => (
                             <button
@@ -102,15 +102,15 @@ export default function AdminDashboard() {
 
                 {/* Recent Activity */}
                 <div className="bg-white rounded-2xl border border-neutral-200 p-6">
-                    <h2 className="text-2xl font-bold text-neutral-900 mb-6">Recent Activity</h2>
+                    <h2 className="text-2xl font-bold text-[#26a8df] mb-6">Recent Activity</h2>
                     <div className="space-y-4">
                         {blogs?.slice(0, 5).map((blog) => (
                             <div key={blog.id || blog._id} className="flex items-center gap-4 p-4 bg-neutral-50 rounded-xl">
-                                <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] flex items-center justify-center">
+                                <div className="w-12 h-12 rounded-lg bg-gradient-to-r from-[#26a8df] to-[#26a8df] flex items-center justify-center">
                                     <FileText className="w-6 h-6 text-white" />
                                 </div>
                                 <div className="flex-1">
-                                    <p className="font-semibold text-neutral-900">{blog.title}</p>
+                                    <p className="font-semibold text-[#26a8df]">{blog.title}</p>
                                     <p className="text-sm text-neutral-500">Blog post created</p>
                                 </div>
                                 <button

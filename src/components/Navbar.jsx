@@ -35,7 +35,7 @@ export default function Navbar() {
     <>
       {/* 1. Left-to-Right Loading Bar */}
       <LoadingBar
-        color="linear-gradient(to right, #4A8EBC, #3B7AA8, #93c5fd)"
+        color="linear-gradient(to right, #26a8df, #26a8df, #93c5fd)"
         ref={loadingBarRef}
         height={4}
         shadow={true}
@@ -67,14 +67,14 @@ export default function Navbar() {
                   key={link.path}
                   to={link.path}
                   className={`relative px-5 lg:px-6 py-2.5 text-sm font-bold rounded-xl transition-all duration-300
-                    ${isActive ? "text-white" : "text-neutral-700 hover:text-neutral-900 hover:bg-white/60"}
+                    ${isActive ? "text-white" : "text-[#0D1641] hover:text-[#26a8df] hover:bg-white/60"}
                   `}
                 >
                   <span className="relative z-10">{link.name}</span>
                   {isActive && (
                     <motion.div
                       layoutId="activePill"
-                      className="absolute inset-0 bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8] rounded-xl shadow-[0_4px_20px_rgba(74,142,188,0.4)]"
+                      className="absolute inset-0 bg-gradient-to-r from-[#26a8df] to-[#26a8df] rounded-xl shadow-[0_4px_20px_rgba(74,142,188,0.4)]"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
@@ -87,7 +87,7 @@ export default function Navbar() {
           <div className="flex items-center gap-3">
             <Link
               to="/contact"
-              className="hidden md:flex items-center gap-2 px-5 lg:px-6 py-2.5 lg:py-3 bg-gradient-to-r from-neutral-900 to-neutral-800 text-white text-sm font-bold rounded-xl lg:rounded-2xl hover:from-neutral-800 hover:to-neutral-700 transition-all active:scale-95 shadow-lg hover:shadow-xl"
+              className="hidden md:flex items-center gap-2 px-5 lg:px-6 py-2.5 lg:py-3 bg-[#0D1641] text-white text-sm font-bold rounded-xl lg:rounded-2xl hover:bg-[#0D1641]/90 transition-all active:scale-95 shadow-lg hover:shadow-xl"
             >
               <span className="hidden lg:inline">Start Project</span>
               <span className="lg:hidden">Project</span>
@@ -97,7 +97,7 @@ export default function Navbar() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden p-2.5 sm:p-3 rounded-xl bg-white border border-neutral-200 text-neutral-900 shadow-md hover:shadow-lg transition-all"
+              className="lg:hidden p-2.5 sm:p-3 rounded-xl bg-white border border-neutral-200 text-[#26a8df] shadow-md hover:shadow-lg transition-all"
             >
               {menuOpen ? <X size={20} className="sm:w-5 sm:h-5" /> : <Menu size={20} className="sm:w-5 sm:h-5" />}
             </button>
@@ -124,7 +124,7 @@ export default function Navbar() {
                     <Link
                       to={link.path}
                       onClick={() => setMenuOpen(false)}
-                      className={`text-base sm:text-lg md:text-xl font-bold flex items-center justify-between py-2 ${location.pathname === link.path ? "text-[#4A8EBC]" : "text-neutral-800 hover:text-[#4A8EBC]"
+                      className={`text-base sm:text-lg md:text-xl font-bold flex items-center justify-between py-2 ${location.pathname === link.path ? "text-[#26a8df]" : "text-[#0D1641] hover:text-[#26a8df]"}
                         } transition-colors`}
                     >
                       {link.name}
@@ -136,7 +136,7 @@ export default function Navbar() {
                 <Link
                   to="/contact"
                   onClick={() => setMenuOpen(false)}
-                  className="w-full py-3.5 sm:py-4 bg-gradient-to-r from-neutral-900 to-neutral-800 text-white rounded-xl sm:rounded-2xl text-center font-bold text-base sm:text-lg hover:from-neutral-800 hover:to-neutral-700 transition-all shadow-lg"
+                  className="w-full py-3.5 sm:py-4 bg-[#0D1641] text-white rounded-xl sm:rounded-2xl text-center font-bold text-base sm:text-lg hover:bg-[#0D1641]/90 transition-all shadow-lg"
                 >
                   Let's Talk
                 </Link>

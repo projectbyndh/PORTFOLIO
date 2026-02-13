@@ -129,7 +129,7 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Name */}
       <div>
-        <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+        <label className="block text-sm font-semibold text-[#26a8df] mb-2">
           Name <span className="text-red-500">*</span>
         </label>
         <input
@@ -137,7 +137,7 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
           name="name"
           value={formData.name}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+          className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all"
           placeholder="John Doe"
         />
         {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
@@ -145,7 +145,7 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
 
       {/* Category Select */}
       <div>
-        <label htmlFor="layerId" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+        <label htmlFor="layerId" className="block text-sm font-semibold text-[#26a8df] mb-2">
           Category <span className="text-red-500">*</span>
         </label>
         <select
@@ -153,7 +153,7 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
           id="layerId"
           value={formData.layerId || ''}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all bg-white text-[#1A2A44] font-medium block"
+          className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all bg-white text-[#26a8df] font-medium block"
           required
         >
           <option value="">-- Select a Category --</option>
@@ -173,7 +173,7 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
 
       {/* Job Title */}
       <div>
-        <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+        <label className="block text-sm font-semibold text-[#26a8df] mb-2">
           Job Title <span className="text-red-500">*</span>
         </label>
         <input
@@ -181,7 +181,7 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
           name="title"
           value={formData.title}
           onChange={handleInputChange}
-          className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+          className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all"
           placeholder="e.g., Chief Executive Officer, Senior Developer, Marketing Manager"
         />
         {errors.title && <p className="text-red-500 text-xs mt-1">{errors.title}</p>}
@@ -191,34 +191,34 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
       {/* Visibility & Order Row */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Display Order</label>
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">Display Order</label>
           <input
             type="number"
             name="order"
             value={formData.order}
             onChange={handleInputChange}
             min="0"
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+            className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all"
           />
           <p className="text-xs text-neutral-400 mt-1">Lower number = shown first</p>
         </div>
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Visibility</label>
-          <label className="flex items-center gap-3 px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl cursor-pointer hover:bg-[#F5FAFF] transition-all">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">Visibility</label>
+          <label className="flex items-center gap-3 px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl cursor-pointer hover:bg-[#F5FAFF] transition-all">
             <input
               type="checkbox"
               checked={formData.isPublic}
               onChange={(e) => setFormData(prev => ({ ...prev, isPublic: e.target.checked }))}
-              className="w-5 h-5 text-[#4A8EBC] rounded border-neutral-300 focus:ring-[#4A8EBC]"
+              className="w-5 h-5 text-[#26a8df] rounded border-neutral-300 focus:ring-[#26a8df]"
             />
-            <span className="text-sm font-medium text-[#1A2A44]">Show on public site</span>
+            <span className="text-sm font-medium text-[#26a8df]">Show on public site</span>
           </label>
         </div>
       </div>
 
       {/* Bio */}
       <div>
-        <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+        <label className="block text-sm font-semibold text-[#26a8df] mb-2">
           Bio <span className="text-red-500">*</span>
         </label>
         <textarea
@@ -226,7 +226,7 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
           value={formData.bio}
           onChange={handleInputChange}
           rows={4}
-          className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all"
+          className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all"
           placeholder="Brief professional biography..."
         />
         {errors.bio && <p className="text-red-500 text-xs mt-1">{errors.bio}</p>}
@@ -234,7 +234,7 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
 
       {/* Image */}
       <div>
-        <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+        <label className="block text-sm font-semibold text-[#26a8df] mb-2">
           Profile Image <span className="text-red-500">*</span>
         </label>
         <ImageUploadPreview
@@ -248,7 +248,7 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
 
       {/* Social Links */}
       <div className="space-y-4 pt-4 border-t border-neutral-100">
-        <h4 className="text-sm font-semibold text-[#1A2A44]">Social Links</h4>
+        <h4 className="text-sm font-semibold text-[#26a8df]">Social Links</h4>
 
         <div className="flex items-center gap-3">
           <div className="p-2 bg-blue-50 text-blue-600 rounded-lg">
@@ -259,7 +259,7 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
             name="linkedin"
             value={formData.linkedin}
             onChange={handleInputChange}
-            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#4A8EBC]"
+            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#26a8df]"
             placeholder="LinkedIn URL"
           />
         </div>
@@ -273,7 +273,7 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
             name="github"
             value={formData.github}
             onChange={handleInputChange}
-            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#4A8EBC]"
+            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#26a8df]"
             placeholder="GitHub URL"
           />
         </div>
@@ -287,26 +287,26 @@ const TeamForm = ({ member, categories = [], onClose, onSubmit }) => {
             name="email"
             value={formData.email}
             onChange={handleInputChange}
-            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#4A8EBC]"
+            className="flex-1 px-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:border-[#26a8df]"
             placeholder="Email Address"
           />
         </div>
       </div>
 
       {/* Actions */}
-      <div className="flex justify-end gap-3 pt-6 border-t border-[#4A8EBC]/10">
+      <div className="flex justify-end gap-3 pt-6 border-t border-[#26a8df]/10">
         <button
           type="button"
           onClick={onClose}
           disabled={submitting}
-          className="px-6 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/5 hover:bg-[#4A8EBC]/10 rounded-xl transition-all"
+          className="px-6 py-2.5 text-sm font-semibold text-[#26a8df] bg-[#26a8df]/5 hover:bg-[#26a8df]/10 rounded-xl transition-all"
         >
           Cancel
         </button>
         <button
           type="submit"
           disabled={submitting}
-          className="px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] rounded-xl transition-all hover:shadow-lg disabled:opacity-50"
+          className="px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#26a8df] to-[#26a8df] rounded-xl transition-all hover:shadow-lg disabled:opacity-50"
         >
           {submitting ? 'Saving...' : (member ? 'Update Member' : 'Add Member')}
         </button>

@@ -124,7 +124,7 @@ const ContactManagement = () => {
             {row.name?.charAt(0) || '?'}
           </div>
           <div>
-            <p className="font-medium text-slate-900">{row.name}</p>
+            <p className="font-medium text-[#0D1641]">{row.name}</p>
             <p className="text-xs text-slate-500">{row.email}</p>
           </div>
         </div>
@@ -325,7 +325,7 @@ const ContactManagement = () => {
                 {selectedContact.name?.charAt(0)}
               </div>
               <div>
-                <h3 className="text-lg font-semibold text-slate-900">{selectedContact.name}</h3>
+                <h3 className="text-lg font-semibold text-[#0D1641]">{selectedContact.name}</h3>
                 <p className="text-slate-500">{selectedContact.email}</p>
               </div>
             </div>
@@ -333,15 +333,15 @@ const ContactManagement = () => {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="text-xs font-medium text-slate-500 uppercase">Phone</label>
-                <p className="text-slate-900">{selectedContact.phoneNumber || 'N/A'}</p>
+                <p className="text-[#0D1641]">{selectedContact.phoneNumber || 'N/A'}</p>
               </div>
               <div>
                 <label className="text-xs font-medium text-slate-500 uppercase">Company</label>
-                <p className="text-slate-900">{selectedContact.companyName || 'N/A'}</p>
+                <p className="text-[#0D1641]">{selectedContact.companyName || 'N/A'}</p>
               </div>
               <div className="col-span-2">
                 <label className="text-xs font-medium text-slate-500 uppercase">Service Interested</label>
-                <p className="text-slate-900">{selectedContact.serviceInterested || 'General'}</p>
+                <p className="text-[#0D1641]">{selectedContact.serviceInterested || 'General'}</p>
               </div>
             </div>
 

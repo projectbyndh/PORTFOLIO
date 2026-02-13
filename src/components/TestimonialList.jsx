@@ -12,7 +12,7 @@ const TestimonialList = ({
     if (loading && testimonials.length === 0) {
         return (
             <div className="flex justify-center items-center h-full py-20">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4A8EBC]"></div>
+                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#26a8df]"></div>
             </div>
         );
     }
@@ -21,10 +21,10 @@ const TestimonialList = ({
         return (
             <div className="flex flex-col items-center justify-center h-full text-center py-20">
                 <div className="w-20 h-20 bg-[#F5FAFF] rounded-full flex items-center justify-center mb-4">
-                    <Star className="w-10 h-10 text-[#4A8EBC]/40" />
+                    <Star className="w-10 h-10 text-[#26a8df]/40" />
                 </div>
-                <p className="text-[#2B4066] font-semibold text-lg mb-2">No testimonials found</p>
-                <p className="text-[#2B4066]/60 mb-6 max-w-sm">Get started by creating your first testimonial.</p>
+                <p className="text-[#26a8df] font-semibold text-lg mb-2">No testimonials found</p>
+                <p className="text-[#26a8df]/60 mb-6 max-w-sm">Get started by creating your first testimonial.</p>
             </div>
         );
     }
@@ -32,26 +32,26 @@ const TestimonialList = ({
     return (
         <div className="overflow-x-auto">
             <table className="w-full">
-                <thead className="bg-[#F5FAFF] border-b border-[#4A8EBC]/10">
+                <thead className="bg-[#F5FAFF] border-b border-[#26a8df]/10">
                     <tr>
-                        <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+                        <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df] uppercase tracking-wider">
                             Client
                         </th>
-                        <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+                        <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df] uppercase tracking-wider">
                             Rating
                         </th>
-                        <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+                        <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df] uppercase tracking-wider">
                             Message
                         </th>
-                        <th className="px-6 py-4 text-center text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+                        <th className="px-6 py-4 text-center text-sm font-bold text-[#26a8df] uppercase tracking-wider">
                             Featured
                         </th>
-                        <th className="px-6 py-4 text-right text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+                        <th className="px-6 py-4 text-right text-sm font-bold text-[#26a8df] uppercase tracking-wider">
                             Actions
                         </th>
                     </tr>
                 </thead>
-                <tbody className="divide-y divide-[#4A8EBC]/5">
+                <tbody className="divide-y divide-[#26a8df]/5">
                     {testimonials.map((item) => (
                         <tr
                             key={item.id || item._id}
@@ -64,17 +64,17 @@ const TestimonialList = ({
                                         <img
                                             src={item.image}
                                             alt={item.name}
-                                            className="w-10 h-10 rounded-full object-cover border border-[#4A8EBC]/10"
+                                            className="w-10 h-10 rounded-full object-cover border border-[#26a8df]/10"
                                             onError={(e) => { e.target.src = 'https://via.placeholder.com/40'; }}
                                         />
                                     ) : (
-                                        <div className="w-10 h-10 rounded-full bg-[#4A8EBC]/10 flex items-center justify-center text-[#4A8EBC] font-bold">
+                                        <div className="w-10 h-10 rounded-full bg-[#26a8df]/10 flex items-center justify-center text-[#26a8df] font-bold">
                                             {item.name?.charAt(0)}
                                         </div>
                                     )}
                                     <div>
-                                        <h4 className="font-semibold text-[#1A2A44]">{item.name}</h4>
-                                        <p className="text-xs text-[#2B4066]/60">{item.position} {item.company ? `at ${item.company}` : ''}</p>
+                                        <h4 className="font-semibold text-[#26a8df]">{item.name}</h4>
+                                        <p className="text-xs text-[#26a8df]/60">{item.position} {item.company ? `at ${item.company}` : ''}</p>
                                     </div>
                                 </div>
                             </td>
@@ -93,7 +93,7 @@ const TestimonialList = ({
 
                             {/* Message */}
                             <td className="px-6 py-4">
-                                <p className="text-sm text-[#2B4066]/70 line-clamp-2 max-w-xs ring-offset-2">
+                                <p className="text-sm text-[#26a8df]/70 line-clamp-2 max-w-xs ring-offset-2">
                                     "{item.text}"
                                 </p>
                             </td>
@@ -117,7 +117,7 @@ const TestimonialList = ({
                                 <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                                     <button
                                         onClick={() => onEdit(item)}
-                                        className="px-3 py-1.5 bg-[#4A8EBC]/10 text-[#4A8EBC] rounded-lg hover:bg-[#4A8EBC]/20 transition-all flex items-center gap-1.5 font-medium text-sm"
+                                        className="px-3 py-1.5 bg-[#26a8df]/10 text-[#26a8df] rounded-lg hover:bg-[#26a8df]/20 transition-all flex items-center gap-1.5 font-medium text-sm"
                                     >
                                         <Edit className="w-3.5 h-3.5" />
                                         Edit

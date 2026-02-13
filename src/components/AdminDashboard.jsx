@@ -104,23 +104,23 @@ export default function AdminDashboard() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* Header */}
-        <header className="bg-white/70 backdrop-blur-sm border-b border-[#4A8EBC]/20 sticky top-0 z-40 shadow-lg">
+        <header className="bg-white/70 backdrop-blur-sm border-b border-[#26a8df]/20 sticky top-0 z-40 shadow-lg">
           <div className="flex items-center justify-between px-3 sm:px-4 lg:px-6 py-2 sm:py-3">
             <div className="flex items-center gap-2 sm:gap-3">
               <button
                 onClick={() => setSidebarOpen(true)}
-                className="lg:hidden p-1.5 rounded-lg hover:bg-[#4A8EBC]/10 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/50 focus:ring-offset-2 focus:ring-offset-white/50"
+                className="lg:hidden p-1.5 rounded-lg hover:bg-[#26a8df]/10 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#26a8df]/50 focus:ring-offset-2 focus:ring-offset-white/50"
                 aria-label="Open menu"
               >
-                <Menu className="w-5 h-5 text-[#4A8EBC]" />
+                <Menu className="w-5 h-5 text-[#26a8df]" />
               </button>
               <div>
-                <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-linear-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">
+                <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-linear-to-r from-[#26a8df] to-[#26a8df] bg-clip-text text-transparent">
                   {activeTab === 'dashboard' ? 'Dashboard' :
                     activeTab === 'blogs' ? 'Manage Blogs' :
                       activeTab === 'settings' ? 'Settings' : 'Admin Panel'}
                 </h1>
-                <p className="text-xs sm:text-sm text-[#2B4066]/70">Welcome back, {user?.username}</p>
+                <p className="text-xs sm:text-sm text-[#26a8df]/70">Welcome back, {user?.username}</p>
               </div>
             </div>
           </div>
@@ -135,10 +135,10 @@ export default function AdminDashboard() {
                 <div className="bg-white/70 backdrop-blur-sm border border-white/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 shadow-xl">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs sm:text-sm text-[#2B4066]/70">Total Blogs</p>
-                      <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#1A2A44]">{safeBlogs.length}</p>
+                      <p className="text-xs sm:text-sm text-[#26a8df]/70">Total Blogs</p>
+                      <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#26a8df]">{safeBlogs.length}</p>
                     </div>
-                    <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] rounded-full flex items-center justify-center">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-linear-to-r from-[#26a8df] to-[#26a8df] rounded-full flex items-center justify-center">
                       <FileText className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
                     </div>
                   </div>
@@ -147,8 +147,8 @@ export default function AdminDashboard() {
                 <div className="bg-white/70 backdrop-blur-sm border border-white/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 shadow-xl">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs sm:text-sm text-[#2B4066]/70">Published</p>
-                      <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#1A2A44]">{safeBlogs.length}</p>
+                      <p className="text-xs sm:text-sm text-[#26a8df]/70">Published</p>
+                      <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#26a8df]">{safeBlogs.length}</p>
                     </div>
                     <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-linear-to-r from-green-400 to-green-600 rounded-full flex items-center justify-center">
                       <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
@@ -159,8 +159,8 @@ export default function AdminDashboard() {
                 <div className="bg-white/70 backdrop-blur-sm border border-white/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 shadow-xl">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs sm:text-sm text-[#2B4066]/70">Views</p>
-                      <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#1A2A44]">--</p>
+                      <p className="text-xs sm:text-sm text-[#26a8df]/70">Views</p>
+                      <p className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#26a8df]">--</p>
                     </div>
                     <div className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 bg-linear-to-r from-purple-400 to-purple-600 rounded-full flex items-center justify-center">
                       <BarChart3 className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 text-white" />
@@ -171,25 +171,25 @@ export default function AdminDashboard() {
 
               {/* Quick Actions */}
               <div className="bg-white/70 backdrop-blur-sm border border-white/50 rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 shadow-xl">
-                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-[#1A2A44] mb-3 sm:mb-4">Quick Actions</h3>
+                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-[#26a8df] mb-3 sm:mb-4">Quick Actions</h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
                   <button
                     onClick={() => navigate('/admin/blog/create')}
-                    className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 lg:p-4 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] text-white rounded-lg text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                    className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 lg:p-4 bg-linear-to-r from-[#26a8df] to-[#26a8df] hover:from-[#26a8df] hover:to-[#26a8df] text-white rounded-lg text-sm sm:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                   >
                     <PlusCircle className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
                     <span className="text-xs sm:text-sm lg:text-base">Create New Blog</span>
                   </button>
                   <button
                     onClick={() => navigate('/admin/blogs')}
-                    className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 lg:p-4 bg-white/70 backdrop-blur-sm border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC]/10 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300"
+                    className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 lg:p-4 bg-white/70 backdrop-blur-sm border border-[#26a8df]/20 text-[#26a8df] hover:bg-[#26a8df]/10 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300"
                   >
                     <FileText className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
                     <span className="text-xs sm:text-sm lg:text-base">Manage Blogs</span>
                   </button>
                   <button
                     onClick={() => setActiveTab('settings')}
-                    className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 lg:p-4 bg-white/70 backdrop-blur-sm border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC]/10 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300"
+                    className="flex items-center gap-2 sm:gap-3 p-2.5 sm:p-3 lg:p-4 bg-white/70 backdrop-blur-sm border border-[#26a8df]/20 text-[#26a8df] hover:bg-[#26a8df]/10 rounded-lg text-sm sm:text-base font-semibold transition-all duration-300"
                   >
                     <Settings className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6" />
                     <span className="text-xs sm:text-sm lg:text-base">Settings</span>
@@ -205,11 +205,11 @@ export default function AdminDashboard() {
                 {/* Create Blog Button */}
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 mb-4 sm:mb-5">
                   <div className="flex items-center gap-2 sm:gap-3">
-                    <h2 className="text-base sm:text-lg lg:text-xl font-bold text-[#1A2A44]">All Blogs</h2>
+                    <h2 className="text-base sm:text-lg lg:text-xl font-bold text-[#26a8df]">All Blogs</h2>
                     <button
                       onClick={handleRefreshBlogs}
                       disabled={loading}
-                      className="p-1.5 sm:p-2 text-[#4A8EBC] hover:bg-[#4A8EBC]/10 rounded-lg transition-colors duration-200 disabled:opacity-50"
+                      className="p-1.5 sm:p-2 text-[#26a8df] hover:bg-[#26a8df]/10 rounded-lg transition-colors duration-200 disabled:opacity-50"
                       title="Refresh Blogs"
                     >
                       <RefreshCw className={`w-4 h-4 sm:w-5 sm:h-5 ${loading ? 'animate-spin' : ''}`} />
@@ -217,7 +217,7 @@ export default function AdminDashboard() {
                   </div>
                   <button
                     onClick={() => navigate('/admin/blog/create')}
-                    className="flex items-center gap-1.5 sm:gap-2 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] text-white px-3 py-2 sm:px-4 sm:py-2.5 lg:px-6 lg:py-3 rounded-lg text-xs sm:text-sm lg:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                    className="flex items-center gap-1.5 sm:gap-2 bg-linear-to-r from-[#26a8df] to-[#26a8df] hover:from-[#26a8df] hover:to-[#26a8df] text-white px-3 py-2 sm:px-4 sm:py-2.5 lg:px-6 lg:py-3 rounded-lg text-xs sm:text-sm lg:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                   >
                     <PlusCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                     <span className="hidden sm:inline">Create New Blog</span>
@@ -228,7 +228,7 @@ export default function AdminDashboard() {
                 {/* Loading State */}
                 {loading && (
                   <div className="flex justify-center items-center py-20">
-                    <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#4A8EBC]"></div>
+                    <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-[#26a8df]"></div>
                   </div>
                 )}
 
@@ -244,12 +244,12 @@ export default function AdminDashboard() {
                   <div className="overflow-x-auto">
                     <table className="w-full">
                       <thead>
-                        <tr className="border-b border-[#4A8EBC]/20">
-                          <th className="text-left py-2 sm:py-3 px-2 sm:px-3 lg:px-4 text-xs sm:text-sm font-semibold text-[#1A2A44]">Blog Details</th>
-                          <th className="text-left py-2 sm:py-3 px-2 sm:px-3 lg:px-4 text-xs sm:text-sm font-semibold text-[#1A2A44] hidden md:table-cell">Author</th>
-                          <th className="text-left py-2 sm:py-3 px-2 sm:px-3 lg:px-4 text-xs sm:text-sm font-semibold text-[#1A2A44] hidden lg:table-cell">Status</th>
-                          <th className="text-left py-2 sm:py-3 px-2 sm:px-3 lg:px-4 text-xs sm:text-sm font-semibold text-[#1A2A44] hidden sm:table-cell">Date</th>
-                          <th className="text-right py-2 sm:py-3 px-2 sm:px-3 lg:px-4 text-xs sm:text-sm font-semibold text-[#1A2A44]">Actions</th>
+                        <tr className="border-b border-[#26a8df]/20">
+                          <th className="text-left py-2 sm:py-3 px-2 sm:px-3 lg:px-4 text-xs sm:text-sm font-semibold text-[#26a8df]">Blog Details</th>
+                          <th className="text-left py-2 sm:py-3 px-2 sm:px-3 lg:px-4 text-xs sm:text-sm font-semibold text-[#26a8df] hidden md:table-cell">Author</th>
+                          <th className="text-left py-2 sm:py-3 px-2 sm:px-3 lg:px-4 text-xs sm:text-sm font-semibold text-[#26a8df] hidden lg:table-cell">Status</th>
+                          <th className="text-left py-2 sm:py-3 px-2 sm:px-3 lg:px-4 text-xs sm:text-sm font-semibold text-[#26a8df] hidden sm:table-cell">Date</th>
+                          <th className="text-right py-2 sm:py-3 px-2 sm:px-3 lg:px-4 text-xs sm:text-sm font-semibold text-[#26a8df]">Actions</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -257,13 +257,13 @@ export default function AdminDashboard() {
                           <tr>
                             <td colSpan="5" className="text-center py-12">
                               <div className="flex flex-col items-center gap-4">
-                                <FileText className="w-16 h-16 text-[#4A8EBC]/30" />
+                                <FileText className="w-16 h-16 text-[#26a8df]/30" />
                                 <div>
-                                  <p className="text-lg font-semibold text-[#1A2A44] mb-2">No blogs found</p>
-                                  <p className="text-[#2B4066]/60 mb-4">Blogs will appear here once created via the backend API.</p>
+                                  <p className="text-lg font-semibold text-[#26a8df] mb-2">No blogs found</p>
+                                  <p className="text-[#26a8df]/60 mb-4">Blogs will appear here once created via the backend API.</p>
                                   <button
                                     onClick={() => navigate('/admin/blog/create')}
-                                    className="inline-flex items-center gap-1.5 sm:gap-2 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] text-white px-3 py-2 sm:px-4 sm:py-2.5 lg:px-6 lg:py-3 rounded-lg text-xs sm:text-sm lg:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                                    className="inline-flex items-center gap-1.5 sm:gap-2 bg-linear-to-r from-[#26a8df] to-[#26a8df] hover:from-[#26a8df] hover:to-[#26a8df] text-white px-3 py-2 sm:px-4 sm:py-2.5 lg:px-6 lg:py-3 rounded-lg text-xs sm:text-sm lg:text-base font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                                   >
                                     <PlusCircle className="w-4 h-4 sm:w-5 sm:h-5" />
                                     <span className="text-xs sm:text-sm lg:text-base">Create New Blog</span>
@@ -274,22 +274,22 @@ export default function AdminDashboard() {
                           </tr>
                         ) : (
                           safeBlogs.map((blog) => (
-                            <tr key={blog._id || blog.id} className="border-b border-[#4A8EBC]/10 hover:bg-[#4A8EBC]/5 transition-colors duration-200">
+                            <tr key={blog._id || blog.id} className="border-b border-[#26a8df]/10 hover:bg-[#26a8df]/5 transition-colors duration-200">
                               <td className="py-2 sm:py-3 lg:py-4 px-2 sm:px-3 lg:px-4">
                                 <div className="flex items-center gap-2 sm:gap-3">
                                   {blog.image && (
                                     <img
                                       src={blog.image}
                                       alt={blog.title}
-                                      className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 object-cover rounded-lg border border-[#4A8EBC]/20"
+                                      className="w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 object-cover rounded-lg border border-[#26a8df]/20"
                                       onError={(e) => {
                                         e.target.src = '/placeholder.svg?height=48&width=48';
                                       }}
                                     />
                                   )}
                                   <div className="min-w-0 flex-1">
-                                    <p className="text-sm sm:text-base font-semibold text-[#1A2A44] truncate">{blog.title || 'Untitled'}</p>
-                                    <p className="text-xs text-[#2B4066]/60 line-clamp-1 sm:line-clamp-2 mt-0.5 sm:mt-1 hidden sm:block">
+                                    <p className="text-sm sm:text-base font-semibold text-[#26a8df] truncate">{blog.title || 'Untitled'}</p>
+                                    <p className="text-xs text-[#26a8df]/60 line-clamp-1 sm:line-clamp-2 mt-0.5 sm:mt-1 hidden sm:block">
                                       {blog.description || blog.content || 'No description available'}
                                     </p>
                                     {blog._id?.startsWith('local-') && (
@@ -302,8 +302,8 @@ export default function AdminDashboard() {
                               </td>
                               <td className="py-2 sm:py-3 lg:py-4 px-2 sm:px-3 lg:px-4 hidden md:table-cell">
                                 <div className="flex items-center gap-1.5 sm:gap-2">
-                                  <UserIcon className="w-3 h-3 sm:w-4 sm:h-4 text-[#4A8EBC]" />
-                                  <span className="text-xs sm:text-sm text-[#2B4066]">{blog.author || 'NDH'}</span>
+                                  <UserIcon className="w-3 h-3 sm:w-4 sm:h-4 text-[#26a8df]" />
+                                  <span className="text-xs sm:text-sm text-[#26a8df]">{blog.author || 'NDH'}</span>
                                 </div>
                               </td>
                               <td className="py-2 sm:py-3 lg:py-4 px-2 sm:px-3 lg:px-4 hidden lg:table-cell">
@@ -316,8 +316,8 @@ export default function AdminDashboard() {
                               </td>
                               <td className="py-2 sm:py-3 lg:py-4 px-2 sm:px-3 lg:px-4 hidden sm:table-cell">
                                 <div className="flex items-center gap-1.5 sm:gap-2">
-                                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-[#4A8EBC]" />
-                                  <span className="text-xs sm:text-sm text-[#2B4066]">
+                                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4 text-[#26a8df]" />
+                                  <span className="text-xs sm:text-sm text-[#26a8df]">
                                     {formatDate(blog.date || blog.createdAt)}
                                   </span>
                                 </div>
@@ -374,8 +374,8 @@ export default function AdminDashboard() {
 
           {activeTab === 'settings' && (
             <div className="bg-white/70 backdrop-blur-sm border border-white/50 rounded-xl sm:rounded-2xl shadow-xl p-3 sm:p-4 lg:p-5">
-              <h2 className="text-base sm:text-lg lg:text-xl font-bold text-[#1A2A44] mb-3 sm:mb-4">Settings</h2>
-              <p className="text-sm sm:text-base text-[#2B4066]/70">Settings panel coming soon...</p>
+              <h2 className="text-base sm:text-lg lg:text-xl font-bold text-[#26a8df] mb-3 sm:mb-4">Settings</h2>
+              <p className="text-sm sm:text-base text-[#26a8df]/70">Settings panel coming soon...</p>
             </div>
           )}
         </main>
@@ -384,7 +384,7 @@ export default function AdminDashboard() {
       {/* Mobile Overlay */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-[#1A2A44]/40 backdrop-blur-md z-40 lg:hidden"
+          className="fixed inset-0 bg-[#26a8df]/40 backdrop-blur-md z-40 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}

@@ -1,6 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import apiClient from '../api/apiClient';
+
+// Hardcoded admin credentials
+const ADMIN_CREDENTIALS = {
+  email: "admin.ndh@gmail.com",
+  password: "Manigram@ndh@123#"
+};
 
 const useAuthStore = create(
   persist(
@@ -13,15 +18,17 @@ const useAuthStore = create(
       // Actions
       login: async (username, password) => {
         try {
-          // ofetch returns data directly
-          const data = await apiClient('/auth/login', {
-            method: 'POST',
-            body: { username, password }
-          });
+          // Validate against hardcoded credentials
+          if (username === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
+            const token = btoa(`${username}:${Date.now()}`); // Generate a simple token
+            const user = {
+              email: username,
+              name: 'NDH Admin',
+              role: 'admin'
+            };
 
-          if (data.success) {
-            const { token, user } = data;
             localStorage.setItem('token', token);
+            localStorage.setItem('user', JSON.stringify(user));
 
             set({
               isAuthenticated: true,
@@ -30,20 +37,20 @@ const useAuthStore = create(
             });
             return { success: true };
           }
-          return { success: false, message: data.message || 'Login failed' };
+          return { success: false, message: 'Invalid email or password' };
         } catch (error) {
           console.error('Login error:', error);
-          const errorMessage = error.data?.message || 'Login failed. Please try again.';
           return {
             success: false,
-            message: errorMessage
+            message: 'Login failed. Please try again.'
           };
         }
       },
 
       logout: () => {
-        // Clear token from localStorage
+        // Clear token and user from localStorage
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
 
         set({
           isAuthenticated: false,
@@ -62,10 +69,12 @@ const useAuthStore = create(
         return get().isAuthenticated;
       },
 
-      // Verify token with backend (returns promise)
+      // Verify token from localStorage (synchronous check)
       verifyToken: async () => {
         const token = localStorage.getItem('token');
-        if (!token) {
+        const userStr = localStorage.getItem('user');
+        
+        if (!token || !userStr) {
           set({
             isAuthenticated: false,
             user: null,
@@ -75,56 +84,43 @@ const useAuthStore = create(
         }
 
         try {
-          const data = await apiClient('/auth/verify', { method: 'POST' });
-          if (data.success) {
-            set({
-              isAuthenticated: true,
-              user: data.user,
-              token: token,
-            });
-            return { success: true, user: data.user };
-          } else {
-            // Token invalid, clear it
-            localStorage.removeItem('token');
-            set({
-              isAuthenticated: false,
-              user: null,
-              token: null,
-            });
-            return { success: false, message: 'Invalid token' };
-          }
+          const user = JSON.parse(userStr);
+          set({
+            isAuthenticated: true,
+            user: user,
+            token: token,
+          });
+          return { success: true, user: user };
         } catch (error) {
           // Token verification failed, clear it
           localStorage.removeItem('token');
+          localStorage.removeItem('user');
           set({
             isAuthenticated: false,
             user: null,
             token: null,
           });
-          return { success: false, message: error.data?.message || 'Token verification failed' };
+          return { success: false, message: 'Invalid token' };
         }
       },
 
       // Initialize auth state from localStorage
       initializeAuth: () => {
         const token = localStorage.getItem('token');
-        if (token) {
-          // Verify token with backend
-          apiClient('/auth/verify', { method: 'POST' })
-            .then(data => {
-              if (data.success) {
-                set({
-                  isAuthenticated: true,
-                  user: data.user,
-                  token: token,
-                });
-              } else {
-                localStorage.removeItem('token');
-              }
-            })
-            .catch(() => {
-              localStorage.removeItem('token');
+        const userStr = localStorage.getItem('user');
+        
+        if (token && userStr) {
+          try {
+            const user = JSON.parse(userStr);
+            set({
+              isAuthenticated: true,
+              user: user,
+              token: token,
             });
+          } catch (error) {
+            localStorage.removeItem('token');
+            localStorage.removeItem('user');
+          }
         }
       },
     }),

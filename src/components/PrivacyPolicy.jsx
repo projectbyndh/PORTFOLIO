@@ -141,7 +141,7 @@ export default function PrivacyPolicy() {
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
         <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]"
-          style={{ backgroundImage: `radial-gradient(#4A8EBC 1.5px, transparent 1.5px)`, backgroundSize: '40px 40px' }} />
+          style={{ backgroundImage: `radial-gradient(#26a8df 1.5px, transparent 1.5px)`, backgroundSize: '40px 40px' }} />
         <div className="absolute top-[-10%] right-[-10%] w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-[120px]" />
         <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] bg-indigo-400/10 rounded-full blur-[120px]" />
       </div>
@@ -154,15 +154,15 @@ export default function PrivacyPolicy() {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-blue-100 shadow-sm mb-6">
-            <Shield size={14} className="text-[#4A8EBC]" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#4A8EBC]">
+            <Shield size={14} className="text-[#26a8df]" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#26a8df]">
               Your Privacy Matters
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl font-black text-neutral-900 tracking-tighter mb-6">
+          <h1 className="text-5xl md:text-6xl font-black text-[#26a8df] tracking-tighter mb-6">
             Privacy{' '}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A8EBC] via-[#3B7AA8] to-[#2D5F8C]">
+            <span className="text-gradient-brand">
               Policy
             </span>
           </h1>
@@ -188,10 +188,10 @@ export default function PrivacyPolicy() {
               className="bg-white rounded-3xl p-8 md:p-10 border border-neutral-200 shadow-sm hover:shadow-xl transition-all duration-500"
             >
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#4A8EBC]/10 to-blue-500/5 text-[#4A8EBC] flex items-center justify-center flex-shrink-0">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#26a8df]/10 to-blue-500/5 text-[#26a8df] flex items-center justify-center flex-shrink-0">
                   {React.cloneElement(section.icon, { size: 24 })}
                 </div>
-                <h2 className="text-2xl md:text-3xl font-black text-neutral-900 tracking-tight">
+                <h2 className="text-2xl md:text-3xl font-black text-[#26a8df] tracking-tight">
                   {section.title}
                 </h2>
               </div>
@@ -212,7 +212,7 @@ export default function PrivacyPolicy() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 sm:mt-14 md:mt-16 bg-gradient-to-br from-[#1A2A44] to-[#0F172A] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-8 text-white text-center max-w-3xl mx-auto"
+          className="mt-12 sm:mt-14 md:mt-16 bg-gradient-to-br from-[#26a8df] to-[#0F172A] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-8 text-white text-center max-w-3xl mx-auto"
         >
           <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-14 lg:h-14 rounded-xl sm:rounded-2xl lg:rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-4 sm:mb-5 md:mb-6 lg:mb-5">
             <Lock size={24} className="sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-7 lg:h-7 text-white" />
@@ -223,7 +223,7 @@ export default function PrivacyPolicy() {
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-6 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-white text-[#0F172A] rounded-xl sm:rounded-2xl lg:rounded-xl font-bold text-sm sm:text-base lg:text-sm hover:scale-105 transition-all shadow-lg"
+            className="inline-flex items-center gap-2 px-6 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-white text-[#26a8df] rounded-xl sm:rounded-2xl lg:rounded-xl font-bold text-sm sm:text-base lg:text-sm hover:scale-105 transition-all shadow-lg"
           >
             Contact Us
           </a>

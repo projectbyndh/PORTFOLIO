@@ -106,12 +106,12 @@ export default function Testimonials() {
     <div className="w-full bg-[#FAFAFA] relative overflow-hidden py-24">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow blur-3xl" />
-        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow blur-3xl" />
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#26a8df]/5 animate-pulse-slow blur-3xl" />
+        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#26a8df]/5 animate-pulse-slow blur-3xl" />
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
-            backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(#26a8df 1px, transparent 1px)`,
             backgroundSize: "30px 30px",
           }}
         />
@@ -124,13 +124,13 @@ export default function Testimonials() {
             }`}
         >
           <div className="inline-block relative">
-            <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow" />
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow" />
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] to-[#4A8EBC]">
+            <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#26a8df]/20 animate-pulse-slow" />
+            <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#26a8df]/20 animate-pulse-slow" />
+            <h2 className="text-4xl md:text-5xl font-bold text-brand-primary">
               Client Testimonials
             </h2>
           </div>
-          <p className="mt-4 text-lg text-[#2B4066]/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-[#26a8df]/80 max-w-2xl mx-auto">
             Don&apos;t just take our word for it. Here&apos;s what our clients have to say about working with Nepal Digital Heights.
           </p>
         </div>
@@ -141,7 +141,7 @@ export default function Testimonials() {
             }`}
           ref={testimonialsRef}
         >
-          <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 text-[#4A8EBC]/10 z-0">
+          <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 text-[#26a8df]/10 z-0">
             <Quote size={120} />
           </div>
 
@@ -149,13 +149,13 @@ export default function Testimonials() {
             {getVisibleTestimonials().map((testimonial, index) => (
               <div
                 key={testimonial.id}
-                className={`bg-white/70 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-lg border border-[#4A8EBC]/10 transition-all duration-500 hover:shadow-xl hover:bg-white/90 ${index === 0 ? "md:transform md:scale-105 md:shadow-xl" : ""
+                className={`bg-white/70 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-lg border border-[#26a8df]/10 transition-all duration-500 hover:shadow-xl hover:bg-white/90 ${index === 0 ? "md:transform md:scale-105 md:shadow-xl" : ""
                   }`}
               >
                 <div className="flex items-center mb-3 sm:mb-4">
 
                   <div>
-                    <h3 className="text-sm sm:text-base font-black text-neutral-900">{testimonial.name}</h3>
+                    <h3 className="text-sm sm:text-base font-black text-[#26a8df]">{testimonial.name}</h3>
                     <p className="text-xs sm:text-sm text-neutral-600 font-semibold">{testimonial.position}</p>
                   </div>
                 </div>
@@ -170,10 +170,10 @@ export default function Testimonials() {
                   ))}
                 </div>
 
-                <p className="text-xs sm:text-sm md:text-base text-neutral-700 font-medium leading-relaxed relative">
-                  <span className="absolute -top-2 -left-2 text-[#4A8EBC]/20 text-xl sm:text-2xl">&quot;</span>
+                <p className="text-xs sm:text-sm md:text-base text-[#0D1641] font-medium leading-relaxed relative">
+                  <span className="absolute -top-2 -left-2 text-[#26a8df]/20 text-xl sm:text-2xl">&quot;</span>
                   {testimonial.text}
-                  <span className="absolute -bottom-4 -right-2 text-[#4A8EBC]/20">&quot;</span>
+                  <span className="absolute -bottom-4 -right-2 text-[#26a8df]/20">&quot;</span>
                 </p>
               </div>
             ))}
@@ -182,14 +182,14 @@ export default function Testimonials() {
           <div className="flex justify-center mt-8 space-x-3 sm:space-x-4">
             <button
               onClick={prevTestimonial}
-              className="group p-2.5 sm:p-3 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
+              className="group p-2.5 sm:p-3 rounded-full bg-white shadow-md border border-[#26a8df]/20 text-[#26a8df] hover:bg-[#26a8df] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={20} className="sm:w-6 sm:h-6 group-hover:-translate-x-1 transition-transform duration-300" />
             </button>
             <button
               onClick={nextTestimonial}
-              className="group p-2.5 sm:p-3 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
+              className="group p-2.5 sm:p-3 rounded-full bg-white shadow-md border border-[#26a8df]/20 text-[#26a8df] hover:bg-[#26a8df] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
               aria-label="Next testimonial"
             >
               <ChevronRight size={20} className="sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
@@ -203,11 +203,11 @@ export default function Testimonials() {
           className={`mt-16 text-center animate-on-scroll transition-all duration-1000 ${isAnimated(4) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
         >
-          <p className="text-sm sm:text-base md:text-lg text-[#2B4066]/80 mb-6 sm:mb-7 md:mb-8 max-w-2xl mx-auto px-4">
+          <p className="text-sm sm:text-base md:text-lg text-[#26a8df]/80 mb-6 sm:mb-7 md:mb-8 max-w-2xl mx-auto px-4">
             Join our growing list of satisfied clients and experience the Nepal Digital Heights difference.
           </p>
           <Link to='/contact'>
-            <button className="px-6 py-3 sm:px-7 sm:py-3.5 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-sm sm:text-base md:text-base lg:text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            <button className="px-6 py-3 sm:px-7 sm:py-3.5 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-linear-to-r from-[#26a8df] to-[#26a8df] text-white font-bold rounded-full text-sm sm:text-base md:text-base lg:text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
               Get Started Today
             </button>
           </Link>

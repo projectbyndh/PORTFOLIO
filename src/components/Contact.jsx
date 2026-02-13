@@ -80,8 +80,8 @@ export default function ContactAdvanced() {
         <div className="fixed inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none" />
 
         {/* Blur orbs */}
-        <div className="absolute top-20 left-20 w-96 h-96 bg-[#4A8EBC]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#3B7AA8]/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-20 w-96 h-96 bg-[#26a8df]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#26a8df]/10 rounded-full blur-3xl" />
       </div>
 
       <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-5 md:px-6 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24">
@@ -93,12 +93,12 @@ export default function ContactAdvanced() {
           className="text-center mb-10 sm:mb-14 md:mb-16 lg:mb-20"
         >
           <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 mb-3 sm:mb-4 md:mb-5 lg:mb-6">
-            <span className="h-px w-6 sm:w-8 md:w-10 lg:w-12 bg-[#4A8EBC]" />
-            <span className="text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] text-[#4A8EBC]">Global Outreach</span>
-            <span className="h-px w-6 sm:w-8 md:w-10 lg:w-12 bg-[#4A8EBC]" />
+            <span className="h-px w-6 sm:w-8 md:w-10 lg:w-12 bg-[#26a8df]" />
+            <span className="text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] text-[#26a8df]">Global Outreach</span>
+            <span className="h-px w-6 sm:w-8 md:w-10 lg:w-12 bg-[#26a8df]" />
           </motion.div>
-          <motion.h1 variants={itemVariants} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-neutral-900 tracking-tighter mb-3 sm:mb-4 md:mb-5 lg:mb-6">
-            Let&apos;s Build the <span className="text-[#4A8EBC]">Future.</span>
+          <motion.h1 variants={itemVariants} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-[#26a8df] tracking-tighter mb-3 sm:mb-4 md:mb-5 lg:mb-6">
+            Let&apos;s Build the <span className="text-[#26a8df]">Future.</span>
           </motion.h1>
           <motion.p variants={itemVariants} className="text-sm sm:text-base md:text-lg lg:text-xl text-neutral-500 max-w-2xl mx-auto leading-relaxed px-3 sm:px-4">
             Ready to scale your digital ecosystem? Our engineering team is standing by to translate your vision into high-performance reality.
@@ -159,7 +159,7 @@ export default function ContactAdvanced() {
                     <p className="text-neutral-500 mb-8">Our architects are reviewing your requirements. Expect a briefing shortly.</p>
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="text-[#4A8EBC] font-bold flex items-center gap-2 mx-auto"
+                      className="text-[#26a8df] font-bold flex items-center gap-2 mx-auto"
                     >
                       Send another message <ArrowRight size={16} />
                     </button>
@@ -182,7 +182,7 @@ export default function ContactAdvanced() {
                         rows={4}
                         value={formData.message}
                         onChange={handleChange}
-                        className="w-full bg-neutral-50 border-none rounded-2xl p-5 text-neutral-900 focus:ring-2 focus:ring-[#4A8EBC]/20 transition-all outline-none"
+                        className="w-full bg-neutral-50 border-none rounded-2xl p-5 text-[#26a8df] focus:ring-2 focus:ring-[#26a8df]/20 transition-all outline-none"
                         placeholder="Describe the challenge we're solving..."
                       />
                     </div>
@@ -190,7 +190,7 @@ export default function ContactAdvanced() {
                     <div className="md:col-span-2">
                       <button
                         disabled={isSubmitting}
-                        className="w-full h-16 bg-neutral-900 text-white rounded-2xl font-black text-lg flex items-center justify-center gap-3 hover:bg-[#4A8EBC] transition-all active:scale-[0.98] disabled:opacity-50"
+                        className="w-full h-16 bg-[#0D1641] text-white rounded-2xl font-black text-lg flex items-center justify-center gap-3 hover:bg-[#26a8df] transition-all active:scale-[0.98] disabled:opacity-50"
                       >
                         {isSubmitting ? "Processing..." : "Initiate Contact"}
                         {!isSubmitting && <ArrowRight size={20} />}
@@ -224,13 +224,13 @@ function ContactCard({ icon, title, detail, subDetail }) {
   return (
     <motion.div
       variants={itemVariants}
-      className="p-8 rounded-[2rem] bg-white border border-neutral-50 shadow-sm hover:shadow-xl hover:border-[#4A8EBC]/20 transition-all group"
+      className="p-8 rounded-[2rem] bg-white border border-neutral-50 shadow-sm hover:shadow-xl hover:border-[#26a8df]/20 transition-all group"
     >
-      <div className="w-12 h-12 bg-[#4A8EBC]/10 rounded-xl flex items-center justify-center text-[#4A8EBC] mb-6 group-hover:scale-110 transition-transform">
+      <div className="w-12 h-12 bg-[#26a8df]/10 rounded-xl flex items-center justify-center text-[#26a8df] mb-6 group-hover:scale-110 transition-transform">
         {React.cloneElement(icon, { size: 24 })}
       </div>
       <h3 className="text-xs font-black uppercase tracking-widest text-neutral-400 mb-2">{title}</h3>
-      <p className="text-lg font-black text-neutral-900 mb-1">{detail}</p>
+      <p className="text-lg font-black text-[#26a8df] mb-1">{detail}</p>
       <p className="text-sm text-neutral-500 font-medium">{subDetail}</p>
     </motion.div>
   )
@@ -241,16 +241,16 @@ function InputField({ label, icon, isSelect, options, ...props }) {
     <div>
       <label className="block text-xs font-black uppercase tracking-widest text-neutral-400 mb-3">{label}</label>
       <div className="relative group">
-        <div className="absolute left-5 top-1/2 -translate-y-1/2 text-neutral-300 group-focus-within:text-[#4A8EBC] transition-colors">
+        <div className="absolute left-5 top-1/2 -translate-y-1/2 text-neutral-300 group-focus-within:text-[#26a8df] transition-colors">
           {React.cloneElement(icon, { size: 18 })}
         </div>
         {isSelect ? (
-          <select {...props} className="w-full h-14 bg-neutral-50 border-none rounded-2xl pl-12 pr-5 text-neutral-900 focus:ring-2 focus:ring-[#4A8EBC]/20 outline-none appearance-none font-bold">
+          <select {...props} className="w-full h-14 bg-neutral-50 border-none rounded-2xl pl-12 pr-5 text-[#26a8df] focus:ring-2 focus:ring-[#26a8df]/20 outline-none appearance-none font-bold">
             <option value="">Select Service</option>
             {options.map(opt => <option key={opt} value={opt}>{opt}</option>)}
           </select>
         ) : (
-          <input {...props} className="w-full h-14 bg-neutral-50 border-none rounded-2xl pl-12 pr-5 text-neutral-900 font-bold focus:ring-2 focus:ring-[#4A8EBC]/20 outline-none transition-all" />
+          <input {...props} className="w-full h-14 bg-neutral-50 border-none rounded-2xl pl-12 pr-5 text-[#26a8df] font-bold focus:ring-2 focus:ring-[#26a8df]/20 outline-none transition-all" />
         )}
       </div>
     </div>

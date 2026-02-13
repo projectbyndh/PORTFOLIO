@@ -143,16 +143,16 @@ const CareerForm = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-[#1A2A44]/40 backdrop-blur-md flex items-center justify-center z-50 p-4">
-      <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-[#1A2A44]/20 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#4A8EBC]/10">
+    <div className="fixed inset-0 bg-[#26a8df]/40 backdrop-blur-md flex items-center justify-center z-50 p-4">
+      <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-[#26a8df]/20 max-w-4xl w-full max-h-[90vh] overflow-y-auto border border-[#26a8df]/10">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-[#4A8EBC]/10 bg-gradient-to-r from-[#4A8EBC]/5 to-[#3B5488]/5">
-          <h2 className="text-xl font-bold bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">
+        <div className="flex items-center justify-between p-6 border-b border-[#26a8df]/10 bg-gradient-to-r from-[#26a8df]/5 to-[#26a8df]/5">
+          <h2 className="text-xl font-bold bg-gradient-to-r from-[#26a8df] to-[#26a8df] bg-clip-text text-transparent">
             {initialData ? 'Edit Career' : 'Create New Career'}
           </h2>
           <button
             onClick={onClose}
-            className="p-2 text-[#4A8EBC] hover:bg-[#4A8EBC]/10 rounded-xl transition-all duration-200"
+            className="p-2 text-[#26a8df] hover:bg-[#26a8df]/10 rounded-xl transition-all duration-200"
           >
             <X className="w-5 h-5" />
           </button>
@@ -162,7 +162,7 @@ const CareerForm = ({
         <form onSubmit={handleSubmit(handleFormSubmit)} className="p-6 space-y-6">
           {/* Image Upload */}
           <div>
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">
               Career Image (Optional)
             </label>
             <ImageUploadPreview
@@ -179,14 +179,14 @@ const CareerForm = ({
 
           {/* Title */}
           <div>
-            <label htmlFor="title" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <label htmlFor="title" className="block text-sm font-semibold text-[#26a8df] mb-2">
               Job Title *
             </label>
             <input
               {...register('title')}
               type="text"
               id="title"
-              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.title ? 'border-red-400' : 'border-[#4A8EBC]/20'
+              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200 ${errors.title ? 'border-red-400' : 'border-[#26a8df]/20'
                 }`}
               placeholder="Enter job title"
             />
@@ -197,14 +197,14 @@ const CareerForm = ({
 
           {/* Location */}
           <div>
-            <label htmlFor="location" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <label htmlFor="location" className="block text-sm font-semibold text-[#26a8df] mb-2">
               Location *
             </label>
             <input
               {...register('location')}
               type="text"
               id="location"
-              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.location ? 'border-red-400' : 'border-[#4A8EBC]/20'
+              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200 ${errors.location ? 'border-red-400' : 'border-[#26a8df]/20'
                 }`}
               placeholder="Enter job location"
             />
@@ -215,13 +215,13 @@ const CareerForm = ({
 
           {/* Category */}
           <div>
-            <label htmlFor="category" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <label htmlFor="category" className="block text-sm font-semibold text-[#26a8df] mb-2">
               Category *
             </label>
             <select
               {...register('category')}
               id="category"
-              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.category ? 'border-red-400' : 'border-[#4A8EBC]/20'
+              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200 ${errors.category ? 'border-red-400' : 'border-[#26a8df]/20'
                 }`}
             >
               <option value="CTO">CTO</option>
@@ -238,14 +238,14 @@ const CareerForm = ({
 
           {/* Description */}
           <div>
-            <label htmlFor="description" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <label htmlFor="description" className="block text-sm font-semibold text-[#26a8df] mb-2">
               Job Description *
             </label>
             <textarea
               {...register('description')}
               id="description"
               rows={4}
-              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.description ? 'border-red-400' : 'border-[#4A8EBC]/20'
+              className={`w-full px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200 ${errors.description ? 'border-red-400' : 'border-[#26a8df]/20'
                 }`}
               placeholder="Enter job description"
             />
@@ -256,7 +256,7 @@ const CareerForm = ({
 
           {/* Requirements */}
           <div>
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">
               Requirements *
             </label>
             <div className="space-y-2">
@@ -265,7 +265,7 @@ const CareerForm = ({
                   <input
                     {...register(`requirements.${index}`)}
                     type="text"
-                    className={`flex-1 px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.requirements?.[index] ? 'border-red-400' : 'border-[#4A8EBC]/20'
+                    className={`flex-1 px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200 ${errors.requirements?.[index] ? 'border-red-400' : 'border-[#26a8df]/20'
                       }`}
                     placeholder={`Requirement ${index + 1}`}
                   />
@@ -283,7 +283,7 @@ const CareerForm = ({
               <button
                 type="button"
                 onClick={() => appendRequirement('')}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#4A8EBC] hover:bg-[#4A8EBC]/10 rounded-xl transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#26a8df] hover:bg-[#26a8df]/10 rounded-xl transition-colors"
               >
                 <Plus className="w-4 h-4" />
                 Add Requirement
@@ -296,7 +296,7 @@ const CareerForm = ({
 
           {/* Responsibilities */}
           <div>
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">
               Responsibilities *
             </label>
             <div className="space-y-2">
@@ -305,7 +305,7 @@ const CareerForm = ({
                   <input
                     {...register(`responsibilities.${index}`)}
                     type="text"
-                    className={`flex-1 px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200 ${errors.responsibilities?.[index] ? 'border-red-400' : 'border-[#4A8EBC]/20'
+                    className={`flex-1 px-4 py-3 border-2 rounded-xl shadow-sm focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200 ${errors.responsibilities?.[index] ? 'border-red-400' : 'border-[#26a8df]/20'
                       }`}
                     placeholder={`Responsibility ${index + 1}`}
                   />
@@ -323,7 +323,7 @@ const CareerForm = ({
               <button
                 type="button"
                 onClick={() => appendResponsibility('')}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#4A8EBC] hover:bg-[#4A8EBC]/10 rounded-xl transition-colors"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-[#26a8df] hover:bg-[#26a8df]/10 rounded-xl transition-colors"
               >
                 <Plus className="w-4 h-4" />
                 Add Responsibility
@@ -335,11 +335,11 @@ const CareerForm = ({
           </div>
 
           {/* Actions */}
-          <div className="flex justify-end gap-3 pt-6 border-t border-[#4A8EBC]/10">
+          <div className="flex justify-end gap-3 pt-6 border-t border-[#26a8df]/10">
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/10 hover:bg-[#4A8EBC]/20 rounded-xl transition-all duration-200 border border-[#4A8EBC]/20"
+              className="px-5 py-2.5 text-sm font-semibold text-[#26a8df] bg-[#26a8df]/10 hover:bg-[#26a8df]/20 rounded-xl transition-all duration-200 border border-[#26a8df]/20"
               disabled={isSubmitting || loading}
             >
               Cancel
@@ -347,7 +347,7 @@ const CareerForm = ({
             <button
               type="submit"
               disabled={isSubmitting || loading}
-              className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all duration-200 shadow-lg shadow-[#4A8EBC]/25"
+              className="flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#26a8df] to-[#26a8df] hover:from-[#26a8df] hover:to-[#26a8df] disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all duration-200 shadow-lg shadow-[#26a8df]/25"
             >
               {isSubmitting || loading ? (
                 <>

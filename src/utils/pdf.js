@@ -25,7 +25,7 @@ export function generateApplicationPDF(app) {
   doc.text("Career Application", marginLeft, 28);
   
   cursorY = 55;
-  doc.setTextColor(30, 41, 59); // slate-800
+  doc.setTextColor(13, 22, 65); // #0D1641
 
   // Submission date
   doc.setFontSize(10);

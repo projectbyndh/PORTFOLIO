@@ -97,7 +97,7 @@ export default function NexusServices() {
     : SERVICE_SCHEMA;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 selection:bg-blue-100 font-sans pt-20 md:pt-24 lg:pt-28">
+    <div className="min-h-screen bg-[#F8FAFC] text-[#0D1641] selection:bg-blue-100 font-sans pt-20 md:pt-24 lg:pt-28">
       {/* Ambient Background */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-50/50 blur-[120px]" />
@@ -115,14 +115,14 @@ export default function NexusServices() {
             className="flex items-center gap-4 mb-8"
           >
             <div className="p-2 bg-blue-500/10 rounded-lg">
-              <Sparkles className="w-5 h-5 text-[#4A8EBC]" />
+              <Sparkles className="w-5 h-5 text-[#26a8df]" />
             </div>
-            <span className="text-sm font-black uppercase tracking-[0.4em] text-[#4A8EBC]">Service Ecosystem</span>
+            <span className="text-sm font-black uppercase tracking-[0.4em] text-[#26a8df]">Service Ecosystem</span>
           </motion.div>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter text-slate-950 mb-10 leading-[0.85]">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter text-[#0D1641] mb-10 leading-[0.85]">
             Nexus <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A8EBC] via-[#2D5A7B] to-[#1A2A44]">
+            <span className="text-gradient-brand-alt">
               Capabilities.
             </span>
           </h1>
@@ -138,7 +138,7 @@ export default function NexusServices() {
           <div className="flex flex-col items-center justify-center py-40 gap-8">
             <div className="relative">
               <div className="w-20 h-20 border-4 border-blue-100 rounded-full"></div>
-              <div className="absolute inset-0 w-20 h-20 border-4 border-[#4A8EBC] border-t-transparent rounded-full animate-spin"></div>
+              <div className="absolute inset-0 w-20 h-20 border-4 border-[#26a8df] border-t-transparent rounded-full animate-spin"></div>
             </div>
             <p className="text-slate-400 font-black tracking-widest uppercase text-xs">Synchronizing Repository...</p>
           </div>
@@ -147,11 +147,11 @@ export default function NexusServices() {
             <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-8">
               <ShieldCheck className="w-10 h-10 text-red-500" />
             </div>
-            <h2 className="text-2xl font-black text-slate-900 mb-4">Connection Failed</h2>
+            <h2 className="text-2xl font-black text-[#0D1641] mb-4">Connection Failed</h2>
             <p className="text-slate-500 mb-10 max-w-md mx-auto leading-relaxed">{error}</p>
             <button
               onClick={() => fetchServices()}
-              className="px-10 py-4 bg-slate-950 text-white rounded-2xl font-bold hover:bg-slate-800 transition-all shadow-xl hover:shadow-slate-500/20 active:scale-95"
+              className="px-10 py-4 bg-[#0D1641] text-white rounded-2xl font-bold hover:bg-[#0D1641]/90 transition-all shadow-xl hover:shadow-slate-500/20 active:scale-95"
             >
               Retry Handshake
             </button>
@@ -185,7 +185,7 @@ function ServiceCard({ service }) {
 
       <div className="relative z-10">
         <div className="flex justify-between items-start mb-6 sm:mb-8 md:mb-10 lg:mb-12">
-          <div className="p-3 sm:p-4 md:p-5 rounded-2xl sm:rounded-3xl bg-slate-50 text-[#4A8EBC] group-hover:bg-[#4A8EBC] group-hover:text-white transition-all duration-700 shadow-sm group-hover:shadow-lg group-hover:shadow-[#4A8EBC]/30">
+          <div className="p-3 sm:p-4 md:p-5 rounded-2xl sm:rounded-3xl bg-slate-50 text-[#26a8df] group-hover:bg-[#26a8df] group-hover:text-white transition-all duration-700 shadow-sm group-hover:shadow-lg group-hover:shadow-[#26a8df]/30">
             {React.isValidElement(service.icon) ? React.cloneElement(service.icon, { size: 24, strokeWidth: 2.5, className: "sm:w-7 sm:h-7 md:w-8 md:h-8" }) : service.icon}
           </div>
           <span className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-50 group-hover:text-slate-100 transition-colors">
@@ -194,8 +194,8 @@ function ServiceCard({ service }) {
         </div>
 
         <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
-          <p className="text-[10px] sm:text-[11px] font-black tracking-[0.25em] sm:tracking-[0.3em] text-[#4A8EBC] uppercase">{service.tagline}</p>
-          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight">{service.title}</h3>
+          <p className="text-[10px] sm:text-[11px] font-black tracking-[0.25em] sm:tracking-[0.3em] text-[#26a8df] uppercase">{service.tagline}</p>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#0D1641] tracking-tight leading-tight">{service.title}</h3>
           <p className="text-sm sm:text-base text-slate-500 leading-relaxed font-medium">
             {service.description}
           </p>
@@ -207,13 +207,13 @@ function ServiceCard({ service }) {
         <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 md:mb-10">
           {(service.capabilities || []).slice(0, 3).map((cap, i) => (
             <li key={i} className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm font-bold text-slate-400 group-hover:text-slate-600 transition-all transform group-hover:translate-x-1 duration-300">
-              <div className="h-2 w-2 bg-[#4A8EBC] rounded-full shadow-[0_0_8px_rgba(74,142,188,0.5)]" />
+              <div className="h-2 w-2 bg-[#26a8df] rounded-full shadow-[0_0_8px_rgba(74,142,188,0.5)]" />
               {cap}
             </li>
           ))}
         </ul>
 
-        <button className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[10px] font-black tracking-[0.2em] text-slate-900 group-hover:text-[#4A8EBC] transition-all uppercase active:scale-95">
+        <button className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[10px] font-black tracking-[0.2em] text-[#0D1641] group-hover:text-[#26a8df] transition-all uppercase active:scale-95">
           Inquire Ecosystem <ArrowUpRight size={14} className="sm:w-4 sm:h-4" />
         </button>
       </div>
@@ -224,10 +224,10 @@ function ServiceCard({ service }) {
 function MetricItem({ icon, title, desc }) {
   return (
     <div className="flex flex-col items-center md:items-start group">
-      <div className="mb-8 text-[#4A8EBC] bg-white shadow-xl shadow-blue-500/5 border border-slate-100 p-5 rounded-[24px] transform group-hover:scale-110 transition-transform duration-500">
+      <div className="mb-8 text-[#26a8df] bg-white shadow-xl shadow-blue-500/5 border border-slate-100 p-5 rounded-[24px] transform group-hover:scale-110 transition-transform duration-500">
         {React.cloneElement(icon, { size: 28 })}
       </div>
-      <h4 className="text-xl font-black text-slate-950 mb-3 tracking-tight">{title}</h4>
+      <h4 className="text-xl font-black text-[#0D1641] mb-3 tracking-tight">{title}</h4>
       <p className="text-slate-500 text-base font-medium leading-relaxed">{desc}</p>
     </div>
   );

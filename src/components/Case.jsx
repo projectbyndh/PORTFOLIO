@@ -112,12 +112,12 @@ export default function CaseStudies() {
     <div className="w-full bg-[#F5FAFF] relative overflow-hidden">
       {/* Decorative elements with low opacity */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow"></div>
-        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow"></div>
+        <div className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#26a8df]/5 animate-pulse-slow"></div>
+        <div className="absolute bottom-40 right-10 w-96 h-96 rounded-full bg-[#26a8df]/5 animate-pulse-slow"></div>
         <div
           className="absolute inset-0 opacity-5"
           style={{
-            backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(#26a8df 1px, transparent 1px)`,
             backgroundSize: "30px 30px",
           }}
         ></div>
@@ -128,13 +128,13 @@ export default function CaseStudies() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-12">
             <div className="inline-block relative">
-              <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
-              <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow"></div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC]">
+              <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#26a8df]/20 animate-pulse-slow"></div>
+              <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#26a8df]/20 animate-pulse-slow"></div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#26a8df] to-[#26a8df]">
                 Case Studies
               </h1>
             </div>
-            <p className="mt-4 text-lg text-[#2B4066]/80 max-w-2xl mx-auto">
+            <p className="mt-4 text-lg text-[#26a8df]/80 max-w-2xl mx-auto">
               Explore our portfolio of successful projects and digital transformations.
             </p>
           </div>
@@ -145,8 +145,8 @@ export default function CaseStudies() {
       <section className="py-8 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="flex items-center justify-center mb-8">
-            <Filter className="text-[#4A8EBC] mr-2" size={20} />
-            <span className="text-[#1A2A44] font-medium mr-6">Filter by:</span>
+            <Filter className="text-[#26a8df] mr-2" size={20} />
+            <span className="text-[#26a8df] font-medium mr-6">Filter by:</span>
             <div className="flex flex-wrap gap-2 justify-center">
               {categories.map((category) => (
                 <button
@@ -154,8 +154,8 @@ export default function CaseStudies() {
                   onClick={() => setActiveFilter(category.id)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                     activeFilter === category.id
-                      ? "bg-gradient-to-r from-[#3B5488] to-[#4A8EBC] text-white shadow-md"
-                      : "bg-white text-[#2B4066] hover:bg-[#E0F0FF] border border-[#4A8EBC]/20"
+                      ? "bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white shadow-md"
+                      : "bg-white text-[#26a8df] hover:bg-[#E0F0FF] border border-[#26a8df]/20"
                   }`}
                 >
                   {category.name}
@@ -174,7 +174,7 @@ export default function CaseStudies() {
               <div
                 key={study.id}
                 id={`case-${study.id}`}
-                className={`animate-on-scroll bg-white/70 backdrop-blur-sm rounded-xl overflow-hidden shadow-md border border-[#4A8EBC]/10 hover:shadow-xl transition-all duration-500 group ${
+                className={`animate-on-scroll bg-white/70 backdrop-blur-sm rounded-xl overflow-hidden shadow-md border border-[#26a8df]/10 hover:shadow-xl transition-all duration-500 group ${
                   isAnimated(study.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
@@ -188,12 +188,12 @@ export default function CaseStudies() {
                       e.target.src = "/placeholder.svg?height=300&width=500"
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#1A2A44]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#26a8df]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 transition-all duration-300 opacity-0 group-hover:opacity-100">
                     {study.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="bg-[#4A8EBC]/80 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full"
+                        className="bg-[#26a8df]/80 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full"
                       >
                         {tag}
                       </span>
@@ -202,17 +202,17 @@ export default function CaseStudies() {
                 </div>
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-2">
-                    <h3 className="text-xl font-semibold text-[#1A2A44] group-hover:text-[#4A8EBC] transition-colors duration-300">
+                    <h3 className="text-xl font-semibold text-[#26a8df] group-hover:text-[#26a8df] transition-colors duration-300">
                       {study.title}
                     </h3>
                   </div>
-                  <p className="text-[#4A8EBC] text-sm mb-4">Client: {study.client}</p>
-                  <p className="text-[#2B4066]/80 text-sm mb-6 line-clamp-3">{study.description}</p>
+                  <p className="text-[#26a8df] text-sm mb-4">Client: {study.client}</p>
+                  <p className="text-[#26a8df]/80 text-sm mb-6 line-clamp-3">{study.description}</p>
                   <div className="space-y-2 mb-6">
                     {study.results.slice(0, 2).map((result, i) => (
                       <div key={i} className="flex items-start">
-                        <div className="w-1.5 h-1.5 rounded-full bg-[#4A8EBC] mt-1.5 mr-2"></div>
-                        <p className="text-[#2B4066] text-sm">{result}</p>
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#26a8df] mt-1.5 mr-2"></div>
+                        <p className="text-[#26a8df] text-sm">{result}</p>
                       </div>
                     ))}
                   </div>
@@ -224,7 +224,7 @@ export default function CaseStudies() {
 
           {filteredCaseStudies.length === 0 && (
             <div className="text-center py-16">
-              <p className="text-[#2B4066]/80 text-lg">No case studies found for this category.</p>
+              <p className="text-[#26a8df]/80 text-lg">No case studies found for this category.</p>
             </div>
           )}
         </div>
@@ -240,13 +240,13 @@ export default function CaseStudies() {
             }`}
           >
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-[#1A2A44] mb-4">Featured Project</h2>
-              <p className="text-[#2B4066]/80 max-w-2xl mx-auto">
+              <h2 className="text-3xl font-bold text-[#26a8df] mb-4">Featured Project</h2>
+              <p className="text-[#26a8df]/80 max-w-2xl mx-auto">
                 An in-depth look at one of our most impactful digital transformations.
               </p>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-[#4A8EBC]/10">
+            <div className="bg-white/70 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-[#26a8df]/10">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative h-80 lg:h-auto overflow-hidden">
                   <img
@@ -257,9 +257,9 @@ export default function CaseStudies() {
                       e.target.src = "/placeholder.svg?height=600&width=800"
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#1A2A44]/80 to-transparent lg:bg-gradient-to-t lg:from-[#1A2A44]/80 lg:via-transparent lg:to-transparent flex items-center justify-center lg:items-end lg:justify-start p-8">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#26a8df]/80 to-transparent lg:bg-gradient-to-t lg:from-[#26a8df]/80 lg:via-transparent lg:to-transparent flex items-center justify-center lg:items-end lg:justify-start p-8">
                     <div>
-                      <span className="bg-[#4A8EBC] text-white text-xs px-3 py-1 rounded-full">E-commerce</span>
+                      <span className="bg-[#26a8df] text-white text-xs px-3 py-1 rounded-full">E-commerce</span>
                       <h3 className="text-2xl font-bold text-white mt-3 mb-1">Surat Cosmetics</h3>
                       <p className="text-white/80">E-commerce Sales Boost</p>
                     </div>
@@ -267,30 +267,30 @@ export default function CaseStudies() {
                 </div>
                 <div className="p-8">
                   <div className="space-y-6">
-                    <p className="text-[#2B4066]/80">
+                    <p className="text-[#26a8df]/80">
                       Surat Cosmetics aimed to enhance their online presence in the competitive beauty market. We
                       implemented an e-commerce strategy featuring AR try-on tools, influencer marketing, and SEO
                       optimization, resulting in a significant sales increase and improved customer engagement.
                     </p>
 
                     <div className="space-y-4">
-                      <h4 className="text-lg font-semibold text-[#1A2A44]">Key Achievements:</h4>
+                      <h4 className="text-lg font-semibold text-[#26a8df]">Key Achievements:</h4>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div className="bg-[#E0F0FF]/50 rounded-lg p-4">
-                          <div className="text-2xl font-bold text-[#4A8EBC]">250%</div>
-                          <p className="text-[#2B4066]">Increase in online sales</p>
+                          <div className="text-2xl font-bold text-[#26a8df]">250%</div>
+                          <p className="text-[#26a8df]">Increase in online sales</p>
                         </div>
                         <div className="bg-[#E0F0FF]/50 rounded-lg p-4">
-                          <div className="text-2xl font-bold text-[#4A8EBC]">1.6x</div>
-                          <p className="text-[#2B4066]">Higher purchase likelihood with AR</p>
+                          <div className="text-2xl font-bold text-[#26a8df]">1.6x</div>
+                          <p className="text-[#26a8df]">Higher purchase likelihood with AR</p>
                         </div>
                         <div className="bg-[#E0F0FF]/50 rounded-lg p-4">
-                          <div className="text-2xl font-bold text-[#4A8EBC]">30%</div>
-                          <p className="text-[#2B4066]">Reduction in return rates</p>
+                          <div className="text-2xl font-bold text-[#26a8df]">30%</div>
+                          <p className="text-[#26a8df]">Reduction in return rates</p>
                         </div>
                         <div className="bg-[#E0F0FF]/50 rounded-lg p-4">
-                          <div className="text-2xl font-bold text-[#4A8EBC]">10M+</div>
-                          <p className="text-[#2B4066]">Social media impressions</p>
+                          <div className="text-2xl font-bold text-[#26a8df]">10M+</div>
+                          <p className="text-[#26a8df]">Social media impressions</p>
                         </div>
                       </div>
                     </div>
@@ -309,7 +309,7 @@ export default function CaseStudies() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div
             id="case-11"
-            className={`bg-gradient-to-r from-[#1A2A44] to-[#3B5488] rounded-2xl p-12 text-center shadow-xl relative overflow-hidden animate-on-scroll transition-all duration-900 ${
+            className={`bg-gradient-to-r from-[#26a8df] to-[#26a8df] rounded-2xl p-12 text-center shadow-xl relative overflow-hidden animate-on-scroll transition-all duration-900 ${
               isAnimated(11) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
           >
@@ -333,7 +333,7 @@ export default function CaseStudies() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center relative">
               <a
                 href="/contact"
-                className="px-6 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-white text-[#1A2A44] font-bold rounded-full text-sm sm:text-base md:text-base lg:text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="px-6 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-white text-[#26a8df] font-bold rounded-full text-sm sm:text-base md:text-base lg:text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
               >
                 Start Your Project
               </a>

@@ -20,7 +20,7 @@ const Footer = () => {
         <div className="absolute inset-0 opacity-[0.07] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
 
         {/* Spatial Depth Orbs */}
-        <div className="absolute top-[-20%] left-[10%] w-[600px] h-[600px] bg-[#4A8EBC]/10 blur-[120px] rounded-full mix-blend-screen"></div>
+        <div className="absolute top-[-20%] left-[10%] w-[600px] h-[600px] bg-[#26a8df]/10 blur-[120px] rounded-full mix-blend-screen"></div>
         <div className="absolute bottom-[-10%] right-[5%] w-[400px] h-[400px] bg-[#8B5CF6]/5 blur-[100px] rounded-full mix-blend-screen"></div>
 
         {/* Engineering Mesh Background */}
@@ -39,7 +39,7 @@ const Footer = () => {
           <div className="max-w-md">
             <Link to="/" className="flex items-center gap-2.5 sm:gap-3 md:gap-4 mb-3 sm:mb-4 md:mb-5 lg:mb-6 group w-fit">
               {/* White Lined Logo Container */}
-              <div className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 bg-white/5 rounded-lg sm:rounded-xl md:rounded-2xl border border-white/10 ring-1 ring-white/5 group-hover:border-[#4A8EBC]/50 transition-all duration-500 shadow-[0_0_20px_rgba(255,255,255,0.02)]">
+              <div className="p-1.5 sm:p-2 md:p-2.5 lg:p-3 bg-white/5 rounded-lg sm:rounded-xl md:rounded-2xl border border-white/10 ring-1 ring-white/5 group-hover:border-[#26a8df]/50 transition-all duration-500 shadow-[0_0_20px_rgba(255,255,255,0.02)]">
                 <Logo className="h-8 sm:h-10 md:h-12 lg:h-14 xl:h-16 w-auto" />
               </div>
             </Link>
@@ -142,7 +142,7 @@ const Footer = () => {
             <div className="space-y-2.5 sm:space-y-3 md:space-y-4">
               <div className="group bg-white/[0.02] border border-white/5 hover:border-white/10 p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl transition-colors">
                 <p className="text-white font-bold mb-1 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
-                  <MapPin size={12} className="text-[#4A8EBC] sm:w-3.5 sm:h-3.5" /> Tilottama, Manigram-5
+                  <MapPin size={12} className="text-[#26a8df] sm:w-3.5 sm:h-3.5" /> Tilottama, Manigram-5
                 </p>
                 <p className="text-gray-500 text-[10px] sm:text-xs leading-relaxed pl-5 sm:pl-6">
                   Rupandehi, Nepal<br />
@@ -152,12 +152,12 @@ const Footer = () => {
 
               <div className="group bg-white/[0.02] border border-white/5 hover:border-white/10 p-3 sm:p-4 md:p-5 rounded-xl sm:rounded-2xl transition-colors">
                 <p className="text-white font-bold mb-1 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm">
-                  <Mail size={12} className="text-[#4A8EBC] sm:w-3.5 sm:h-3.5" /> Transmission
+                  <Mail size={12} className="text-[#26a8df] sm:w-3.5 sm:h-3.5" /> Transmission
                 </p>
-                <a href="mailto:info@ndhtechnologies.com" className="text-gray-500 text-[10px] sm:text-xs pl-5 sm:pl-6 hover:text-[#4A8EBC] transition-colors block break-all">
+                <a href="mailto:info@ndhtechnologies.com" className="text-gray-500 text-[10px] sm:text-xs pl-5 sm:pl-6 hover:text-[#26a8df] transition-colors block break-all">
                   info@ndhtechnologies.com
                 </a>
-                <a href="tel:+9779815408990" className="text-gray-500 text-[10px] sm:text-xs pl-5 sm:pl-6 hover:text-[#4A8EBC] transition-colors block mt-1">
+                <a href="tel:+9779815408990" className="text-gray-500 text-[10px] sm:text-xs pl-5 sm:pl-6 hover:text-[#26a8df] transition-colors block mt-1">
                   +977 9815408990
                 </a>
               </div>

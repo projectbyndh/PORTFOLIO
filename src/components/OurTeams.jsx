@@ -39,7 +39,7 @@ export default function OurTeams() {
         <div className="fixed inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none z-0" />
         <div className="text-center">
           <div className="text-red-500 mb-4">{error}</div>
-          <button onClick={() => window.location.reload()} className="bg-[#4A8EBC] hover:bg-[#3B7AA8] text-white font-bold py-2 px-6 rounded-xl">
+          <button onClick={() => window.location.reload()} className="bg-[#26a8df] hover:bg-[#26a8df] text-white font-bold py-2 px-6 rounded-xl">
             Retry
           </button>
         </div>
@@ -56,8 +56,8 @@ export default function OurTeams() {
 
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-[#4A8EBC]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#3B7AA8]/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-20 w-96 h-96 bg-[#26a8df]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#26a8df]/10 rounded-full blur-3xl" />
       </div>
 
       <div className="mx-auto max-w-7xl">
@@ -70,7 +70,7 @@ export default function OurTeams() {
         >
           <div className="flex items-center justify-center gap-2 sm:gap-2.5 md:gap-3">
             <Logo className="hidden sm:block h-6 sm:h-7 md:h-8 w-auto" />
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-2 sm:mb-3 md:mb-4 tracking-tight text-neutral-900 leading-tight">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-2 sm:mb-3 md:mb-4 tracking-tight text-[#26a8df] leading-tight">
               Meet Our Team
             </h1>
           </div>
@@ -86,7 +86,7 @@ export default function OurTeams() {
             className="text-center py-20 bg-white/50 backdrop-blur-xl rounded-3xl border border-white/60 max-w-2xl mx-auto"
           >
             <div className="text-6xl mb-6">👥</div>
-            <h3 className="text-2xl font-black text-neutral-900 mb-2">Team Coming Soon</h3>
+            <h3 className="text-2xl font-black text-[#26a8df] mb-2">Team Coming Soon</h3>
             <p className="text-neutral-500">We are currently updating our team directory.</p>
           </motion.div>
         ) : (
@@ -115,14 +115,14 @@ export default function OurTeams() {
                       ) : (
                         <Logo className="hidden sm:block h-5 sm:h-6 md:h-7 lg:h-8 w-auto" />
                       )}
-                      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-[#1A2A44] tracking-tight">
+                      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-[#26a8df] tracking-tight">
                         {layer.title}
                       </h2>
                     </div>
                     {layer.description && (
                       <p className="text-sm sm:text-base text-[#2B4A6F]/60 max-w-2xl mx-auto mb-3 sm:mb-4 px-3">{layer.description}</p>
                     )}
-                    <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] mx-auto rounded-full"></div>
+                    <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-[#26a8df] to-[#26a8df] mx-auto rounded-full"></div>
                   </div>
 
                   <div className={`grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-7xl mx-auto ${
@@ -145,7 +145,7 @@ export default function OurTeams() {
                         whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.3, ease: "easeOut" } }}
                         className="relative flex flex-col items-center p-4 sm:p-5 md:p-6 transition-all duration-300 bg-white border border-gray-100 shadow-md rounded-xl sm:rounded-2xl hover:shadow-xl group overflow-hidden"
                       >
-                        <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#26a8df]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                         <div className="relative z-10 mb-3 sm:mb-4 md:mb-5">
                           <div className="relative">
@@ -155,12 +155,12 @@ export default function OurTeams() {
                               className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full object-cover border-3 sm:border-4 border-white shadow-lg"
                               onError={(e) => { e.currentTarget.src = getImageUrl(null, 'team') }}
                             />
-                            <div className="absolute inset-0 rounded-full border-2 border-[#4A8EBC]/10 group-hover:border-[#4A8EBC]/30 transition-colors duration-300"></div>
+                            <div className="absolute inset-0 rounded-full border-2 border-[#26a8df]/10 group-hover:border-[#26a8df]/30 transition-colors duration-300"></div>
                           </div>
                         </div>
 
-                        <div className="font-bold text-base sm:text-lg text-[#1A2A44] mb-1 text-center relative z-10">{member.name}</div>
-                        <div className="text-[#4A8EBC] text-xs sm:text-sm font-bold mb-2 sm:mb-3 uppercase tracking-wider relative z-10">
+                        <div className="font-bold text-base sm:text-lg text-[#26a8df] mb-1 text-center relative z-10">{member.name}</div>
+                        <div className="text-[#26a8df] text-xs sm:text-sm font-bold mb-2 sm:mb-3 uppercase tracking-wider relative z-10">
                           {member.title || 'Team Member'}
                         </div>
                         {member.bio && (
@@ -183,7 +183,7 @@ export default function OurTeams() {
                               </a>
                             )}
                             {member.socialLinks.email && (
-                              <a href={`mailto:${member.socialLinks.email}`} className="p-1.5 rounded-lg bg-neutral-100 hover:bg-neutral-800 hover:text-white transition-all text-neutral-400 text-xs">
+                              <a href={`mailto:${member.socialLinks.email}`} className="p-1.5 rounded-lg bg-neutral-100 hover:bg-[#0D1641] hover:text-white transition-all text-neutral-400 text-xs">
                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
                               </a>
                             )}

@@ -186,7 +186,7 @@ const FAQManagement = () => {
                     <span className="inline-block px-2 py-0.5 bg-blue-100 text-blue-700 text-xs font-medium rounded mb-2">
                       Question
                     </span>
-                    <h3 className="text-lg font-semibold text-slate-900">
+                    <h3 className="text-lg font-semibold text-[#0D1641]">
                       {faq.question}
                     </h3>
                   </div>

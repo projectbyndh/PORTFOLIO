@@ -58,21 +58,21 @@ export default function AdminTeam() {
                 {/* Header */}
                 <div className="flex items-center justify-between">
                     <div>
-                        <h1 className="text-3xl font-black text-[#1A2A44]">Team Management</h1>
-                        <p className="text-[#2B4066]/60 mt-1">Manage team members and categories</p>
+                        <h1 className="text-3xl font-black text-[#26a8df]">Team Management</h1>
+                        <p className="text-[#26a8df]/60 mt-1">Manage team members and categories</p>
                     </div>
                     <div className="flex gap-3">
                         <button
                             onClick={() => fetchData()}
                             disabled={loading}
-                            className="px-4 py-2 bg-white border border-[#4A8EBC]/20 text-[#4A8EBC] rounded-xl hover:bg-[#4A8EBC]/10 transition-all font-semibold"
+                            className="px-4 py-2 bg-white border border-[#26a8df]/20 text-[#26a8df] rounded-xl hover:bg-[#26a8df]/10 transition-all font-semibold"
                         >
                             <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
                         </button>
                         {activeTab === 'members' ? (
                             <button
                                 onClick={() => openMemberForm()}
-                                className="px-6 py-2 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4A8EBC]/30 transition-all flex items-center gap-2"
+                                className="px-6 py-2 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#26a8df]/30 transition-all flex items-center gap-2"
                             >
                                 <PlusCircle className="w-5 h-5" />
                                 Add Member
@@ -80,7 +80,7 @@ export default function AdminTeam() {
                         ) : (
                             <button
                                 onClick={() => openCategoryForm()}
-                                className="px-6 py-2 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#4A8EBC]/30 transition-all flex items-center gap-2"
+                                className="px-6 py-2 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white rounded-xl font-semibold hover:shadow-lg hover:shadow-[#26a8df]/30 transition-all flex items-center gap-2"
                             >
                                 <PlusCircle className="w-5 h-5" />
                                 Add Category
@@ -90,12 +90,12 @@ export default function AdminTeam() {
                 </div>
 
                 {/* Tabs */}
-                <div className="flex gap-4 border-b border-[#4A8EBC]/10">
+                <div className="flex gap-4 border-b border-[#26a8df]/10">
                     <button
                         onClick={() => setActiveTab('members')}
                         className={`flex items-center gap-2 px-6 py-3 font-semibold text-sm transition-all border-b-2 ${activeTab === 'members'
-                            ? 'border-[#4A8EBC] text-[#4A8EBC]'
-                            : 'border-transparent text-neutral-500 hover:text-neutral-700'
+                            ? 'border-[#26a8df] text-[#26a8df]'
+                            : 'border-transparent text-neutral-500 hover:text-[#0D1641]'
                             }`}
                     >
                         <Users size={18} />
@@ -104,8 +104,8 @@ export default function AdminTeam() {
                     <button
                         onClick={() => setActiveTab('categories')}
                         className={`flex items-center gap-2 px-6 py-3 font-semibold text-sm transition-all border-b-2 ${activeTab === 'categories'
-                            ? 'border-[#4A8EBC] text-[#4A8EBC]'
-                            : 'border-transparent text-neutral-500 hover:text-neutral-700'
+                            ? 'border-[#26a8df] text-[#26a8df]'
+                            : 'border-transparent text-neutral-500 hover:text-[#0D1641]'
                             }`}
                     >
                         <Layers size={18} />
@@ -139,7 +139,7 @@ export default function AdminTeam() {
                     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
                         <div className="bg-white rounded-2xl shadow-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
                             <div className="p-6 border-b border-neutral-200 flex justify-between items-center">
-                                <h2 className="text-2xl font-bold text-neutral-900">
+                                <h2 className="text-2xl font-bold text-[#26a8df]">
                                     {editingCategory ? 'Edit Category' : 'Create Category'}
                                 </h2>
                                 <button onClick={() => setShowCategoryForm(false)} className="text-neutral-400 hover:text-neutral-600">
@@ -162,7 +162,7 @@ export default function AdminTeam() {
                     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4">
                         <div className="bg-white rounded-2xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                             <div className="p-6 border-b border-neutral-200 flex justify-between items-center">
-                                <h2 className="text-2xl font-bold text-neutral-900">
+                                <h2 className="text-2xl font-bold text-[#26a8df]">
                                     {editingMember ? 'Edit Team Member' : 'Add Team Member'}
                                 </h2>
                                 <button onClick={() => setShowMemberForm(false)} className="text-neutral-400 hover:text-neutral-600">
@@ -197,9 +197,9 @@ function MembersView({ members, categories, loading, onAdd, onEdit, onDelete }) 
 
     if (loading && members.length === 0) {
         return (
-            <div className="bg-white rounded-2xl border border-[#4A8EBC]/10 shadow-sm overflow-hidden min-h-[400px]">
+            <div className="bg-white rounded-2xl border border-[#26a8df]/10 shadow-sm overflow-hidden min-h-[400px]">
                 <div className="flex justify-center items-center h-full py-20">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4A8EBC]"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#26a8df]"></div>
                 </div>
             </div>
         );
@@ -207,16 +207,16 @@ function MembersView({ members, categories, loading, onAdd, onEdit, onDelete }) 
 
     if (members.length === 0) {
         return (
-            <div className="bg-white rounded-2xl border border-[#4A8EBC]/10 shadow-sm overflow-hidden min-h-[400px]">
+            <div className="bg-white rounded-2xl border border-[#26a8df]/10 shadow-sm overflow-hidden min-h-[400px]">
                 <div className="flex flex-col items-center justify-center h-full text-center py-20">
                     <div className="w-20 h-20 bg-[#F5FAFF] rounded-full flex items-center justify-center mb-4">
-                        <Users className="w-10 h-10 text-[#4A8EBC]/40" />
+                        <Users className="w-10 h-10 text-[#26a8df]/40" />
                     </div>
-                    <p className="text-[#2B4066] font-semibold text-lg mb-2">No team members found</p>
-                    <p className="text-[#2B4066]/60 mb-6 max-w-sm">Add team members to showcase your talented team.</p>
+                    <p className="text-[#26a8df] font-semibold text-lg mb-2">No team members found</p>
+                    <p className="text-[#26a8df]/60 mb-6 max-w-sm">Add team members to showcase your talented team.</p>
                     <button
                         onClick={onAdd}
-                        className="px-6 py-3 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2"
+                        className="px-6 py-3 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2"
                     >
                         <PlusCircle className="w-5 h-5" />
                         Add First Member
@@ -227,20 +227,20 @@ function MembersView({ members, categories, loading, onAdd, onEdit, onDelete }) 
     }
 
     return (
-        <div className="bg-white rounded-2xl border border-[#4A8EBC]/10 shadow-sm overflow-hidden">
+        <div className="bg-white rounded-2xl border border-[#26a8df]/10 shadow-sm overflow-hidden">
             <div className="overflow-x-auto">
                 <table className="w-full">
-                    <thead className="bg-[#F5FAFF] border-b border-[#4A8EBC]/10">
+                    <thead className="bg-[#F5FAFF] border-b border-[#26a8df]/10">
                         <tr>
-                            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44]">Member</th>
-                            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44]">Category</th>
-                            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44]">Job Title</th>
-                            <th className="px-4 py-4 text-center text-sm font-bold text-[#1A2A44]">Order</th>
-                            <th className="px-4 py-4 text-center text-sm font-bold text-[#1A2A44]">Visible</th>
-                            <th className="px-6 py-4 text-right text-sm font-bold text-[#1A2A44]">Actions</th>
+                            <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df]">Member</th>
+                            <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df]">Category</th>
+                            <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df]">Job Title</th>
+                            <th className="px-4 py-4 text-center text-sm font-bold text-[#26a8df]">Order</th>
+                            <th className="px-4 py-4 text-center text-sm font-bold text-[#26a8df]">Visible</th>
+                            <th className="px-6 py-4 text-right text-sm font-bold text-[#26a8df]">Actions</th>
                         </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#4A8EBC]/5">
+                    <tbody className="divide-y divide-[#26a8df]/5">
                         {members.map(member => (
                                 <tr key={member.id} className="hover:bg-[#F5FAFF]/50 transition-colors">
                                     <td className="px-6 py-4">
@@ -256,7 +256,7 @@ function MembersView({ members, categories, loading, onAdd, onEdit, onDelete }) 
                                                     }}
                                                 />
                                             </div>
-                                            <div className="font-semibold text-[#1A2A44]">{member.name}</div>
+                                            <div className="font-semibold text-[#26a8df]">{member.name}</div>
                                         </div>
                                     </td>
                                     <td className="px-6 py-4">
@@ -265,7 +265,7 @@ function MembersView({ members, categories, loading, onAdd, onEdit, onDelete }) 
                                         </span>
                                     </td>
                                     <td className="px-6 py-4">
-                                        <div className="text-sm text-[#4A8EBC] font-medium">{member.title || 'N/A'}</div>
+                                        <div className="text-sm text-[#26a8df] font-medium">{member.title || 'N/A'}</div>
                                     </td>
                                     <td className="px-4 py-4 text-center">
                                         <span className="text-sm text-neutral-600">{member.order || 0}</span>
@@ -285,7 +285,7 @@ function MembersView({ members, categories, loading, onAdd, onEdit, onDelete }) 
                                         <div className="flex justify-end gap-2">
                                             <button
                                                 onClick={() => onEdit(member)}
-                                                className="p-2 text-[#4A8EBC] hover:bg-[#4A8EBC]/10 rounded-lg transition-colors"
+                                                className="p-2 text-[#26a8df] hover:bg-[#26a8df]/10 rounded-lg transition-colors"
                                             >
                                                 <Edit size={16} />
                                             </button>
@@ -314,9 +314,9 @@ function CategoriesView({ categories, members, loading, onAdd, onEdit, onDelete 
 
     if (loading && categories.length === 0) {
         return (
-            <div className="bg-white rounded-2xl border border-[#4A8EBC]/10 shadow-sm overflow-hidden min-h-[400px]">
+            <div className="bg-white rounded-2xl border border-[#26a8df]/10 shadow-sm overflow-hidden min-h-[400px]">
                 <div className="flex justify-center items-center h-full py-20">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4A8EBC]"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#26a8df]"></div>
                 </div>
             </div>
         );
@@ -324,16 +324,16 @@ function CategoriesView({ categories, members, loading, onAdd, onEdit, onDelete 
 
     if (categories.length === 0) {
         return (
-            <div className="bg-white rounded-2xl border border-[#4A8EBC]/10 shadow-sm overflow-hidden min-h-[400px]">
+            <div className="bg-white rounded-2xl border border-[#26a8df]/10 shadow-sm overflow-hidden min-h-[400px]">
                 <div className="flex flex-col items-center justify-center h-full text-center py-20">
                     <div className="w-20 h-20 bg-[#F5FAFF] rounded-full flex items-center justify-center mb-4">
-                        <Layers className="w-10 h-10 text-[#4A8EBC]/40" />
+                        <Layers className="w-10 h-10 text-[#26a8df]/40" />
                     </div>
-                    <p className="text-[#2B4066] font-semibold text-lg mb-2">No categories found</p>
-                    <p className="text-[#2B4066]/60 mb-6 max-w-sm">Create categories like CEO, Developer, Marketing to organize your team members.</p>
+                    <p className="text-[#26a8df] font-semibold text-lg mb-2">No categories found</p>
+                    <p className="text-[#26a8df]/60 mb-6 max-w-sm">Create categories like CEO, Developer, Marketing to organize your team members.</p>
                     <button
                         onClick={onAdd}
-                        className="px-6 py-3 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2"
+                        className="px-6 py-3 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center gap-2"
                     >
                         <PlusCircle className="w-5 h-5" />
                         Add First Category
@@ -348,7 +348,7 @@ function CategoriesView({ categories, members, loading, onAdd, onEdit, onDelete 
             {categories.map(category => (
                     <div
                         key={category.id}
-                        className="bg-white rounded-2xl border border-[#4A8EBC]/10 shadow-sm p-6 hover:border-[#4A8EBC]/30 transition-all group"
+                        className="bg-white rounded-2xl border border-[#26a8df]/10 shadow-sm p-6 hover:border-[#26a8df]/30 transition-all group"
                     >
                         <div className="flex items-start gap-4 mb-4">
                             <div className="w-16 h-16 rounded-lg bg-neutral-100 flex-shrink-0 overflow-hidden border border-neutral-200">
@@ -364,7 +364,7 @@ function CategoriesView({ categories, members, loading, onAdd, onEdit, onDelete 
                             </div>
                             <div className="flex-1 min-w-0">
                                 <div className="flex items-center gap-2 mb-1">
-                                    <h3 className="font-bold text-[#1A2A44] text-lg truncate">{category.title}</h3>
+                                    <h3 className="font-bold text-[#26a8df] text-lg truncate">{category.title}</h3>
                                     {category.isActive === false && (
                                         <span className="text-[10px] font-bold px-1.5 py-0.5 bg-neutral-200 text-neutral-500 rounded">INACTIVE</span>
                                     )}
@@ -377,12 +377,12 @@ function CategoriesView({ categories, members, loading, onAdd, onEdit, onDelete 
 
                         <div className="flex items-center justify-between pt-4 border-t border-neutral-100">
                             <div className="text-sm text-neutral-600">
-                                <span className="font-semibold text-[#4A8EBC]">{getMemberCountForCategory(category.id)}</span> member{getMemberCountForCategory(category.id) !== 1 ? 's' : ''}
+                                <span className="font-semibold text-[#26a8df]">{getMemberCountForCategory(category.id)}</span> member{getMemberCountForCategory(category.id) !== 1 ? 's' : ''}
                             </div>
                             <div className="flex gap-2">
                                 <button
                                     onClick={() => onEdit(category)}
-                                    className="p-2 text-[#4A8EBC] bg-[#4A8EBC]/5 hover:bg-[#4A8EBC]/10 rounded-lg transition-colors"
+                                    className="p-2 text-[#26a8df] bg-[#26a8df]/5 hover:bg-[#26a8df]/10 rounded-lg transition-colors"
                                 >
                                     <Edit size={16} />
                                 </button>

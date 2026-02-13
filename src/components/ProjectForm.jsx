@@ -106,8 +106,8 @@ const ProjectForm = ({ project, onClose }) => {
       {submitting && (
         <div className="absolute inset-0 bg-white/75 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#4A8EBC] mx-auto mb-2"></div>
-            <p className="text-sm text-[#4A8EBC]">Saving...</p>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#26a8df] mx-auto mb-2"></div>
+            <p className="text-sm text-[#26a8df]">Saving...</p>
           </div>
         </div>
       )}
@@ -115,7 +115,7 @@ const ProjectForm = ({ project, onClose }) => {
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">
               Project Name
             </label>
             <input
@@ -123,7 +123,7 @@ const ProjectForm = ({ project, onClose }) => {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+              className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
               placeholder="e.g., Numazu Halal Food"
             />
             {errors.name && (
@@ -132,7 +132,7 @@ const ProjectForm = ({ project, onClose }) => {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">
               Client Name
             </label>
             <input
@@ -140,14 +140,14 @@ const ProjectForm = ({ project, onClose }) => {
               name="client"
               value={formData.client}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+              className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
               placeholder="e.g., Numazu Food Court"
             />
           </div>
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">
             Description
           </label>
           <textarea
@@ -155,7 +155,7 @@ const ProjectForm = ({ project, onClose }) => {
             value={formData.description}
             onChange={handleInputChange}
             rows={3}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+            className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
             placeholder="Describe the project objective and results..."
           />
           {errors.description && (
@@ -166,13 +166,13 @@ const ProjectForm = ({ project, onClose }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label className="text-sm font-semibold text-[#1A2A44]">
+              <label className="text-sm font-semibold text-[#26a8df]">
                 Primary Category (for Badge)
               </label>
               <button
                 type="button"
                 onClick={() => setShowNewCategoryInput(!showNewCategoryInput)}
-                className="text-xs font-bold text-[#4A8EBC] flex items-center gap-1 hover:underline"
+                className="text-xs font-bold text-[#26a8df] flex items-center gap-1 hover:underline"
               >
                 <Plus size={12} /> Add New
               </button>
@@ -183,13 +183,13 @@ const ProjectForm = ({ project, onClose }) => {
                   type="text"
                   value={newCategoryName}
                   onChange={(e) => setNewCategoryName(e.target.value)}
-                  className="flex-1 px-4 py-2 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none border-[#4A8EBC]/50"
+                  className="flex-1 px-4 py-2 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none border-[#26a8df]/50"
                   placeholder="Category Name"
                 />
                 <button
                   type="button"
                   onClick={handleAddCategory}
-                  className="px-4 py-2 bg-[#4A8EBC] text-white rounded-xl text-sm font-bold"
+                  className="px-4 py-2 bg-[#26a8df] text-white rounded-xl text-sm font-bold"
                 >
                   Add
                 </button>
@@ -206,7 +206,7 @@ const ProjectForm = ({ project, onClose }) => {
                 name="category"
                 value={formData.category}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+                className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
               >
                 <option value="">Select Primary Category</option>
                 {apiCategories.map(cat => (
@@ -220,7 +220,7 @@ const ProjectForm = ({ project, onClose }) => {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">
               All Filter Categories (comma-separated)
             </label>
             <input
@@ -228,7 +228,7 @@ const ProjectForm = ({ project, onClose }) => {
               name="categories"
               value={formData.categories}
               onChange={handleInputChange}
-              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+              className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
               placeholder="e.g., Web Applications, Healthcare"
             />
             <div className="mt-1 flex flex-wrap gap-1">
@@ -252,7 +252,7 @@ const ProjectForm = ({ project, onClose }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">
             Tech Stack (comma-separated)
           </label>
           <input
@@ -260,13 +260,13 @@ const ProjectForm = ({ project, onClose }) => {
             name="techStack"
             value={formData.techStack}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+            className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
             placeholder="e.g., React, Node.js, PostgreSQL"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">
             Services/Key Features (comma-separated)
           </label>
           <input
@@ -274,13 +274,13 @@ const ProjectForm = ({ project, onClose }) => {
             name="services"
             value={formData.services}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+            className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
             placeholder="e.g., E-commerce portal, Admin Analytics"
           />
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">
             Project Image
           </label>
           <ImageUploadPreview
@@ -294,19 +294,19 @@ const ProjectForm = ({ project, onClose }) => {
           />
         </div>
 
-        <div className="flex justify-end gap-3 pt-6 border-t border-[#4A8EBC]/10">
+        <div className="flex justify-end gap-3 pt-6 border-t border-[#26a8df]/10">
           <button
             type="button"
             onClick={onClose}
             disabled={submitting}
-            className="px-6 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/5 hover:bg-[#4A8EBC]/10 rounded-xl transition-all duration-200 border border-[#4A8EBC]/20 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-6 py-2.5 text-sm font-semibold text-[#26a8df] bg-[#26a8df]/5 hover:bg-[#26a8df]/10 rounded-xl transition-all duration-200 border border-[#26a8df]/20 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={submitting}
-            className="px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] hover:shadow-lg hover:shadow-[#4A8EBC]/25 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all duration-200"
+            className="px-6 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#26a8df] to-[#26a8df] hover:shadow-lg hover:shadow-[#26a8df]/25 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all duration-200"
           >
             {submitting ? (
               <div className="flex items-center gap-2">

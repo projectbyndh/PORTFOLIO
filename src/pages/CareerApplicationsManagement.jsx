@@ -105,8 +105,8 @@ export default function CareerApplicationsManagement() {
             <div className="p-6">
                 {/* Header */}
                 <div className="mb-8">
-                    <h1 className="text-3xl font-bold text-[#1A2A44] mb-2">Career Applications</h1>
-                    <p className="text-[#2B4066]/70">Manage job applications and view CVs</p>
+                    <h1 className="text-3xl font-bold text-[#26a8df] mb-2">Career Applications</h1>
+                    <p className="text-[#26a8df]/70">Manage job applications and view CVs</p>
                 </div>
 
                 {/* Actions Bar */}
@@ -114,21 +114,21 @@ export default function CareerApplicationsManagement() {
                     <div className="flex gap-2">
                         <button
                             onClick={() => setFilter('all')}
-                            className={`px-4 py-2 rounded-lg font-medium transition-colors ${filter === 'all' ? 'bg-[#4A8EBC] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            className={`px-4 py-2 rounded-lg font-medium transition-colors ${filter === 'all' ? 'bg-[#26a8df] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                 }`}
                         >
                             All ({applications.length})
                         </button>
                         <button
                             onClick={() => setFilter('pending')}
-                            className={`px-4 py-2 rounded-lg font-medium transition-colors ${filter === 'pending' ? 'bg-[#4A8EBC] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            className={`px-4 py-2 rounded-lg font-medium transition-colors ${filter === 'pending' ? 'bg-[#26a8df] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                 }`}
                         >
                             Pending ({applications.filter(a => a.status === 'pending').length})
                         </button>
                         <button
                             onClick={() => setFilter('shortlisted')}
-                            className={`px-4 py-2 rounded-lg font-medium transition-colors ${filter === 'shortlisted' ? 'bg-[#4A8EBC] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            className={`px-4 py-2 rounded-lg font-medium transition-colors ${filter === 'shortlisted' ? 'bg-[#26a8df] text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                 }`}
                         >
                             Shortlisted ({applications.filter(a => a.status === 'shortlisted').length})
@@ -147,7 +147,7 @@ export default function CareerApplicationsManagement() {
                 {/* Applications Table */}
                 {loading ? (
                     <div className="text-center py-12">
-                        <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#4A8EBC]"></div>
+                        <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-[#26a8df]"></div>
                         <p className="mt-4 text-gray-600">Loading applications...</p>
                     </div>
                 ) : filteredApplications.length === 0 ? (
@@ -185,10 +185,10 @@ export default function CareerApplicationsManagement() {
                                     {filteredApplications.map((app) => (
                                         <tr key={app.id} className="hover:bg-gray-50 transition-colors">
                                             <td className="px-6 py-4">
-                                                <div className="font-medium text-gray-900">{app.fullName}</div>
+                                                <div className="font-medium text-[#26a8df]">{app.fullName}</div>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <div className="text-sm text-gray-900">{app.careerTitle}</div>
+                                                <div className="text-sm text-[#26a8df]">{app.careerTitle}</div>
                                             </td>
                                             <td className="px-6 py-4">
                                                 <div className="flex flex-col gap-1 text-sm">
@@ -253,9 +253,9 @@ export default function CareerApplicationsManagement() {
                             {/* Modal Header */}
                             <div className="flex items-center justify-between p-6 border-b border-gray-200">
                                 <div>
-                                    <h2 className="text-2xl font-bold text-[#1A2A44]">{selectedCV.fullName}'s Resume</h2>
+                                    <h2 className="text-2xl font-bold text-[#26a8df]">{selectedCV.fullName}'s Resume</h2>
                                     <p className="text-sm text-gray-600 mt-1">
-                                        Applied for: <span className="font-medium text-[#4A8EBC]">{selectedCV.careerTitle}</span>
+                                        Applied for: <span className="font-medium text-[#26a8df]">{selectedCV.careerTitle}</span>
                                     </p>
                                 </div>
                                 <div className="flex items-center gap-2">
@@ -263,7 +263,7 @@ export default function CareerApplicationsManagement() {
                                         href={selectedCV.cvUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="flex items-center gap-2 px-4 py-2 bg-[#4A8EBC] text-white rounded-lg hover:bg-[#3B5488] transition-colors"
+                                        className="flex items-center gap-2 px-4 py-2 bg-[#26a8df] text-white rounded-lg hover:bg-[#26a8df] transition-colors"
                                     >
                                         <ExternalLink size={18} />
                                         Open in New Tab
@@ -301,7 +301,7 @@ export default function CareerApplicationsManagement() {
                                             <a
                                                 href={selectedCV.cvUrl}
                                                 download
-                                                className="flex items-center gap-2 px-6 py-3 bg-[#4A8EBC] text-white rounded-lg hover:bg-[#3B5488] transition-colors"
+                                                className="flex items-center gap-2 px-6 py-3 bg-[#26a8df] text-white rounded-lg hover:bg-[#26a8df] transition-colors"
                                             >
                                                 <Download size={18} />
                                                 Download CV
@@ -316,15 +316,15 @@ export default function CareerApplicationsManagement() {
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
                                     <div>
                                         <p className="text-gray-600">Email</p>
-                                        <p className="font-medium text-gray-900">{selectedCV.email}</p>
+                                        <p className="font-medium text-[#26a8df]">{selectedCV.email}</p>
                                     </div>
                                     <div>
                                         <p className="text-gray-600">Phone</p>
-                                        <p className="font-medium text-gray-900">{selectedCV.phone}</p>
+                                        <p className="font-medium text-[#26a8df]">{selectedCV.phone}</p>
                                     </div>
                                     <div>
                                         <p className="text-gray-600">Applied Date</p>
-                                        <p className="font-medium text-gray-900">
+                                        <p className="font-medium text-[#26a8df]">
                                             {new Date(selectedCV.createdAt).toLocaleDateString()}
                                         </p>
                                     </div>

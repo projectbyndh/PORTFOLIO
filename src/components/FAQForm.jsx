@@ -67,15 +67,15 @@ const FAQForm = ({ faq, onClose, onSuccess }) => {
       {submitting && (
         <div className="absolute inset-0 bg-white/75 backdrop-blur-sm flex items-center justify-center z-10 rounded-xl">
           <div className="text-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#4A8EBC] mx-auto mb-2"></div>
-            <p className="text-sm text-[#4A8EBC]">Saving...</p>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#26a8df] mx-auto mb-2"></div>
+            <p className="text-sm text-[#26a8df]">Saving...</p>
           </div>
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">
             Question
           </label>
           <input
@@ -83,7 +83,7 @@ const FAQForm = ({ faq, onClose, onSuccess }) => {
             name="question"
             value={formData.question}
             onChange={handleInputChange}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+            className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
             placeholder="Enter the FAQ question"
           />
           {errors.question && (
@@ -92,7 +92,7 @@ const FAQForm = ({ faq, onClose, onSuccess }) => {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-[#1A2A44] mb-2">
+          <label className="block text-sm font-semibold text-[#26a8df] mb-2">
             Answer
           </label>
           <textarea
@@ -100,7 +100,7 @@ const FAQForm = ({ faq, onClose, onSuccess }) => {
             value={formData.answer}
             onChange={handleInputChange}
             rows={6}
-            className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+            className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
             placeholder="Enter the FAQ answer"
           />
           {errors.answer && (
@@ -108,19 +108,19 @@ const FAQForm = ({ faq, onClose, onSuccess }) => {
           )}
         </div>
 
-        <div className="flex justify-end gap-3 pt-4 border-t border-[#4A8EBC]/10">
+        <div className="flex justify-end gap-3 pt-4 border-t border-[#26a8df]/10">
           <button
             type="button"
             onClick={onClose}
             disabled={submitting}
-            className="px-5 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/10 hover:bg-[#4A8EBC]/20 rounded-xl transition-all duration-200 border border-[#4A8EBC]/20 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-5 py-2.5 text-sm font-semibold text-[#26a8df] bg-[#26a8df]/10 hover:bg-[#26a8df]/20 rounded-xl transition-all duration-200 border border-[#26a8df]/20 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Cancel
           </button>
           <button
             type="submit"
             disabled={submitting}
-            className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all duration-200 shadow-lg shadow-[#4A8EBC]/25"
+            className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#26a8df] to-[#26a8df] hover:from-[#26a8df] hover:to-[#26a8df] disabled:opacity-50 disabled:cursor-not-allowed rounded-xl transition-all duration-200 shadow-lg shadow-[#26a8df]/25"
           >
             {submitting ? 'Saving...' : (faq ? 'Update' : 'Create')}
           </button>

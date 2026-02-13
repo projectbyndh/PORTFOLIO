@@ -17,7 +17,7 @@ const HeroSection = () => {
         <motion.div
           animate={{ x: [0, 50, 0], y: [0, 30, 0], scale: [1, 1.1, 1] }}
           transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-[#4A8EBC]/10 rounded-full blur-[120px]"
+          className="absolute top-[-10%] left-[-10%] w-[600px] h-[600px] bg-[#26a8df]/10 rounded-full blur-[120px]"
         />
         <motion.div
           animate={{ x: [0, -30, 0], y: [0, 50, 0], scale: [1, 1.2, 1] }}
@@ -44,20 +44,20 @@ const HeroSection = () => {
             transition={{ delay: 0.2 }}
             className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-1.5 md:py-2 rounded-full bg-white border border-blue-100 shadow-sm mb-3 sm:mb-5 md:mb-6 lg:mb-8 hover:shadow-md transition-shadow cursor-default"
           >
-            <Sparkles size={10} className="text-[#4A8EBC] sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" />
-            <span className="text-[9px] sm:text-[10px] md:text-[11px] font-bold uppercase tracking-[0.1em] sm:tracking-[0.12em] md:tracking-[0.15em] text-[#4A8EBC]">
+            <Sparkles size={10} className="text-[#26a8df] sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" />
+            <span className="text-[9px] sm:text-[10px] md:text-[11px] font-bold uppercase tracking-[0.1em] sm:tracking-[0.12em] md:tracking-[0.15em] text-[#26a8df]">
               Elevating Nepali Innovation
             </span>
           </motion.div>
 
           <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-neutral-900 leading-[0.95] tracking-tighter mb-3 sm:mb-5 md:mb-6 lg:mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-[#26a8df] leading-[0.95] tracking-tighter mb-3 sm:mb-5 md:mb-6 lg:mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
           >
             Build for the <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A8EBC] via-[#3B7AA8] to-[#2D5F8C] animate-gradient-x">
+            <span className="text-gradient-brand animate-gradient-x">
               Next Summit.
             </span>
           </motion.h1>
@@ -77,14 +77,14 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <Link to="/contact" className="group relative px-5 sm:px-6 md:px-7 lg:px-5 py-2.5 sm:py-3 md:py-3.5 lg:py-2.5 bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8] text-white rounded-xl sm:rounded-2xl lg:rounded-xl text-sm sm:text-base md:text-base lg:text-sm font-bold inline-flex items-center gap-2 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_30px_rgba(74,142,188,0.4),0_8px_16px_rgba(74,142,188,0.2)] overflow-hidden">
+            <Link to="/contact" className="group relative px-5 sm:px-6 md:px-7 lg:px-5 py-2.5 sm:py-3 md:py-3.5 lg:py-2.5 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white rounded-xl sm:rounded-2xl lg:rounded-xl text-sm sm:text-base md:text-base lg:text-sm font-bold inline-flex items-center gap-2 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_30px_rgba(74,142,188,0.4),0_8px_16px_rgba(74,142,188,0.2)] overflow-hidden">
               {/* Animated glow */}
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#5A9ECC] to-[#4B84A8] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10">Start Building</span>
               <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link to="/services" className="px-5 sm:px-6 md:px-7 lg:px-5 py-2.5 sm:py-3 md:py-3.5 lg:py-2.5 bg-white/80 backdrop-blur-sm text-neutral-700 border border-neutral-200/50 rounded-xl sm:rounded-2xl lg:rounded-xl text-sm sm:text-base md:text-base lg:text-sm font-bold hover:bg-white hover:border-neutral-300 hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
+            <Link to="/services" className="px-5 sm:px-6 md:px-7 lg:px-5 py-2.5 sm:py-3 md:py-3.5 lg:py-2.5 bg-white/80 backdrop-blur-sm text-[#0D1641] border border-neutral-200/50 rounded-xl sm:rounded-2xl lg:rounded-xl text-sm sm:text-base md:text-base lg:text-sm font-bold hover:bg-white hover:border-neutral-300 hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
               Our Capabilities
             </Link>
           </motion.div>
@@ -104,7 +104,7 @@ const HeroSection = () => {
               rotate: [6, 4, 6],
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute z-10 top-20 right-10 w-72 h-96 bg-gradient-to-br from-[#4A8EBC] to-[#2D5F8C] rounded-[2.5rem] shadow-[0_20px_60px_rgba(74,142,188,0.3)] flex items-center justify-center"
+            className="absolute z-10 top-20 right-10 w-72 h-96 bg-gradient-to-br from-[#26a8df] to-[#2D5F8C] rounded-[2.5rem] shadow-[0_20px_60px_rgba(74,142,188,0.3)] flex items-center justify-center"
           >
             <Globe size={100} className="text-white/20" />
             <div className="absolute inset-0 bg-white/10 rounded-[2.5rem] backdrop-blur-[2px]" />
@@ -121,7 +121,7 @@ const HeroSection = () => {
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
             className="absolute z-0 top-32 right-48 w-72 h-96 bg-gradient-to-br from-[#1A1A1A] to-[#0a0a0a] rounded-[2.5rem] shadow-[0_20px_60px_rgba(0,0,0,0.4)] p-8 flex flex-col justify-end border border-white/5"
           >
-            <Shield size={40} className="text-[#4A8EBC] mb-4 drop-shadow-[0_0_10px_rgba(74,142,188,0.5)]" />
+            <Shield size={40} className="text-[#26a8df] mb-4 drop-shadow-[0_0_10px_rgba(74,142,188,0.5)]" />
             <div className="space-y-2">
               <div className="h-2 w-20 bg-white/20 rounded-full" />
               <div className="h-2 w-12 bg-white/10 rounded-full" />
@@ -137,7 +137,7 @@ const HeroSection = () => {
           >
             {/* Enhanced Shimmer Effect */}
             <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/40 to-transparent opacity-60" />
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#4A8EBC]/10 rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#26a8df]/10 rounded-full blur-3xl" />
 
             <div className="relative z-10 space-y-6">
               <div className="w-16 h-16 rounded-2xl bg-white shadow-xl flex items-center justify-center p-3 border border-white/50">
@@ -165,11 +165,11 @@ const HeroSection = () => {
                   initial={{ width: 0 }}
                   animate={{ width: "92%" }}
                   transition={{ duration: 1.5, delay: 0.8 }}
-                  className="bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8] h-full rounded-full shadow-[0_0_10px_rgba(74,142,188,0.5)]"
+                  className="bg-gradient-to-r from-[#26a8df] to-[#26a8df] h-full rounded-full shadow-[0_0_10px_rgba(74,142,188,0.5)]"
                 />
               </div>
               <div className="flex justify-end mt-1.5">
-                <span className="text-[10px] font-black text-[#4A8EBC]">98.2%</span>
+                <span className="text-[10px] font-black text-[#26a8df]">98.2%</span>
               </div>
             </div>
           </motion.div>

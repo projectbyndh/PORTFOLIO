@@ -34,7 +34,7 @@ const PremiumLoadingBar = () => {
   return (
     <>
       <LoadingBar
-        color="#4A8EBC"
+        color="#26a8df"
         progress={progress}
         onLoaderFinished={() => setProgress(0)}
         height={4}
@@ -57,11 +57,11 @@ const PremiumLoadingBar = () => {
                 .loading-bar-container > div {
                   background: linear-gradient(
                     90deg,
-                    #4A8EBC 0%,
+                    #26a8df 0%,
                     #5BA3D0 25%,
                     #6BB8E3 50%,
                     #5BA3D0 75%,
-                    #4A8EBC 100%
+                    #26a8df 100%
                   ) !important;
                   background-size: 200% 100% !important;
                   animation: shimmer 2s infinite linear !important;

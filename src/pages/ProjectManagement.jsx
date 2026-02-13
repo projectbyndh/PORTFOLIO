@@ -157,16 +157,16 @@ const ProjectManagement = () => {
       )}
 
       {showForm && (
-        <div className="fixed inset-0 bg-[#1A2A44]/40 backdrop-blur-md flex items-center justify-center z-50 p-4">
-          <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-[#1A2A44]/20 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-[#4A8EBC]/10">
+        <div className="fixed inset-0 bg-[#26a8df]/40 backdrop-blur-md flex items-center justify-center z-50 p-4">
+          <div className="bg-white/95 backdrop-blur-xl rounded-2xl shadow-2xl shadow-[#26a8df]/20 max-w-2xl w-full max-h-[90vh] overflow-y-auto border border-[#26a8df]/10">
             <div className="p-6">
-              <div className="flex justify-between items-center mb-6 pb-4 border-b border-[#4A8EBC]/10">
-                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">
+              <div className="flex justify-between items-center mb-6 pb-4 border-b border-[#26a8df]/10">
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-[#26a8df] to-[#26a8df] bg-clip-text text-transparent">
                   {editingProject ? 'Edit Project' : 'Add New Project'}
                 </h2>
                 <button
                   onClick={handleFormClose}
-                  className="p-2 text-[#4A8EBC] hover:bg-[#4A8EBC]/10 rounded-xl transition-all duration-200 text-2xl leading-none"
+                  className="p-2 text-[#26a8df] hover:bg-[#26a8df]/10 rounded-xl transition-all duration-200 text-2xl leading-none"
                 >
                   ×
                 </button>

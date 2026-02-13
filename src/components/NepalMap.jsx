@@ -4,7 +4,7 @@ import L from "leaflet"
 import "leaflet/dist/leaflet.css"
 
 const defaultLocations = [
-  { name: "Tillottama, Manigram -5", lat: 27.6333, lng: 83.4667, color: "#4A8EBC", hq: true },
+  { name: "Tillottama, Manigram -5", lat: 27.6333, lng: 83.4667, color: "#26a8df", hq: true },
   { name: "United States", lat: 37.0902, lng: -95.7129, color: "#60A5FA", clients: 12 },
   { name: "United Kingdom", lat: 51.5074, lng: -0.1278, color: "#60A5FA", clients: 8 },
   { name: "Australia", lat: -25.2744, lng: 133.7751, color: "#60A5FA", clients: 6 },
@@ -92,7 +92,7 @@ export default function WorldMap() {
         }
 
         L.polyline(points, {
-          color: '#4A8EBC',
+          color: '#26a8df',
           weight: 1.5,
           opacity: 0.4,
           dashArray: '5, 10',
@@ -115,15 +115,15 @@ export default function WorldMap() {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
-          <h2 className="text-sm font-black uppercase tracking-[0.4em] text-[#4A8EBC] mb-4">Our Global Reach</h2>
-          <h3 className="text-5xl md:text-7xl font-black text-neutral-900 leading-tight tracking-tighter">
-            Scaling from <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8]">Nepal to the World.</span>
+          <h2 className="text-sm font-black uppercase tracking-[0.4em] text-[#26a8df] mb-4">Our Global Reach</h2>
+          <h3 className="text-5xl md:text-7xl font-black text-[#26a8df] leading-tight tracking-tighter">
+            Scaling from <br /> <span className="text-brand-primary">Nepal to the World.</span>
           </h3>
         </div>
 
         <div className="relative group">
           {/* Subtle Border */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#4A8EBC]/10 to-transparent rounded-[2.5rem] blur opacity-50 group-hover:opacity-75 transition duration-1000" />
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#26a8df]/10 to-transparent rounded-[2.5rem] blur opacity-50 group-hover:opacity-75 transition duration-1000" />
 
           <div className="relative bg-white/70 backdrop-blur-xl rounded-[2rem] overflow-hidden border border-white/60 shadow-2xl">
             <div ref={mapRef} className="h-[500px] md:h-[650px]" />
@@ -132,20 +132,20 @@ export default function WorldMap() {
             <div className="absolute top-8 left-8 p-6 rounded-2xl bg-white/90 backdrop-blur-xl border border-white/60 shadow-2xl z-[1000]">
               <div className="flex items-center gap-4">
                 <div className="relative">
-                  <div className="w-3 h-3 bg-[#4A8EBC] rounded-full animate-ping absolute" />
-                  <div className="w-3 h-3 bg-[#4A8EBC] rounded-full relative" />
+                  <div className="w-3 h-3 bg-[#26a8df] rounded-full animate-ping absolute" />
+                  <div className="w-3 h-3 bg-[#26a8df] rounded-full relative" />
                 </div>
                 <div>
-                  <p className="text-[10px] font-black text-[#4A8EBC] uppercase tracking-widest">Headquarters</p>
-                  <p className="text-lg font-bold text-neutral-900 leading-none">Rupandehi, Nepal</p>
+                  <p className="text-[10px] font-black text-[#26a8df] uppercase tracking-widest">Headquarters</p>
+                  <p className="text-lg font-bold text-[#26a8df] leading-none">Rupandehi, Nepal</p>
                 </div>
               </div>
             </div>
 
             {/* Stats Overlay */}
             <div className="absolute bottom-8 right-8 flex gap-4 z-[1000]">
-              <div className="px-5 py-3 rounded-xl bg-white/90 backdrop-blur-md border border-white/60 text-neutral-900">
-                <p className="text-xs text-[#4A8EBC] font-bold uppercase tracking-widest">Network</p>
+              <div className="px-5 py-3 rounded-xl bg-white/90 backdrop-blur-md border border-white/60 text-[#26a8df]">
+                <p className="text-xs text-[#26a8df] font-bold uppercase tracking-widest">Network</p>
                 <p className="text-xl font-bold">10+ Countries</p>
               </div>
             </div>
@@ -198,12 +198,12 @@ export default function WorldMap() {
           background: white !important;
           border: 1px solid rgba(74,142,188,0.2) !important;
           border-radius: 8px !important;
-          color: #1A2A44 !important;
+          color: #26a8df !important;
           box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
           padding: 8px 12px !important;
         }
-        .tooltip-name { font-weight: 800; font-size: 14px; margin: 0; color: #1A2A44; }
-        .tooltip-status { font-size: 10px; color: #4A8EBC; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px; }
+        .tooltip-name { font-weight: 800; font-size: 14px; margin: 0; color: #26a8df; }
+        .tooltip-status { font-size: 10px; color: #26a8df; margin: 2px 0 0 0; text-transform: uppercase; letter-spacing: 1px; }
       `}} />
     </div>
   )

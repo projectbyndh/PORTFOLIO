@@ -36,7 +36,7 @@ const PartnersSection = () => {
         <section className="bg-white py-16 sm:py-20 md:py-24 overflow-hidden border-t border-gray-50 relative">
             {/* Background decorative elements */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
-                style={{ backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`, backgroundSize: '30px 30px' }} />
+                style={{ backgroundImage: `radial-gradient(#26a8df 1px, transparent 1px)`, backgroundSize: '30px 30px' }} />
 
             <div className="max-w-screen-2xl mx-auto relative z-10">
                 {/* Header Section */}
@@ -54,7 +54,7 @@ const PartnersSection = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 tracking-tight"
+                        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-[#26a8df] tracking-tight"
                     >
                         Our Strategic <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Partners</span>
                     </motion.h2>

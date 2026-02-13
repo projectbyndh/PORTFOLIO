@@ -1,95 +1,240 @@
+/* ===============================================================================
+   GLOBAL STYLES & DESIGN SYSTEM
+   ===============================================================================
+   
+   BRAND COLOR SYSTEM:
+   -------------------
+   This website uses a minimal, focused color palette centered around 2 primary 
+   brand colors for consistency and professional appearance.
+
+   PRIMARY COLORS:
+   • #0D1641 (Brand Dark - Navy Blue)  → 40% usage
+   • #26a8df (Brand Primary - Sky Blue) → 55% usage
+   • Gradients                          → 5% usage
+
+   COLOR DISTRIBUTION BY SECTION:
+   ------------------------------
+   NAVBAR:
+     - Navigation links: #0D1641 (default), #26a8df (hover/active)
+     - "Contact Us" button: background #0D1641, hover #26a8df
+     - Logo: accent color #26a8df
+
+   HERO SECTION (First.jsx):
+     - Primary buttons: background #26a8df
+     - Secondary button: border #0D1641
+     - Animated title "Next Summit": .text-gradient-brand
+     - Icons, decorative elements: #26a8df
+
+   SERVICES:
+     - Cards: background #0D1641
+     - Icons: #26a8df
+     - Headings: #0D1641
+     - Hover borders: #26a8df
+
+   TESTIMONIALS:
+     - Client names: #0D1641
+     - Quote marks, stars: #26a8df
+     - "View All" button: background #26a8df
+     - Card borders (hover): #26a8df
+
+   TEAM SECTION:
+     - Card borders: #26a8df
+     - Social icons hover: #0D1641
+     - Decorative elements: #26a8df
+     - Role badges: #0D1641
+
+   CONTACT:
+     - Submit button: background #0D1641, hover #26a8df
+     - Form focus states: #26a8df
+     - Info icons: #26a8df
+
+   CASE STUDIES:
+     - Filter buttons: #0D1641 (default), #26a8df (active)
+     - Technology badges: #0D1641
+     - Card borders: #26a8df
+     - Result counts: #26a8df
+
+   FOOTER:
+     - Background: #0D1641
+     - Links hover: #26a8df
+
+   ADMIN DASHBOARD:
+     - Sidebar: background #0D1641
+     - Action buttons: #26a8df
+     - Modal headers: #26a8df
+     - Form inputs focus: #26a8df
+
+   REFERRAL PROGRAM:
+     - Icons, benefits: #26a8df
+     - CTA backgrounds: #26a8df
+     - Benefit text: #0D1641
+
+   TERMS & PRIVACY:
+     - Titles: .text-gradient-brand
+     - Links hover: #26a8df
+
+   E-SERVICES:
+     - All text/headings: #0D1641
+     - "Capabilities" heading: .text-gradient-brand-alt
+
+   UTILITY CLASSES:
+   ----------------
+   Available helper classes for quick color application:
+   
+   Gradient Text (Animated):
+   • .text-gradient-brand      → Main gradient effect
+   • .text-gradient-brand-alt  → Alternate gradient
+   • .animate-gradient-x       → Animation for gradients
+   
+   Background Colors:
+   • .bg-brand-dark     → Solid #0D1641
+   • .bg-brand-dark/90  → 90% opacity #0D1641
+   • .bg-brand-dark/80  → 80% opacity #0D1641
+   • .bg-brand-primary  → Solid #26a8df
+   • .bg-brand-primary/90 → 90% opacity #26a8df
+   • .bg-brand-primary/80 → 80% opacity #26a8df
+   
+   Text Colors:
+   • .text-brand-primary → Solid #26a8df
+   • .text-brand-primary/90 → 90% opacity #26a8df
+   • .text-brand-primary/80 → 80% opacity #26a8df
+
+   DESIGN GUIDELINES:
+   ------------------
+   • Use #0D1641 for: Professional, serious content, primary navigation, headings
+   • Use #26a8df for: CTAs, interactive elements, hover states, highlights
+   • Use gradients for: Hero sections, feature headings, premium content
+   • Maintain 40:55:5 ratio for balanced visual hierarchy
+
+   For detailed color usage documentation, see: COLOR-USAGE-GUIDE.md
+   =============================================================================== */
+
 :root {
-  /* Foundational Colors */
+  /* ========================================
+     FOUNDATIONAL COLORS
+     ======================================== */
   --foreground-rgb: 15, 23, 42;
-  --background-start-rgb: 255, 255, 255;
-  --background-end-rgb: 248, 250, 252;
 
-  /* Production-Grade Color System */
-  --primary-50: #F0F7FC;
-  --primary-100: #E1EFF8;
-  --primary-200: #C3DFF1;
-  --primary-300: #85C0E5;
-  --primary-400: #4A8EBC;
-  --primary-500: #3B7AA8;
-  --primary-600: #2D5F8C;
-  --primary-700: #234972;
-  --primary-800: #1A3555;
-  --primary-900: #0F1F38;
+  /* ========================================
+     BRAND COLORS - Primary Identity
+     ========================================
+     Used across the entire website for brand consistency
+     Distribution: #0D1641 (40%), #26a8df (55%), Gradients (5%)
+     ======================================== */
+  
+  /* Brand Dark - Navy Blue (#0D1641)
+     USAGE ACROSS WEBSITE (40%):
+     - Navbar: Navigation links, hover states, "Contact Us" button background
+     - Hero Section: Secondary button border ("Our Work")
+     - Services: Cards background, icons, headings
+     - Testimonials: Client names, card text
+     - Team Section: Social icon hover states, role badges
+     - Contact: Submit button background
+     - Case Studies: Filter buttons, technology badges, hover states
+     - Footer: Background, text
+     - Admin Dashboard: Sidebar background, text elements */
+  --brand-dark: #0D1641;
+  --brand-dark-rgb: 13, 22, 65;
 
-  /* Accent Colors */
-  --accent-teal-light: #5EEAD4;
-  --accent-teal: #2DD4BF;
-  --accent-teal-dark: #0F766E;
-  --accent-purple-light: #A78BFA;
-  --accent-purple: #8B5CF6;
-  --accent-purple-dark: #6D28D9;
-  --accent-orange-light: #FCD34D;
-  --accent-orange: #F59E0B;
-  --accent-orange-dark: #D97706;
-  --accent-red: #EF4444;
-  --accent-green: #10B981;
+  /* Brand Primary - Sky Blue (#26a8df)
+     USAGE ACROSS WEBSITE (55%):
+     - Navbar: Active state, hover effects, logo accent
+     - Hero Section: Primary button backgrounds, animated icons, decorative elements
+     - Services: Card hover borders, icon backgrounds, CTA buttons
+     - Testimonials: Quote marks, star ratings, hover states, "View All" button
+     - Team Section: Card borders, icon decorations, hover effects
+     - Contact: Form focus states, hover on submit, info icons
+     - Case Studies: Active filters, card borders, result counts
+     - Referral: Icons, benefit highlights, CTA backgrounds
+     - Admin: Modal headers, form inputs focus, action buttons, success states
+     - Terms & Privacy: Link hover states, section dividers */
+  --brand-primary: #26a8df;
+  --brand-primary-rgb: 38, 168, 223;
 
-  /* Neutral Scale */
-  --neutral-50: #F8FAFC;
-  --neutral-100: #F1F5F9;
-  --neutral-200: #E2E8F0;
-  --neutral-300: #CBD5E1;
-  --neutral-400: #94A3B8;
-  --neutral-500: #64748B;
-  --neutral-600: #475569;
-  --neutral-700: #334155;
-  --neutral-800: #1E293B;
-  --neutral-900: #0F172A;
+  /* ========================================
+     NEUTRAL COLORS
+     ======================================== */
+  --neutral-100: #F1F5F9;  /* Light backgrounds, card surfaces */
+  --neutral-200: #E2E8F0;  /* Borders, dividers, subtle backgrounds */
+  --neutral-700: #0D1641;  /* Dark text, headings */
+  --neutral-900: #0D1641;  /* Primary text color */
 
-  /* Semantic Colors */
-  --success: #10B981;
-  --warning: #F59E0B;
-  --error: #EF4444;
-  --info: #3B82F6;
+  /* ========================================
+     PRIMARY SCALE (Button System)
+     ======================================== */
+  --primary-50: #F0F7FC;   /* Light hover states */
+  --primary-400: #26a8df;  /* Button backgrounds */
+  --primary-600: #26a8df;  /* Button hover states */
 
-  /* Professional Gradients */
-  --gradient-primary: linear-gradient(135deg, #4A8EBC 0%, #2D5F8C 50%, #1A3555 100%);
+  /* ========================================
+     GRADIENTS
+     ========================================
+     Used for hero sections, animated text effects, and premium UI elements
+     ======================================== */
+  
+  /* Main brand gradient - Hero buttons, premium cards */
+  --gradient-brand: linear-gradient(to right, #26a8df 0%, #26a8df 50%, #2D5F8C 100%);
+  
+  /* Alternate gradient - Animated text effects in hero titles */
+  --gradient-brand-alt: linear-gradient(to right, #26a8df 0%, #2D5A7B 50%, #26a8df 100%);
+  
+  /* Primary gradient - Background overlays, feature cards */
+  --gradient-primary: linear-gradient(135deg, #26a8df 0%, #26a8df 50%, #1A3555 100%);
+  
+  /* Accent gradient - Special CTAs, premium features */
   --gradient-accent: linear-gradient(135deg, #2DD4BF 0%, #8B5CF6 100%);
-  --gradient-warm: linear-gradient(135deg, #F59E0B 0%, #EF4444 100%);
-  --gradient-cool: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  
+  /* Background gradient - Page backgrounds, sections */
   --gradient-bg: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 50%, #EFF6FF 100%);
-  --gradient-overlay: linear-gradient(180deg, rgba(15, 23, 42, 0) 0%, rgba(15, 23, 42, 0.8) 100%);
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-  --shadow-primary: 0 8px 20px -4px rgba(74, 142, 188, 0.3);
-  --shadow-accent: 0 8px 20px -4px rgba(45, 212, 191, 0.3);
+  /* ========================================
+     SHADOWS
+     ========================================
+     Elevation system for cards, modals, and interactive elements
+     ======================================== */
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);     /* Medium cards, dropdowns */
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* Large modals, overlays */
+  --shadow-primary: 0 8px 20px -4px rgba(74, 142, 188, 0.3);                               /* Brand colored shadows for CTAs */
+  --shadow-smooth: 0 2px 8px -2px rgba(0, 0, 0, 0.08);                                     /* Subtle cards, navbar */
+  --shadow-elevated: 0 8px 16px -4px rgba(0, 0, 0, 0.12);                                  /* Elevated sections, feature cards */
+  --shadow-floating: 0 12px 24px -6px rgba(0, 0, 0, 0.15);                                 /* Floating action buttons, tooltips */
 
-  /* Spacing System */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-  --spacing-3xl: 4rem;
+  /* ========================================
+     SPACING SYSTEM
+     ========================================
+     Consistent spacing scale for layout and components
+     ======================================== */
+  --spacing-md: 1rem;    /* 16px - Small gaps, button padding */
+  --spacing-lg: 1.5rem;  /* 24px - Medium gaps, card padding */
+  --spacing-xl: 2rem;    /* 32px - Large gaps, section padding */
+  --spacing-2xl: 3rem;   /* 48px - Extra large gaps, section spacing */
+  --spacing-3xl: 4rem;   /* 64px - Hero sections, major divisions */
 
-  /* Border Radius */
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
-  --radius-2xl: 1.5rem;
-  --radius-full: 9999px;
+  /* ========================================
+     BORDER RADIUS
+     ========================================
+     Consistent rounding for UI elements
+     ======================================== */
+  --radius-lg: 0.75rem;   /* 12px - Cards, inputs, buttons */
+  --radius-xl: 1rem;      /* 16px - Large cards, modals */
+  --radius-full: 9999px;  /* Fully rounded - Pills, badges, avatars */
 
-  /* Typography */
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  /* ========================================
+     TYPOGRAPHY
+     ========================================
+     Font family system for text hierarchy
+     ======================================== */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;  /* Body text, paragraphs */
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;                                               /* Headings, hero titles */
 
-  /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  /* ========================================
+     TRANSITIONS
+     ========================================
+     Smooth animations for interactive elements
+     ======================================== */
+  --transition-base: 250ms cubic-bezier(0.4, 0, 0.2, 1);        /* Standard hover effects, color changes */
+  --transition-slow: 350ms cubic-bezier(0.4, 0, 0.2, 1);        /* Slower transitions, panel slides */
+  --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);  /* Playful animations, buttons, icons */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -475,7 +620,7 @@ a {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #2D5F8C 0%, #1A3555 100%);
+  background: linear-gradient(135deg, #26a8df 0%, #1A3555 100%);
   border-color: var(--neutral-200);
 }
 
@@ -830,4 +975,124 @@ img {
   .btn {
     font-size: 0.875rem !important;
   }
+}
+
+/* ========================================
+   BRAND COLOR UTILITY CLASSES
+   ========================================
+   Pre-built classes for common brand color applications
+   ======================================== */
+
+/* ============ GRADIENT TEXT EFFECTS ============
+   Animated gradient text for hero sections and feature headings
+   USAGE:
+   - Hero Section: "Next Summit" title (First.jsx)
+   - Services: "Our Services" heading
+   - Referral: "Rewards" heading (Refer.jsx)
+   - Terms: "Terms & Conditions" title
+   - Privacy: "Privacy Policy" title
+   - E-Services: "Our Capabilities" heading
+   - Case Studies: "Our Projects" heading
+   ================================================= */
+.text-gradient-brand {
+  background-image: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+}
+
+.text-gradient-brand-alt {
+  background-image: var(--gradient-brand-alt);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% auto;
+}
+
+.animate-gradient-x {
+  animation: gradientX 3s ease infinite;
+}
+
+@keyframes gradientX {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
+/* ============ TEXT COLOR UTILITIES ============
+   Direct color application for text elements
+   ================================================= */
+.text-brand-primary {
+  color: var(--brand-primary);
+}
+
+.text-brand-primary\/90 {
+  color: rgba(var(--brand-primary-rgb), 0.9);
+}
+
+.text-brand-primary\/80 {
+  color: rgba(var(--brand-primary-rgb), 0.8);
+}
+
+/* ============ BACKGROUND COLOR UTILITIES ============
+   Solid and semi-transparent backgrounds
+   USAGE:
+   - bg-brand-dark: Navbar "Contact Us" button, Contact submit button, Footer, Case Studies filters
+   - bg-brand-primary: Hero primary buttons, Testimonial "View All", Hover states, Admin action buttons
+   - Opacity variants (/90, /80): Overlay effects, modal backgrounds
+   ===================================================== */
+.bg-brand-dark {
+  background-color: var(--brand-dark);
+}
+
+.bg-brand-dark\/90 {
+  background-color: rgba(var(--brand-dark-rgb), 0.9);
+}
+
+.bg-brand-dark\/80 {
+  background-color: rgba(var(--brand-dark-rgb), 0.8);
+}
+
+.bg-brand-primary {
+  background-color: var(--brand-primary);
+}
+
+.bg-brand-primary\/90 {
+  background-color: rgba(var(--brand-primary-rgb), 0.9);
+}
+
+.bg-brand-primary\/80 {
+  background-color: rgba(var(--brand-primary-rgb), 0.8);
+}
+
+.border-brand-primary {
+  border-color: var(--brand-primary);
+}
+
+.border-brand-dark {
+  border-color: var(--brand-dark);
+}
+
+.hover\:bg-brand-dark:hover {
+  background-color: var(--brand-dark);
+}
+
+.hover\:bg-brand-dark\/90:hover {
+  background-color: rgba(var(--brand-dark-rgb), 0.9);
+}
+
+.hover\:bg-brand-primary:hover {
+  background-color: var(--brand-primary);
+}
+
+.hover\:text-brand-primary:hover {
+  color: var(--brand-primary);
+}
+
+.focus\:ring-brand-primary:focus {
+  --tw-ring-color: var(--brand-primary);
 }

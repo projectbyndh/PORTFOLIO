@@ -29,7 +29,7 @@ const BlogList = ({
   if (loading && blogs.length === 0) {
     return (
       <div className="flex justify-center items-center h-full py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4A8EBC]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#26a8df]"></div>
       </div>
     );
   }
@@ -39,10 +39,10 @@ const BlogList = ({
     return (
       <div className="flex flex-col items-center justify-center h-full text-center py-20">
         <div className="w-20 h-20 bg-[#F5FAFF] rounded-full flex items-center justify-center mb-4">
-          <Eye className="w-10 h-10 text-[#4A8EBC]/40" />
+          <Eye className="w-10 h-10 text-[#26a8df]/40" />
         </div>
-        <p className="text-[#2B4066] font-semibold text-lg mb-2">No blogs found</p>
-        <p className="text-[#2B4066]/60 mb-6 max-w-sm">Get started by creating your first blog post.</p>
+        <p className="text-[#26a8df] font-semibold text-lg mb-2">No blogs found</p>
+        <p className="text-[#26a8df]/60 mb-6 max-w-sm">Get started by creating your first blog post.</p>
       </div>
     );
   }
@@ -50,23 +50,23 @@ const BlogList = ({
   return (
     <div className="overflow-x-auto">
       <table className="w-full">
-        <thead className="bg-[#F5FAFF] border-b border-[#4A8EBC]/10">
+        <thead className="bg-[#F5FAFF] border-b border-[#26a8df]/10">
           <tr>
-            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+            <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df] uppercase tracking-wider">
               Blog Details
             </th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+            <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df] uppercase tracking-wider">
               Author
             </th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+            <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df] uppercase tracking-wider">
               Date
             </th>
-            <th className="px-6 py-4 text-right text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+            <th className="px-6 py-4 text-right text-sm font-bold text-[#26a8df] uppercase tracking-wider">
               Actions
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-[#4A8EBC]/5">
+        <tbody className="divide-y divide-[#26a8df]/5">
           {blogs.map((blog) => (
             <tr
               key={blog._id || blog.id}
@@ -81,28 +81,28 @@ const BlogList = ({
                       <img
                         src={blog.image}
                         alt={blog.title}
-                        className="w-12 h-12 object-cover rounded-lg border border-[#4A8EBC]/10 flex-shrink-0"
+                        className="w-12 h-12 object-cover rounded-lg border border-[#26a8df]/10 flex-shrink-0"
                         onError={(e) => {
                           e.target.style.display = 'none';
                           e.target.nextElementSibling.style.display = 'flex';
                         }}
                       />
-                      <div className="w-12 h-12 bg-[#F5FAFF] rounded-lg flex items-center justify-center flex-shrink-0 hidden border border-[#4A8EBC]/5">
-                        <Eye className="w-6 h-6 text-[#4A8EBC]/40" />
+                      <div className="w-12 h-12 bg-[#F5FAFF] rounded-lg flex items-center justify-center flex-shrink-0 hidden border border-[#26a8df]/5">
+                        <Eye className="w-6 h-6 text-[#26a8df]/40" />
                       </div>
                     </>
                   ) : (
-                    <div className="w-12 h-12 bg-[#F5FAFF] rounded-lg flex items-center justify-center flex-shrink-0 border border-[#4A8EBC]/5">
-                      <Eye className="w-6 h-6 text-[#4A8EBC]/40" />
+                    <div className="w-12 h-12 bg-[#F5FAFF] rounded-lg flex items-center justify-center flex-shrink-0 border border-[#26a8df]/5">
+                      <Eye className="w-6 h-6 text-[#26a8df]/40" />
                     </div>
                   )}
 
                   {/* Title and Description */}
                   <div className="min-w-0 flex-1">
-                    <h4 className="font-semibold text-[#1A2A44] truncate group-hover:text-[#4A8EBC] transition-colors">
+                    <h4 className="font-semibold text-[#26a8df] truncate group-hover:text-[#26a8df] transition-colors">
                       {blog.title || 'Untitled'}
                     </h4>
-                    <p className="text-sm text-[#2B4066]/70 line-clamp-2 mt-1">
+                    <p className="text-sm text-[#26a8df]/70 line-clamp-2 mt-1">
                       {blog.description || blog.content || 'No description available'}
                     </p>
                   </div>
@@ -112,8 +112,8 @@ const BlogList = ({
               {/* Author */}
               <td className="px-6 py-4">
                 <div className="flex items-center gap-2">
-                  <User className="w-4 h-4 text-[#4A8EBC]/60" />
-                  <span className="text-sm text-[#2B4066]">
+                  <User className="w-4 h-4 text-[#26a8df]/60" />
+                  <span className="text-sm text-[#26a8df]">
                     {blog.author || 'Unknown'}
                   </span>
                 </div>
@@ -122,8 +122,8 @@ const BlogList = ({
               {/* Date */}
               <td className="px-6 py-4">
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-[#4A8EBC]/60" />
-                  <span className="text-sm text-[#2B4066]/70">
+                  <Calendar className="w-4 h-4 text-[#26a8df]/60" />
+                  <span className="text-sm text-[#26a8df]/70">
                     {formatDate(blog.createdAt || blog.date)}
                   </span>
                 </div>
@@ -134,7 +134,7 @@ const BlogList = ({
                 <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button
                     onClick={() => onEdit(blog)}
-                    className="px-4 py-2 bg-[#4A8EBC]/10 text-[#4A8EBC] rounded-lg hover:bg-[#4A8EBC]/20 transition-all flex items-center gap-2 font-medium"
+                    className="px-4 py-2 bg-[#26a8df]/10 text-[#26a8df] rounded-lg hover:bg-[#26a8df]/20 transition-all flex items-center gap-2 font-medium"
                     title="Edit blog"
                   >
                     <Edit className="w-4 h-4" />

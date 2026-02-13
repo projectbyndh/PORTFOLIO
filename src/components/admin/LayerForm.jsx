@@ -80,9 +80,9 @@ export default function LayerForm({ layer, onClose, onSubmit }) {
         <form onSubmit={handleSubmit} className="space-y-6">
             {/* Header Image/Logo */}
             <div className="flex flex-col items-center mb-6">
-                <label className="block text-sm font-semibold text-[#1A2A44] mb-4 text-center">Section Logo / Icon</label>
+                <label className="block text-sm font-semibold text-[#26a8df] mb-4 text-center">Section Logo / Icon</label>
                 <div className="relative group">
-                    <div className="w-32 h-32 rounded-2xl bg-neutral-100 flex items-center justify-center border-2 border-dashed border-[#4A8EBC]/20 overflow-hidden">
+                    <div className="w-32 h-32 rounded-2xl bg-neutral-100 flex items-center justify-center border-2 border-dashed border-[#26a8df]/20 overflow-hidden">
                         {previewUrl ? (
                             <img src={previewUrl} alt="Preview" className="w-full h-full object-contain" />
                         ) : (
@@ -104,25 +104,25 @@ export default function LayerForm({ layer, onClose, onSubmit }) {
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Layer Title</label>
+                    <label className="block text-sm font-semibold text-[#26a8df] mb-2">Layer Title</label>
                     <input
                         type="text"
                         name="title"
                         value={formData.title}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30"
+                        className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30"
                         placeholder="e.g. Executive Leadership"
                         required
                     />
                 </div>
                 <div>
-                    <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Key (URL/Code)</label>
+                    <label className="block text-sm font-semibold text-[#26a8df] mb-2">Key (URL/Code)</label>
                     <input
                         type="text"
                         name="key"
                         value={formData.key}
                         onChange={handleInputChange}
-                        className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 bg-neutral-50"
+                        className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 bg-neutral-50"
                         placeholder="executive-leadership"
                         required
                     />
@@ -130,26 +130,26 @@ export default function LayerForm({ layer, onClose, onSubmit }) {
             </div>
 
             <div>
-                <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Display Order</label>
+                <label className="block text-sm font-semibold text-[#26a8df] mb-2">Display Order</label>
                 <input
                     type="number"
                     name="order"
                     value={formData.order}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30"
+                    className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30"
                     required
                 />
             </div>
 
             {/* Description */}
             <div>
-                <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Description / Subtitle</label>
+                <label className="block text-sm font-semibold text-[#26a8df] mb-2">Description / Subtitle</label>
                 <textarea
                     name="description"
                     value={formData.description}
                     onChange={handleInputChange}
                     rows={2}
-                    className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30"
+                    className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30"
                     placeholder="Brief description shown below the layer title on public pages"
                 />
             </div>
@@ -157,22 +157,22 @@ export default function LayerForm({ layer, onClose, onSubmit }) {
             {/* Active Toggle & Visible On */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                    <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Status</label>
-                    <label className="flex items-center gap-3 px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl cursor-pointer hover:bg-[#F5FAFF] transition-all">
+                    <label className="block text-sm font-semibold text-[#26a8df] mb-2">Status</label>
+                    <label className="flex items-center gap-3 px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl cursor-pointer hover:bg-[#F5FAFF] transition-all">
                         <input
                             type="checkbox"
                             checked={formData.isActive}
                             onChange={(e) => setFormData(prev => ({ ...prev, isActive: e.target.checked }))}
-                            className="w-5 h-5 text-[#4A8EBC] rounded border-neutral-300 focus:ring-[#4A8EBC]"
+                            className="w-5 h-5 text-[#26a8df] rounded border-neutral-300 focus:ring-[#26a8df]"
                         />
-                        <span className="text-sm font-medium text-[#1A2A44]">Active (show on public site)</span>
+                        <span className="text-sm font-medium text-[#26a8df]">Active (show on public site)</span>
                     </label>
                 </div>
                 <div>
-                    <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Visible On Pages</label>
+                    <label className="block text-sm font-semibold text-[#26a8df] mb-2">Visible On Pages</label>
                     <div className="space-y-2">
                         {VISIBLE_ON_OPTIONS.map(opt => (
-                            <label key={opt.value} className="flex items-center gap-3 px-4 py-2 border border-[#4A8EBC]/10 rounded-lg cursor-pointer hover:bg-[#F5FAFF] transition-all">
+                            <label key={opt.value} className="flex items-center gap-3 px-4 py-2 border border-[#26a8df]/10 rounded-lg cursor-pointer hover:bg-[#F5FAFF] transition-all">
                                 <input
                                     type="checkbox"
                                     checked={formData.visibleOn.includes(opt.value)}
@@ -184,9 +184,9 @@ export default function LayerForm({ layer, onClose, onSubmit }) {
                                                 : prev.visibleOn.filter(v => v !== opt.value)
                                         }));
                                     }}
-                                    className="w-4 h-4 text-[#4A8EBC] rounded border-neutral-300 focus:ring-[#4A8EBC]"
+                                    className="w-4 h-4 text-[#26a8df] rounded border-neutral-300 focus:ring-[#26a8df]"
                                 />
-                                <span className="text-sm text-[#1A2A44]">{opt.label}</span>
+                                <span className="text-sm text-[#26a8df]">{opt.label}</span>
                             </label>
                         ))}
                     </div>
@@ -203,7 +203,7 @@ export default function LayerForm({ layer, onClose, onSubmit }) {
                 </button>
                 <button
                     type="submit"
-                    className="flex-1 px-6 py-3 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
+                    className="flex-1 px-6 py-3 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white rounded-xl font-semibold hover:shadow-lg transition-all flex items-center justify-center gap-2"
                 >
                     <Save size={20} />
                     {layer ? 'Update Layer' : 'Create Layer'}

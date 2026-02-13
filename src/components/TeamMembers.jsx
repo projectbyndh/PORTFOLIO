@@ -32,7 +32,7 @@ export default function TeamMembers() {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#FAFAFA] pt-20 md:pt-24 lg:pt-28">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4A8EBC]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#26a8df]"></div>
       </div>
     );
   }
@@ -44,7 +44,7 @@ export default function TeamMembers() {
           <div className="text-red-500 mb-4">{error}</div>
           <button
             onClick={() => window.location.reload()}
-            className="bg-[#4A8EBC] hover:bg-[#3B7AA8] text-white font-bold py-2 px-6 rounded-xl"
+            className="bg-[#26a8df] hover:bg-[#26a8df] text-white font-bold py-2 px-6 rounded-xl"
           >
             Retry
           </button>
@@ -61,8 +61,8 @@ export default function TeamMembers() {
       {/* Texture & blobs */}
       <div className="fixed inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none z-0" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-20 left-20 w-96 h-96 bg-[#4A8EBC]/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#3B7AA8]/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-20 w-96 h-96 bg-[#26a8df]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#26a8df]/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
@@ -73,12 +73,12 @@ export default function TeamMembers() {
           className="text-center mb-12 sm:mb-14 md:mb-16 lg:mb-20"
         >
           <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/60 backdrop-blur-sm border border-white/40 rounded-full mb-4 sm:mb-5 md:mb-6 shadow-sm">
-            <Users size={12} className="text-[#4A8EBC] sm:w-3.5 sm:h-3.5" />
+            <Users size={12} className="text-[#26a8df] sm:w-3.5 sm:h-3.5" />
             <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-neutral-600">Our Team</span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-neutral-900 mb-4 sm:mb-5 md:mb-6 tracking-tight">
-            Meet the <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8]">Innovators</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#26a8df] mb-4 sm:mb-5 md:mb-6 tracking-tight">
+            Meet the <span className="text-brand-primary">Innovators</span>
           </h1>
 
           <p className="text-base sm:text-lg md:text-xl text-neutral-600 max-w-3xl mx-auto px-4">
@@ -93,7 +93,7 @@ export default function TeamMembers() {
             className="text-center py-12 sm:py-14 md:py-16 lg:py-20 bg-white/50 backdrop-blur-xl rounded-2xl sm:rounded-3xl border border-white/60"
           >
             <Users className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 text-neutral-300 mx-auto mb-4 sm:mb-5 md:mb-6" />
-            <h3 className="text-xl sm:text-2xl font-black text-neutral-900 mb-2">Team Coming Soon</h3>
+            <h3 className="text-xl sm:text-2xl font-black text-[#26a8df] mb-2">Team Coming Soon</h3>
             <p className="text-neutral-500 text-sm sm:text-base">We are currently updating our team directory.</p>
           </motion.div>
         ) : (
@@ -112,9 +112,9 @@ export default function TeamMembers() {
                         className="h-8 w-8 sm:h-9 sm:w-9 md:h-10 md:w-10 object-contain mx-auto mb-2 sm:mb-2.5 md:mb-3"
                       />
                     )}
-                    <h2 className="text-2xl sm:text-2xl md:text-3xl font-bold text-neutral-900 relative inline-block">
+                    <h2 className="text-2xl sm:text-2xl md:text-3xl font-bold text-[#26a8df] relative inline-block">
                       {layer.title}
-                      <div className="absolute -bottom-2 sm:-bottom-2.5 md:-bottom-3 left-1/2 -translate-x-1/2 w-10 sm:w-11 md:w-12 h-1 bg-[#4A8EBC] rounded-full"></div>
+                      <div className="absolute -bottom-2 sm:-bottom-2.5 md:-bottom-3 left-1/2 -translate-x-1/2 w-10 sm:w-11 md:w-12 h-1 bg-[#26a8df] rounded-full"></div>
                     </h2>
                     {layer.description && (
                       <p className="text-neutral-500 mt-4 sm:mt-5 md:mt-6 max-w-2xl mx-auto text-sm sm:text-base">{layer.description}</p>
@@ -148,10 +148,10 @@ export default function TeamMembers() {
           className="mt-16 sm:mt-20 md:mt-24 lg:mt-32 text-center"
         >
           <div className="bg-white/60 backdrop-blur-2xl rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 md:p-10 lg:p-12 border border-white/60 shadow-lg relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 bg-gradient-to-bl from-[#4A8EBC]/10 to-transparent rounded-bl-full pointer-events-none" />
+            <div className="absolute top-0 right-0 w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 bg-gradient-to-bl from-[#26a8df]/10 to-transparent rounded-bl-full pointer-events-none" />
 
-            <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#4A8EBC] mx-auto mb-3 sm:mb-3.5 md:mb-4 relative z-10" />
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-neutral-900 mb-3 sm:mb-3.5 md:mb-4 relative z-10">
+            <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-[#26a8df] mx-auto mb-3 sm:mb-3.5 md:mb-4 relative z-10" />
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-[#26a8df] mb-3 sm:mb-3.5 md:mb-4 relative z-10">
               Want to Join Our Team?
             </h3>
             <p className="text-neutral-600 mb-6 sm:mb-7 md:mb-8 max-w-2xl mx-auto relative z-10 text-sm sm:text-base px-4">
@@ -159,7 +159,7 @@ export default function TeamMembers() {
             </p>
             <a
               href="/careers"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8] text-white font-bold py-3 sm:py-3.5 md:py-4 px-6 sm:px-7 md:px-8 rounded-xl sm:rounded-2xl text-sm sm:text-base shadow-[0_0_30px_rgba(74,142,188,0.4)] hover:scale-105 transition-all duration-300 relative z-10"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white font-bold py-3 sm:py-3.5 md:py-4 px-6 sm:px-7 md:px-8 rounded-xl sm:rounded-2xl text-sm sm:text-base shadow-[0_0_30px_rgba(74,142,188,0.4)] hover:scale-105 transition-all duration-300 relative z-10"
             >
               View Open Positions
             </a>
@@ -182,12 +182,12 @@ function MemberCard({ member, index }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="group relative bg-white/80 backdrop-blur-xl rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-white/50 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
     >
-      <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-br from-[#26a8df]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
       <div className="p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col items-center text-center relative z-10">
         {/* Avatar */}
         <div className="mb-4 sm:mb-5 md:mb-6 relative">
-          <div className="absolute inset-0 bg-[#4A8EBC] rounded-full blur-md opacity-20 group-hover:opacity-40 transition-opacity duration-500 transform scale-110" />
+          <div className="absolute inset-0 bg-[#26a8df] rounded-full blur-md opacity-20 group-hover:opacity-40 transition-opacity duration-500 transform scale-110" />
           <div className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 rounded-full overflow-hidden border-3 sm:border-4 border-white shadow-xl group-hover:scale-105 transition-transform duration-500 relative bg-neutral-100">
             <img
               src={getImageUrl(member.image, 'team')}
@@ -202,11 +202,11 @@ function MemberCard({ member, index }) {
         </div>
 
         {/* Info */}
-        <h3 className="text-base sm:text-lg md:text-xl font-bold text-neutral-900 mb-1 group-hover:text-[#4A8EBC] transition-colors">
+        <h3 className="text-base sm:text-lg md:text-xl font-bold text-[#26a8df] mb-1 group-hover:text-[#26a8df] transition-colors">
           {member.name}
         </h3>
 
-        <div className="inline-block px-2.5 sm:px-3 py-1 rounded-full bg-[#4A8EBC]/10 text-[#4A8EBC] text-[10px] sm:text-xs font-bold uppercase tracking-wide mb-3 sm:mb-3.5 md:mb-4">
+        <div className="inline-block px-2.5 sm:px-3 py-1 rounded-full bg-[#26a8df]/10 text-[#26a8df] text-[10px] sm:text-xs font-bold uppercase tracking-wide mb-3 sm:mb-3.5 md:mb-4">
           {jobTitle}
         </div>
 
@@ -229,7 +229,7 @@ function MemberCard({ member, index }) {
             </a>
           )}
           {member.socialLinks?.email && (
-            <a href={`mailto:${member.socialLinks.email}`} className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-neutral-100 hover:bg-neutral-800 hover:text-white transition-all duration-300 text-neutral-500">
+            <a href={`mailto:${member.socialLinks.email}`} className="p-1.5 sm:p-2 rounded-lg sm:rounded-xl bg-neutral-100 hover:bg-[#0D1641] hover:text-white transition-all duration-300 text-neutral-500">
               <Mail size={16} className="sm:w-4 sm:h-4 md:w-[18px] md:h-[18px]" />
             </a>
           )}

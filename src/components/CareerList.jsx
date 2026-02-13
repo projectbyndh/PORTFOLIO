@@ -29,7 +29,7 @@ const CareerList = ({
   if (loading && careers.length === 0) {
     return (
       <div className="flex justify-center items-center h-full py-20">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#4A8EBC]"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#26a8df]"></div>
       </div>
     );
   }
@@ -39,10 +39,10 @@ const CareerList = ({
     return (
       <div className="flex flex-col items-center justify-center h-full text-center py-20">
         <div className="w-20 h-20 bg-[#F5FAFF] rounded-full flex items-center justify-center mb-4">
-          <MapPin className="w-10 h-10 text-[#4A8EBC]/40" />
+          <MapPin className="w-10 h-10 text-[#26a8df]/40" />
         </div>
-        <p className="text-[#2B4066] font-semibold text-lg mb-2">No careers found</p>
-        <p className="text-[#2B4066]/60 mb-6 max-w-sm">Get started by creating your first career posting.</p>
+        <p className="text-[#26a8df] font-semibold text-lg mb-2">No careers found</p>
+        <p className="text-[#26a8df]/60 mb-6 max-w-sm">Get started by creating your first career posting.</p>
       </div>
     );
   }
@@ -50,26 +50,26 @@ const CareerList = ({
   return (
     <div className="overflow-x-auto">
       <table className="w-full">
-        <thead className="bg-[#F5FAFF] border-b border-[#4A8EBC]/10">
+        <thead className="bg-[#F5FAFF] border-b border-[#26a8df]/10">
           <tr>
-            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+            <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df] uppercase tracking-wider">
               Job Details
             </th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+            <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df] uppercase tracking-wider">
               Location
             </th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+            <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df] uppercase tracking-wider">
               Category
             </th>
-            <th className="px-6 py-4 text-left text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+            <th className="px-6 py-4 text-left text-sm font-bold text-[#26a8df] uppercase tracking-wider">
               Posted Date
             </th>
-            <th className="px-6 py-4 text-right text-sm font-bold text-[#1A2A44] uppercase tracking-wider">
+            <th className="px-6 py-4 text-right text-sm font-bold text-[#26a8df] uppercase tracking-wider">
               Actions
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-[#4A8EBC]/5">
+        <tbody className="divide-y divide-[#26a8df]/5">
           {careers.map((career) => (
             <tr
               key={career._id || career.id}
@@ -84,31 +84,31 @@ const CareerList = ({
                       <img
                         src={getImageUrl(career.image, 'career')}
                         alt={career.title}
-                        className="w-12 h-12 object-cover rounded-lg border border-[#4A8EBC]/10 flex-shrink-0"
+                        className="w-12 h-12 object-cover rounded-lg border border-[#26a8df]/10 flex-shrink-0"
                         onError={(e) => {
                           e.target.style.display = 'none';
                           e.target.nextElementSibling.style.display = 'flex';
                         }}
                       />
-                      <div className="w-12 h-12 bg-[#F5FAFF] rounded-lg flex items-center justify-center flex-shrink-0 hidden border border-[#4A8EBC]/5">
-                        <MapPin className="w-6 h-6 text-[#4A8EBC]/40" />
+                      <div className="w-12 h-12 bg-[#F5FAFF] rounded-lg flex items-center justify-center flex-shrink-0 hidden border border-[#26a8df]/5">
+                        <MapPin className="w-6 h-6 text-[#26a8df]/40" />
                       </div>
                     </>
                   ) : (
-                    <div className="w-12 h-12 bg-[#F5FAFF] rounded-lg flex items-center justify-center flex-shrink-0 border border-[#4A8EBC]/5">
-                      <MapPin className="w-6 h-6 text-[#4A8EBC]/40" />
+                    <div className="w-12 h-12 bg-[#F5FAFF] rounded-lg flex items-center justify-center flex-shrink-0 border border-[#26a8df]/5">
+                      <MapPin className="w-6 h-6 text-[#26a8df]/40" />
                     </div>
                   )}
 
                   {/* Title and Description */}
                   <div className="min-w-0 flex-1">
-                    <h4 className="font-semibold text-[#1A2A44] truncate group-hover:text-[#4A8EBC] transition-colors">
+                    <h4 className="font-semibold text-[#26a8df] truncate group-hover:text-[#26a8df] transition-colors">
                       {career.title || 'Untitled Position'}
                     </h4>
-                    <p className="text-sm text-[#2B4066]/70 line-clamp-2 mt-1">
+                    <p className="text-sm text-[#26a8df]/70 line-clamp-2 mt-1">
                       {career.description || 'No description available'}
                     </p>
-                    <div className="flex items-center gap-4 mt-2 text-xs text-[#2B4066]/60">
+                    <div className="flex items-center gap-4 mt-2 text-xs text-[#26a8df]/60">
                       <span>{career.requirements?.length || 0} requirements</span>
                       <span>{career.responsibilities?.length || 0} responsibilities</span>
                       {career.applyLink && (
@@ -116,7 +116,7 @@ const CareerList = ({
                           href={career.applyLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center gap-1 text-[#4A8EBC] hover:text-[#3B5488] transition-colors"
+                          className="flex items-center gap-1 text-[#26a8df] hover:text-[#26a8df] transition-colors"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <ExternalLink className="w-3 h-3" />
@@ -131,8 +131,8 @@ const CareerList = ({
               {/* Location */}
               <td className="px-6 py-4">
                 <div className="flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-[#4A8EBC]/60" />
-                  <span className="text-sm text-[#2B4066]">
+                  <MapPin className="w-4 h-4 text-[#26a8df]/60" />
+                  <span className="text-sm text-[#26a8df]">
                     {career.location || 'Not specified'}
                   </span>
                 </div>
@@ -153,8 +153,8 @@ const CareerList = ({
               {/* Posted Date */}
               <td className="px-6 py-4">
                 <div className="flex items-center gap-2">
-                  <Calendar className="w-4 h-4 text-[#4A8EBC]/60" />
-                  <span className="text-sm text-[#2B4066]/70">
+                  <Calendar className="w-4 h-4 text-[#26a8df]/60" />
+                  <span className="text-sm text-[#26a8df]/70">
                     {formatDate(career.createdAt)}
                   </span>
                 </div>
@@ -165,7 +165,7 @@ const CareerList = ({
                 <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                   <button
                     onClick={() => onEdit(career)}
-                    className="px-4 py-2 bg-[#4A8EBC]/10 text-[#4A8EBC] rounded-lg hover:bg-[#4A8EBC]/20 transition-all flex items-center gap-2 font-medium"
+                    className="px-4 py-2 bg-[#26a8df]/10 text-[#26a8df] rounded-lg hover:bg-[#26a8df]/20 transition-all flex items-center gap-2 font-medium"
                     title="Edit career"
                   >
                     <Edit className="w-4 h-4" />

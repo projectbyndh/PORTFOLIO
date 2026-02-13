@@ -27,8 +27,8 @@ const ProtectedRoute = ({ children }) => {
         return (
             <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] via-white to-[#F0F7FF] flex items-center justify-center">
                 <div className="text-center">
-                    <div className="w-16 h-16 border-4 border-[#4A8EBC] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                    <p className="text-[#2B4066] font-semibold">Verifying authentication...</p>
+                    <div className="w-16 h-16 border-4 border-[#26a8df] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                    <p className="text-[#26a8df] font-semibold">Verifying authentication...</p>
                 </div>
             </div>
         );

@@ -35,7 +35,7 @@ export default function FAQSection() {
         return (
             <div className="py-24 bg-white">
                 <div className="max-w-4xl mx-auto px-6 text-center">
-                    <p className="text-[#4A8EBC]">Loading FAQs...</p>
+                    <p className="text-[#26a8df]">Loading FAQs...</p>
                 </div>
             </div>
         );
@@ -48,21 +48,21 @@ export default function FAQSection() {
             {/* Background decorations */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
-                <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-[#4A8EBC]/5 animate-pulse-slow blur-3xl" />
-                <div className="absolute bottom-40 left-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow blur-3xl" />
+                <div className="absolute top-20 right-10 w-64 h-64 rounded-full bg-[#26a8df]/5 animate-pulse-slow blur-3xl" />
+                <div className="absolute bottom-40 left-10 w-96 h-96 rounded-full bg-[#26a8df]/5 animate-pulse-slow blur-3xl" />
             </div>
 
             <div className="max-w-4xl mx-auto px-4 sm:px-5 md:px-6 relative z-10">
                 {/* Header */}
                 <div className="text-center mb-10 sm:mb-12 md:mb-14 lg:mb-16">
-                    <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#4A8EBC]/10 rounded-full mb-4 sm:mb-5 md:mb-6">
-                        <HelpCircle size={14} className="text-[#4A8EBC] sm:w-4 sm:h-4 md:w-[18px] md:h-[18px]" />
-                        <span className="text-xs sm:text-sm font-bold text-[#4A8EBC] uppercase tracking-wider">FAQ</span>
+                    <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#26a8df]/10 rounded-full mb-4 sm:mb-5 md:mb-6">
+                        <HelpCircle size={14} className="text-[#26a8df] sm:w-4 sm:h-4 md:w-[18px] md:h-[18px]" />
+                        <span className="text-xs sm:text-sm font-bold text-[#26a8df] uppercase tracking-wider">FAQ</span>
                     </div>
-                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1A2A44] mb-3 sm:mb-4 px-3">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#26a8df] mb-3 sm:mb-4 px-3">
                         Frequently Asked Questions
                     </h2>
-                    <p className="text-sm sm:text-base md:text-lg text-[#2B4066]/80 max-w-2xl mx-auto px-3">
+                    <p className="text-sm sm:text-base md:text-lg text-[#26a8df]/80 max-w-2xl mx-auto px-3">
                         Find answers to common questions about our services and processes
                     </p>
                 </div>
@@ -75,17 +75,17 @@ export default function FAQSection() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-white/70 backdrop-blur-sm rounded-lg sm:rounded-xl border border-[#4A8EBC]/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                            className="bg-white/70 backdrop-blur-sm rounded-lg sm:rounded-xl border border-[#26a8df]/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                         >
                             <button
                                 onClick={() => toggleFAQ(index)}
-                                className="w-full px-3 sm:px-4 md:px-5 lg:px-6 py-3 sm:py-3.5 md:py-4 lg:py-5 flex items-center justify-between text-left hover:bg-[#4A8EBC]/5 transition-colors"
+                                className="w-full px-3 sm:px-4 md:px-5 lg:px-6 py-3 sm:py-3.5 md:py-4 lg:py-5 flex items-center justify-between text-left hover:bg-[#26a8df]/5 transition-colors"
                             >
-                                <span className="font-semibold text-sm sm:text-base text-[#1A2A44] pr-3 sm:pr-4">
+                                <span className="font-semibold text-sm sm:text-base text-[#26a8df] pr-3 sm:pr-4">
                                     {faq.question}
                                 </span>
                                 <ChevronDown
-                                    className={`flex-shrink-0 text-[#4A8EBC] transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''
+                                    className={`flex-shrink-0 text-[#26a8df] transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''
                                         }`}
                                     size={18}
                                 />
@@ -100,7 +100,7 @@ export default function FAQSection() {
                                         transition={{ duration: 0.3 }}
                                         className="overflow-hidden"
                                     >
-                                        <div className="px-3 sm:px-4 md:px-5 lg:px-6 pb-3 sm:pb-4 md:pb-5 text-xs sm:text-sm md:text-base text-[#2B4066]/80 leading-relaxed">
+                                        <div className="px-3 sm:px-4 md:px-5 lg:px-6 pb-3 sm:pb-4 md:pb-5 text-xs sm:text-sm md:text-base text-[#26a8df]/80 leading-relaxed">
                                             {faq.answer}
                                         </div>
                                     </motion.div>

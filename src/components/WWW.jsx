@@ -56,7 +56,7 @@ function PartnersSlider() {
         <div
           className="absolute inset-0 opacity-5"
           style={{
-            backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`,
+            backgroundImage: `radial-gradient(#26a8df 1px, transparent 1px)`,
             backgroundSize: "30px 30px",
           }}
         ></div>
@@ -66,13 +66,13 @@ function PartnersSlider() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-block relative">
-            <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow"></div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] to-[#4A8EBC]">
+            <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#26a8df]/20 animate-pulse-slow"></div>
+            <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#26a8df]/20 animate-pulse-slow"></div>
+            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#26a8df] to-[#26a8df]">
               Our Trusted Partners
             </h2>
           </div>
-          <p className="mt-4 text-lg text-[#2B4066]/80 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-[#26a8df]/80 max-w-2xl mx-auto">
             We collaborate with industry leaders to deliver exceptional solutions for our clients.
           </p>
         </div>
@@ -87,7 +87,7 @@ function PartnersSlider() {
             <Slider {...settings}>
               {projects.map((project, index) => (
                 <div key={index} className="px-6">
-                  <div className="h-24 flex items-center justify-center bg-white/70 backdrop-blur-sm rounded-xl p-4 mx-2 shadow-sm hover:shadow-md transition-all duration-300 border border-[#4A8EBC]/10">
+                  <div className="h-24 flex items-center justify-center bg-white/70 backdrop-blur-sm rounded-xl p-4 mx-2 shadow-sm hover:shadow-md transition-all duration-300 border border-[#26a8df]/10">
                     <img
                       src={project.image || "/placeholder.svg"}
                       alt={`${project.title} logo`}

@@ -79,25 +79,25 @@ const ContactInfoForm = ({ contactInfo, onClose, onSuccess }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-[#1A2A44]/40 backdrop-blur-md flex items-center justify-center z-50 p-4">
-      <div className="bg-white/95 backdrop-blur-xl p-6 rounded-2xl shadow-2xl shadow-[#1A2A44]/20 w-full max-w-md max-h-[90vh] overflow-y-auto border border-[#4A8EBC]/10">
-        <h2 className="text-xl font-bold mb-6 bg-gradient-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">
+    <div className="fixed inset-0 bg-[#26a8df]/40 backdrop-blur-md flex items-center justify-center z-50 p-4">
+      <div className="bg-white/95 backdrop-blur-xl p-6 rounded-2xl shadow-2xl shadow-[#26a8df]/20 w-full max-w-md max-h-[90vh] overflow-y-auto border border-[#26a8df]/10">
+        <h2 className="text-xl font-bold mb-6 bg-gradient-to-r from-[#26a8df] to-[#26a8df] bg-clip-text text-transparent">
           {contactInfo ? 'Edit Contact Info' : 'Add New Contact Info'}
         </h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Address *</label>
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">Address *</label>
             <input
               type="text"
               name="location.address"
               value={formData.location.address}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+              className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Latitude *</label>
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">Latitude *</label>
             <input
               type="number"
               step="any"
@@ -105,11 +105,11 @@ const ContactInfoForm = ({ contactInfo, onClose, onSuccess }) => {
               value={formData.location.latitude}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+              className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Longitude *</label>
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">Longitude *</label>
             <input
               type="number"
               step="any"
@@ -117,54 +117,54 @@ const ContactInfoForm = ({ contactInfo, onClose, onSuccess }) => {
               value={formData.location.longitude}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+              className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Email *</label>
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">Email *</label>
             <input
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+              className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
             />
           </div>
           <div className="mb-4">
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Phone *</label>
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">Phone *</label>
             <input
               type="text"
               name="phone"
               value={formData.phone}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+              className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
             />
           </div>
           <div className="mb-6">
-            <label className="block text-sm font-semibold text-[#1A2A44] mb-2">Working Hours *</label>
+            <label className="block text-sm font-semibold text-[#26a8df] mb-2">Working Hours *</label>
             <input
               type="text"
               name="workingHours"
               value={formData.workingHours}
               onChange={handleChange}
               required
-              className="w-full px-4 py-3 border-2 border-[#4A8EBC]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#4A8EBC]/30 focus:border-[#4A8EBC] transition-all duration-200"
+              className="w-full px-4 py-3 border-2 border-[#26a8df]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#26a8df]/30 focus:border-[#26a8df] transition-all duration-200"
             />
           </div>
-          <div className="flex justify-end gap-3 pt-4 border-t border-[#4A8EBC]/10">
+          <div className="flex justify-end gap-3 pt-4 border-t border-[#26a8df]/10">
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 text-sm font-semibold text-[#4A8EBC] bg-[#4A8EBC]/10 hover:bg-[#4A8EBC]/20 rounded-xl transition-all duration-200 border border-[#4A8EBC]/20"
+              className="px-5 py-2.5 text-sm font-semibold text-[#26a8df] bg-[#26a8df]/10 hover:bg-[#26a8df]/20 rounded-xl transition-all duration-200 border border-[#26a8df]/20"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] disabled:opacity-50 rounded-xl transition-all duration-200 shadow-lg shadow-[#4A8EBC]/25"
+              className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#26a8df] to-[#26a8df] hover:from-[#26a8df] hover:to-[#26a8df] disabled:opacity-50 rounded-xl transition-all duration-200 shadow-lg shadow-[#26a8df]/25"
             >
               {loading ? 'Saving...' : (contactInfo ? 'Update' : 'Create')}
             </button>

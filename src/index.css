@@ -21,12 +21,12 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4A8EBC;
+  background: #26a8df;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #3B7AA8;
+  background: #26a8df;
 }
 
 /* Ensure main content is scrollable */
@@ -58,11 +58,11 @@ body {
   animation: shimmer 2s infinite linear;
   background: linear-gradient(
     90deg,
-    #4A8EBC 0%,
+    #26a8df 0%,
     #5BA3D0 25%,
     #6BB8E3 50%,
     #5BA3D0 75%,
-    #4A8EBC 100%
+    #26a8df 100%
   );
   background-size: 2000px 100%;
 }
