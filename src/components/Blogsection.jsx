@@ -18,7 +18,7 @@ function Blogsection() {
   // Fetch blogs on component mount
   useEffect(() => {
     fetchBlogs().catch(err => {
-      console.error('Failed to fetch blogs:', err)
+      // Silent error handling
     })
   }, [fetchBlogs])
 
@@ -94,9 +94,9 @@ function Blogsection() {
   // Show loading state
   if (loading && blogs.length === 0) {
     return (
-      <section className="relative py-12 sm:py-16 md:py-20 bg-linear-to-br from-[#F5FAFF] via-white to-[#F0F7FF] overflow-hidden">
+      <section className="relative pt-20 md:pt-24 lg:pt-28 pb-12 sm:pb-16 md:pb-20 bg-linear-to-br from-[#F5FAFF] via-white to-[#F0F7FF]">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
-          <div className="text-center py-20">
+          <div className="text-center py-12 sm:py-14 md:py-16 lg:py-20">
             <div className="inline-block">
               <div className="w-16 h-16 border-4 border-[#4A8EBC] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
               <p className="text-[#2B4066]/80">Loading blogs...</p>
@@ -110,9 +110,9 @@ function Blogsection() {
   // Show error state
   if (error && blogs.length === 0) {
     return (
-      <section className="relative py-12 sm:py-16 md:py-20 bg-linear-to-br from-[#F5FAFF] via-white to-[#F0F7FF] overflow-hidden">
+      <section className="relative pt-20 md:pt-24 lg:pt-28 pb-12 sm:pb-16 md:pb-20 bg-linear-to-br from-[#F5FAFF] via-white to-[#F0F7FF]">
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
-          <div className="text-center py-20">
+          <div className="text-center py-12 sm:py-14 md:py-16 lg:py-20">
             <div className="inline-block">
               <p className="text-red-500 mb-4">⚠️ {error}</p>
               <p className="text-[#2B4066]/80">Unable to load blogs from server.</p>
@@ -124,7 +124,7 @@ function Blogsection() {
   }
 
   return (
-    <section className="relative py-24 bg-[#FAFAFA] overflow-hidden" aria-labelledby="blog-heading">
+    <section className="relative pt-20 md:pt-24 lg:pt-28 pb-12 sm:pb-16 md:pb-20 lg:pb-24 bg-[#FAFAFA]" aria-labelledby="blog-heading">
       {/* Enhanced Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
@@ -227,62 +227,62 @@ function Blogsection() {
                     style={{ width: slidesToShow === 1 ? '100%' : `${100 / slidesToShow}%` }}
                   >
                     <div
-                      className="group h-full bg-white/70 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-2 sm:hover:-translate-y-3 rounded-2xl relative"
+                      className="group h-full bg-white/70 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-2 sm:hover:-translate-y-3 rounded-xl sm:rounded-2xl relative"
                     >
                       {/* Card glow effect */}
-                      <div className="absolute inset-0 bg-linear-to-r from-[#4A8EBC]/0 via-[#4A8EBC]/5 to-[#3B5488]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl"></div>
+                      <div className="absolute inset-0 bg-linear-to-r from-[#4A8EBC]/0 via-[#4A8EBC]/5 to-[#3B5488]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl sm:rounded-2xl"></div>
 
                       {/* Image container */}
-                      <div className="relative overflow-hidden rounded-t-2xl">
+                      <div className="relative overflow-hidden rounded-t-xl sm:rounded-t-2xl">
                         <img
                           src={blog.image || "/placeholder.svg?height=280&width=400"}
                           alt={`Featured image for ${blog.title}`}
-                          className="w-full h-44 sm:h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="w-full h-32 sm:h-44 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
 
                       {/* Content */}
-                      <div className="p-5 sm:p-7 relative font-sans">
+                      <div className="p-3 sm:p-5 md:p-7 relative font-sans">
                         {/* Meta information */}
-                        <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-medium text-[#2B4066]/60 mb-3 sm:mb-4">
-                          <div className="flex items-center gap-1.5">
-                            <Calendar className="w-3.5 h-3.5" />
+                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 text-[10px] sm:text-xs font-medium text-[#2B4066]/60 mb-2 sm:mb-3 md:mb-4">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                             <span>{formatDate(blog)}</span>
                           </div>
-                          <div className="flex items-center gap-1.5">
-                            <Clock className="w-3.5 h-3.5" />
+                          <div className="flex items-center gap-1">
+                            <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                             <span>{getReadTime(blog.content || blog.description || '')} min read</span>
                           </div>
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-lg sm:text-xl font-bold text-[#1A2A44] mb-3 leading-tight group-hover:text-[#4A8EBC] transition-colors duration-300">
+                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-[#1A2A44] mb-2 sm:mb-3 leading-tight group-hover:text-[#4A8EBC] transition-colors duration-300 line-clamp-2">
                           {blog.title}
                         </h3>
 
                         {/* Content preview */}
-                        <p className="text-[#2B4066]/70 mb-5 line-clamp-3 leading-relaxed text-sm">
+                        <p className="text-[#2B4066]/70 mb-3 sm:mb-4 md:mb-5 line-clamp-2 sm:line-clamp-3 leading-relaxed text-xs sm:text-sm">
                           {truncateContent(blog.content || blog.description || '')}
                         </p>
 
                         {/* Footer */}
-                        <div className="flex items-center justify-between pt-4 border-t border-[#4A8EBC]/10">
-                          <div className="flex items-center gap-3">
-                            <div className="w-8 h-8 rounded-full bg-linear-to-r from-[#4A8EBC] to-[#3B5488] flex items-center justify-center shadow-md">
-                              <User className="w-4 h-4 text-white" />
+                        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-[#4A8EBC]/10">
+                          <div className="flex items-center gap-2 sm:gap-3">
+                            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-linear-to-r from-[#4A8EBC] to-[#3B5488] flex items-center justify-center shadow-md">
+                              <User className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                             </div>
                             <div>
-                              <div className="text-xs font-bold text-[#1A2A44]">{blog.author || 'NDH Team'}</div>
-                              <div className="text-[10px] text-[#4A8EBC] font-medium tracking-wide">AUTHOR</div>
+                              <div className="text-[10px] sm:text-xs font-bold text-[#1A2A44]">{blog.author || 'NDH Team'}</div>
+                              <div className="text-[8px] sm:text-[10px] text-[#4A8EBC] font-medium tracking-wide">AUTHOR</div>
                             </div>
                           </div>
 
                           <Link
                             to={`/blog-details?id=${blog.id || blog._id}`}
-                            className="group/link inline-flex items-center gap-1.5 text-[#4A8EBC] hover:text-[#3B5488] font-bold text-xs uppercase tracking-wider transition-all duration-300"
+                            className="group/link inline-flex items-center gap-1.5 text-[#4A8EBC] hover:text-[#3B5488] font-bold text-xs sm:text-xs md:text-xs lg:text-[11px] uppercase tracking-wider transition-all duration-300"
                           >
                             <span>Read</span>
-                            <ArrowRight className="w-3.5 h-3.5 group-hover/link:translate-x-1 transition-transform duration-300" />
+                            <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-3 lg:h-3 group-hover/link:translate-x-1 transition-transform duration-300" />
                           </Link>
                         </div>
                       </div>
@@ -312,12 +312,12 @@ function Blogsection() {
 
         {/* Enhanced View All Button */}
         {displayBlogs.length > 0 && (
-          <div className="text-center mt-16">
+          <div className="text-center mt-12 sm:mt-14 md:mt-16">
             <Link
               to="/blog"
-              className="group inline-flex items-center gap-3 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] text-white px-10 py-4 rounded-full font-semibold shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105">
+              className="group inline-flex items-center gap-2 sm:gap-2.5 md:gap-3 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] text-white px-6 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 lg:px-8 lg:py-2.5 rounded-full font-semibold text-sm sm:text-base md:text-base lg:text-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105">
               <span>View All Articles</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-4 lg:h-4 group-hover:translate-x-1 transition-transform duration-300" />
             </Link>
           </div>
         )}

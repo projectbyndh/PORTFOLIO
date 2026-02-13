@@ -37,7 +37,7 @@ export default function CoursesSection() {
   }, []);
 
   return (
-    <section className="py-16 bg-linear-to-b from-[#F5FAFF] to-[#EAF5FF] relative overflow-hidden">
+    <section className="py-12 sm:py-14 md:py-16 bg-linear-to-b from-[#F5FAFF] to-[#EAF5FF] relative overflow-hidden">
       {/* Decorative background */}
       <div className="absolute inset-0 pointer-events-none opacity-10">
         <div
@@ -48,16 +48,16 @@ export default function CoursesSection() {
           }}
         ></div>
       </div>
-      <div className="max-w-6xl mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
+      <div className="max-w-6xl mx-auto px-3 sm:px-4 md:px-5 lg:px-6 relative z-10">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12">
           <div className="inline-block relative">
-            <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
-            <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow"></div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] to-[#4A8EBC]">
+            <div className="absolute -top-3 -left-3 sm:-top-4 sm:-left-4 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#4A8EBC]/20 animate-pulse-slow"></div>
+            <div className="absolute -bottom-3 -right-3 sm:-bottom-4 sm:-right-4 w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-[#3B5488]/20 animate-pulse-slow"></div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-linear-to-r from-[#1A2A44] to-[#4A8EBC]">
               Our Courses
             </h2>
           </div>
-          <p className="mt-4 text-lg text-[#2B4066]/80 max-w-2xl mx-auto">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-base md:text-lg text-[#2B4066]/80 max-w-2xl mx-auto px-3">
             Explore our expertly crafted courses designed to boost your skills and career.
           </p>
         </div>

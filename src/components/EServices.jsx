@@ -97,7 +97,7 @@ export default function NexusServices() {
     : SERVICE_SCHEMA;
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 selection:bg-blue-100 font-sans overflow-x-hidden">
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 selection:bg-blue-100 font-sans pt-20 md:pt-24 lg:pt-28">
       {/* Ambient Background */}
       <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-blue-50/50 blur-[120px]" />
@@ -105,7 +105,7 @@ export default function NexusServices() {
         <div className="absolute inset-0 bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)]" />
       </div>
 
-      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24">
+      <main className="relative z-10 max-w-7xl mx-auto px-6 pb-24">
         {/* Section Header */}
         <header className="max-w-4xl mb-24">
           <motion.div
@@ -120,7 +120,7 @@ export default function NexusServices() {
             <span className="text-sm font-black uppercase tracking-[0.4em] text-[#4A8EBC]">Service Ecosystem</span>
           </motion.div>
 
-          <h1 className="text-6xl md:text-9xl font-black tracking-tighter text-slate-950 mb-10 leading-[0.85]">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter text-slate-950 mb-10 leading-[0.85]">
             Nexus <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4A8EBC] via-[#2D5A7B] to-[#1A2A44]">
               Capabilities.
@@ -179,42 +179,42 @@ function ServiceCard({ service }) {
   return (
     <motion.div
       whileHover={{ y: -10 }}
-      className="group relative bg-white border border-slate-200 rounded-[40px] p-12 h-[560px] flex flex-col justify-between transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(74,142,188,0.2)] overflow-hidden"
+      className="group relative bg-white border border-slate-200 rounded-3xl sm:rounded-[40px] p-6 sm:p-8 md:p-10 lg:p-12 h-auto sm:h-[480px] md:h-[520px] lg:h-[560px] flex flex-col justify-between transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(74,142,188,0.2)] overflow-hidden"
     >
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
       <div className="relative z-10">
-        <div className="flex justify-between items-start mb-12">
-          <div className="p-5 rounded-3xl bg-slate-50 text-[#4A8EBC] group-hover:bg-[#4A8EBC] group-hover:text-white transition-all duration-700 shadow-sm group-hover:shadow-lg group-hover:shadow-[#4A8EBC]/30">
-            {React.isValidElement(service.icon) ? React.cloneElement(service.icon, { size: 32, strokeWidth: 2.5 }) : service.icon}
+        <div className="flex justify-between items-start mb-6 sm:mb-8 md:mb-10 lg:mb-12">
+          <div className="p-3 sm:p-4 md:p-5 rounded-2xl sm:rounded-3xl bg-slate-50 text-[#4A8EBC] group-hover:bg-[#4A8EBC] group-hover:text-white transition-all duration-700 shadow-sm group-hover:shadow-lg group-hover:shadow-[#4A8EBC]/30">
+            {React.isValidElement(service.icon) ? React.cloneElement(service.icon, { size: 24, strokeWidth: 2.5, className: "sm:w-7 sm:h-7 md:w-8 md:h-8" }) : service.icon}
           </div>
-          <span className="text-5xl font-black text-slate-50 group-hover:text-slate-100 transition-colors">
+          <span className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-50 group-hover:text-slate-100 transition-colors">
             {service.id}
           </span>
         </div>
 
-        <div className="space-y-6">
-          <p className="text-[11px] font-black tracking-[0.3em] text-[#4A8EBC] uppercase">{service.tagline}</p>
-          <h3 className="text-4xl font-bold text-slate-900 tracking-tight leading-tight">{service.title}</h3>
-          <p className="text-slate-500 leading-relaxed text-base font-medium">
+        <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
+          <p className="text-[10px] sm:text-[11px] font-black tracking-[0.25em] sm:tracking-[0.3em] text-[#4A8EBC] uppercase">{service.tagline}</p>
+          <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-slate-900 tracking-tight leading-tight">{service.title}</h3>
+          <p className="text-sm sm:text-base text-slate-500 leading-relaxed font-medium">
             {service.description}
           </p>
         </div>
       </div>
 
       <div className="relative z-10">
-        <div className="h-[1px] w-full bg-slate-100 mb-10 group-hover:bg-blue-100 transition-colors" />
-        <ul className="space-y-4 mb-10">
+        <div className="h-[1px] w-full bg-slate-100 mb-6 sm:mb-8 md:mb-10 group-hover:bg-blue-100 transition-colors" />
+        <ul className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 md:mb-10">
           {(service.capabilities || []).slice(0, 3).map((cap, i) => (
-            <li key={i} className="flex items-center gap-4 text-sm font-bold text-slate-400 group-hover:text-slate-600 transition-all transform group-hover:translate-x-1 duration-300">
+            <li key={i} className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm font-bold text-slate-400 group-hover:text-slate-600 transition-all transform group-hover:translate-x-1 duration-300">
               <div className="h-2 w-2 bg-[#4A8EBC] rounded-full shadow-[0_0_8px_rgba(74,142,188,0.5)]" />
               {cap}
             </li>
           ))}
         </ul>
 
-        <button className="flex items-center gap-3 text-[10px] font-black tracking-[0.2em] text-slate-900 group-hover:text-[#4A8EBC] transition-all uppercase active:scale-95">
-          Inquire Ecosystem <ArrowUpRight size={16} />
+        <button className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-[10px] font-black tracking-[0.2em] text-slate-900 group-hover:text-[#4A8EBC] transition-all uppercase active:scale-95">
+          Inquire Ecosystem <ArrowUpRight size={14} className="sm:w-4 sm:h-4" />
         </button>
       </div>
     </motion.div>

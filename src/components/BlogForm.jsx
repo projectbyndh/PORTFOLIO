@@ -76,9 +76,6 @@ const BlogForm = ({
   // Handle form submission
   const handleFormSubmit = async (data) => {
     try {
-      console.log('🔍 BlogForm Submit - data:', data);
-      console.log('🔍 BlogForm Submit - selectedFile:', selectedFile);
-
       // Create FormData to send file with other fields
       const formData = new FormData();
       formData.append('title', data.title);
@@ -86,38 +83,25 @@ const BlogForm = ({
       formData.append('description', data.description);
 
       if (selectedFile) {
-        console.log('✅ Appending file to FormData:', selectedFile.name, selectedFile.type, selectedFile.size);
         formData.append('image', selectedFile);
       } else if (data.image) {
-        console.log('⚠️ No file selected, appending URL string:', data.image);
         // If editing and no new file, send existing URL
         formData.append('image', data.image);
-      } else {
-        console.log('❌ No image file or URL');
-      }
-
-      console.log('📤 FormData contents:');
-      for (let pair of formData.entries()) {
-        console.log(`  ${pair[0]}:`, pair[1]);
       }
 
       await onSubmit(formData);
       onClose(); // Close modal on success
     } catch (error) {
       // Error is handled by the hook
-      console.error('Form submission failed:', error);
     }
   };
 
   // Handle image file selection
   const handleImageSelect = (file) => {
-    console.log('🖼️ handleImageSelect called with file:', file);
-    console.log('🖼️ File details:', file?.name, file?.type, file?.size);
     setSelectedFile(file);
     const preview = URL.createObjectURL(file);
     setPreviewUrl(preview);
     setValue('image', ''); // Clear URL since we have a file
-    console.log('🖼️ selectedFile state updated');
   };
 
   // Handle image removal

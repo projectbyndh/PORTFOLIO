@@ -35,7 +35,7 @@ export default function OurTeams() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-[#FAFAFA] py-12 flex items-center justify-center relative">
+      <div className="min-h-screen bg-[#FAFAFA] py-12 flex items-center justify-center relative pt-20 md:pt-24 lg:pt-28">
         <div className="fixed inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none z-0" />
         <div className="text-center">
           <div className="text-red-500 mb-4">{error}</div>
@@ -50,7 +50,7 @@ export default function OurTeams() {
   const hasMembers = teamData.some(layer => layer.members && layer.members.length > 0)
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] relative overflow-hidden pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#FAFAFA] relative pt-20 md:pt-24 lg:pt-28 pb-12 sm:pb-16 md:pb-20 px-3 sm:px-5 md:px-6 lg:px-8">
       {/* Grain texture */}
       <div className="fixed inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none z-0" />
 
@@ -66,15 +66,15 @@ export default function OurTeams() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="mb-12 text-center sm:mb-16"
+          className="mb-8 sm:mb-10 md:mb-12 lg:mb-16 text-center"
         >
-          <div className="flex items-center justify-center gap-3">
-            <Logo className="hidden sm:block h-8 w-auto" />
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black mb-3 sm:mb-4 tracking-tight text-neutral-900 leading-tight">
+          <div className="flex items-center justify-center gap-2 sm:gap-2.5 md:gap-3">
+            <Logo className="hidden sm:block h-6 sm:h-7 md:h-8 w-auto" />
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black mb-2 sm:mb-3 md:mb-4 tracking-tight text-neutral-900 leading-tight">
               Meet Our Team
             </h1>
           </div>
-          <p className="text-base sm:text-lg text-[#2B4A6F]/70 max-w-2xl mx-auto px-4 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-[#2B4A6F]/70 max-w-2xl mx-auto px-3 sm:px-4 leading-relaxed">
             The creative minds behind our success, driven by passion and innovation
           </p>
         </motion.div>
@@ -102,30 +102,30 @@ export default function OurTeams() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: layerIdx * 0.1 }}
-                  className="mb-16 sm:mb-24 last:mb-0"
+                  className="mb-12 sm:mb-16 md:mb-20 lg:mb-24 last:mb-0"
                 >
-                  <div className="mb-8 text-center sm:mb-12">
-                    <div className="flex items-center justify-center gap-3 mb-4">
+                  <div className="mb-6 sm:mb-8 md:mb-10 lg:mb-12 text-center">
+                    <div className="flex items-center justify-center gap-2 sm:gap-2.5 md:gap-3 mb-3 sm:mb-4">
                       {layer.image ? (
                         <img
                           src={getImageUrl(layer.image, 'default')}
                           alt=""
-                          className="h-8 w-8 sm:h-10 sm:w-10 object-contain"
+                          className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 object-contain"
                         />
                       ) : (
-                        <Logo className="hidden sm:block h-6 sm:h-8 w-auto" />
+                        <Logo className="hidden sm:block h-5 sm:h-6 md:h-7 lg:h-8 w-auto" />
                       )}
-                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-[#1A2A44] tracking-tight">
+                      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-[#1A2A44] tracking-tight">
                         {layer.title}
                       </h2>
                     </div>
                     {layer.description && (
-                      <p className="text-[#2B4A6F]/60 max-w-2xl mx-auto mb-4">{layer.description}</p>
+                      <p className="text-sm sm:text-base text-[#2B4A6F]/60 max-w-2xl mx-auto mb-3 sm:mb-4 px-3">{layer.description}</p>
                     )}
-                    <div className="w-24 h-1.5 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] mx-auto rounded-full"></div>
+                    <div className="w-20 sm:w-24 h-1 sm:h-1.5 bg-gradient-to-r from-[#4A8EBC] to-[#3B5488] mx-auto rounded-full"></div>
                   </div>
 
-                  <div className={`grid gap-6 sm:gap-8 max-w-7xl mx-auto ${
+                  <div className={`grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 max-w-7xl mx-auto ${
                     layer.members.length === 1 ? 'grid-cols-1 max-w-md mx-auto' :
                     layer.members.length === 2 ? 'grid-cols-1 sm:grid-cols-2 max-w-3xl mx-auto' :
                     layer.members.length === 3 ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' :
@@ -143,28 +143,28 @@ export default function OurTeams() {
                           ease: [0.25, 0.46, 0.45, 0.94],
                         }}
                         whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.3, ease: "easeOut" } }}
-                        className="relative flex flex-col items-center p-6 transition-all duration-300 bg-white border border-gray-100 shadow-md rounded-2xl hover:shadow-xl group overflow-hidden"
+                        className="relative flex flex-col items-center p-4 sm:p-5 md:p-6 transition-all duration-300 bg-white border border-gray-100 shadow-md rounded-xl sm:rounded-2xl hover:shadow-xl group overflow-hidden"
                       >
                         <div className="absolute inset-0 bg-gradient-to-br from-[#4A8EBC]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
-                        <div className="relative z-10 mb-5">
+                        <div className="relative z-10 mb-3 sm:mb-4 md:mb-5">
                           <div className="relative">
                             <img
                               src={getImageUrl(member.image, 'team')}
                               alt={member.name}
-                              className="w-24 h-24 sm:w-32 sm:h-32 rounded-full object-cover border-4 border-white shadow-lg"
+                              className="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-full object-cover border-3 sm:border-4 border-white shadow-lg"
                               onError={(e) => { e.currentTarget.src = getImageUrl(null, 'team') }}
                             />
                             <div className="absolute inset-0 rounded-full border-2 border-[#4A8EBC]/10 group-hover:border-[#4A8EBC]/30 transition-colors duration-300"></div>
                           </div>
                         </div>
 
-                        <div className="font-bold text-lg text-[#1A2A44] mb-1 text-center relative z-10">{member.name}</div>
-                        <div className="text-[#4A8EBC] text-sm font-bold mb-3 uppercase tracking-wider relative z-10">
+                        <div className="font-bold text-base sm:text-lg text-[#1A2A44] mb-1 text-center relative z-10">{member.name}</div>
+                        <div className="text-[#4A8EBC] text-xs sm:text-sm font-bold mb-2 sm:mb-3 uppercase tracking-wider relative z-10">
                           {member.title || 'Team Member'}
                         </div>
                         {member.bio && (
-                          <div className="text-sm leading-relaxed text-center text-gray-500 relative z-10 line-clamp-3">
+                          <div className="text-xs sm:text-sm leading-relaxed text-center text-gray-500 relative z-10 line-clamp-3">
                             {member.bio}
                           </div>
                         )}

@@ -83,13 +83,10 @@ const useCareerStore = create((set, get) => ({
 
   // Fetch all careers
   fetchCareers: async () => {
-    console.log('🔄 Fetching careers from backend...');
     set({ loading: true, error: null });
     try {
       const data = await apiClient('/careers');
       const careersData = data.data || data;
-
-      console.log('✅ API returned careers:', careersData.length);
 
       if (careersData.length === 0) {
         set({

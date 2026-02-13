@@ -106,7 +106,7 @@ export default function Terms() {
   ];
 
   return (
-    <section className="relative min-h-screen bg-[#FAFAFA] py-24 overflow-hidden">
+    <section className="relative min-h-screen bg-[#FAFAFA] pt-20 md:pt-24 lg:pt-28 pb-24">
       {/* Background Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
@@ -182,18 +182,18 @@ export default function Terms() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 bg-gradient-to-br from-[#1A2A44] to-[#0F172A] rounded-3xl p-10 text-white text-center"
+          className="mt-12 sm:mt-14 md:mt-16 bg-gradient-to-br from-[#1A2A44] to-[#0F172A] rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 lg:p-8 text-white text-center max-w-3xl mx-auto"
         >
-          <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mx-auto mb-6">
-            <AlertCircle size={32} className="text-white" />
+          <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 lg:w-14 lg:h-14 rounded-xl sm:rounded-2xl lg:rounded-xl bg-white/10 flex items-center justify-center mx-auto mb-4 sm:mb-5 md:mb-6 lg:mb-5">
+            <AlertCircle size={24} className="sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-7 lg:h-7 text-white" />
           </div>
-          <h3 className="text-2xl font-black mb-4">Questions About Our Terms?</h3>
-          <p className="text-blue-100/80 mb-6 max-w-2xl mx-auto">
+          <h3 className="text-xl sm:text-2xl md:text-2xl lg:text-xl font-black mb-3 sm:mb-4 lg:mb-3">Questions About Our Terms?</h3>
+          <p className="text-sm sm:text-base md:text-base lg:text-sm text-blue-100/80 mb-5 sm:mb-6 lg:mb-5 max-w-2xl mx-auto px-4">
             If you have any questions or concerns about these Terms and Conditions, please don't hesitate to contact our team.
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-white text-[#0F172A] rounded-2xl font-bold hover:scale-105 transition-all shadow-lg"
+            className="inline-flex items-center gap-2 px-6 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-white text-[#0F172A] rounded-xl sm:rounded-2xl lg:rounded-xl font-bold text-sm sm:text-base lg:text-sm hover:scale-105 transition-all shadow-lg"
           >
             Contact Us
           </a>

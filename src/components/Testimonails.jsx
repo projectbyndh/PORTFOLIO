@@ -145,33 +145,33 @@ export default function Testimonials() {
             <Quote size={120} />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-5 md:gap-6 relative z-10">
             {getVisibleTestimonials().map((testimonial, index) => (
               <div
                 key={testimonial.id}
-                className={`bg-white/70 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-[#4A8EBC]/10 transition-all duration-500 hover:shadow-xl hover:bg-white/90 ${index === 0 ? "md:transform md:scale-105 md:shadow-xl" : ""
+                className={`bg-white/70 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-lg border border-[#4A8EBC]/10 transition-all duration-500 hover:shadow-xl hover:bg-white/90 ${index === 0 ? "md:transform md:scale-105 md:shadow-xl" : ""
                   }`}
               >
-                <div className="flex items-center mb-4">
+                <div className="flex items-center mb-3 sm:mb-4">
 
                   <div>
-                    <h3 className="font-black text-neutral-900">{testimonial.name}</h3>
-                    <p className="text-sm text-neutral-600 font-semibold">{testimonial.position}</p>
+                    <h3 className="text-sm sm:text-base font-black text-neutral-900">{testimonial.name}</h3>
+                    <p className="text-xs sm:text-sm text-neutral-600 font-semibold">{testimonial.position}</p>
                   </div>
                 </div>
 
-                <div className="flex mb-3">
+                <div className="flex mb-2 sm:mb-3">
                   {[...Array(5)].map((_, i) => (
                     <Star
                       key={i}
-                      size={16}
-                      className={i < testimonial.rating ? "text-[#FFD700] fill-[#FFD700]" : "text-gray-300"}
+                      size={14}
+                      className={`sm:w-4 sm:h-4 ${i < testimonial.rating ? "text-[#FFD700] fill-[#FFD700]" : "text-gray-300"}`}
                     />
                   ))}
                 </div>
 
-                <p className="text-neutral-700 font-medium leading-relaxed relative">
-                  <span className="absolute -top-2 -left-2 text-[#4A8EBC]/20">&quot;</span>
+                <p className="text-xs sm:text-sm md:text-base text-neutral-700 font-medium leading-relaxed relative">
+                  <span className="absolute -top-2 -left-2 text-[#4A8EBC]/20 text-xl sm:text-2xl">&quot;</span>
                   {testimonial.text}
                   <span className="absolute -bottom-4 -right-2 text-[#4A8EBC]/20">&quot;</span>
                 </p>
@@ -179,20 +179,20 @@ export default function Testimonials() {
             ))}
           </div>
 
-          <div className="flex justify-center mt-8 space-x-4">
+          <div className="flex justify-center mt-8 space-x-3 sm:space-x-4">
             <button
               onClick={prevTestimonial}
-              className="group p-3 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
+              className="group p-2.5 sm:p-3 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
               aria-label="Previous testimonial"
             >
-              <ChevronLeft size={24} className="group-hover:-translate-x-1 transition-transform duration-300" />
+              <ChevronLeft size={20} className="sm:w-6 sm:h-6 group-hover:-translate-x-1 transition-transform duration-300" />
             </button>
             <button
               onClick={nextTestimonial}
-              className="group p-3 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
+              className="group p-2.5 sm:p-3 rounded-full bg-white shadow-md border border-[#4A8EBC]/20 text-[#4A8EBC] hover:bg-[#4A8EBC] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
               aria-label="Next testimonial"
             >
-              <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform duration-300" />
+              <ChevronRight size={20} className="sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
             </button>
           </div>
         </div>
@@ -203,11 +203,11 @@ export default function Testimonials() {
           className={`mt-16 text-center animate-on-scroll transition-all duration-1000 ${isAnimated(4) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
             }`}
         >
-          <p className="text-lg text-[#2B4066]/80 mb-6 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base md:text-lg text-[#2B4066]/80 mb-6 sm:mb-7 md:mb-8 max-w-2xl mx-auto px-4">
             Join our growing list of satisfied clients and experience the Nepal Digital Heights difference.
           </p>
           <Link to='/contact'>
-            <button className="px-8 py-4 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            <button className="px-6 py-3 sm:px-7 sm:py-3.5 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] text-white font-bold rounded-full text-sm sm:text-base md:text-base lg:text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
               Get Started Today
             </button>
           </Link>

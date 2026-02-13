@@ -33,19 +33,19 @@ const PartnersSection = () => {
     );
 
     return (
-        <section className="bg-white py-24 overflow-hidden border-t border-gray-50 relative">
+        <section className="bg-white py-16 sm:py-20 md:py-24 overflow-hidden border-t border-gray-50 relative">
             {/* Background decorative elements */}
             <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
                 style={{ backgroundImage: `radial-gradient(#4A8EBC 1px, transparent 1px)`, backgroundSize: '30px 30px' }} />
 
             <div className="max-w-screen-2xl mx-auto relative z-10">
                 {/* Header Section */}
-                <div className="mb-20 text-center px-6">
+                <div className="mb-12 sm:mb-16 md:mb-20 text-center px-4 sm:px-6">
                     <motion.span
                         initial={{ opacity: 0, y: 10 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-[10px] font-bold tracking-[0.4em] uppercase text-blue-500 block mb-4"
+                        className="text-[9px] sm:text-[10px] font-bold tracking-[0.3em] sm:tracking-[0.4em] uppercase text-blue-500 block mb-3 sm:mb-4"
                     >
                         Global Network
                     </motion.span>
@@ -54,14 +54,14 @@ const PartnersSection = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 }}
-                        className="text-3xl md:text-5xl font-light text-gray-900 tracking-tight"
+                        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-gray-900 tracking-tight"
                     >
                         Our Strategic <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Partners</span>
                     </motion.h2>
                 </div>
 
                 {/* Marquee Rows */}
-                <div className="flex flex-col space-y-8">
+                <div className="flex flex-col space-y-6 sm:space-y-8">
                     {/* Row 1: Right to Left (direction="left" is default) */}
                     <Marquee gradient={true} gradientColor="white" gradientWidth={100} speed={40} direction="left" pauseOnHover={true}>
                         {row1.map((partner) => (

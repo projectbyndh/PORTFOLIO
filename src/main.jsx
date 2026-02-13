@@ -4,17 +4,21 @@ import './index.css';
 import App from './App.jsx';
 import React from 'react';
 
-// Suppress React DevTools warnings in development
-if (process.env.NODE_ENV === 'development') {
-  const originalWarn = console.warn;
-  console.warn = (...args) => {
-    if (args[0] && typeof args[0] === 'string' && 
-        (args[0].includes('Received `true` for a non-boolean attribute') || 
-         args[0].includes('Source map error'))) {
-      return;
-    }
-    originalWarn(...args);
-  };
+// Disable all console methods to prevent logs from appearing
+if (process.env.NODE_ENV === 'production') {
+  console.log = () => {};
+  console.warn = () => {};
+  console.error = () => {};
+  console.info = () => {};
+  console.debug = () => {};
+} else {
+  // In development, disable specific console logs
+  const noop = () => {};
+  console.log = noop;
+  console.warn = noop;
+  console.info = noop;
+  console.debug = noop;
+  // Keep console.error for debugging
 }
 
 createRoot(document.getElementById('root')).render(

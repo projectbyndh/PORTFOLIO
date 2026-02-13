@@ -20,11 +20,10 @@ export default function BlogDetails() {
     // Only fetch if we have a valid ID
     if (id && id !== 'undefined') {
       fetchBlogById(id).catch(err => {
-        console.error('Failed to fetch blog by ID:', err);
+        // Silent error handling
       });
     } else if (!id) {
       // If no ID is provided, redirect back to blogs
-      console.warn('No blog ID provided, redirecting to blogs page');
       navigate('/blog');
     }
 
@@ -40,7 +39,7 @@ export default function BlogDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-[#F5FAFF] to-[#EAF5FF] font-sans text-[#1A2A44] relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-b from-[#F5FAFF] to-[#EAF5FF] font-sans text-[#1A2A44] relative pt-20 md:pt-24 lg:pt-28">
       {/* Background decorations */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-10 left-10 w-64 h-64 rounded-full bg-[#4A8EBC]/10 animate-pulse-slow"></div>

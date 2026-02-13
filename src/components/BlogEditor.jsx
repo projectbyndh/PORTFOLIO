@@ -80,28 +80,15 @@ export default function BlogEditor() {
     setIsLoading(true);
 
     try {
-      console.log('🔍 selectedFile:', selectedFile);
-      console.log('🔍 formData.image:', formData.image);
-
       const blogData = new FormData();
       blogData.append('title', formData.title);
       blogData.append('author', formData.author);
       blogData.append('description', formData.description);
 
       if (selectedFile) {
-        console.log('✅ Appending file to FormData:', selectedFile.name);
         blogData.append('image', selectedFile);
       } else if (formData.image) {
-        console.log('⚠️ No file selected, appending URL string:', formData.image);
         blogData.append('image', formData.image);
-      } else {
-        console.log('❌ No image file or URL available');
-      }
-
-      console.log('📤 Sending FormData to backend...');
-      // Log FormData contents
-      for (let pair of blogData.entries()) {
-        console.log(`  ${pair[0]}:`, pair[1]);
       }
 
       if (id) {
@@ -114,7 +101,6 @@ export default function BlogEditor() {
 
       navigate('/ndh-admin/dashboard');
     } catch (err) {
-      console.error('❌ Submit error:', err);
       // Show more detailed error from the store if available, or the err object
       alert(`Failed to ${id ? 'update' : 'create'} blog: ${err.message || 'Unknown error'}`);
     } finally {
@@ -126,17 +112,18 @@ export default function BlogEditor() {
     <div className="min-h-screen bg-linear-to-br from-[#F5FAFF] via-white to-[#F0F7FF]">
       {/* Header */}
       <header className="bg-white/70 backdrop-blur-sm border-b border-[#4A8EBC]/20 sticky top-0 z-50 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-4 py-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-6">
+          <div className="flex items-center gap-2 sm:gap-3 lg:gap-4 py-2 sm:py-3 lg:py-4">
             <button
               onClick={() => navigate('/admin/dashboard')}
-              className="flex items-center gap-2 text-[#4A8EBC] hover:text-[#3B5488] font-semibold transition-colors duration-300"
+              className="flex items-center gap-1.5 sm:gap-2 text-[#4A8EBC] hover:text-[#3B5488] text-xs sm:text-sm lg:text-base font-semibold transition-colors duration-300"
             >
-              <ArrowLeft className="w-5 h-5" />
-              Back to Dashboard
+              <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Back to Dashboard</span>
+              <span className="sm:hidden">Back</span>
             </button>
             <div className="flex-1">
-              <h1 className="text-2xl font-bold bg-linear-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">
+              <h1 className="text-lg sm:text-xl lg:text-2xl font-bold bg-linear-to-r from-[#1A2A44] to-[#4A8EBC] bg-clip-text text-transparent">
                 {id ? 'Edit Blog' : 'Create New Blog'}
               </h1>
             </div>
@@ -144,13 +131,13 @@ export default function BlogEditor() {
         </div>
       </header>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4 lg:px-6 py-4 sm:py-6 lg:py-8">
+        <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5 lg:space-y-6">
           {/* Main Content Card */}
-          <div className="bg-white/70 backdrop-blur-sm border border-white/50 rounded-2xl shadow-xl p-8">
+          <div className="bg-white/70 backdrop-blur-sm border border-white/50 rounded-xl sm:rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
             {/* Title */}
-            <div className="mb-6">
-              <label htmlFor="title" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <div className="mb-4 sm:mb-5 lg:mb-6">
+              <label htmlFor="title" className="block text-xs sm:text-sm font-semibold text-[#1A2A44] mb-1.5 sm:mb-2">
                 Blog Title *
               </label>
               <input
@@ -160,14 +147,14 @@ export default function BlogEditor() {
                 required
                 value={formData.title}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300"
+                className="w-full px-3 py-2 sm:px-4 sm:py-2.5 lg:py-3 text-sm sm:text-base border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300"
                 placeholder="Enter blog title..."
               />
             </div>
 
             {/* Author */}
-            <div className="mb-6">
-              <label htmlFor="author" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <div className="mb-4 sm:mb-5 lg:mb-6">
+              <label htmlFor="author" className="block text-xs sm:text-sm font-semibold text-[#1A2A44] mb-1.5 sm:mb-2">
                 Author *
               </label>
               <input
@@ -177,19 +164,19 @@ export default function BlogEditor() {
                 required
                 value={formData.author}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300"
+                className="w-full px-3 py-2 sm:px-4 sm:py-2.5 lg:py-3 text-sm sm:text-base border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300"
                 placeholder="Author name..."
               />
             </div>
 
             {/* Image Upload */}
-            <div className="mb-6">
-              <label htmlFor="image-upload" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <div className="mb-4 sm:mb-5 lg:mb-6">
+              <label htmlFor="image-upload" className="block text-xs sm:text-sm font-semibold text-[#1A2A44] mb-1.5 sm:mb-2">
                 Featured Image (Optional)
               </label>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 {/* File Upload Area */}
-                <div className="border-2 border-dashed border-[#4A8EBC]/30 rounded-lg p-6 text-center hover:border-[#4A8EBC]/50 transition-colors duration-300">
+                <div className="border-2 border-dashed border-[#4A8EBC]/30 rounded-lg p-4 sm:p-5 lg:p-6 text-center hover:border-[#4A8EBC]/50 transition-colors duration-300">
                   <input
                     id="image-upload"
                     type="file"
@@ -198,10 +185,10 @@ export default function BlogEditor() {
                     className="hidden"
                   />
                   <label htmlFor="image-upload" className="cursor-pointer">
-                    <div className="flex flex-col items-center gap-3">
-                      <Upload className="w-8 h-8 text-[#4A8EBC]" />
+                    <div className="flex flex-col items-center gap-2 sm:gap-3">
+                      <Upload className="w-6 h-6 sm:w-7 sm:h-7 lg:w-8 lg:h-8 text-[#4A8EBC]" />
                       <div>
-                        <p className="text-sm font-medium text-[#1A2A44]">
+                        <p className="text-xs sm:text-sm font-medium text-[#1A2A44]">
                           Click to upload an image
                         </p>
                         <p className="text-xs text-[#2B4066]/60 mt-1">
@@ -214,7 +201,7 @@ export default function BlogEditor() {
 
                 {/* Alternative URL Input */}
                 <div className="text-center">
-                  <span className="text-sm text-[#2B4066]/60">or</span>
+                  <span className="text-xs sm:text-sm text-[#2B4066]/60">or</span>
                 </div>
 
                 <div className="flex gap-2">
@@ -224,16 +211,16 @@ export default function BlogEditor() {
                     type="url"
                     value={formData.image}
                     onChange={handleChange}
-                    className="flex-1 px-4 py-3 border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300"
+                    className="flex-1 px-3 py-2 sm:px-4 sm:py-2.5 lg:py-3 text-sm sm:text-base border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300"
                     placeholder="Or enter image URL..."
                   />
                   {previewImage && (
                     <button
                       type="button"
                       onClick={handleRemoveImage}
-                      className="p-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                      className="p-2 sm:p-2.5 lg:p-3 text-red-600 hover:bg-red-50 rounded-lg transition-colors duration-200"
                     >
-                      <X className="w-5 h-5" />
+                      <X className="w-4 h-4 sm:w-5 sm:h-5" />
                     </button>
                   )}
                 </div>
@@ -241,12 +228,12 @@ export default function BlogEditor() {
 
               {/* Image Preview */}
               {previewImage && (
-                <div className="mt-4">
+                <div className="mt-3 sm:mt-4">
                   <div className="relative">
                     <img
                       src={previewImage}
                       alt="Preview"
-                      className="w-full h-64 object-cover rounded-lg border border-[#4A8EBC]/20"
+                      className="w-full h-48 sm:h-56 lg:h-64 object-cover rounded-lg border border-[#4A8EBC]/20"
                       onError={(e) => {
                         e.target.src = '/placeholder.svg?height=256&width=512';
                       }}
@@ -260,48 +247,48 @@ export default function BlogEditor() {
             </div>
 
             {/* Content/Description */}
-            <div className="mb-6">
-              <label htmlFor="description" className="block text-sm font-semibold text-[#1A2A44] mb-2">
+            <div className="mb-4 sm:mb-5 lg:mb-6">
+              <label htmlFor="description" className="block text-xs sm:text-sm font-semibold text-[#1A2A44] mb-1.5 sm:mb-2">
                 Blog Content *
               </label>
               <textarea
                 id="description"
                 name="description"
                 required
-                rows={15}
+                rows={12}
                 value={formData.description}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 resize-y"
+                className="w-full px-3 py-2 sm:px-4 sm:py-2.5 lg:py-3 text-sm sm:text-base border border-[#4A8EBC]/20 rounded-lg focus:ring-2 focus:ring-[#4A8EBC] focus:border-transparent bg-white/50 backdrop-blur-sm transition-all duration-300 resize-y"
                 placeholder="Write your blog content here... Use \n\n for paragraph breaks."
               />
-              <p className="mt-2 text-sm text-[#2B4066]/60">
+              <p className="mt-1.5 sm:mt-2 text-xs sm:text-sm text-[#2B4066]/60">
                 Tip: Use double line breaks (\n\n) to separate paragraphs
               </p>
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-4 pt-6 border-t border-[#4A8EBC]/20">
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 lg:gap-4 pt-4 sm:pt-5 lg:pt-6 border-t border-[#4A8EBC]/20">
               <button
                 type="button"
                 onClick={() => navigate('/admin/dashboard')}
-                className="flex-1 px-6 py-3 border border-[#4A8EBC]/20 text-[#2B4066] hover:bg-[#4A8EBC]/5 rounded-lg font-semibold transition-all duration-300"
+                className="flex-1 px-4 py-2 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 text-sm sm:text-base border border-[#4A8EBC]/20 text-[#2B4066] hover:bg-[#4A8EBC]/5 rounded-lg font-semibold transition-all duration-300"
               >
                 Cancel
               </button>
               <button
                 type="submit"
                 disabled={isLoading}
-                className="flex-1 flex items-center justify-center gap-2 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] text-white px-6 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+                className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 bg-linear-to-r from-[#4A8EBC] to-[#3B5488] hover:from-[#3B5488] hover:to-[#4A8EBC] text-white px-4 py-2 sm:px-5 sm:py-2.5 lg:px-6 lg:py-3 text-sm sm:text-base rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
               >
                 {isLoading ? (
                   <>
-                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    {id ? 'Updating...' : 'Creating...'}
+                    <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span className="text-xs sm:text-sm lg:text-base">{id ? 'Updating...' : 'Creating...'}</span>
                   </>
                 ) : (
                   <>
-                    <Save className="w-5 h-5" />
-                    {id ? 'Update Blog' : 'Publish Blog'}
+                    <Save className="w-4 h-4 sm:w-5 sm:h-5" />
+                    <span className="text-xs sm:text-sm lg:text-base">{id ? 'Update Blog' : 'Publish Blog'}</span>
                   </>
                 )}
               </button>

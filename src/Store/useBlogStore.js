@@ -49,15 +49,12 @@ const useBlogStore = create((set, get) => ({
 
   // Fetch all blogs
   fetchBlogs: async () => {
-    console.log('🔄 Fetching blogs from backend only...');
     set({ loading: true, error: null });
     try {
       const data = await apiClient('/blogs');
       const blogsData = data?.data || [];
-      console.log('✅ API returned blogs:', blogsData.length);
 
       if (blogsData.length === 0) {
-        console.log('⚠️ Backend returned no blogs, using demo data');
         set({
           blogs: get().demoBlogs,
           loading: false
@@ -73,12 +70,9 @@ const useBlogStore = create((set, get) => ({
     } catch (error) {
       // Handle potential 304 or other errors
       if (error.status === 304) {
-        console.log('📚 Blog data not modified, using existing data');
         set({ loading: false });
         return get().blogs;
       }
-
-      console.log('❌ Backend not available/error, using demo data fallback');
       set({
         blogs: get().demoBlogs,
         loading: false,
@@ -101,12 +95,9 @@ const useBlogStore = create((set, get) => ({
       return blogData;
     } catch (error) {
       if (error.status === 304) {
-        console.log('📄 Blog not modified, using existing data');
         set({ loading: false });
         return get().selectedBlog;
       }
-
-      console.log('Backend not available, fetching blog locally');
       const localBlog = get().blogs.find(blog =>
         String(blog.id) === String(id) || String(blog._id) === String(id)
       );
@@ -140,7 +131,6 @@ const useBlogStore = create((set, get) => ({
 
       return newBlog;
     } catch (error) {
-      console.error('❌ Backend error creating blog:', error);
       const errorMessage = error.data?.message || error.message || 'Unknown error';
       set({
         loading: false,
@@ -163,7 +153,6 @@ const useBlogStore = create((set, get) => ({
 
       return data.url || data.imageUrl;
     } catch {
-      console.log('📁 Backend upload not available, will use local storage');
       return null;
     }
   },
@@ -189,7 +178,6 @@ const useBlogStore = create((set, get) => ({
 
       return updatedBlog;
     } catch (error) {
-      console.error('❌ Backend error updating blog:', error);
       const errorMessage = error.data?.message || error.message || 'Unknown error';
       set({
         loading: false,
@@ -213,7 +201,6 @@ const useBlogStore = create((set, get) => ({
 
       return true;
     } catch {
-      console.log('Backend not available, deleting blog locally');
       set((state) => ({
         blogs: state.blogs.filter(blog => blog._id !== id),
         selectedBlog: state.selectedBlog?._id === id ? null : state.selectedBlog,

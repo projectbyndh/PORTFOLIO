@@ -116,13 +116,26 @@ body {
   color: rgb(var(--foreground-rgb));
   background: var(--gradient-bg);
   font-family: var(--font-sans);
-  font-size: 16px;
+  font-size: 14px; /* Reduced from 16px for mobile */
   font-weight: 400;
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
+}
+
+/* Responsive font sizes for larger screens */
+@media (min-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 16px;
+  }
 }
 
 /* Professional Typography Scale */
@@ -141,23 +154,23 @@ h6 {
 }
 
 h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(1.75rem, 5vw, 4rem); /* Reduced minimum from 2.5rem */
   font-weight: 800;
   letter-spacing: -0.03em;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 4vw, 3rem); /* Reduced minimum from 2rem */
   font-weight: 700;
 }
 
 h3 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.25rem, 3vw, 2rem); /* Reduced minimum from 1.5rem */
   font-weight: 600;
 }
 
 h4 {
-  font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem); /* Reduced minimum from 1.25rem */
   font-weight: 600;
 }
 
@@ -695,4 +708,126 @@ img {
   transform: translateZ(0);
   backface-visibility: hidden;
   perspective: 1000px;
+}
+
+/* ================================
+   MOBILE RESPONSIVE OVERRIDES
+   ================================ */
+
+/* Base Mobile Styles (up to 640px) */
+@media (max-width: 640px) {
+  /* Reduce all button padding and font sizes */
+  button,
+  [role="button"],
+  .btn,
+  a[class*="px-"] {
+    font-size: 0.8125rem !important; /* 13px */
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;    
+  }
+  
+  /* Reduce button padding specifically */
+  .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
+  .px-6 { padding-left: 0.875rem !important; padding-right: 0.875rem !important; }
+  .px-4 { padding-left: 0.75rem !important; padding-right: 0.75rem !important; }
+  .py-5 { padding-top: 0.875rem !important; padding-bottom: 0.875rem !important; }
+  .py-4 { padding-top: 0.75rem !important; padding-bottom: 0.75rem !important; }
+  .py-3 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+  
+  /* Reduce gap spacing */
+  .gap-5 { gap: 0.75rem !important; }
+  .gap-4 { gap: 0.625rem !important; }
+  .gap-3 { gap: 0.5rem !important; }
+  
+  /* Card text sizes */
+  .text-6xl { font-size: 2.25rem !important; line-height: 1.1 !important; }
+  .text-5xl { font-size: 2rem !important; line-height: 1.1 !important; }
+  .text-4xl { font-size: 1.75rem !important; line-height: 1.2 !important; }
+  .text-3xl { font-size: 1.5rem !important; line-height: 1.2 !important; }
+  .text-2xl { font-size: 1.25rem !important; line-height: 1.3 !important; }
+  .text-xl { font-size: 1.0625rem !important; line-height: 1.4 !important; }
+  .text-lg { font-size: 0.9375rem !important; line-height: 1.5 !important; }
+  .text-base { font-size: 0.875rem !important; }
+  .text-sm { font-size: 0.8125rem !important; }
+  .text-xs { font-size: 0.6875rem !important; }
+  
+  /* Reduce icon sizes */
+  svg {
+    width: 85% !important;
+    height: 85% !important;
+  }
+  
+  /* Navbar specific */
+  nav .text-sm { font-size: 0.75rem !important; }
+  
+  /* Reduce rounded corners for tighter look */
+  .rounded-2xl { border-radius: 0.875rem !important; }
+  .rounded-xl { border-radius: 0.625rem !important; }
+  .rounded-lg { border-radius: 0.5rem !important; }
+  
+  /* Tighter section padding */
+  .py-24 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+  .py-20 { padding-top: 2.5rem !important; padding-bottom: 2.5rem !important; }
+  .py-16 { padding-top: 2rem !important; padding-bottom: 2rem !important; }
+  .py-12 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+  
+  .px-10 { padding-left: 1rem !important; padding-right: 1rem !important; }
+  .px-8 { padding-left: 1rem !important; padding-right: 1rem !important; }
+  .px-6 { padding-left: 0.875rem !important; padding-right: 0.875rem !important; }
+  
+  /* Reduce spacing between elements */
+  .mb-24 { margin-bottom: 2rem !important; }
+  .mb-16 { margin-bottom: 1.5rem !important; }
+  .mb-12 { margin-bottom: 1.25rem !important; }
+  .mb-10 { margin-bottom: 1rem !important; }
+  .mb-8 { margin-bottom: 0.875rem !important; }
+  .mb-6 { margin-bottom: 0.75rem !important; }
+  
+  .mt-10 { margin-top: 1rem !important; }
+  .mt-8 { margin-top: 0.875rem !important; }
+  
+  /* Card and container spacing */
+  .p-8 { padding: 1rem !important; }
+  .p-6 { padding: 0.875rem !important; }
+  .p-5 { padding: 0.75rem !important; }
+  .p-4 { padding: 0.625rem !important; }
+}
+
+/* Small Mobile (up to 480px - Very small phones) */
+@media (max-width: 480px) {
+  body { font-size: 13px; }
+  
+  .text-8xl { font-size: 2.5rem !important; }
+  .text-7xl { font-size: 2rem !important; }
+  .text-6xl { font-size: 1.875rem !important; }
+  .text-5xl { font-size: 1.625rem !important; }
+  .text-4xl { font-size: 1.5rem !important; }
+  .text-3xl { font-size: 1.25rem !important; }
+  .text-2xl { font-size: 1.125rem !important; }
+  .text-xl { font-size: 1rem !important; }
+  .text-lg { font-size: 0.875rem !important; }
+  
+  /* Even tighter button and card padding */
+  button,
+  .btn {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.875rem !important;
+  }
+  
+  .px-8, .px-6 { padding-left: 0.875rem !important; padding-right: 0.875rem !important; }
+  .py-5, .py-4 { padding-top: 0.625rem !important; padding-bottom: 0.625rem !important; }
+}
+
+/* Tablet (641px to 1023px) */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .text-6xl { font-size: 3rem !important; }
+  .text-5xl { font-size: 2.5rem !important; }
+  .text-4xl { font-size: 2rem !important; }
+  .text-3xl { font-size: 1.75rem !important; }
+  .text-2xl { font-size: 1.375rem !important; }
+  
+  button,
+  .btn {
+    font-size: 0.875rem !important;
+  }
 }

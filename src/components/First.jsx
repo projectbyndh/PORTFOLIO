@@ -6,7 +6,7 @@ import Logo from './Logo';
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#FAFAFA] px-6 lg:px-10 overflow-hidden pt-20">
+    <section className="relative min-h-screen flex items-center justify-center bg-[#FAFAFA] px-4 sm:px-6 lg:px-10 pt-20 md:pt-24 lg:pt-28">
 
       {/* Background Decorative Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
@@ -29,7 +29,7 @@ const HeroSection = () => {
         <div className="absolute inset-0 opacity-[0.04] bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
       </div>
 
-      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-16 items-center relative z-10">
+      <div className="max-w-7xl mx-auto w-full grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 items-center relative z-10">
 
         {/* LEFT CONTENT */}
         <motion.div
@@ -42,16 +42,16 @@ const HeroSection = () => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-blue-100 shadow-sm mb-8 hover:shadow-md transition-shadow cursor-default"
+            className="inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-1.5 md:py-2 rounded-full bg-white border border-blue-100 shadow-sm mb-3 sm:mb-5 md:mb-6 lg:mb-8 hover:shadow-md transition-shadow cursor-default"
           >
-            <Sparkles size={14} className="text-[#4A8EBC]" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.15em] text-[#4A8EBC]">
+            <Sparkles size={10} className="text-[#4A8EBC] sm:w-3 sm:h-3 md:w-3.5 md:h-3.5" />
+            <span className="text-[9px] sm:text-[10px] md:text-[11px] font-bold uppercase tracking-[0.1em] sm:tracking-[0.12em] md:tracking-[0.15em] text-[#4A8EBC]">
               Elevating Nepali Innovation
             </span>
           </motion.div>
 
           <motion.h1
-            className="text-6xl lg:text-8xl font-black text-neutral-900 leading-[0.95] tracking-tighter mb-8"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-black text-neutral-900 leading-[0.95] tracking-tighter mb-3 sm:mb-5 md:mb-6 lg:mb-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -63,7 +63,7 @@ const HeroSection = () => {
           </motion.h1>
 
           <motion.p
-            className="text-lg md:text-xl text-neutral-500 leading-relaxed max-w-xl mb-10 font-medium"
+            className="text-sm sm:text-base md:text-lg lg:text-xl text-neutral-500 leading-relaxed max-w-xl mb-5 sm:mb-7 md:mb-8 lg:mb-10 font-medium"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
@@ -72,19 +72,19 @@ const HeroSection = () => {
           </motion.p>
 
           <motion.div
-            className="flex flex-wrap gap-5"
+            className="flex flex-wrap gap-3 sm:gap-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5 }}
           >
-            <Link to="/contact" className="group relative px-8 py-4 bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8] text-white rounded-2xl font-bold flex items-center gap-3 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_30px_rgba(74,142,188,0.4),0_8px_16px_rgba(74,142,188,0.2)] overflow-hidden">
+            <Link to="/contact" className="group relative px-5 sm:px-6 md:px-7 lg:px-5 py-2.5 sm:py-3 md:py-3.5 lg:py-2.5 bg-gradient-to-r from-[#4A8EBC] to-[#3B7AA8] text-white rounded-xl sm:rounded-2xl lg:rounded-xl text-sm sm:text-base md:text-base lg:text-sm font-bold inline-flex items-center gap-2 hover:-translate-y-1 transition-all duration-300 shadow-[0_0_30px_rgba(74,142,188,0.4),0_8px_16px_rgba(74,142,188,0.2)] overflow-hidden">
               {/* Animated glow */}
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#5A9ECC] to-[#4B84A8] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <span className="relative z-10">Start Building</span>
-              <ArrowRight size={18} className="relative z-10 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight size={16} className="relative z-10 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <Link to="/services" className="px-8 py-4 bg-white/80 backdrop-blur-sm text-neutral-700 border border-neutral-200/50 rounded-2xl font-bold hover:bg-white hover:border-neutral-300 hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
+            <Link to="/services" className="px-5 sm:px-6 md:px-7 lg:px-5 py-2.5 sm:py-3 md:py-3.5 lg:py-2.5 bg-white/80 backdrop-blur-sm text-neutral-700 border border-neutral-200/50 rounded-xl sm:rounded-2xl lg:rounded-xl text-sm sm:text-base md:text-base lg:text-sm font-bold hover:bg-white hover:border-neutral-300 hover:shadow-lg transition-all hover:-translate-y-1 duration-300">
               Our Capabilities
             </Link>
           </motion.div>

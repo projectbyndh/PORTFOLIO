@@ -44,7 +44,7 @@ export default function FAQSection() {
     if (faqs.length === 0) return null;
 
     return (
-        <section className="py-24 bg-white relative overflow-hidden">
+        <section className="py-16 sm:py-20 md:py-24 bg-white relative overflow-hidden">
             {/* Background decorations */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <div className="absolute inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
@@ -52,42 +52,42 @@ export default function FAQSection() {
                 <div className="absolute bottom-40 left-10 w-96 h-96 rounded-full bg-[#3B5488]/5 animate-pulse-slow blur-3xl" />
             </div>
 
-            <div className="max-w-4xl mx-auto px-6 relative z-10">
+            <div className="max-w-4xl mx-auto px-4 sm:px-5 md:px-6 relative z-10">
                 {/* Header */}
-                <div className="text-center mb-16">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#4A8EBC]/10 rounded-full mb-6">
-                        <HelpCircle size={18} className="text-[#4A8EBC]" />
-                        <span className="text-sm font-bold text-[#4A8EBC] uppercase tracking-wider">FAQ</span>
+                <div className="text-center mb-10 sm:mb-12 md:mb-14 lg:mb-16">
+                    <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-[#4A8EBC]/10 rounded-full mb-4 sm:mb-5 md:mb-6">
+                        <HelpCircle size={14} className="text-[#4A8EBC] sm:w-4 sm:h-4 md:w-[18px] md:h-[18px]" />
+                        <span className="text-xs sm:text-sm font-bold text-[#4A8EBC] uppercase tracking-wider">FAQ</span>
                     </div>
-                    <h2 className="text-4xl md:text-5xl font-bold text-[#1A2A44] mb-4">
+                    <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-[#1A2A44] mb-3 sm:mb-4 px-3">
                         Frequently Asked Questions
                     </h2>
-                    <p className="text-lg text-[#2B4066]/80 max-w-2xl mx-auto">
+                    <p className="text-sm sm:text-base md:text-lg text-[#2B4066]/80 max-w-2xl mx-auto px-3">
                         Find answers to common questions about our services and processes
                     </p>
                 </div>
 
                 {/* FAQ List */}
-                <div className="space-y-4">
+                <div className="space-y-3 sm:space-y-4">
                     {faqs.map((faq, index) => (
                         <motion.div
                             key={faq.id || index}
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-white/70 backdrop-blur-sm rounded-xl border border-[#4A8EBC]/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+                            className="bg-white/70 backdrop-blur-sm rounded-lg sm:rounded-xl border border-[#4A8EBC]/10 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
                         >
                             <button
                                 onClick={() => toggleFAQ(index)}
-                                className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-[#4A8EBC]/5 transition-colors"
+                                className="w-full px-3 sm:px-4 md:px-5 lg:px-6 py-3 sm:py-3.5 md:py-4 lg:py-5 flex items-center justify-between text-left hover:bg-[#4A8EBC]/5 transition-colors"
                             >
-                                <span className="font-semibold text-[#1A2A44] pr-4">
+                                <span className="font-semibold text-sm sm:text-base text-[#1A2A44] pr-3 sm:pr-4">
                                     {faq.question}
                                 </span>
                                 <ChevronDown
                                     className={`flex-shrink-0 text-[#4A8EBC] transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''
                                         }`}
-                                    size={20}
+                                    size={18}
                                 />
                             </button>
 
@@ -100,7 +100,7 @@ export default function FAQSection() {
                                         transition={{ duration: 0.3 }}
                                         className="overflow-hidden"
                                     >
-                                        <div className="px-6 pb-5 text-[#2B4066]/80 leading-relaxed">
+                                        <div className="px-3 sm:px-4 md:px-5 lg:px-6 pb-3 sm:pb-4 md:pb-5 text-xs sm:text-sm md:text-base text-[#2B4066]/80 leading-relaxed">
                                             {faq.answer}
                                         </div>
                                     </motion.div>

@@ -66,7 +66,6 @@ export default function ContactAdvanced() {
         })
       }
     } catch (error) {
-      console.error('Contact submission error:', error)
       toast.error(error.data?.message || 'Failed to send message. Please try again.')
     } finally {
       setIsSubmitting(false)
@@ -74,7 +73,7 @@ export default function ContactAdvanced() {
   }
 
   return (
-    <div className="min-h-screen bg-[#FAFAFA] selection:bg-blue-100 overflow-x-hidden">
+    <div className="min-h-screen bg-[#FAFAFA] selection:bg-blue-100 pt-20 md:pt-24 lg:pt-28">
       {/* --- BACKGROUND ENGINEERING: SPATIAL DEPTH --- */}
       <div className="fixed inset-0 z-0 pointer-events-none">
         {/* Grain texture */}
@@ -85,28 +84,28 @@ export default function ContactAdvanced() {
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#3B7AA8]/10 rounded-full blur-3xl" />
       </div>
 
-      <main className="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-24">
+      <main className="relative z-10 max-w-7xl mx-auto px-4 sm:px-5 md:px-6 pt-24 sm:pt-28 md:pt-32 pb-16 sm:pb-20 md:pb-24">
         {/* --- HEADER SYSTEM --- */}
         <motion.header
           initial="hidden"
           animate="visible"
           variants={containerVariants}
-          className="text-center mb-20"
+          className="text-center mb-10 sm:mb-14 md:mb-16 lg:mb-20"
         >
-          <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 mb-6">
-            <span className="h-px w-12 bg-[#4A8EBC]" />
-            <span className="text-xs font-black uppercase tracking-[0.3em] text-[#4A8EBC]">Global Outreach</span>
-            <span className="h-px w-12 bg-[#4A8EBC]" />
+          <motion.div variants={itemVariants} className="flex items-center justify-center gap-2 mb-3 sm:mb-4 md:mb-5 lg:mb-6">
+            <span className="h-px w-6 sm:w-8 md:w-10 lg:w-12 bg-[#4A8EBC]" />
+            <span className="text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] text-[#4A8EBC]">Global Outreach</span>
+            <span className="h-px w-6 sm:w-8 md:w-10 lg:w-12 bg-[#4A8EBC]" />
           </motion.div>
-          <motion.h1 variants={itemVariants} className="text-6xl md:text-7xl font-black text-neutral-900 tracking-tighter mb-6">
+          <motion.h1 variants={itemVariants} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-neutral-900 tracking-tighter mb-3 sm:mb-4 md:mb-5 lg:mb-6">
             Let&apos;s Build the <span className="text-[#4A8EBC]">Future.</span>
           </motion.h1>
-          <motion.p variants={itemVariants} className="text-xl text-neutral-500 max-w-2xl mx-auto leading-relaxed">
+          <motion.p variants={itemVariants} className="text-sm sm:text-base md:text-lg lg:text-xl text-neutral-500 max-w-2xl mx-auto leading-relaxed px-3 sm:px-4">
             Ready to scale your digital ecosystem? Our engineering team is standing by to translate your vision into high-performance reality.
           </motion.p>
         </motion.header>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 md:gap-8 lg:gap-10 xl:gap-12 items-start">
 
           {/* --- CONTACT INFO MODULE (3 Columns) --- */}
           <motion.aside
@@ -114,7 +113,7 @@ export default function ContactAdvanced() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={containerVariants}
-            className="lg:col-span-4 space-y-6"
+            className="lg:col-span-4 space-y-4 sm:space-y-5 md:space-y-6"
           >
             <ContactCard
               icon={<MapPin />}
@@ -145,7 +144,7 @@ export default function ContactAdvanced() {
             viewport={{ once: true }}
             className="lg:col-span-8"
           >
-            <div className="bg-white border border-neutral-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] rounded-[2.5rem] p-10 md:p-14 relative overflow-hidden">
+            <div className="bg-white border border-neutral-100 shadow-[0_20px_50px_rgba(0,0,0,0.05)] rounded-2xl sm:rounded-[2rem] md:rounded-[2.5rem] p-5 sm:p-7 md:p-9 lg:p-12 xl:p-14 relative overflow-hidden">
               <AnimatePresence mode="wait">
                 {submitted ? (
                   <motion.div

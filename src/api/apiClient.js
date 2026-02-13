@@ -1,7 +1,7 @@
 import { ofetch } from 'ofetch';
 
 const apiClient = ofetch.create({
-    baseURL: '/api',
+    baseURL: 'https://apit.ndhtechnologies.com/api',
     retry: 1,
     onRequest({ options }) {
         const token = localStorage.getItem('token');
@@ -15,7 +15,6 @@ const apiClient = ofetch.create({
     onResponseError({ response }) {
         // Handle 401 Unauthorized
         if (response.status === 401) {
-            console.warn('🔑 Authentication failed - clearing token and redirecting to login');
             localStorage.removeItem('token');
 
             // Auto redirect to login if in admin area
@@ -29,7 +28,7 @@ const apiClient = ofetch.create({
 
         // Log other errors
         if (response.status !== 304) {
-            console.error(`Status: ${response.status}`, response._data);
+            // Silent error handling
         }
     },
 });
