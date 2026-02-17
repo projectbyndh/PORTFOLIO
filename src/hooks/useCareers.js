@@ -59,6 +59,7 @@ export const useCareers = () => {
     setLoading(true);
     setError(null);
     try {
+      // careerData is FormData, send it directly
       const data = await apiClient('/careers', {
         method: 'POST',
         body: careerData
@@ -86,6 +87,7 @@ export const useCareers = () => {
     setError(null);
 
     try {
+      // careerData is FormData, send it directly
       const data = await apiClient(`/careers/${id}`, {
         method: 'PUT',
         body: careerData

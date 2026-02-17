@@ -15,6 +15,8 @@ export const getImageUrl = (imagePath, type = 'default') => {
         imagePath.includes('placehold.it') ||
         imagePath.includes('placeholder.com') ||
         imagePath.includes('/placeholder') ||
+        imagePath.includes('course-placeholder') ||
+        imagePath.includes('instructor-placeholder') ||
         imagePath.includes('default-career') ||
         imagePath.includes('fallback');
 
@@ -34,9 +36,11 @@ export const getImageUrl = (imagePath, type = 'default') => {
         cleanPath = `/${cleanPath}`;
     }
 
-    // In local development with Vite, we use relative paths that are proxied.
-    // In production, the backend usually serves the frontend so relative paths also work.
-    // This is much safer than hardcoding http://localhost:5000
+    // Prepend backend URL if in development and path starts with /uploads
+    if (window.location.hostname === 'localhost' && cleanPath.startsWith('/uploads')) {
+        return `http://localhost:5000${cleanPath}`;
+    }
+
     return cleanPath;
 };
 

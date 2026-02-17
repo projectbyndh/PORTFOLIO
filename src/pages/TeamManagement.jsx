@@ -95,7 +95,7 @@ const TeamManagement = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {teams.map((team) => (
             <div
-              key={team._id}
+              key={team.id || team._id}
               className="bg-white rounded-lg shadow-md p-6"
             >
               <div className="flex flex-col items-center mb-4">
@@ -123,11 +123,11 @@ const TeamManagement = () => {
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(team._id)}
-                  disabled={deletingId === team._id}
+                  onClick={() => handleDelete(team.id || team._id)}
+                  disabled={deletingId === (team.id || team._id)}
                   className="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm disabled:opacity-50"
                 >
-                  {deletingId === team._id ? 'Deleting...' : 'Delete'}
+                  {deletingId === (team.id || team._id) ? 'Deleting...' : 'Delete'}
                 </button>
               </div>
             </div>

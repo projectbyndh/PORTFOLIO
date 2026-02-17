@@ -18,12 +18,12 @@ const usePartnerStore = create(
 
       updatePartner: (updatedPartner) => set((state) => ({
         partners: state.partners.map(partner =>
-          partner._id === updatedPartner._id ? updatedPartner : partner
+          (partner.id || partner._id) === (updatedPartner.id || updatedPartner._id) ? updatedPartner : partner
         )
       })),
 
       removePartner: (partnerId) => set((state) => ({
-        partners: state.partners.filter(partner => partner._id !== partnerId)
+        partners: state.partners.filter(partner => (partner.id || partner._id) !== partnerId)
       })),
 
       clearError: () => set({ error: null })

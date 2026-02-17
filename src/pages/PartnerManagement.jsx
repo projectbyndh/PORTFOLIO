@@ -185,7 +185,7 @@ const PartnerManagement = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
             {partners.map((partner, index) => (
               <motion.div
-                key={partner._id}
+                key={partner.id || partner._id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
@@ -227,11 +227,11 @@ const PartnerManagement = () => {
                       <span className="text-sm">Edit</span>
                     </button>
                     <button
-                      onClick={() => handleDelete(partner._id)}
-                      disabled={deletingId === partner._id}
+                      onClick={() => handleDelete(partner.id || partner._id)}
+                      disabled={deletingId === (partner.id || partner._id)}
                       className="flex-1 flex items-center justify-center gap-2 bg-red-50 hover:bg-red-500 text-red-600 hover:text-white font-bold py-3 px-4 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed border border-red-200 hover:border-red-500"
                     >
-                      {deletingId === partner._id ? (
+                      {deletingId === (partner.id || partner._id) ? (
                         <>
                           <RefreshCw size={16} className="animate-spin" />
                           <span className="text-sm">Deleting...</span>

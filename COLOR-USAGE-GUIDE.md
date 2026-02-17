@@ -33,7 +33,7 @@ Your website uses a clean, minimal color palette with only **2 primary brand col
 
 | Color | Usage |
 |-------|-------|
-| `#26a8df` | "Elevating Nepali Innovation" badge text |
+| `#26a8df` | "Helping Nepal’s ideas grow." badge text |
 | `#26a8df` | Main heading "Build for the" text |
 | `#26a8df` | "Get Started" button background gradient |
 | `#26a8df` | Sparkle icon color |

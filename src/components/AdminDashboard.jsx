@@ -98,8 +98,182 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-[#F5FAFF] via-white to-[#F0F7FF] flex">
-      {/* Sidebar */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 flex">
+      {/* Sidebar - Desktop */}
+      <aside className="hidden lg:flex lg:flex-col w-64 bg-white border-r border-slate-200 shadow-sm">
+        <div className="p-6 border-b border-slate-200">
+          <h2 className="text-2xl font-bold bg-gradient-to-r from-[#26a8df] to-[#1e7ba8] bg-clip-text text-transparent">
+            Admin Panel
+          </h2>
+          <p className="text-sm text-slate-600 mt-1">Manage your content</p>
+        </div>
+
+        <nav className="flex-1 p-4 space-y-2">
+          <button
+            onClick={() => setActiveTab('dashboard')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
+              activeTab === 'dashboard'
+                ? 'bg-[#26a8df] text-white shadow-md'
+                : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            <Home size={20} />
+            <span>Dashboard</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('blogs')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
+              activeTab === 'blogs'
+                ? 'bg-[#26a8df] text-white shadow-md'
+                : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            <FileText size={20} />
+            <span>Blogs</span>
+          </button>
+
+          <button
+            onClick={() => navigate('/admin/blog/create')}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-slate-700 hover:bg-slate-100 transition-all"
+          >
+            <PlusCircle size={20} />
+            <span>New Blog</span>
+          </button>
+
+          <button
+            onClick={() => navigate('/admin/careers')}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-slate-700 hover:bg-slate-100 transition-all"
+          >
+            <Briefcase size={20} />
+            <span>Careers</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('settings')}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
+              activeTab === 'settings'
+                ? 'bg-[#26a8df] text-white shadow-md'
+                : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            <Settings size={20} />
+            <span>Settings</span>
+          </button>
+        </nav>
+
+        <div className="p-4 border-t border-slate-200">
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-red-600 hover:bg-red-50 transition-all"
+          >
+            <LogOut size={20} />
+            <span>Logout</span>
+          </button>
+        </div>
+      </aside>
+
+      {/* Sidebar - Mobile */}
+      <aside
+        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 shadow-xl transform transition-transform duration-300 lg:hidden ${
+          sidebarOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="p-6 border-b border-slate-200 flex items-center justify-between">
+          <div>
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-[#26a8df] to-[#1e7ba8] bg-clip-text text-transparent">
+              Admin Panel
+            </h2>
+            <p className="text-sm text-slate-600 mt-1">Manage your content</p>
+          </div>
+          <button
+            onClick={() => setSidebarOpen(false)}
+            className="p-2 rounded-lg hover:bg-slate-100 transition-colors"
+          >
+            <X size={20} className="text-slate-600" />
+          </button>
+        </div>
+
+        <nav className="flex-1 p-4 space-y-2">
+          <button
+            onClick={() => {
+              setActiveTab('dashboard');
+              setSidebarOpen(false);
+            }}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
+              activeTab === 'dashboard'
+                ? 'bg-[#26a8df] text-white shadow-md'
+                : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            <Home size={20} />
+            <span>Dashboard</span>
+          </button>
+
+          <button
+            onClick={() => {
+              setActiveTab('blogs');
+              setSidebarOpen(false);
+            }}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
+              activeTab === 'blogs'
+                ? 'bg-[#26a8df] text-white shadow-md'
+                : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            <FileText size={20} />
+            <span>Blogs</span>
+          </button>
+
+          <button
+            onClick={() => {
+              navigate('/admin/blog/create');
+              setSidebarOpen(false);
+            }}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-slate-700 hover:bg-slate-100 transition-all"
+          >
+            <PlusCircle size={20} />
+            <span>New Blog</span>
+          </button>
+
+          <button
+            onClick={() => {
+              navigate('/admin/careers');
+              setSidebarOpen(false);
+            }}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-slate-700 hover:bg-slate-100 transition-all"
+          >
+            <Briefcase size={20} />
+            <span>Careers</span>
+          </button>
+
+          <button
+            onClick={() => {
+              setActiveTab('settings');
+              setSidebarOpen(false);
+            }}
+            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium transition-all ${
+              activeTab === 'settings'
+                ? 'bg-[#26a8df] text-white shadow-md'
+                : 'text-slate-700 hover:bg-slate-100'
+            }`}
+          >
+            <Settings size={20} />
+            <span>Settings</span>
+          </button>
+
+          <button
+            onClick={() => {
+              handleLogout();
+              setSidebarOpen(false);
+            }}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg font-medium text-red-600 hover:bg-red-50 transition-all mt-4"
+          >
+            <LogOut size={20} />
+            <span>Logout</span>
+          </button>
+        </nav>
+      </aside>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">

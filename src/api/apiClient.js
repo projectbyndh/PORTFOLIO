@@ -1,7 +1,7 @@
 import { ofetch } from 'ofetch';
 
 const apiClient = ofetch.create({
-    baseURL: 'https://apit.ndhtechnologies.com/api',
+    baseURL: 'http://localhost:5000/api',
     retry: 1,
     onRequest({ options }) {
         const token = localStorage.getItem('token');
@@ -21,7 +21,7 @@ const apiClient = ofetch.create({
             if (window.location.pathname.startsWith('/admin') || window.location.pathname.startsWith('/ndh-admin')) {
                 // We use a small delay to avoid redirect loops if the login page itself triggers a 401
                 if (!window.location.pathname.includes('login')) {
-                    window.location.href = '/ndh-admin/login';
+                    window.location.href = '/admin/login';
                 }
             }
         }

@@ -110,13 +110,13 @@ export default function WorldMap() {
   }, [])
 
   return (
-    <div className="w-full bg-transparent py-16 relative overflow-hidden">
+    <div className="w-full bg-transparent py-12 relative overflow-hidden">
       {/* Background Glow - Removed for white theme */}
 
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-2 sm:px-4 md:px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-sm font-black uppercase tracking-[0.4em] text-[#26a8df] mb-4">Our Global Reach</h2>
-          <h3 className="text-5xl md:text-7xl font-black text-[#26a8df] leading-tight tracking-tighter">
+          <h3 className="text-3xl md:text-5xl font-black text-[#26a8df] leading-tight tracking-tighter">
             Scaling from <br /> <span className="text-brand-primary">Nepal to the World.</span>
           </h3>
         </div>
@@ -126,7 +126,7 @@ export default function WorldMap() {
           <div className="absolute -inset-1 bg-gradient-to-r from-[#26a8df]/10 to-transparent rounded-[2.5rem] blur opacity-50 group-hover:opacity-75 transition duration-1000" />
 
           <div className="relative bg-white/70 backdrop-blur-xl rounded-[2rem] overflow-hidden border border-white/60 shadow-2xl">
-            <div ref={mapRef} className="h-[500px] md:h-[650px]" />
+            <div ref={mapRef} className="h-[220px] sm:h-[300px] md:h-[380px] lg:h-[420px] xl:h-[480px] 2xl:h-[520px]" />
 
             {/* HQ Floating Pane */}
             <div className="absolute top-8 left-8 p-6 rounded-2xl bg-white/90 backdrop-blur-xl border border-white/60 shadow-2xl z-[1000]">

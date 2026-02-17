@@ -53,7 +53,7 @@ const PartnerForm = ({ partner, onClose }) => {
       };
 
       if (partner) {
-        await updatePartnerById(partner._id, partnerData);
+        await updatePartnerById(partner.id || partner._id, partnerData);
       } else {
         await createPartner(partnerData);
       }

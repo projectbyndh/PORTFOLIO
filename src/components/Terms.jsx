@@ -26,7 +26,7 @@ export default function Terms() {
     },
     {
       icon: <Scale />,
-      title: "3. Intellectual Property Rights",
+      title: "3. Our Work and Designs",
       content: [
         "All content, features, and functionality of our services are owned by Nepal Digital Heights and are protected by international copyright, trademark, and other intellectual property laws.",
         "Upon full payment, clients receive ownership of the final deliverables as specified in the project agreement.",
@@ -35,7 +35,7 @@ export default function Terms() {
     },
     {
       icon: <CheckCircle />,
-      title: "4. User Responsibilities",
+      title: "4. How to use our site",
       content: [
         "You agree to provide accurate, current, and complete information during project engagement.",
         "You are responsible for maintaining the confidentiality of any account credentials provided.",
@@ -65,7 +65,7 @@ export default function Terms() {
     },
     {
       icon: <FileText />,
-      title: "7. Warranties and Disclaimers",
+      title: "7. What we are responsible for",
       content: [
         "We strive to deliver high-quality services but do not guarantee uninterrupted or error-free operation.",
         "Services are provided 'as is' without warranties of any kind, either express or implied.",
@@ -75,12 +75,12 @@ export default function Terms() {
     },
     {
       icon: <Scale />,
-      title: "8. Termination",
+      title: "8. Stopping our services",
       content: [
-        "Either party may terminate services with written notice as specified in the project agreement.",
-        "Upon termination, you must pay for all services rendered up to the termination date.",
-        "We reserve the right to terminate services immediately if terms are violated.",
-        "Termination does not affect any rights or obligations that have accrued prior to termination."
+        "Either party may stop services with written notice as specified in the project agreement.",
+        "Upon stopping services, you must pay for all services rendered up to that date.",
+        "We reserve the right to stop services immediately if terms are violated.",
+        "Stopping services does not affect any rights or obligations that have accrued prior to that event."
       ]
     },
     {

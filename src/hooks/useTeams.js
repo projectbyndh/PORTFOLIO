@@ -92,7 +92,7 @@ const useTeams = () => {
 
       if (response.data.success) {
         setTeams(prev => prev.map(team =>
-          team._id === id ? response.data.data : team
+          (team.id === id || team._id === id) ? response.data.data : team
         ));
         toast.success('Team member updated successfully');
         return response.data.data;
@@ -118,7 +118,7 @@ const useTeams = () => {
         timeout: 5000, // 5 second timeout
       });
       if (response.data.success) {
-        setTeams(prev => prev.filter(team => team._id !== id));
+        setTeams(prev => prev.filter(team => (team.id !== id && team._id !== id)));
         toast.success('Team member deleted successfully');
       }
     } catch (err) {

@@ -8,14 +8,14 @@ export default defineConfig({
     port: 5173,
     proxy: {
       '/api': {
-        target: 'https://apit.ndhtechnologies.com',
+        target: 'http://localhost:5000',
         changeOrigin: true,
-        secure: true,
+        secure: false,
       },
       '/uploads': {
-        target: 'https://apit.ndhtechnologies.com',
+        target: 'http://localhost:5000',
         changeOrigin: true,
-        secure: true,
+        secure: false,
       },
     },
   },

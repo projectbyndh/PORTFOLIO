@@ -77,13 +77,20 @@ const CareerForm = ({
   useEffect(() => {
     if (isOpen) {
       if (initialData) {
-        // Edit mode
+        // Edit mode - ensure arrays are properly handled
+        const requirements = Array.isArray(initialData.requirements) && initialData.requirements.length > 0 
+          ? initialData.requirements 
+          : [''];
+        const responsibilities = Array.isArray(initialData.responsibilities) && initialData.responsibilities.length > 0 
+          ? initialData.responsibilities 
+          : [''];
+        
         reset({
           title: initialData.title || '',
           description: initialData.description || '',
           image: initialData.image || '',
-          requirements: initialData.requirements || [''],
-          responsibilities: initialData.responsibilities || [''],
+          requirements: requirements,
+          responsibilities: responsibilities,
           location: initialData.location || '',
           category: initialData.category || 'Developer',
         });
@@ -109,15 +116,30 @@ const CareerForm = ({
   // Handle form submission
   const handleFormSubmit = async (data) => {
     try {
-      // Create a copy of data to modify
-      const submissionData = { ...data };
+      // Create FormData to send file with other fields
+      const formData = new FormData();
+      formData.append('title', data.title || '');
+      formData.append('description', data.description || '');
+      formData.append('location', data.location || '');
+      formData.append('category', data.category || 'Developer');
+      
+      // Handle requirements array - filter out empty strings
+      const requirements = (data.requirements || []).filter(req => req && req.trim());
+      formData.append('requirements', JSON.stringify(requirements.length > 0 ? requirements : ['']));
+      
+      // Handle responsibilities array - filter out empty strings
+      const responsibilities = (data.responsibilities || []).filter(resp => resp && resp.trim());
+      formData.append('responsibilities', JSON.stringify(responsibilities.length > 0 ? responsibilities : ['']));
 
-      // If we have a file selected, add it to the submission data
+      // Handle image
       if (selectedFile) {
-        submissionData.image = selectedFile;
+        formData.append('image', selectedFile);
+      } else if (data.image && !selectedFile) {
+        // If editing and no new file, send existing URL
+        formData.append('image', data.image);
       }
 
-      await onSubmit(submissionData);
+      await onSubmit(formData);
       onClose(); // Close modal on success
     } catch (error) {
       // Error is handled by the hook

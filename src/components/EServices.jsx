@@ -121,9 +121,9 @@ export default function NexusServices() {
           </motion.div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter text-[#0D1641] mb-10 leading-[0.85]">
-            Nexus <br />
+            Our <br />
             <span className="text-gradient-brand-alt">
-              Capabilities.
+              Core Services
             </span>
           </h1>
 

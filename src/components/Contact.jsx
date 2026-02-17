@@ -124,13 +124,13 @@ export default function ContactAdvanced() {
             <ContactCard
               icon={<Mail />}
               title="Direct Email"
-              detail="engineering@ndh.com"
+              detail="info@ndhtechnologies.com"
               subDetail="Response within 24 hours"
             />
             <ContactCard
-              icon={<Globe />}
-              title="Global Support"
-              detail="+977 9867453240"
+              icon={<Phone />}
+              title="Phone Support"
+              detail="+977 9815408990"
               subDetail="Sun - Fri | 11AM - 6PM"
             />
 

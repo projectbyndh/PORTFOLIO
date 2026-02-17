@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with base configuration
 const axiosInstance = axios.create({
-  // baseURL is omitted to use relative paths, handled by Vite proxy
+  baseURL: 'http://localhost:5000',
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ axiosInstance.interceptors.response.use(
         // but removing the token will cause ProtectedRoute to trigge redirect on next render
         // To be safe, we can force a reload if we are in an admin path
         if (window.location.pathname.startsWith('/admin')) {
-          window.location.href = '/ndh-admin/login';
+          window.location.href = '/admin/login';
         }
       }
     } else if (error.request) {

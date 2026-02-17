@@ -38,7 +38,7 @@ export default function Services() {
             className="flex items-center gap-2 sm:gap-3 text-[#26a8df] mb-4 sm:mb-5 md:mb-6 justify-center"
           >
             <div className="w-8 sm:w-10 md:w-12 h-[2px] bg-[#26a8df]" />
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em]">Capabilities</span>
+            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em]">The Tools We Build For You</span>
           </motion.div>
 
           <motion.h1
@@ -46,9 +46,9 @@ export default function Services() {
             whileInView={{ opacity: 1, y: 0 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#26a8df] tracking-tighter leading-tight"
           >
-            Our Digital <br className="hidden md:block" />
+            The Tools <br className="hidden md:block" />
             <span className="text-gradient-brand">
-              Infrastructure.
+              We Build For You.
             </span>
           </motion.h1>
         </div>
@@ -89,7 +89,7 @@ export default function Services() {
             desc="Protecting and scaling your assets with enterprise-grade security."
             features={[
               { t: "Cloud Ops", i: <Database size={18} /> },
-              { t: "Strategic Planning", i: <BarChart2 size={18} /> },
+              { t: "A Clear Plan", i: <BarChart2 size={18} /> },
               { t: "24/7 Support", i: <HeadphonesIcon size={18} /> }
             ]}
           />
@@ -108,8 +108,8 @@ export default function Services() {
 
             <div className="absolute top-0 right-0 w-48 sm:w-56 md:w-64 h-48 sm:h-56 md:h-64 bg-[#26a8df]/20 rounded-full blur-[60px] sm:blur-[80px] -translate-y-1/2 translate-x-1/2" />
 
-            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-4 z-10 tracking-tight">Ready to scale?</h3>
-            <p className="text-blue-100/80 mb-5 sm:mb-6 md:mb-8 lg:mb-6 z-10 max-w-sm text-sm sm:text-base md:text-base lg:text-sm font-light">Experience the next generation of Nepali IT excellence.</p>
+            <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-4 z-10 tracking-tight">Ready to improve how your business looks online?</h3>
+            <p className="text-blue-100/80 mb-5 sm:mb-6 md:mb-8 lg:mb-6 z-10 max-w-sm text-sm sm:text-base md:text-base lg:text-sm font-light">Step-by-step updates. Systems that grow with you.</p>
 
             <Link to="/contact" className="relative px-5 sm:px-6 md:px-7 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-2 bg-white text-[#26a8df] rounded-xl sm:rounded-2xl lg:rounded-xl text-sm sm:text-base md:text-base lg:text-sm font-bold inline-flex items-center gap-2 transition-all hover:scale-105 hover:bg-blue-50 z-10 shadow-lg shadow-blue-900/20 group/btn">
               <span>Get Started</span>

@@ -43,7 +43,7 @@ const TestimonialManagement = () => {
     // Handle Update
     const handleUpdate = async (data) => {
         if (editingTestimonial) {
-            await updateTestimonialById(editingTestimonial.id, data);
+            await updateTestimonialById(editingTestimonial.id || editingTestimonial._id, data);
             setIsFormOpen(false);
             setEditingTestimonial(null);
         }

@@ -133,7 +133,7 @@ const useCareerStore = create((set, get) => ({
         return get().selectedCareer;
       }
 
-      const localCareer = get().careers.find(career => career._id === id);
+      const localCareer = get().careers.find(career => (career.id === id || career._id === id));
       if (localCareer) {
         set({
           selectedCareer: localCareer,
@@ -200,9 +200,9 @@ const useCareerStore = create((set, get) => ({
 
       set((state) => ({
         careers: state.careers.map(career =>
-          career._id === id ? updatedCareer : career
+          (career.id === id || career._id === id) ? updatedCareer : career
         ),
-        selectedCareer: state.selectedCareer?._id === id ? updatedCareer : state.selectedCareer,
+        selectedCareer: (state.selectedCareer?.id === id || state.selectedCareer?._id === id) ? updatedCareer : state.selectedCareer,
         loading: false
       }));
 
@@ -217,9 +217,9 @@ const useCareerStore = create((set, get) => ({
 
       set((state) => ({
         careers: state.careers.map(career =>
-          career._id === id ? updatedCareer : career
+          (career.id === id || career._id === id) ? updatedCareer : career
         ),
-        selectedCareer: state.selectedCareer?._id === id ? updatedCareer : state.selectedCareer,
+        selectedCareer: (state.selectedCareer?.id === id || state.selectedCareer?._id === id) ? updatedCareer : state.selectedCareer,
         loading: false
       }));
 
@@ -234,16 +234,16 @@ const useCareerStore = create((set, get) => ({
       await apiClient(`/careers/${id}`, { method: 'DELETE' });
 
       set((state) => ({
-        careers: state.careers.filter(career => career._id !== id),
-        selectedCareer: state.selectedCareer?._id === id ? null : state.selectedCareer,
+        careers: state.careers.filter(career => (career.id !== id && career._id !== id)),
+        selectedCareer: (state.selectedCareer?.id === id || state.selectedCareer?._id === id) ? null : state.selectedCareer,
         loading: false
       }));
 
       return true;
     } catch {
       set((state) => ({
-        careers: state.careers.filter(career => career._id !== id),
-        selectedCareer: state.selectedCareer?._id === id ? null : state.selectedCareer,
+        careers: state.careers.filter(career => (career.id !== id && career._id !== id)),
+        selectedCareer: (state.selectedCareer?.id === id || state.selectedCareer?._id === id) ? null : state.selectedCareer,
         loading: false
       }));
 

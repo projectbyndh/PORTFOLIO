@@ -52,7 +52,7 @@ const BlogManagement = () => {
   // Handle update blog
   const handleUpdateBlog = async (blogData) => {
     if (editingBlog) {
-      await updateBlog(editingBlog._id, blogData);
+      await updateBlog(editingBlog.id || editingBlog._id, blogData);
       setEditingBlog(null);
     }
   };

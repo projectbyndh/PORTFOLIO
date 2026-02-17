@@ -21,9 +21,9 @@ function Refer() {
   const benefits = [
     'Free Consultation & Strategy Session',
     'Dedicated Project Manager',
-    'Agile Development Process',
+    'Step-by-step updates',
     '24/7 Support & Maintenance',
-    'Scalable & Future-Proof Solutions',
+    'Systems that grow with you',
     'Transparent Pricing & Timeline',
   ];
 
@@ -93,10 +93,7 @@ function Refer() {
               </motion.div>
 
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-[#26a8df] mb-4 sm:mb-5 md:mb-6 tracking-tight">
-                Ready to Transform Your <br />
-                <span className="text-gradient-brand">
-                  Digital Presence?
-                </span>
+                Ready to improve how your business looks online?
               </h2>
 
               <p className="text-sm sm:text-base md:text-lg lg:text-xl text-neutral-600 max-w-3xl mx-auto mb-8 sm:mb-10 md:mb-12 px-4">

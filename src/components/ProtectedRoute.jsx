@@ -36,7 +36,7 @@ const ProtectedRoute = ({ children }) => {
 
     // If not authenticated, redirect to login page
     if (!isAuthenticated) {
-        return <Navigate to="/ndh-admin/login" replace />;
+        return <Navigate to="/admin/login" replace />;
     }
 
     // If authenticated, render the protected component

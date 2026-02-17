@@ -22,7 +22,7 @@ import toast from 'react-hot-toast';
  */
 const FAQManagement = () => {
   const { faqs, loading, error, createFAQ, updateFAQ, deleteFAQ, fetchFAQs } = useFAQs();
-  
+
   // Modal states
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
@@ -88,7 +88,7 @@ const FAQManagement = () => {
     setIsSubmitting(true);
     try {
       if (editingFAQ) {
-        await updateFAQ(editingFAQ._id, formData);
+        await updateFAQ(editingFAQ.id || editingFAQ._id, formData);
         toast.success('FAQ updated successfully');
       } else {
         await createFAQ(formData);
@@ -105,10 +105,10 @@ const FAQManagement = () => {
   // Handle delete
   const handleDelete = async () => {
     if (!deletingFAQ) return;
-    
+
     setIsDeleting(true);
     try {
-      await deleteFAQ(deletingFAQ._id);
+      await deleteFAQ(deletingFAQ.id || deletingFAQ._id);
       toast.success('FAQ deleted successfully');
       handleCloseDelete();
     } catch (err) {
@@ -178,7 +178,7 @@ const FAQManagement = () => {
       ) : (
         <div className="grid gap-4">
           {faqs.map((faq) => (
-            <DataCard key={faq._id}>
+            <DataCard key={faq.id || faq._id}>
               <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                 <div className="flex-1 space-y-3">
                   {/* Question */}
@@ -190,7 +190,7 @@ const FAQManagement = () => {
                       {faq.question}
                     </h3>
                   </div>
-                  
+
                   {/* Answer */}
                   <div>
                     <span className="inline-block px-2 py-0.5 bg-emerald-100 text-emerald-700 text-xs font-medium rounded mb-2">

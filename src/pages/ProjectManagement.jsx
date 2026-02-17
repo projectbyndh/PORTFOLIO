@@ -73,7 +73,7 @@ const ProjectManagement = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {projects.map((project) => (
-          <div key={project._id} className="bg-white rounded-lg shadow-md overflow-hidden">
+          <div key={project.id || project._id} className="bg-white rounded-lg shadow-md overflow-hidden">
             {project.image && (
               <img
                 src={project.image}
@@ -133,16 +133,16 @@ const ProjectManagement = () => {
                 <button
                   onClick={() => handleEdit(project)}
                   className="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded text-sm"
-                  disabled={deletingId === project._id}
+                  disabled={deletingId === (project.id || project._id)}
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(project._id)}
-                  disabled={deletingId === project._id}
+                  onClick={() => handleDelete(project.id || project._id)}
+                  disabled={deletingId === (project.id || project._id)}
                   className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm disabled:opacity-50"
                 >
-                  {deletingId === project._id ? 'Deleting...' : 'Delete'}
+                  {deletingId === (project.id || project._id) ? 'Deleting...' : 'Delete'}
                 </button>
               </div>
             </div>

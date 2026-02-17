@@ -9,6 +9,8 @@ import Contact from "./components/Contact";
 import Careers from "./components/Carrers";
 import EServicesEnhanced from "./components/EServices";
 import CoursesSection from "./components/CoursesSection";
+import Courses from "./pages/Courses";
+import CourseDetail from "./pages/CourseDetail";
 import BlogsDetails from "./components/BlogsDetails";
 import BlogSection from "./components/Blogsection";
 import Navbar from "./components/Navbar";
@@ -34,6 +36,9 @@ import ContactInfoManagement from "./pages/ContactInfoManagement";
 import Partners from "./components/Partners";
 import TestimonialManagement from "./pages/TestimonialManagement";
 import CategoryManagement from "./pages/CategoryManagement";
+import CourseManagement from "./pages/admin/CourseManagement";
+import BatchManagement from "./pages/admin/BatchManagement";
+import EnrollmentManagement from "./pages/admin/EnrollmentManagement";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
@@ -65,7 +70,8 @@ function App() {
           <Route path="/services" element={<LayoutWrapper><EServicesEnhanced /></LayoutWrapper>} />
           <Route path="/blog" element={<LayoutWrapper><BlogSection /></LayoutWrapper>} />
           <Route path="/blog-details" element={<LayoutWrapper><BlogsDetails /></LayoutWrapper>} />
-          <Route path="/courses" element={<LayoutWrapper><CoursesSection /></LayoutWrapper>} />
+          <Route path="/courses" element={<LayoutWrapper><Courses /></LayoutWrapper>} />
+          <Route path="/courses/:slug" element={<LayoutWrapper><CourseDetail /></LayoutWrapper>} />
           <Route path="/privacy-policy" element={<LayoutWrapper><PrivacyPolicy /></LayoutWrapper>} />
           <Route path="/terms" element={<LayoutWrapper><Terms /></LayoutWrapper>} />
           <Route path="/team" element={<LayoutWrapper><TeamMembers /></LayoutWrapper>} />
@@ -97,6 +103,9 @@ function App() {
           <Route path="/admin/contacts" element={<ProtectedRoute><ContactManagement /></ProtectedRoute>} />
           <Route path="/admin/contact-info" element={<ProtectedRoute><ContactInfoManagement /></ProtectedRoute>} />
           <Route path="/admin/testimonials" element={<ProtectedRoute><TestimonialManagement /></ProtectedRoute>} />
+          <Route path="/admin/courses" element={<ProtectedRoute><CourseManagement /></ProtectedRoute>} />
+          <Route path="/admin/batches" element={<ProtectedRoute><BatchManagement /></ProtectedRoute>} />
+          <Route path="/admin/enrollments" element={<ProtectedRoute><EnrollmentManagement /></ProtectedRoute>} />
           <Route path="/admin/blog/create" element={<ProtectedRoute><BlogEditor /></ProtectedRoute>} />
           <Route path="/admin/blog/edit/:id" element={<ProtectedRoute><BlogEditor /></ProtectedRoute>} />
           <Route path="*" element={<Navigate to="/" replace />} />

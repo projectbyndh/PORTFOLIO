@@ -17,7 +17,10 @@ import {
   BookOpen,
   Star,
   UserCheck,
-  Layers
+  Layers,
+  Calendar,
+  ClipboardList,
+  GraduationCap
 } from 'lucide-react';
 import { Toaster } from 'react-hot-toast';
 import useAuthStore from '../../Store/useAuthStore';
@@ -29,7 +32,7 @@ export default function AdminLayout({ children }) {
 
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate('/ndh-admin/login');
+      navigate('/admin/login');
     }
   }, [isAuthenticated, navigate]);
 
@@ -38,21 +41,7 @@ export default function AdminLayout({ children }) {
     navigate('/');
   };
 
-  const menuItems = [
-    { icon: Home, label: 'Dashboard', path: '/admin/dashboard' },
-    { icon: FileText, label: 'Blogs', path: '/admin/blogs' },
-    { icon: Handshake, label: 'Partners', path: '/admin/partners' },
-    { icon: Users, label: 'Team', path: '/admin/team' },
-    { icon: FolderKanban, label: 'Projects', path: '/admin/projects' },
-    { icon: Layers, label: 'Categories', path: '/admin/categories' },
-    { icon: Wrench, label: 'Services', path: '/admin/services' },
-    { icon: Briefcase, label: 'Careers', path: '/admin/careers' },
-    { icon: UserCheck, label: 'Applications', path: '/admin/career-applications' },
-    { icon: HelpCircle, label: 'FAQs', path: '/admin/faqs' },
-    { icon: Star, label: 'Testimonials', path: '/admin/testimonials' },
-    { icon: MessageSquare, label: 'Contacts', path: '/admin/contacts' },
-    { icon: BookOpen, label: 'API Docs', path: 'http://127.0.0.1:5000/api-docs', external: true },
-  ];
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] via-white to-[#F0F7FF] flex">
@@ -90,21 +79,66 @@ export default function AdminLayout({ children }) {
 
           {/* Navigation */}
           <nav className="flex-1 p-4 overflow-y-auto space-y-1">
-            {menuItems.map((item) => {
+            {/* General Section */}
+            {[
+              { icon: Home, label: 'Dashboard', path: '/admin/dashboard' },
+              { icon: FileText, label: 'Blogs', path: '/admin/blogs' },
+              { icon: Handshake, label: 'Partners', path: '/admin/partners' },
+              { icon: Users, label: 'Team', path: '/admin/team' },
+              { icon: FolderKanban, label: 'Projects', path: '/admin/projects' },
+              { icon: Layers, label: 'Categories', path: '/admin/categories' },
+              { icon: Wrench, label: 'Services', path: '/admin/services' },
+              { icon: Briefcase, label: 'Careers', path: '/admin/careers' },
+              { icon: UserCheck, label: 'Applications', path: '/admin/career-applications' },
+              { icon: HelpCircle, label: 'FAQs', path: '/admin/faqs' },
+              { icon: Star, label: 'Testimonials', path: '/admin/testimonials' },
+              { icon: MessageSquare, label: 'Contacts', path: '/admin/contacts' },
+            ].map((item) => {
               const isActive = window.location.pathname === item.path;
               return (
                 <button
                   key={item.path}
                   onClick={() => {
-                    if (item.external) {
-                      window.open(item.path, '_blank');
-                    } else {
-                      navigate(item.path);
-                    }
+                    navigate(item.path);
                     setSidebarOpen(false);
                   }}
                   className={`
-                    w-full flex items-center gap-3 px-4 py-3 rounded-xl font-medium transition-all duration-200 group
+                    w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium transition-all duration-200 group mb-1
+                    ${isActive
+                      ? 'bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white shadow-lg shadow-[#26a8df]/25'
+                      : 'text-[#26a8df] hover:bg-[#26a8df]/10 hover:text-[#26a8df]'
+                    }
+                  `}
+                >
+                  <item.icon className={`w-5 h-5 transition-colors ${isActive ? 'text-white' : 'text-[#26a8df] group-hover:scale-110'}`} />
+                  <span>{item.label}</span>
+                </button>
+              );
+            })}
+
+            {/* Divider */}
+            <div className="my-4 border-t border-[#26a8df]/20 relative">
+              <span className="absolute left-1/2 -translate-x-1/2 -top-2.5 bg-white px-2 text-[10px] font-bold text-[#26a8df]/50 uppercase tracking-widest">
+                Courses
+              </span>
+            </div>
+
+            {/* Course Section */}
+            {[
+              { icon: GraduationCap, label: 'Courses', path: '/admin/courses' },
+              { icon: Calendar, label: 'Batches', path: '/admin/batches' },
+              { icon: ClipboardList, label: 'Enrollments', path: '/admin/enrollments' },
+            ].map((item) => {
+              const isActive = window.location.pathname === item.path;
+              return (
+                <button
+                  key={item.path}
+                  onClick={() => {
+                    navigate(item.path);
+                    setSidebarOpen(false);
+                  }}
+                  className={`
+                    w-full flex items-center gap-3 px-4 py-2.5 rounded-xl font-medium transition-all duration-200 group mb-1
                     ${isActive
                       ? 'bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white shadow-lg shadow-[#26a8df]/25'
                       : 'text-[#26a8df] hover:bg-[#26a8df]/10 hover:text-[#26a8df]'

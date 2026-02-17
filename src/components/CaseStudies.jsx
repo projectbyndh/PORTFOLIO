@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import useCategories from "../hooks/useCategories"
 import useProjects from "../hooks/useProjects"
 import { getImageUrl } from "../utils/getImageUrl"
+import defaultProjectImg from "../assets/aaaa.jpg"
 
 export default function ProjectsShowcase() {
   const { projects, loading: projectsLoading, fetchProjects } = useProjects()
@@ -57,15 +58,7 @@ export default function ProjectsShowcase() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 bg-white/60 backdrop-blur-sm border border-white/40 rounded-full mb-4 sm:mb-6 md:mb-8 shadow-sm"
-          >
-            <Sparkles size={12} className="text-[#26a8df] sm:w-3.5 sm:h-3.5" />
-            <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest text-neutral-600">Portfolio</span>
-          </motion.div>
+
 
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -82,7 +75,7 @@ export default function ProjectsShowcase() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-base sm:text-lg md:text-xl lg:text-2xl text-neutral-600 max-w-4xl mx-auto leading-relaxed px-4"
           >
-            <span className="font-bold text-[#26a8df]">Innovate. Scale. Succeed.</span> — Showcasing world-class solutions we've built for clients across industries.
+            <span className="font-bold text-[#26a8df]">Create. Grow. Succeed.</span> — See the great work we’ve done for businesses in many different fields.
           </motion.p>
         </div>
       </section>
@@ -138,7 +131,7 @@ export default function ProjectsShowcase() {
                       onError={(e) => {
                         console.error("Failed to load image:", getImageUrl(project.image, 'project'));
                         e.target.onerror = null;
-                        e.target.src = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80";
+                        e.target.src = defaultProjectImg;
                       }}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
@@ -204,6 +197,9 @@ export default function ProjectsShowcase() {
             </h2>
             <p className="text-sm sm:text-base md:text-lg lg:text-base text-neutral-600 mb-6 sm:mb-7 md:mb-8 lg:mb-6 max-w-2xl mx-auto px-4">
               Let's bring your vision to life with innovative digital solutions.
+            </p>
+            <p className="text-sm sm:text-base md:text-lg lg:text-base text-neutral-600 mb-6 sm:mb-7 md:mb-8 lg:mb-6 max-w-2xl mx-auto px-4">
+              Email: contact@ndhtechnologies.com | Phone: 9857089898
             </p>
             <Link
               to="/contact"

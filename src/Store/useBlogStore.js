@@ -170,9 +170,9 @@ const useBlogStore = create((set, get) => ({
 
       set((state) => ({
         blogs: state.blogs.map(blog =>
-          blog._id === id ? updatedBlog : blog
+          (blog.id === id || blog._id === id) ? updatedBlog : blog
         ),
-        selectedBlog: state.selectedBlog?._id === id ? updatedBlog : state.selectedBlog,
+        selectedBlog: (state.selectedBlog?.id === id || state.selectedBlog?._id === id) ? updatedBlog : state.selectedBlog,
         loading: false
       }));
 
@@ -194,16 +194,16 @@ const useBlogStore = create((set, get) => ({
       await apiClient(`/blogs/${id}`, { method: 'DELETE' });
 
       set((state) => ({
-        blogs: state.blogs.filter(blog => blog._id !== id),
-        selectedBlog: state.selectedBlog?._id === id ? null : state.selectedBlog,
+        blogs: state.blogs.filter(blog => (blog.id !== id && blog._id !== id)),
+        selectedBlog: (state.selectedBlog?.id === id || state.selectedBlog?._id === id) ? null : state.selectedBlog,
         loading: false
       }));
 
       return true;
     } catch {
       set((state) => ({
-        blogs: state.blogs.filter(blog => blog._id !== id),
-        selectedBlog: state.selectedBlog?._id === id ? null : state.selectedBlog,
+        blogs: state.blogs.filter(blog => (blog.id !== id && blog._id !== id)),
+        selectedBlog: (state.selectedBlog?.id === id || state.selectedBlog?._id === id) ? null : state.selectedBlog,
         loading: false
       }));
 

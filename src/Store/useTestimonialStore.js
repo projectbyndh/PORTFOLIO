@@ -21,14 +21,14 @@ const useTestimonialStore = create(
             updateTestimonial: (updatedTestimonial) =>
                 set((state) => ({
                     testimonials: state.testimonials.map((t) =>
-                        t._id === updatedTestimonial._id ? updatedTestimonial : t
+                        (t.id || t._id) === (updatedTestimonial.id || updatedTestimonial._id) ? updatedTestimonial : t
                     ),
                     error: null
                 })),
 
             removeTestimonial: (id) =>
                 set((state) => ({
-                    testimonials: state.testimonials.filter((t) => t._id !== id),
+                    testimonials: state.testimonials.filter((t) => (t.id || t._id) !== id),
                     error: null
                 })),
 

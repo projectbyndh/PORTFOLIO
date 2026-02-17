@@ -1,11 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-
-// Hardcoded admin credentials
-const ADMIN_CREDENTIALS = {
-  email: "admin.ndh@gmail.com",
-  password: "Manigram@ndh@123#"
-};
+import apiClient from '../api/apiClient';
 
 const useAuthStore = create(
   persist(
@@ -16,16 +11,15 @@ const useAuthStore = create(
       token: null,
 
       // Actions
-      login: async (username, password) => {
+      login: async (email, password) => {
         try {
-          // Validate against hardcoded credentials
-          if (username === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
-            const token = btoa(`${username}:${Date.now()}`); // Generate a simple token
-            const user = {
-              email: username,
-              name: 'NDH Admin',
-              role: 'admin'
-            };
+          const response = await apiClient('/auth/login', {
+            method: 'POST',
+            body: { email, password }
+          });
+
+          if (response.success) {
+            const { token, user } = response;
 
             localStorage.setItem('token', token);
             localStorage.setItem('user', JSON.stringify(user));
@@ -37,12 +31,12 @@ const useAuthStore = create(
             });
             return { success: true };
           }
-          return { success: false, message: 'Invalid email or password' };
+          return { success: false, message: response.message || 'Login failed' };
         } catch (error) {
           console.error('Login error:', error);
           return {
             success: false,
-            message: 'Login failed. Please try again.'
+            message: error.data?.message || 'Login failed. Please check your credentials.'
           };
         }
       },
@@ -58,9 +52,9 @@ const useAuthStore = create(
           token: null,
         });
 
-        // Optional: Redirect to login
+        // Redirect to login if on admin page
         if (window.location.pathname.includes('admin')) {
-          window.location.href = '/ndh-admin/login';
+          window.location.href = '/admin/login';
         }
       },
 
@@ -69,46 +63,36 @@ const useAuthStore = create(
         return get().isAuthenticated;
       },
 
-      // Verify token from localStorage (synchronous check)
+      // Verify token with backend
       verifyToken: async () => {
         const token = localStorage.getItem('token');
-        const userStr = localStorage.getItem('user');
-        
-        if (!token || !userStr) {
-          set({
-            isAuthenticated: false,
-            user: null,
-            token: null,
-          });
-          return { success: false, message: 'No token found' };
+        if (!token) {
+          set({ isAuthenticated: false, user: null, token: null });
+          return { success: false };
         }
 
         try {
-          const user = JSON.parse(userStr);
-          set({
-            isAuthenticated: true,
-            user: user,
-            token: token,
+          const response = await apiClient('/auth/verify', {
+            method: 'POST',
+            body: {} // Send empty body to prevent read errors
           });
-          return { success: true, user: user };
+          if (response.success) {
+            // Token is valid
+            set({ isAuthenticated: true });
+            return { success: true };
+          }
         } catch (error) {
-          // Token verification failed, clear it
-          localStorage.removeItem('token');
-          localStorage.removeItem('user');
-          set({
-            isAuthenticated: false,
-            user: null,
-            token: null,
-          });
-          return { success: false, message: 'Invalid token' };
+          // Verification failed
+          get().logout();
+          return { success: false };
         }
       },
 
-      // Initialize auth state from localStorage
+      // Initialize auth state from localStorage (Optimistic)
       initializeAuth: () => {
         const token = localStorage.getItem('token');
         const userStr = localStorage.getItem('user');
-        
+
         if (token && userStr) {
           try {
             const user = JSON.parse(userStr);
@@ -120,6 +104,7 @@ const useAuthStore = create(
           } catch (error) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
+            set({ isAuthenticated: false, user: null, token: null });
           }
         }
       },
@@ -127,7 +112,15 @@ const useAuthStore = create(
     {
       name: 'ndh-auth-storage', // unique name for localStorage key
       storage: {
-        getItem: (name) => localStorage.getItem(name) ? JSON.parse(localStorage.getItem(name)) : null,
+        getItem: (name) => {
+          const str = localStorage.getItem(name);
+          if (!str) return null;
+          try {
+            return JSON.parse(str);
+          } catch {
+            return null;
+          }
+        },
         setItem: (name, value) => localStorage.setItem(name, JSON.stringify(value)),
         removeItem: (name) => localStorage.removeItem(name),
       },

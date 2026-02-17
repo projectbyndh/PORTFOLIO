@@ -126,7 +126,7 @@ export default function Testimonials() {
           <div className="inline-block relative">
             <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#26a8df]/20 animate-pulse-slow" />
             <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#26a8df]/20 animate-pulse-slow" />
-            <h2 className="text-4xl md:text-5xl font-bold text-brand-primary">
+            <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
               Client Testimonials
             </h2>
           </div>
@@ -152,8 +152,21 @@ export default function Testimonials() {
                 className={`bg-white/70 backdrop-blur-sm rounded-lg sm:rounded-xl p-4 sm:p-5 md:p-6 shadow-lg border border-[#26a8df]/10 transition-all duration-500 hover:shadow-xl hover:bg-white/90 ${index === 0 ? "md:transform md:scale-105 md:shadow-xl" : ""
                   }`}
               >
-                <div className="flex items-center mb-3 sm:mb-4">
-
+                <div className="flex items-center mb-3 sm:mb-4 gap-3">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-[#26a8df]/20 shadow-sm flex-shrink-0">
+                    {testimonial.image ? (
+                      <img
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => { e.target.src = 'https://via.placeholder.com/100'; }}
+                      />
+                    ) : (
+                      <div className="w-full h-full bg-[#26a8df]/10 flex items-center justify-center text-[#26a8df] font-bold">
+                        {testimonial.name?.charAt(0)}
+                      </div>
+                    )}
+                  </div>
                   <div>
                     <h3 className="text-sm sm:text-base font-black text-[#26a8df]">{testimonial.name}</h3>
                     <p className="text-xs sm:text-sm text-neutral-600 font-semibold">{testimonial.position}</p>

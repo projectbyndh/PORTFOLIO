@@ -166,16 +166,14 @@ function Blogsection() {
             <span className="text-sm font-semibold text-[#26a8df] tracking-wide">LATEST INSIGHTS</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 sm:mb-8 leading-tight" id="blog-heading">
+          <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight" id="blog-heading">
             <span className="bg-linear-to-r from-[#26a8df] via-[#26a8df] to-[#26a8df] bg-clip-text text-transparent">
-              Our Blog
+              Explore Our Latest Blogs
             </span>
           </h2>
 
-          <p className="text-base sm:text-lg md:text-xl text-[#26a8df]/70 max-w-2xl sm:max-w-3xl mx-auto leading-relaxed font-light">
-            Discover insights, tutorials, and industry trends from our team of experts.
-            <br className="hidden md:block" />
-            Stay ahead with the latest in technology and development.
+          <p className="text-sm xs:text-base sm:text-lg md:text-xl text-[#26a8df]/80 max-w-xl sm:max-w-2xl mx-auto leading-relaxed font-normal">
+            Welcome to our knowledge hub! Dive into practical tips, inspiring stories, and the newest trends in tech and business. Whether you’re a curious learner or a seasoned pro, you’ll find something fresh every week.
           </p>
 
 
@@ -227,62 +225,72 @@ function Blogsection() {
                     style={{ width: slidesToShow === 1 ? '100%' : `${100 / slidesToShow}%` }}
                   >
                     <div
-                      className="group h-full bg-white/70 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden hover:-translate-y-2 sm:hover:-translate-y-3 rounded-xl sm:rounded-2xl relative"
+                      className="group h-full bg-white backdrop-blur-sm border border-neutral-200 shadow-lg hover:shadow-xl transition-all duration-500 overflow-hidden hover:-translate-y-2 sm:hover:-translate-y-3 rounded-xl sm:rounded-2xl relative"
                     >
                       {/* Card glow effect */}
-                      <div className="absolute inset-0 bg-linear-to-r from-[#26a8df]/0 via-[#26a8df]/5 to-[#26a8df]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl sm:rounded-2xl"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#26a8df]/0 via-[#26a8df]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl sm:rounded-2xl"></div>
 
                       {/* Image container */}
-                      <div className="relative overflow-hidden rounded-t-xl sm:rounded-t-2xl">
+                      <div className="relative overflow-hidden rounded-t-xl sm:rounded-t-2xl group-hover:ring-2 ring-[#26a8df]/20 transition-all duration-300">
                         <img
                           src={blog.image || "/placeholder.svg?height=280&width=400"}
                           alt={`Featured image for ${blog.title}`}
-                          className="w-full h-32 sm:h-44 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"
+                          className="w-full h-32 sm:h-44 md:h-56 object-cover transition-transform duration-700 group-hover:scale-110"
                         />
+                        {/* Gradient overlay on hover */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        
+                        {/* Category badge */}
+                        <div className="absolute top-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm rounded-full text-[10px] font-bold text-neutral-700 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          Article
+                        </div>
                       </div>
 
                       {/* Content */}
                       <div className="p-3 sm:p-5 md:p-7 relative font-sans">
                         {/* Meta information */}
-                        <div className="flex flex-wrap items-center gap-2 sm:gap-3 md:gap-4 text-[10px] sm:text-xs font-medium text-[#26a8df]/60 mb-2 sm:mb-3 md:mb-4">
-                          <div className="flex items-center gap-1">
+                        <div className="flex flex-wrap items-center gap-3 sm:gap-4 text-[10px] sm:text-xs font-medium text-neutral-400 mb-3 sm:mb-4">
+                          <div className="flex items-center gap-1.5 bg-neutral-50 px-2.5 py-1 rounded-full">
                             <Calendar className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                             <span>{formatDate(blog)}</span>
                           </div>
-                          <div className="flex items-center gap-1">
+                          <div className="flex items-center gap-1.5 bg-neutral-50 px-2.5 py-1 rounded-full">
                             <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                             <span>{getReadTime(blog.content || blog.description || '')} min read</span>
                           </div>
                         </div>
 
                         {/* Title */}
-                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-[#26a8df] mb-2 sm:mb-3 leading-tight group-hover:text-[#26a8df] transition-colors duration-300 line-clamp-2">
+                        <h3 className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-neutral-800 mb-2 sm:mb-3 leading-tight group-hover:text-[#26a8df] transition-colors duration-300 line-clamp-2">
                           {blog.title}
                         </h3>
 
                         {/* Content preview */}
-                        <p className="text-[#26a8df]/70 mb-3 sm:mb-4 md:mb-5 line-clamp-2 sm:line-clamp-3 leading-relaxed text-xs sm:text-sm">
+                        <p className="text-neutral-500 mb-3 sm:mb-4 md:mb-5 line-clamp-2 sm:line-clamp-3 leading-relaxed text-xs sm:text-sm font-normal">
                           {truncateContent(blog.content || blog.description || '')}
                         </p>
 
                         {/* Footer */}
-                        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-[#26a8df]/10">
+                        <div className="flex items-center justify-between pt-4 sm:pt-5 border-t border-neutral-200/50">
                           <div className="flex items-center gap-2 sm:gap-3">
-                            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-full bg-linear-to-r from-[#26a8df] to-[#26a8df] flex items-center justify-center shadow-md">
-                              <User className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
+                            <div className="relative">
+                              <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-[#26a8df]/20 to-[#26a8df]/10 flex items-center justify-center border border-[#26a8df]/20 group-hover:border-[#26a8df]/40 transition-all duration-300">
+                                <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#26a8df]" />
+                              </div>
+                              <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-400 rounded-full border-2 border-white"></div>
                             </div>
                             <div>
-                              <div className="text-[10px] sm:text-xs font-bold text-[#26a8df]">{blog.author || 'NDH Team'}</div>
-                              <div className="text-[8px] sm:text-[10px] text-[#26a8df] font-medium tracking-wide">AUTHOR</div>
+                              <div className="text-[9px] sm:text-[10px] text-neutral-400 font-medium tracking-wide">Author</div>
                             </div>
                           </div>
 
                           <Link
                             to={`/blog-details?id=${blog.id || blog._id}`}
-                            className="group/link inline-flex items-center gap-1.5 text-[#26a8df] hover:text-[#26a8df] font-bold text-xs sm:text-xs md:text-xs lg:text-[11px] uppercase tracking-wider transition-all duration-300"
+                            className="group/link relative inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-neutral-50 to-neutral-100 hover:from-[#26a8df] hover:to-[#26a8df] border border-neutral-200 hover:border-[#26a8df] rounded-full font-semibold text-[11px] sm:text-xs text-neutral-600 hover:text-white transition-all duration-300 shadow-sm hover:shadow-md overflow-hidden"
                           >
-                            <span>Read</span>
-                            <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 lg:w-3 lg:h-3 group-hover/link:translate-x-1 transition-transform duration-300" />
+                            <span className="relative z-10">Continue Reading</span>
+                            <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 relative z-10 group-hover/link:translate-x-0.5 transition-transform duration-300" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-[#26a8df]/0 via-[#26a8df]/10 to-[#26a8df]/0 opacity-0 group-hover/link:opacity-100 transition-opacity duration-300"></div>
                           </Link>
                         </div>
                       </div>
