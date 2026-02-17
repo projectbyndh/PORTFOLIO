@@ -12,11 +12,10 @@ function Refer() {
   const { members: teams } = useTeamStructureSimplified();
 
   const stats = useMemo(() => [
-    { icon: Users, value: partners.length > 5 ? `${partners.length}+` : partners.length || '50+', label: 'Clients' },
-    { icon: Award, value: projects.length > 5 ? `${projects.length}+` : projects.length || '50+', label: 'Projects Delivered' },
-    { icon: Zap, value: '99%', label: 'Client Satisfaction' },
+    { icon: Users, value: '13+', label: 'Clients' },
+    { icon: Award, value: '50+', label: 'Projects Delivered' },
     { icon: Users2, value: teams.length > 5 ? `${teams.length}+` : teams.length || '15+', label: 'Team Members' },
-  ], [partners.length, projects.length, teams.length]);
+  ], [teams.length]);
 
   const benefits = [
     'Free Consultation & Strategy Session',
@@ -36,13 +35,13 @@ function Refer() {
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#26a8df]/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-3 sm:px-6 relative z-10">
         {/* Stats Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-10 sm:mb-12 md:mb-14 lg:mb-16"
+          className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 mb-10 sm:mb-12 md:mb-14 lg:mb-16"
         >
           {stats.map((stat, index) => (
             <motion.div

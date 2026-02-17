@@ -104,9 +104,9 @@ export default function CourseDetail() {
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
                                     className={`px-6 py-4 font-semibold text-sm uppercase tracking-wide border-b-2 transition-colors whitespace-nowrap ${activeTab === tab
-                                        ? 'border-[#26a8df] text-[#26a8df]'
-                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                                        }`}
+                                    ? 'border-[#26a8df] text-[#26a8df]'
+                                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                    }`}
                                 >
                                     {tab}
                                 </button>
@@ -136,7 +136,7 @@ export default function CourseDetail() {
                                 </div>
 
                                 <div className="bg-gradient-to-br from-[#26a8df]/5 to-blue-50/50 rounded-2xl p-8 border border-[#26a8df]/10">
-                                    <h2 className="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-[#26a8df] pl-4">Who Is This For?</h2>
+                                    <h2 className="text-2xl font-bold text-gray-800 mb-6 border-l-4 border-[#26a8df] pl-4">Is This Course Right for You?</h2>
                                     <p className="text-gray-600 mb-4">
                                         {typeof course.targetAudience === 'string' ? course.targetAudience : 'Anyone look to upskill.'}
                                     </p>

@@ -60,7 +60,7 @@ export default function Courses() {
                         />
                         <div className="absolute inset-y-0 right-2 flex items-center">
                             <button className="p-2 bg-[#26a8df] text-white rounded-xl hover:bg-[#2090c0] transition-colors shadow-lg shadow-[#26a8df]/25">
-                                <Filter size={20} />
+                                <Search size={20} />
                             </button>
                         </div>
                     </div>

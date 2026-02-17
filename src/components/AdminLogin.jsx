@@ -12,7 +12,6 @@ export default function AdminLogin() {
     password: '',
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
@@ -35,13 +34,11 @@ export default function AdminLogin() {
       ...formData,
       [e.target.name]: e.target.value,
     });
-    setError('');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setError('');
 
     try {
       const result = await login(formData.email, formData.password);
@@ -50,11 +47,9 @@ export default function AdminLogin() {
         // Redirect to dashboard with replace to prevent going back to login
         navigate('/admin/dashboard', { replace: true });
       } else {
-        setError(result.message || 'Invalid credentials');
         setIsLoading(false);
       }
     } catch (error) {
-      setError('Login failed. Please try again.');
       setIsLoading(false);
     }
   };
@@ -62,7 +57,7 @@ export default function AdminLogin() {
   // Show loading while checking authentication
   if (isCheckingAuth) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-[#F5FAFF] via-white to-[#F0F7FF] flex items-center justify-center">
+      <div className="min-h-screen bg-linear-to-br from-[#F5FAFF] via-white to-[#F0F7FF] flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-[#26a8df] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
           <p className="text-[#26a8df] font-semibold">Checking authentication...</p>
@@ -155,13 +150,6 @@ export default function AdminLogin() {
                 </button>
               </div>
             </div>
-
-            {/* Error Message */}
-            {error && (
-              <div className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 sm:px-4 sm:py-3 rounded-lg text-xs sm:text-sm">
-                {error}
-              </div>
-            )}
 
             {/* Submit Button */}
             <button
