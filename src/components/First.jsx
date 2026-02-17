@@ -71,7 +71,7 @@ const HeroSection = () => {
       subtitle: '35+ Regions • Anycast Edge',
       description:
         'Deploy instantly to our worldwide mesh of high-performance nodes. We optimize routing so your users get the fastest possible experience.',
-      features: ['Anycast Network', 'Smart Routing', 'Instant Purge', 'Edge Functions'],
+      features: ['Anycast Network', 'Smart Routing'],
     },
     {
       id: 'security',
@@ -82,7 +82,7 @@ const HeroSection = () => {
       subtitle: 'Zero-Trust by Default',
       description:
         'Built-in protection against DDoS, bots, and exploits — with automatic SSL, powerful WAF, and real-time visibility, no performance trade-offs.',
-      features: ['WAF + Rate Limiting', 'DDoS Mitigation', 'Auto SSL/TLS', 'Audit Logs'],
+      features: ['WAF + Rate Limiting', 'DDoS Mitigation'],
     },
     {
       id: 'performance',
@@ -93,7 +93,7 @@ const HeroSection = () => {
       subtitle: 'Sub-30 ms Global Latency',
       description:
         'Optimized caching, image optimization, HTTP/3, Brotli — content is served from the closest possible point to every user.',
-      features: ['Image Optimization', 'Brotli Compression', 'HTTP/3 & QUIC', 'Smart Invalidation'],
+      features: ['Image Optimization', 'Brotli Compression'],
     },
   ];
 
@@ -149,13 +149,7 @@ const HeroSection = () => {
                     transition={{ duration: 0.5 }}
                     className="max-w-2xl"
                   >
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-sm border border-slate-200/70 shadow-sm mb-6">
-                      <span className="relative flex h-2.5 w-2.5">
-                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-70" />
-                        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500" />
-                      </span>
-                      <span className="text-sm font-medium text-green-700">All systems operational</span>
-                    </div>
+
 
                     <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight text-slate-900">
                       Scale your <br />
