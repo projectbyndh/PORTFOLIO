@@ -17,7 +17,7 @@ export default function OurTeams() {
     const fetchPublicTeam = async () => {
       try {
         setLoading(true)
-        const response = await axiosInstance.get('/api/team-structure/structure/public')
+        const response = await axiosInstance.get('/team-structure/structure/public')
         if (response.data.success) {
           setTeamData(response.data.data)
         }

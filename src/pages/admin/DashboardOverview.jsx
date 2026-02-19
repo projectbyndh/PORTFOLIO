@@ -65,7 +65,7 @@ const DashboardOverview = () => {
 
         // Fetch career applications
         try {
-          const appsResponse = await axios.get('/api/career-applications');
+          const appsResponse = await axios.get('/career-applications');
           if (appsResponse.data.success) {
             setApplications(appsResponse.data.data || []);
           }
@@ -76,7 +76,7 @@ const DashboardOverview = () => {
 
         // Fetch projects
         try {
-          const projectsResponse = await axios.get('/api/projects');
+          const projectsResponse = await axios.get('/projects');
           if (projectsResponse.data.success) {
             setProjects(projectsResponse.data.data || []);
           }

@@ -15,7 +15,7 @@ const useProjects = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get('/api/projects', {
+      const response = await axios.get('/projects', {
         timeout: 5000, // 5 second timeout
       });
       if (response.data.success) {
@@ -101,7 +101,7 @@ const useProjects = () => {
         formData.append('image', projectData.image);
       }
 
-      const response = await axios.post('/api/projects', formData, {
+      const response = await axios.post('/projects', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

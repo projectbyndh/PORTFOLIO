@@ -1,7 +1,9 @@
 import { ofetch } from 'ofetch';
 
+const BASE_API = (import.meta && import.meta.env && import.meta.env.VITE_API_BASE) || 'https://apit.ndhtechnologies.com/api';
+
 const apiClient = ofetch.create({
-    baseURL: 'https://apit.ndhtechnologies.com/api',
+    baseURL: BASE_API,
     retry: 1,
     onRequest({ options }) {
         const token = localStorage.getItem('token');

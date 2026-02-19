@@ -15,9 +15,9 @@ const useTeamStructure = () => {
         setError(null);
         try {
             const [layersRes, rolesRes, membersRes] = await Promise.all([
-                axios.get('/api/team-structure/layers').catch(() => ({ data: { success: false, data: [] } })),
-                axios.get('/api/team-structure/roles').catch(() => ({ data: { success: false, data: [] } })),
-                axios.get('/api/team-structure/members').catch(() => ({ data: { success: false, data: [] } }))
+                axios.get('/team-structure/layers').catch(() => ({ data: { success: false, data: [] } })),
+                axios.get('/team-structure/roles').catch(() => ({ data: { success: false, data: [] } })),
+                axios.get('/team-structure/members').catch(() => ({ data: { success: false, data: [] } }))
             ]);
 
             if (layersRes.data?.success) setLayers(layersRes.data.data);
@@ -39,7 +39,7 @@ const useTeamStructure = () => {
     // Fetch the public nested team structure (for public-facing pages)
     const fetchPublicStructure = useCallback(async () => {
         try {
-            const res = await axios.get('/api/team-structure/structure/public');
+            const res = await axios.get('/team-structure/structure/public');
             return res.data?.data || [];
         } catch (err) {
             console.error('Failed to fetch public structure:', err);
@@ -50,7 +50,7 @@ const useTeamStructure = () => {
     // --- Layer CRUD ---
     const createLayer = async (formData) => {
         try {
-            await axios.post('/api/team-structure/layers', formData, {
+            await axios.post('/team-structure/layers', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             toast.success('Layer created');
@@ -88,7 +88,7 @@ const useTeamStructure = () => {
     // --- Role CRUD ---
     const createRole = async (data) => {
         try {
-            await axios.post('/api/team-structure/roles', data);
+            await axios.post('/team-structure/roles', data);
             toast.success('Role created');
             await fetchData();
         } catch (err) {
@@ -122,7 +122,7 @@ const useTeamStructure = () => {
     // --- Member CRUD ---
     const createMember = async (formData) => {
         try {
-            await axios.post('/api/team-structure/members', formData, {
+            await axios.post('/team-structure/members', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             });
             toast.success('Member added');

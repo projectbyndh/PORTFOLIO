@@ -45,7 +45,7 @@ axiosInstance.interceptors.response.use(
   },
   (error) => {
     // Handle image upload errors silently - they're expected when backend isn't set up
-    if (error.config?.url?.includes('/api/upload/image')) {
+    if (error.config?.url?.includes('/upload/image')) {
       return Promise.reject(error);
     }
 

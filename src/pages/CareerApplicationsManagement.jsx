@@ -18,7 +18,7 @@ export default function CareerApplicationsManagement() {
     const fetchApplications = async () => {
         try {
             setLoading(true);
-            const response = await axios.get('/api/career-applications');
+            const response = await axios.get('/career-applications');
             if (response.data.success) {
                 setApplications(response.data.data);
             }
@@ -60,7 +60,7 @@ export default function CareerApplicationsManagement() {
 
     const handleExportExcel = async () => {
         try {
-            const response = await axios.get('/api/career-applications/export/excel', {
+            const response = await axios.get('/career-applications/export/excel', {
                 responseType: 'blob'
             });
 

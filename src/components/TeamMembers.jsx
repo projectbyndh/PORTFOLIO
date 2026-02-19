@@ -14,7 +14,7 @@ export default function TeamMembers() {
     const fetchTeamStructure = async () => {
       try {
         setLoading(true);
-        const response = await axiosInstance.get('/api/team-structure/structure/public');
+        const response = await axiosInstance.get('/team-structure/structure/public');
         if (response.data.success) {
           setLayers(response.data.data);
         }

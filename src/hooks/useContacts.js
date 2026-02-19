@@ -3,7 +3,7 @@ import axios from '../api/axios';
 export const useContacts = () => {
   const fetchContacts = async () => {
     try {
-      const response = await axios.get('/api/contacts');
+      const response = await axios.get('/contacts');
       return response.data;
     } catch (error) {
       console.error('Error fetching contacts:', error);
@@ -13,7 +13,7 @@ export const useContacts = () => {
 
   const createContact = async (contactData) => {
     try {
-      const response = await axios.post('/api/contacts', contactData);
+      const response = await axios.post('/contacts', contactData);
       return response.data;
     } catch (error) {
       console.error('Error creating contact:', error);

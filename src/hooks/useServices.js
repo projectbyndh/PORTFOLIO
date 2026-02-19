@@ -12,7 +12,7 @@ const useServices = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get('/api/services', {
+      const response = await axios.get('/services', {
         timeout: 5000, // 5 second timeout
       });
       if (response.data.success) {
@@ -71,7 +71,7 @@ const useServices = () => {
         formData.append('logo', serviceData.logo);
       }
 
-      const response = await axios.post('/api/services', formData, {
+      const response = await axios.post('/services', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

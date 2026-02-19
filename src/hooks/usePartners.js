@@ -27,7 +27,7 @@ const usePartners = () => {
     try {
       setLoading(true);
       clearError();
-      const response = await axios.get('/api/partners', {
+      const response = await axios.get('/partners', {
         timeout: 5000, // 5 second timeout
       });
       if (response.data.success) {
@@ -84,7 +84,7 @@ const usePartners = () => {
         formData.append('image', partnerData.imageFile);
       } else if (partnerData.image) {
         // If it's already a URL, send as JSON instead
-        const response = await axios.post('/api/partners', {
+        const response = await axios.post('/partners', {
           name: partnerData.name,
           image: partnerData.image
         }, {
@@ -102,7 +102,7 @@ const usePartners = () => {
         return;
       }
 
-      const response = await axios.post('/api/partners', formData, {
+      const response = await axios.post('/partners', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -213,7 +213,7 @@ const usePartners = () => {
       const formData = new FormData();
       formData.append('image', file);
 
-      const response = await axios.post('/api/upload', formData, {
+      const response = await axios.post('/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

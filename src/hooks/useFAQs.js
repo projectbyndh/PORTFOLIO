@@ -12,7 +12,7 @@ const useFAQs = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get('/api/faqs', {
+      const response = await axios.get('/faqs', {
         timeout: 5000, // 5 second timeout
       });
       if (response.data.success) {
@@ -60,7 +60,7 @@ const useFAQs = () => {
       setLoading(true);
       setError(null);
 
-      const response = await axios.post('/api/faqs', faqData, {
+      const response = await axios.post('/faqs', faqData, {
         headers: {
           'Content-Type': 'application/json',
         },

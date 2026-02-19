@@ -14,7 +14,7 @@ export default function FAQSection() {
 
     const fetchFAQs = async () => {
         try {
-            const response = await axios.get('/api/faqs');
+            const response = await axios.get('/faqs');
             if (response.data.success) {
                 setFaqs(response.data.data);
             }

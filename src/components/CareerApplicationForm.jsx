@@ -63,7 +63,7 @@ export default function CareerApplicationForm({ career, onClose }) {
       data.append('coverLetter', formData.coverLetter);
       data.append('cv', cvFile);
 
-      const response = await axios.post('/api/career-applications', data);
+      const response = await axios.post('/career-applications', data);
 
       if (response.data.success) {
         setSuccess(true);

@@ -13,7 +13,7 @@ const useCategories = () => {
 
         try {
             setLoading(true);
-            const response = await axios.get('/api/categories');
+            const response = await axios.get('/categories');
             if (response.data.success) {
                 setCategories(response.data.data);
                 fetchedRef.current = true;
@@ -33,7 +33,7 @@ const useCategories = () => {
     const createCategory = async (categoryData) => {
         try {
             setLoading(true);
-            const response = await axios.post('/api/categories', categoryData);
+            const response = await axios.post('/categories', categoryData);
             if (response.data.success) {
                 setCategories(prev => [...prev, response.data.data]);
                 toast.success('Category created');

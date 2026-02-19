@@ -5,16 +5,17 @@ import fallback from "../assets/logo.png";
 
 export default function Logo({ className = "h-8 w-auto", title = "NDH Technologies" }) {
   const onError = (e) => {
-    e.currentTarget.src = fallback;
+      e.currentTarget.src = fallback;
+      try { e.currentTarget.srcset = ''; } catch (err) { /* ignore */ }
   };
-  return (
-    <img
-      src={logo2x}
-      srcSet={`${logo1x} 1x, ${logo2x} 2x`}
-      alt={title}
-      className={className}
-      onError={onError}
-      loading="eager"
-    />
-  );
+    return (
+      <img
+        src={logo1x}
+        srcSet={`${logo1x} 1x, ${logo2x} 2x`}
+        alt={title}
+        className={className}
+        onError={onError}
+        loading="eager"
+      />
+    );
 }

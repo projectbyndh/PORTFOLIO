@@ -12,7 +12,7 @@ const useTeams = () => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get('/api/team', {
+      const response = await axios.get('/team', {
         timeout: 5000, // 5 second timeout
       });
       if (response.data.success) {
@@ -59,7 +59,7 @@ const useTeams = () => {
       setLoading(true);
       setError(null);
 
-      const response = await axios.post('/api/team', teamData, {
+      const response = await axios.post('/team', teamData, {
         timeout: 10000, // 10 second timeout
       });
 

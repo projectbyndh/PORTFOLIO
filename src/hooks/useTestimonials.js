@@ -26,7 +26,7 @@ const useTestimonials = () => {
             clearError();
 
             const queryParams = new URLSearchParams(filters).toString();
-            const url = `/api/testimonials${queryParams ? `?${queryParams}` : ''}`;
+            const url = `/testimonials${queryParams ? `?${queryParams}` : ''}`;
 
             const response = await axios.get(url, {
                 timeout: 10000,
@@ -52,7 +52,7 @@ const useTestimonials = () => {
         try {
             setLoading(true);
             clearError();
-            const response = await axios.get(`/api/testimonials/${id}`, {
+            const response = await axios.get(`/testimonials/${id}`, {
                 timeout: 10000,
             });
             if (response.data.success) {
@@ -88,7 +88,7 @@ const useTestimonials = () => {
                 formData.append('image', testimonialData.image);
             }
 
-            const response = await axios.post('/api/testimonials', formData, {
+            const response = await axios.post('/testimonials', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -128,7 +128,7 @@ const useTestimonials = () => {
                 formData.append('image', testimonialData.imageFile);
             }
 
-            const response = await axios.put(`/api/testimonials/${id}`, formData, {
+            const response = await axios.put(`/testimonials/${id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -155,7 +155,7 @@ const useTestimonials = () => {
         try {
             setLoading(true);
             clearError();
-            const response = await axios.delete(`/api/testimonials/${id}`, {
+            const response = await axios.delete(`/testimonials/${id}`, {
                 timeout: 10000,
             });
             if (response.data.success) {
