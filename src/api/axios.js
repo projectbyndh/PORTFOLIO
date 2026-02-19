@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with base configuration
 const axiosInstance = axios.create({
-  baseURL: 'https://apit.ndhtechnologies.com/api-docs/',
+  baseURL: 'https://apit.ndhtechnologies.com/api',
   timeout: 30000,
   headers: {
     'Content-Type': 'application/json',

@@ -199,6 +199,23 @@ function IndustryContext() {
     <section ref={ref} className="py-16 md:py-24 lg:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
+        {/* About Us Intro */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12 md:mb-16"
+        >
+          <span className="inline-block text-[#26a8df] font-bold uppercase tracking-widest text-xs px-4 py-1.5 rounded-full bg-[#26a8df]/10 mb-4">
+            About Us
+          </span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 mb-5">
+            Nepal <span className="text-[#26a8df]">Digital Heights</span>
+          </h2>
+          <p className="text-base md:text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Nepal Digital Heights (NDH) is a forward-thinking digital agency based in Nepal, dedicated to empowering businesses through cutting-edge technology solutions. We specialize in web development, mobile applications, digital marketing, and cloud services — delivering end-to-end digital experiences tailored to your unique goals. Founded with a mission to bridge the gap between local ambition and global standards, our team of passionate professionals works tirelessly to transform ideas into impactful digital realities. Whether you're a startup finding your footing or an established enterprise looking to scale, NDH is your trusted partner every step of the way.
+          </p>
+        </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
           {[

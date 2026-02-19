@@ -1,7 +1,7 @@
 import { ofetch } from 'ofetch';
 
 const apiClient = ofetch.create({
-    baseURL: 'http://localhost:5000/api',
+    baseURL: 'https://apit.ndhtechnologies.com/api',
     retry: 1,
     onRequest({ options }) {
         const token = localStorage.getItem('token');
