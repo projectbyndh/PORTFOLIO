@@ -2,470 +2,283 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import {
-  ArrowRight,
   Globe,
   Shield,
   Zap,
-  X,
   CheckCircle2,
   RefreshCw,
-  ChevronLeft,
+  X,
+  ArrowRight,
+  Wind
 } from 'lucide-react';
 
-// ── 1. Subtle Background ────────────────────────────────────────────────
-const AnimatedGrid = () => (
-  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[#f9fafb]">
-    {/* Very soft gradient */}
-    <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-slate-50/70" />
-    {/* Large, faint architectural grid */}
+// ── 1. Sophisticated Blueprint Background ────────────────────────────
+const BlueprintBackground = () => (
+  <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none bg-[#f8fafc]">
+    {/* Grid System */}
     <div
-      className="absolute inset-0 opacity-[0.07]"
+      className="absolute inset-0 opacity-[0.25]"
       style={{
         backgroundImage: `
-          linear-gradient(to right, #cbd5e1 1px, transparent 1px),
-          linear-gradient(to bottom, #cbd5e1 1px, transparent 1px)
+          linear-gradient(to right, #26a8df 1px, transparent 1px),
+          linear-gradient(to bottom, #26a8df 1px, transparent 1px)
         `,
-        backgroundSize: '7rem 7rem',
-      }}
-    />
-    {/* Single gentle static glow (no pulsing) */}
-    <div className="absolute -top-40 -right-40 w-[1000px] h-[1000px] bg-blue-50/20 rounded-full blur-3xl" />
-    {/* Subtle vertical rhythm lines */}
-    <div
-      className="absolute inset-0 opacity-60"
-      style={{
-        backgroundImage: `repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0 1px, transparent 1px 24px)`,
-        mixBlendMode: 'overlay',
-        opacity: 0.04,
+        backgroundSize: '60px 60px',
+        maskImage: 'radial-gradient(circle at center, black, transparent 90%)'
       }}
     />
 
-    {/* Gentle diagonal weave for texture */}
-    <div
-      className="absolute inset-0"
-      style={{
-        backgroundImage: `repeating-linear-gradient(135deg, rgba(0,0,0,0.02) 0 1px, transparent 1px 48px)`,
-        opacity: 0.03,
-      }}
-    />
+    {/* Velocity Wind Particles */}
+    {[...Array(6)].map((_, i) => (
+      <motion.div
+        key={i}
+        initial={{ x: '120%', y: `${18 * i + 10}%` }}
+        animate={{ x: '-120%' }}
+        transition={{
+          duration: 1.5 + Math.random(),
+          repeat: Infinity,
+          ease: "linear",
+          delay: i * 0.3
+        }}
+        className="absolute h-px w-40 bg-gradient-to-r from-transparent via-[#26a8df40] to-transparent"
+      />
+    ))}
   </div>
 );
 
-// ── 2. Main Hero ────────────────────────────────────────────────────────
+// ── 2. The Hero Section ──────────────────────────────────────────────
 const HeroSection = () => {
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 1024);
-
-  useEffect(() => {
-    const handleResize = () => setIsDesktop(window.innerWidth >= 1024);
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  const [rotation, setRotation] = useState(0);
+  const [selectedId, setSelectedId] = useState(null);
+  const [autoRotate, setAutoRotate] = useState(true);
 
   const cards = [
     {
       id: 'global',
-      icon: Globe,
-      color: '#2563eb',
+      icon: <Globe size={24} />,
       image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop',
-      title: 'Global Infrastructure',
-      subtitle: '35+ Regions • Anycast Edge',
-      description:
-        'Deploy instantly to our worldwide mesh of high-performance nodes. We optimize routing so your users get the fastest possible experience.',
-      features: ['Anycast Network', 'Smart Routing'],
+      title: 'Global Mesh',
+      subtitle: 'Edge Infrastructure',
+      description: 'Distributed network architecture providing sub-30ms latency across 120+ global nodes.',
+      features: ['Anycast Routing', 'Edge Runtime', 'Geo-Optimization'],
     },
     {
       id: 'security',
-      icon: Shield,
-      color: '#059669',
+      icon: <Shield size={24} />,
       image: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?q=80&w=1200&auto=format&fit=crop',
-      title: 'Enterprise Security',
-      subtitle: 'Zero-Trust by Default',
-      description:
-        'Built-in protection against DDoS, bots, and exploits — with automatic SSL, powerful WAF, and real-time visibility, no performance trade-offs.',
-      features: ['WAF + Rate Limiting', 'DDoS Mitigation'],
+      title: 'Shield Layer',
+      subtitle: 'Zero-Trust Protocol',
+      description: 'Hardened security perimeter with integrated WAF and real-time DDoS mitigation.',
+      features: ['L7 Filtering', 'mTLS Encryption', 'Threat Intel'],
     },
     {
       id: 'performance',
-      icon: Zap,
-      color: '#d97706',
+      icon: <Zap size={24} />,
       image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200&auto=format&fit=crop',
-      title: 'Hypersonic Delivery',
-      subtitle: 'Sub-30 ms Global Latency',
-      description:
-        'Optimized caching, image optimization, HTTP/3, Brotli — content is served from the closest possible point to every user.',
-      features: ['Image Optimization', 'Brotli Compression'],
+      title: 'Peak Speed',
+      subtitle: 'Brotli Acceleration',
+      description: 'Advanced compression and intelligent caching designed for high-velocity delivery.',
+      features: ['Brotli Stream', 'Tiered Caching', 'Image Proxy'],
     },
   ];
 
-  const [order, setOrder] = useState([0, 1, 2]);
-  const [selectedId, setSelectedId] = useState(null);
-  const [autoShuffle, setAutoShuffle] = useState(true);
-
   useEffect(() => {
-    if (selectedId || !autoShuffle) return;
-
-    const interval = setInterval(() => {
-      setOrder((prev) => {
-        const next = [...prev];
-        const first = next.shift();
-        if (first !== undefined) next.push(first);
-        return next;
-      });
-    }, 8000);
-
+    if (!autoRotate || selectedId) return;
+    const interval = setInterval(() => setRotation(prev => prev + 120), 5000);
     return () => clearInterval(interval);
-  }, [selectedId, autoShuffle]);
-
-  const handleCardClick = (id) => {
-    setSelectedId(id);
-    setAutoShuffle(false);
-  };
-
-  const closeExpanded = (e) => {
-    if (e) e.stopPropagation();
-    setSelectedId(null);
-    // Small delay before re-enabling shuffle so animation completes
-    setTimeout(() => setAutoShuffle(true), 400);
-  };
+  }, [autoRotate, selectedId]);
 
   const activeCard = cards.find((c) => c.id === selectedId);
 
   return (
     <LayoutGroup>
-      <section className="relative min-h-[640px] lg:min-h-[720px] flex items-center justify-center overflow-hidden bg-[#f9fafb] font-sans text-slate-900 pt-24 md:pt-28 lg:pt-32 pb-16 lg:pb-20">
-        <AnimatedGrid />
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20 px-4">
+        <BlueprintBackground />
 
-        <div className="relative z-10 max-w-7xl mx-auto w-full px-5 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-            {/* Left — Hero text / expanded detail */}
-            <div className="lg:col-span-7 min-h-[380px] lg:min-h-[520px] flex items-center">
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
+
+            {/* LEFT: CONTENT / DETAILS (Restored Fonts) */}
+            <div className="lg:col-span-5 order-2 lg:order-1">
               <AnimatePresence mode="wait">
                 {!selectedId ? (
                   <motion.div
                     key="hero"
-                    initial={{ opacity: 0, y: 24 }}
+                    initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -24 }}
-                    transition={{ duration: 0.5 }}
-                    className="max-w-2xl"
+                    exit={{ opacity: 0, x: -40 }}
+                    className="space-y-8 text-center lg:text-left"
                   >
 
 
-                    <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-[1.05] tracking-tight text-slate-900">
-                      Scale your <br />
-                      <span className="bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-                        vision globally
-                      </span>
+                    <h1 className="text-5xl sm:text-7xl font-black text-[#0D1641] tracking-tighter leading-[0.9]">
+                      Build on <br />
+                      <span className="text-[#26a8df]">Pure Velocity.</span>
                     </h1>
 
-                    <p className="mt-5 text-lg sm:text-xl text-slate-700 leading-relaxed">
-                      The modern edge platform for teams that care about speed, security, and simplicity.
+                    <p className="max-w-md mx-auto lg:mx-0 text-xl text-slate-500 font-medium leading-relaxed">
+                      Experience the revolution of infrastructure. Secure, fast, and globally distributed by default.
                     </p>
 
-                    <div className="mt-8 flex flex-wrap gap-4">
+                    <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
                       <Link
-                        to="/start"
-                        className="px-8 py-4 bg-slate-900 text-white rounded-xl font-semibold text-base sm:text-lg hover:bg-slate-800 transition-all shadow-md hover:shadow-lg active:scale-98"
+                        to="/contactus"
+                        className="group flex items-center gap-2 px-10 py-4 bg-[#0D1641] text-white rounded-xl font-bold shadow-2xl hover:bg-[#26a8df] transition-all hover:-translate-y-1 active:scale-95"
                       >
-                        Start for free
+                        Get Started
+                        <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                       </Link>
                       <button
-                        onClick={() => handleCardClick('global')}
-                        className="px-8 py-4 bg-white text-slate-800 rounded-xl font-semibold text-base sm:text-lg border border-slate-200 hover:border-slate-300 transition-all active:scale-98"
+                        onClick={() => setRotation(r => r + 120)}
+                        className="p-3 text-[#0D1641] hover:bg-slate-200 rounded-full transition-colors"
                       >
-                        See features
+                        <RefreshCw size={20} />
                       </button>
                     </div>
                   </motion.div>
                 ) : (
                   <motion.div
                     key="expanded"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="hidden lg:block w-full"
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: 40 }}
                   >
-                    <DesktopExpandedView data={activeCard} onClose={closeExpanded} />
+                    <DetailedPanel data={activeCard} onClose={() => setSelectedId(null)} />
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
-            {/* Right — Card stack */}
-            <div className="lg:col-span-5 flex justify-center lg:justify-end items-center relative">
-              <div className="relative w-full max-w-[280px] sm:max-w-[300px] aspect-[4/5.6] perspective-[1400px]">
-                {/* Lined accent behind the card stack (subtle, pointer-events-none) */}
-                <div
-                  className="absolute inset-0 pointer-events-none"
-                  style={{
-                    backgroundImage: `
-                      repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0 1px, transparent 1px 28px),
-                      repeating-linear-gradient(0deg, rgba(0,0,0,0.015) 0 1px, transparent 1px 40px)
-                    `,
-                    opacity: 0.06,
-                    mixBlendMode: 'overlay',
-                  }}
-                />
-
-                <AnimatePresence initial={false}>
-                  {[2, 1, 0].map((posIndex) => {
-                    const idx = order[posIndex];
-                    const card = cards[idx];
-                    const isHidden = selectedId === card.id && isDesktop;
-
-                    if (isHidden) return null;
-
-                    return (
-                      <CardStackItem
-                        key={card.id}
-                        data={card}
-                        position={posIndex}
-                        onClick={() => handleCardClick(card.id)}
-                        isSelected={selectedId === card.id}
-                      />
-                    );
-                  })}
-                </AnimatePresence>
-              </div>
-
-              {/* Controls */}
-              <div className="absolute -bottom-14 left-1/2 -translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-0 flex items-center gap-5 mt-10">
-                <button
-                  onClick={() => {
-                    setAutoShuffle(false);
-                    setOrder((prev) => {
-                      const n = [...prev];
-                      const first = n.shift();
-                      if (first !== undefined) n.push(first);
-                      return n;
-                    });
-                  }}
-                  className="flex items-center gap-2 px-5 py-2.5 bg-white rounded-full shadow border border-slate-200 text-slate-700 hover:text-blue-600 hover:border-blue-200 transition-all text-sm font-medium"
-                >
-                  <RefreshCw size={14} />
-                  Shuffle
-                </button>
-
-                <div className="flex gap-2.5">
-                  {cards.map((c) => (
-                    <div
-                      key={c.id}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        selectedId === c.id ? 'w-10 bg-blue-600' : 'w-2 bg-slate-300'
-                      }`}
-                    />
-                  ))}
-                </div>
+            {/* RIGHT: REVOLVING FULL-IMAGE CAROUSEL */}
+            <div className="lg:col-span-7 relative h-[450px] sm:h-[600px] flex items-center justify-center order-1 lg:order-2">
+              <div
+                className="relative w-full h-full flex items-center justify-center"
+                style={{ perspective: "2000px", transformStyle: "preserve-3d" }}
+              >
+                {cards.map((card, index) => (
+                  <RevolvingCard
+                    key={card.id}
+                    data={card}
+                    index={index}
+                    currentRotation={rotation}
+                    isSelected={selectedId === card.id}
+                    onClick={() => {
+                      setSelectedId(card.id);
+                      setAutoRotate(false);
+                    }}
+                  />
+                ))}
               </div>
             </div>
           </div>
         </div>
-
-        {/* Mobile modal */}
-        <AnimatePresence>
-          {selectedId && activeCard && !isDesktop && (
-            <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center">
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                onClick={closeExpanded}
-                className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-              />
-              <motion.div
-                layoutId={activeCard.id}
-                className="relative w-full max-w-lg bg-white rounded-2xl overflow-hidden shadow-2xl max-h-[90vh] flex flex-col m-4 sm:m-6"
-                initial={{ y: '100%', opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: '100%', opacity: 0 }}
-                transition={{ type: 'spring', stiffness: 240, damping: 30 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  onClick={closeExpanded}
-                  className="absolute top-4 right-4 z-20 p-2.5 bg-black/50 text-white rounded-full backdrop-blur hover:bg-black/70 transition-all"
-                >
-                  <X size={20} />
-                </button>
-
-                <div className="relative h-64 sm:h-72">
-                  <img
-                    src={activeCard.image}
-                    alt=""
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  <div className="absolute bottom-6 left-6 right-6 text-white">
-                    <h3 className="text-3xl sm:text-4xl font-bold">{activeCard.title}</h3>
-                    <p className="text-lg sm:text-xl text-white/90 mt-2">{activeCard.subtitle}</p>
-                  </div>
-                </div>
-
-                <div className="p-6 sm:p-8 flex-1 overflow-y-auto">
-                  <p className="text-slate-700 leading-relaxed mb-6 text-base sm:text-lg">
-                    {activeCard.description}
-                  </p>
-                  <div className="space-y-4">
-                    {activeCard.features.map((feat, i) => (
-                      <div
-                        key={i}
-                        className="flex items-center gap-4 p-4 bg-slate-50 rounded-xl text-base"
-                      >
-                        <CheckCircle2 size={20} className="text-blue-600 shrink-0" />
-                        <span className="font-medium text-slate-800">{feat}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            </div>
-          )}
-        </AnimatePresence>
       </section>
     </LayoutGroup>
   );
 };
 
-// ── 3. Desktop Expanded View & 4. CardStackItem remain mostly the same ──
-// (I only made minor visual/stability tweaks)
+// ── 3. High-Opacity Full Image Card ──────────────────────────────────
+const RevolvingCard = ({ data, index, currentRotation, onClick, isSelected }) => {
+  const angleStep = 120;
+  const cardAngle = (index * angleStep) + currentRotation;
+  const radian = (cardAngle * Math.PI) / 180;
+  const radius = isSelected ? 0 : 200;
 
-const DesktopExpandedView = ({ data, onClose }) => (
-  <motion.div
-    layoutId={data.id}
-    className="w-full max-h-[520px] bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl border border-slate-200/80 overflow-hidden flex flex-col"
-    initial={{ opacity: 0, scale: 0.95 }}
-    animate={{ opacity: 1, scale: 1 }}
-    exit={{ opacity: 0, scale: 0.95 }}
-    transition={{ type: 'spring', stiffness: 220, damping: 28 }}
-  >
-    <div className="relative h-56 shrink-0">
-      <img src={data.image} alt="" className="absolute inset-0 w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent" />
-      <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20">
-        <button
-          onClick={onClose}
-          className="flex items-center gap-2 px-4 py-2 bg-white/25 backdrop-blur-md border border-white/20 text-white rounded-full hover:bg-white/35 transition text-sm font-medium"
-        >
-          <ChevronLeft size={16} />
-          Back
-        </button>
-        <div className="px-3 py-1.5 rounded-full bg-white/25 backdrop-blur-md text-white text-sm font-medium border border-white/15 flex items-center gap-1.5">
-          <data.icon size={14} />
-          Details
-        </div>
-      </div>
-      <div className="absolute bottom-6 left-6 right-6">
-        <h2 className="text-3xl font-bold text-white tracking-tight leading-tight">
-          {data.title}
-        </h2>
-      </div>
-    </div>
-
-    <div className="flex-1 p-6 bg-white overflow-y-auto">
-      <p className="text-base text-slate-600 mb-2 font-medium">{data.subtitle}</p>
-      <p className="text-base text-slate-700 leading-relaxed mb-6">{data.description}</p>
-
-      <div className="space-y-3">
-        <span className="text-xs uppercase font-semibold text-slate-500 tracking-wider block mb-2">
-          Key Features
-        </span>
-        <div className="grid grid-cols-2 gap-3">
-          {data.features.map((feat, i) => (
-            <div
-              key={i}
-              className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-3 text-sm"
-            >
-              <CheckCircle2 size={16} className="text-blue-600 shrink-0" />
-              <span className="font-medium text-slate-800">{feat}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  </motion.div>
-);
-
-const CardStackItem = ({ data, position, onClick, isSelected }) => {
-  const isFront = position === 0;
-
-  const variants = {
-    front: { zIndex: 30, scale: 1, x: 0, y: 0, rotateZ: 0, rotateX: 0, opacity: 1 },
-    middle: { zIndex: 20, scale: 0.95, x: -32, y: -36, rotateZ: -5, rotateX: 4, opacity: 0.9 },
-    back: { zIndex: 8, scale: 0.86, x: 44, y: -86, rotateZ: 8, rotateX: 8, opacity: 0.72 },
-  };
+  const x = Math.sin(radian) * radius;
+  const z = Math.cos(radian) * radius;
+  const skew = isSelected ? 0 : (x / 200) * -10;
 
   return (
     <motion.div
-      layoutId={data.id}
-      variants={variants}
-      animate={isFront ? 'front' : position === 1 ? 'middle' : 'back'}
-      transition={{ type: 'spring', stiffness: 180, damping: 24 }}
-      onClick={(e) => {
-        e.stopPropagation();
-        onClick();
+      animate={{
+        x: isSelected ? 0 : x,
+        z: isSelected ? 400 : z,
+        rotateY: isSelected ? 0 : cardAngle,
+        skewX: skew,
+        scale: isSelected ? 1.15 : (z + 200) / (400) * 0.4 + 0.6,
+        opacity: isSelected ? 1 : (z + 200) / (400) * 0.7 + 0.3,
       }}
-      className={`
-        absolute inset-0 rounded-3xl overflow-hidden cursor-pointer
-        shadow-2xl will-change-transform
-        ${isFront ? 'shadow-[0_30px_70px_-12px_rgba(0,0,0,0.25)] hover:scale-[1.025]' : 'shadow-xl hover:scale-[1.015]'}
-        ${isSelected ? 'pointer-events-none' : ''}
-      `}
+      transition={{ type: 'spring', stiffness: 50, damping: 20 }}
+      onClick={onClick}
+      className={`absolute w-[240px] sm:w-[290px] aspect-[4/5.5] cursor-pointer rounded-[2.5rem] overflow-hidden group shadow-2xl ${isSelected ? 'z-[100]' : ''
+        }`}
+      style={{
+        transformStyle: "preserve-3d",
+        zIndex: isSelected ? 200 : Math.round(z + 200)
+      }}
     >
-      <img
-        src={data.image}
-        alt=""
-        className="absolute inset-0 w-full h-full object-cover brightness-[0.82] contrast-[1.08]"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/15" />
-      <div className="absolute inset-0 shadow-[inset_0_0_70px_rgba(0,0,0,0.45)]" />
+      <div className="absolute inset-0">
+        <img
+          src={data.image}
+          alt={data.title}
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0D1641]/10 via-transparent to-[#0D1641]/90" />
+      </div>
 
-      <div className="relative z-10 h-full flex flex-col justify-end p-6 sm:p-8 pb-10 sm:pb-12 text-white">
-        <div className="flex items-center gap-4 mb-5">
-          <div
-            className="w-14 h-14 rounded-xl flex items-center justify-center shrink-0"
-            style={{
-              backgroundColor: data.color,
-              boxShadow: `0 10px 25px ${data.color}60`,
-            }}
-          >
-            <data.icon size={24} className="text-white" />
-          </div>
-          <div>
-            <h3 className="text-2xl sm:text-3xl font-extrabold leading-tight tracking-tight">
-              {data.title}
-            </h3>
-            <p className="text-base text-white/90 mt-1 font-medium">{data.subtitle}</p>
-          </div>
+      <div className="relative h-full w-full p-8 flex flex-col text-white">
+        <div className="w-12 h-12 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center mb-auto border border-white/30 shadow-lg">
+          {React.cloneElement(data.icon, { className: "text-white" })}
         </div>
 
-        <p className="text-base leading-relaxed text-white/85 line-clamp-3 mb-6">
-          {data.description}
-        </p>
-
-        {isFront && (
-          <>
-            <div className="flex flex-wrap gap-2.5 mb-6">
-              {data.features.slice(0, 3).map((f, i) => (
-                <span
-                  key={i}
-                  className="text-xs sm:text-sm px-4 py-1.5 bg-white/16 backdrop-blur-md border border-white/15 rounded-full font-medium"
-                >
-                  {f}
-                </span>
-              ))}
-            </div>
-
-            <div className="flex items-center justify-between text-base">
-              <button className="bg-white text-slate-900 px-6 py-2.5 rounded-lg font-semibold shadow transition-all hover:shadow-md active:scale-98">
-                Explore
-              </button>
-              <span className="text-white/80 text-sm">Click to learn more</span>
-            </div>
-          </>
-        )}
+        <div className="space-y-1">
+          <p className="text-[10px] font-black text-[#26a8df] uppercase tracking-[0.2em]">
+            {data.subtitle}
+          </p>
+          <h3 className="text-3xl font-black tracking-tight leading-none">
+            {data.title}
+          </h3>
+          <div className="mt-4 flex items-center gap-2 opacity-50">
+            <span className="text-[9px] font-bold uppercase tracking-tighter">Cluster Node 0{index + 1}</span>
+          </div>
+        </div>
       </div>
     </motion.div>
   );
 };
+
+// ── 4. Detailed Sidebar View (Restored Font Styles) ──────────────────
+const DetailedPanel = ({ data, onClose }) => (
+  <div className="space-y-10 text-center lg:text-left">
+    <div className="space-y-4">
+      <div className="h-1.5 w-16 bg-[#26a8df] rounded-full mx-auto lg:mx-0" />
+      {/* Restored Italic Black Header */}
+      <h2 className="text-6xl sm:text-7xl font-black text-[#0D1641] tracking-tighter uppercase leading-none italic">
+        {data.title}
+      </h2>
+      <p className="text-xl sm:text-2xl text-slate-500 font-light leading-relaxed max-w-lg mx-auto lg:mx-0">
+        {data.description}
+      </p>
+    </div>
+
+    <div className="grid gap-3 max-w-sm mx-auto lg:mx-0">
+      {data.features.map((feat, i) => (
+        <motion.div
+          key={i}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ delay: i * 0.1 }}
+          className="flex items-center gap-4 p-5 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-[#26a8df]/40 transition-all group"
+        >
+          <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-[#26a8df] group-hover:bg-[#26a8df] group-hover:text-white transition-colors">
+            <CheckCircle2 size={20} />
+          </div>
+          <span className="font-bold text-[#0D1641] tracking-tight text-lg">{feat}</span>
+        </motion.div>
+      ))}
+    </div>
+
+    {/* Ergonimic Close Action */}
+    <div className="pt-8 border-t border-slate-100 flex justify-center lg:justify-start">
+      <button
+        onClick={onClose}
+        className="group flex items-center gap-3 px-8 py-3 bg-slate-100 text-[#0D1641] hover:bg-red-50 hover:text-red-600 rounded-full font-black uppercase tracking-widest text-[9px] transition-all shadow-sm"
+      >
+        <X size={14} className="transition-transform group-hover:rotate-90" />
+        Dismiss Configuration
+      </button>
+    </div>
+  </div>
+);
 
 export default HeroSection;

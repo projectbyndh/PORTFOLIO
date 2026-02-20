@@ -56,10 +56,10 @@ function Refer() {
               <div className="absolute inset-0 bg-gradient-to-br from-[#26a8df]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[1.25rem] sm:rounded-[1.5rem] md:rounded-[2rem]" />
 
               <div className="relative z-10">
-                <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#26a8df] to-[#26a8df] mb-2 sm:mb-3 md:mb-4 shadow-[0_0_20px_rgba(74,142,188,0.3)]">
+                <div className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 lg:w-16 lg:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#26a8df] to-[#1e2a5e] mb-2 sm:mb-3 md:mb-4 shadow-[0_0_20px_rgba(38,168,223,0.3)]">
                   <stat.icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-7 md:h-7 lg:w-8 lg:h-8 text-white" />
                 </div>
-                <h3 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-black text-[#26a8df] mb-1 sm:mb-1.5 md:mb-2 bg-gradient-to-r from-[#26a8df] to-[#26a8df] bg-clip-text text-transparent">
+                <h3 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-black text-[#26a8df] mb-1 sm:mb-1.5 md:mb-2">
                   {stat.value}
                 </h3>
                 <p className="text-neutral-600 font-semibold text-xs sm:text-sm md:text-base">{stat.label}</p>
@@ -113,7 +113,7 @@ function Refer() {
                   className="flex items-center gap-2 sm:gap-2.5 md:gap-3 bg-white/60 backdrop-blur-sm rounded-xl sm:rounded-2xl p-2.5 sm:p-3 md:p-4 border border-white/40"
                 >
                   <CheckCircle2 className="w-4 h-4 sm:w-4 sm:h-4 md:w-5 md:h-5 text-[#26a8df] flex-shrink-0" />
-                  <span className="text-xs sm:text-xs md:text-sm font-semibold text-[#0D1641]">{benefit}</span>
+                  <span className="text-xs sm:text-xs md:text-sm font-semibold text-[#26a8df]">{benefit}</span>
                 </motion.div>
               ))}
             </div>
@@ -122,12 +122,10 @@ function Refer() {
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
               <Link
                 to="/contact"
-                className="group relative inline-flex items-center justify-center gap-2 sm:gap-2.5 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white font-bold py-3.5 sm:py-3 md:py-3.5 lg:py-2.5 px-8 sm:px-7 md:px-8 lg:px-6 rounded-xl sm:rounded-2xl lg:rounded-xl text-base sm:text-base md:text-base lg:text-sm shadow-[0_0_30px_rgba(74,142,188,0.4),0_8px_16px_rgba(74,142,188,0.2)] hover:scale-105 transition-all duration-300 overflow-hidden w-full sm:w-auto max-w-sm sm:max-w-none"
+                className="inline-flex items-center justify-center gap-2 sm:gap-2.5 bg-[#0D1641] text-white font-bold py-3.5 sm:py-3 md:py-3.5 lg:py-2.5 px-8 sm:px-7 md:px-8 lg:px-6 rounded-xl sm:rounded-2xl lg:rounded-xl text-base sm:text-base md:text-base lg:text-sm shadow-lg transition-all w-full sm:w-auto max-w-sm sm:max-w-none hover:bg-[#0D1641]/90 active:scale-95"
               >
-                <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#5A9ECC] to-[#4B84A8] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <span className="relative z-10">Start Your Project</span>
-                <ArrowRight className="relative z-10 w-5 h-5 sm:w-4 sm:h-4 lg:w-4 lg:h-4 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="relative z-10 w-5 h-5 sm:w-4 sm:h-4 lg:w-4 lg:h-4" />
               </Link>
 
               <Link

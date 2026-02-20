@@ -23,17 +23,17 @@ export const Button = ({
 
   const variants = {
     primary: `
-      bg-gradient-to-r from-[#26a8df] via-[#26a8df] to-[#2DD4BF] text-white
-      hover:from-[#26a8df] hover:via-[#26a8df] hover:to-[#8B5CF6]
-      shadow-lg shadow-[#26a8df]/25 hover:shadow-xl hover:shadow-[#26a8df]/30
+      bg-[#0D1641] text-white
+      hover:bg-[#0D1641]/90
+      shadow-lg shadow-slate-500/20 hover:shadow-xl
     `,
     secondary: `
-      bg-white/80 backdrop-blur-sm text-[#26a8df] border border-[#26a8df]/20
-      hover:bg-[#26a8df]/5 hover:border-[#26a8df]/30 shadow-sm
+      bg-white text-[#0D1641] border border-[#0D1641]/20
+      hover:bg-[#0D1641]/5 hover:border-[#0D1641]/30 shadow-sm
     `,
     ghost: `
-      bg-transparent text-[#26a8df]/70
-      hover:bg-[#26a8df]/10 hover:text-[#26a8df]
+      bg-transparent text-[#0D1641]/70
+      hover:bg-[#0D1641]/10 hover:text-[#0D1641]
     `,
     danger: `
       bg-gradient-to-r from-red-500 to-rose-600 text-white
@@ -105,8 +105,8 @@ export const IconButton = ({
   ...props
 }) => {
   const variants = {
-    ghost: 'text-slate-500 hover:text-slate-700 hover:bg-slate-100',
-    primary: 'text-blue-600 hover:text-blue-700 hover:bg-blue-50',
+    ghost: 'text-slate-500 hover:text-[#0D1641] hover:bg-[#0D1641]/10',
+    primary: 'text-[#0D1641] hover:text-[#0D1641] hover:bg-[#0D1641]/10',
     danger: 'text-red-500 hover:text-red-700 hover:bg-red-50',
     success: 'text-emerald-500 hover:text-emerald-700 hover:bg-emerald-50',
   };

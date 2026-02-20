@@ -64,7 +64,7 @@ export default function ProjectsShowcase() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#26a8df] tracking-tighter mb-4 sm:mb-5 md:mb-6"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#0D1641] tracking-tighter mb-4 sm:mb-5 md:mb-6"
           >
             Our <span className="text-gradient-brand">Projects</span>
           </motion.h1>
@@ -89,9 +89,10 @@ export default function ProjectsShowcase() {
                 onClick={() => setActiveCategory(category)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`flex items-center gap-1.5 sm:gap-2 whitespace-nowrap rounded-xl sm:rounded-2xl px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 text-xs sm:text-sm font-bold transition-all duration-300 ${activeCategory === category
-                  ? "bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white shadow-[0_0_20px_rgba(74,142,188,0.4),0_4px_12px_rgba(74,142,188,0.2)]"
-                  : "bg-white/60 backdrop-blur-sm text-[#0D1641] hover:bg-white hover:shadow-lg border border-white/40"
+                className={`px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 whitespace-nowrap
+                  ${activeCategory === category
+                    ? "bg-[#0D1641] text-white shadow-lg shadow-slate-500/25 scale-105"
+                    : "bg-white text-neutral-500 hover:text-[#0D1641] border border-neutral-200"
                   }`}
               >
                 {getCategoryIcon(category)}
@@ -192,9 +193,10 @@ export default function ProjectsShowcase() {
             viewport={{ once: true }}
             className="bg-white/60 backdrop-blur-2xl rounded-[2rem] sm:rounded-[2.5rem] md:rounded-[3rem] p-6 sm:p-8 md:p-10 lg:p-10 xl:p-12 border border-white/60 shadow-[0_20px_60px_rgba(0,0,0,0.08)]"
           >
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-black text-[#26a8df] mb-3 sm:mb-4 md:mb-5 lg:mb-4 tracking-tight">
-              Ready to Start Your Project?
-            </h2>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#26a8df] mb-4 sm:mb-5 md:mb-6 leading-none tracking-tighter">
+              Engineering <br className="hidden sm:block" />
+              Success Stories.
+            </h1>
             <p className="text-sm sm:text-base md:text-lg lg:text-base text-neutral-600 mb-6 sm:mb-7 md:mb-8 lg:mb-6 max-w-2xl mx-auto px-4">
               Let's bring your vision to life with innovative digital solutions.
             </p>
@@ -203,12 +205,10 @@ export default function ProjectsShowcase() {
             </p>
             <Link
               to="/contact"
-              className="group relative inline-flex items-center gap-2 sm:gap-2.5 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white font-bold py-2.5 sm:py-3 md:py-3.5 lg:py-2.5 px-6 sm:px-7 md:px-8 lg:px-6 rounded-xl sm:rounded-2xl lg:rounded-xl text-sm sm:text-base md:text-base lg:text-sm shadow-[0_0_30px_rgba(74,142,188,0.4),0_8px_16px_rgba(74,142,188,0.2)] hover:scale-105 transition-all duration-300 overflow-hidden"
+              className="inline-flex items-center gap-2 sm:gap-2.5 bg-[#0D1641] text-white font-bold py-2.5 sm:py-3 md:py-3.5 lg:py-2.5 px-6 sm:px-7 md:px-8 lg:px-6 rounded-xl sm:rounded-2xl lg:rounded-xl text-sm sm:text-base md:text-base lg:text-sm shadow-lg transition-all"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#5A9ECC] to-[#4B84A8] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <span className="relative z-10">Get in Touch</span>
-              <ArrowRight className="relative z-10 h-4 w-4 sm:h-4 sm:w-4 lg:h-4 lg:w-4 group-hover:translate-x-1 transition-transform" />
+              <span className="relative z-10">Get Free Counseling</span>
+              <ArrowRight className="relative z-10 h-4 w-4 sm:h-4 sm:w-4 lg:h-4 lg:w-4" />
             </Link>
           </motion.div>
         </div>

@@ -31,17 +31,17 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
 
         {/* --- HEADER --- */}
-        <div className="mb-12 sm:mb-16 md:mb-20 lg:mb-24 text-center">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             className="flex items-center gap-2 sm:gap-3 text-[#26a8df] mb-4 sm:mb-5 md:mb-6 justify-center"
           >
             <div className="w-8 sm:w-10 md:w-12 h-[2px] bg-[#26a8df]" />
             <span className="text-[10px] sm:text-xs font-bold uppercase tracking-[0.2em] sm:tracking-[0.25em]">The Tools We Build For You</span>
           </motion.div>
 
-          <motion.h1
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#26a8df] tracking-tighter leading-tight"
@@ -50,7 +50,7 @@ export default function Services() {
             <span className="text-gradient-brand">
               We Build For You.
             </span>
-          </motion.h1>
+          </motion.h2>
         </div>
 
         {/* --- DYNAMIC SCROLL STRUCTURE --- */}
@@ -111,9 +111,9 @@ export default function Services() {
             <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-2xl font-black mb-3 sm:mb-4 md:mb-5 lg:mb-4 z-10 tracking-tight">Ready to improve how your business looks online?</h3>
             <p className="text-blue-100/80 mb-5 sm:mb-6 md:mb-8 lg:mb-6 z-10 max-w-sm text-sm sm:text-base md:text-base lg:text-sm font-light">Step-by-step updates. Systems that grow with you.</p>
 
-            <Link to="/contact" className="relative px-5 sm:px-6 md:px-7 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-2 bg-white text-[#26a8df] rounded-xl sm:rounded-2xl lg:rounded-xl text-sm sm:text-base md:text-base lg:text-sm font-bold inline-flex items-center gap-2 transition-all hover:scale-105 hover:bg-blue-50 z-10 shadow-lg shadow-blue-900/20 group/btn">
+            <Link to="/contact" className="relative px-5 sm:px-6 md:px-7 lg:px-5 py-2 sm:py-2.5 md:py-3 lg:py-2 bg-[#fffff] text-white rounded-xl sm:rounded-2xl lg:rounded-xl text-sm sm:text-base md:text-base lg:text-sm font-bold inline-flex items-center gap-2 transition-all z-10 shadow-lg group/btn shadow-slate-500/20">
               <span>Get Started</span>
-              <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
+              <ArrowRight size={16} />
             </Link>
           </motion.div>
         </motion.div>
@@ -156,11 +156,11 @@ function SpotlightCard({ icon, title, desc, features }) {
       />
 
       <div className="relative z-10 h-full flex flex-col">
-        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#26a8df]/10 to-blue-500/5 text-[#26a8df] flex items-center justify-center mb-4 sm:mb-6 md:mb-8 border border-[#26a8df]/10 group-hover:scale-110 transition-transform duration-500">
+        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br from-[#26a8df]/10 to-[#26a8df]/5 text-[#26a8df] flex items-center justify-center mb-4 sm:mb-6 md:mb-8 border border-[#26a8df]/10 group-hover:scale-110 transition-transform duration-500">
           {icon}
         </div>
 
-        <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-[#26a8df] mb-3 sm:mb-4 tracking-tight">{title}</h3>
+        <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-[#0D1641] mb-3 sm:mb-4 tracking-tight">{title}</h3>
         <p className="text-neutral-500 text-sm sm:text-base mb-6 sm:mb-8 md:mb-10 font-medium leading-relaxed">{desc}</p>
 
         <div className="mt-auto space-y-2 sm:space-y-3">
@@ -171,8 +171,8 @@ function SpotlightCard({ icon, title, desc, features }) {
               className="flex items-center justify-between p-2 sm:p-2.5 md:p-3 rounded-lg sm:rounded-xl bg-neutral-50 border border-transparent hover:border-[#26a8df]/20 hover:bg-white transition-all cursor-default group/item"
             >
               <div className="flex items-center gap-2 sm:gap-3">
-                <span className="text-[#26a8df]/70 group-hover/item:text-[#26a8df] [&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-[18px] sm:[&>svg]:h-[18px]">{f.i}</span>
-                <span className="text-xs sm:text-sm font-bold text-neutral-600 group-hover/item:text-[#26a8df]">{f.t}</span>
+                <span className="text-[#0D1641]/70 group-hover/item:text-[#0D1641] [&>svg]:w-4 [&>svg]:h-4 sm:[&>svg]:w-[18px] sm:[&>svg]:h-[18px]">{f.i}</span>
+                <span className="text-xs sm:text-sm font-bold text-neutral-600 group-hover/item:text-[#0D1641]">{f.t}</span>
               </div>
             </motion.div>
           ))}

@@ -44,7 +44,7 @@ export default function TeamMembers() {
           <div className="text-red-500 mb-4">{error}</div>
           <button
             onClick={() => window.location.reload()}
-            className="bg-[#26a8df] hover:bg-[#26a8df] text-white font-bold py-2 px-6 rounded-xl"
+            className="bg-[#0D1641] hover:bg-[#0D1641]/90 text-white font-bold py-2 px-6 rounded-xl shadow-lg transition-all active:scale-95"
           >
             Retry
           </button>
@@ -121,11 +121,10 @@ export default function TeamMembers() {
                     )}
                   </div>
 
-                  <div className={`grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 ${
-                    layer.members.length === 1 ? 'grid-cols-1 max-w-md mx-auto' :
+                  <div className={`grid gap-4 sm:gap-5 md:gap-6 lg:gap-8 ${layer.members.length === 1 ? 'grid-cols-1 max-w-md mx-auto' :
                     layer.members.length === 2 ? 'grid-cols-1 md:grid-cols-2 max-w-3xl mx-auto' :
-                    'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
-                  }`}>
+                      'grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+                    }`}>
                     {layer.members.map((member, mIndex) => (
                       <MemberCard
                         key={member.id}
@@ -159,7 +158,7 @@ export default function TeamMembers() {
             </p>
             <a
               href="/careers"
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white font-bold py-3 sm:py-3.5 md:py-4 px-6 sm:px-7 md:px-8 rounded-xl sm:rounded-2xl text-sm sm:text-base shadow-[0_0_30px_rgba(74,142,188,0.4)] hover:scale-105 transition-all duration-300 relative z-10"
+              className="inline-flex items-center gap-2 bg-[#0D1641] text-white font-bold py-3 sm:py-3.5 md:py-4 px-6 sm:px-7 md:px-8 rounded-xl sm:rounded-2xl text-sm sm:text-base shadow-lg hover:scale-105 hover:bg-[#0D1641]/90 transition-all duration-300 relative z-10"
             >
               View Open Positions
             </a>

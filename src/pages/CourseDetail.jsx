@@ -31,7 +31,7 @@ export default function CourseDetail() {
             <div className="text-red-500 text-xl font-bold mb-4">Course not found</div>
             <button
                 onClick={() => navigate('/courses')}
-                className="px-6 py-2 bg-[#26a8df] text-white rounded-lg hover:bg-[#1d8dbd] transition-colors"
+                className="px-6 py-2 bg-[#0D1641] text-white rounded-lg hover:bg-[#080E2B] transition-colors"
             >
                 Browse All Courses
             </button>
@@ -104,9 +104,9 @@ export default function CourseDetail() {
                                     key={tab}
                                     onClick={() => setActiveTab(tab)}
                                     className={`px-6 py-4 font-semibold text-sm uppercase tracking-wide border-b-2 transition-colors whitespace-nowrap ${activeTab === tab
-                                    ? 'border-[#26a8df] text-[#26a8df]'
-                                    : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
-                                    }`}
+                                        ? 'border-[#26a8df] text-[#26a8df]'
+                                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
+                                        }`}
                                 >
                                     {tab}
                                 </button>

@@ -126,11 +126,11 @@ export default function Testimonials() {
           <div className="inline-block relative">
             <div className="absolute -top-4 -left-4 w-8 h-8 rounded-full bg-[#26a8df]/20 animate-pulse-slow" />
             <div className="absolute -bottom-4 -right-4 w-8 h-8 rounded-full bg-[#26a8df]/20 animate-pulse-slow" />
-            <h2 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500">
-              Client Testimonials
-            </h2>
-          </div>
-          <p className="mt-4 text-lg text-[#26a8df]/80 max-w-2xl mx-auto">
+            <h1 className="text-4xl md:text-6xl font-black text-[#26a8df] tracking-tight leading-none mb-6">
+              Loved by <br />
+              Forward Thinkers.
+            </h1></div>
+          <p className="mt-4 text-lg text-[#0D1641]/80 max-w-2xl mx-auto">
             Don&apos;t just take our word for it. Here&apos;s what our clients have to say about working with Nepal Digital Heights.
           </p>
         </div>
@@ -195,14 +195,14 @@ export default function Testimonials() {
           <div className="flex justify-center mt-8 space-x-3 sm:space-x-4">
             <button
               onClick={prevTestimonial}
-              className="group p-2.5 sm:p-3 rounded-full bg-white shadow-md border border-[#26a8df]/20 text-[#26a8df] hover:bg-[#26a8df] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
+              className="group p-2.5 sm:p-3 rounded-full bg-white shadow-md border border-neutral-200 text-[#0D1641] hover:bg-[#0D1641] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
               aria-label="Previous testimonial"
             >
               <ChevronLeft size={20} className="sm:w-6 sm:h-6 group-hover:-translate-x-1 transition-transform duration-300" />
             </button>
             <button
               onClick={nextTestimonial}
-              className="group p-2.5 sm:p-3 rounded-full bg-white shadow-md border border-[#26a8df]/20 text-[#26a8df] hover:bg-[#26a8df] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
+              className="group p-2.5 sm:p-3 rounded-full bg-white shadow-md border border-neutral-200 text-[#0D1641] hover:bg-[#0D1641] hover:text-white transition-all duration-300 hover:scale-110 active:scale-95"
               aria-label="Next testimonial"
             >
               <ChevronRight size={20} className="sm:w-6 sm:h-6 group-hover:translate-x-1 transition-transform duration-300" />
@@ -220,7 +220,7 @@ export default function Testimonials() {
             Join our growing list of satisfied clients and experience the Nepal Digital Heights difference.
           </p>
           <Link to='/contact'>
-            <button className="px-6 py-3 sm:px-7 sm:py-3.5 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-linear-to-r from-[#26a8df] to-[#26a8df] text-white font-bold rounded-full text-sm sm:text-base md:text-base lg:text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+            <button className="px-6 py-3 sm:px-7 sm:py-3.5 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-[#0D1641] text-white font-bold rounded-full text-sm sm:text-base md:text-base lg:text-sm shadow-lg transition-all">
               Get Started Today
             </button>
           </Link>

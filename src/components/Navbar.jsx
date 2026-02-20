@@ -75,7 +75,7 @@ export default function Navbar() {
                   {isActive && (
                     <motion.div
                       layoutId="activePill"
-                      className="absolute inset-0 bg-gradient-to-r from-[#26a8df] to-[#26a8df] rounded-xl shadow-[0_4px_20px_rgba(74,142,188,0.4)]"
+                      className="absolute inset-0 bg-[#0D1641] rounded-xl shadow-[0_4px_20px_rgba(13,22,65,0.4)]"
                       transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                     />
                   )}
@@ -98,7 +98,7 @@ export default function Navbar() {
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden p-2.5 sm:p-3 rounded-xl bg-white border border-neutral-200 text-[#26a8df] shadow-md hover:shadow-lg transition-all"
+              className="lg:hidden p-2.5 sm:p-3 rounded-xl bg-white border border-neutral-200 text-[#0D1641] shadow-md hover:shadow-lg transition-all"
             >
               {menuOpen ? <X size={20} className="sm:w-5 sm:h-5" /> : <Menu size={20} className="sm:w-5 sm:h-5" />}
             </button>
@@ -125,7 +125,7 @@ export default function Navbar() {
                     <Link
                       to={link.path}
                       onClick={() => setMenuOpen(false)}
-                      className={`text-base sm:text-lg md:text-xl font-bold flex items-center justify-between py-2 ${location.pathname === link.path ? "text-[#26a8df]" : "text-[#0D1641] hover:text-[#26a8df]"}
+                      className={`text-base sm:text-lg md:text-xl font-bold flex items-center justify-between py-2 ${location.pathname === link.path ? "text-[#0D1641]" : "text-[#0D1641]/70 hover:text-[#0D1641]"}
                         } transition-colors`}
                     >
                       {link.name}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Calendar, Clock, BookOpen, User, ArrowRight, Award } from 'lucide-react';
+import { Calendar, Clock, BookOpen, User, ArrowRight, Award, ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 import { getImageUrl } from '../../utils/getImageUrl';
 
 export default function CourseCard({ course }) {
@@ -23,7 +24,8 @@ export default function CourseCard({ course }) {
             className="group bg-white rounded-3xl overflow-hidden border border-gray-100 shadow-[0_4px_20px_rgb(0,0,0,0.05)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.1)] transition-all duration-500 flex flex-col h-full cursor-pointer hover:-translate-y-2 relative"
         >
             {/* Gradient glow effect on hover */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-400 to-[#26a8df] rounded-3xl opacity-0 group-hover:opacity-20 transition duration-500 blur-lg"></div>
+            <div className="absolute inset-x-0 -top-px h-1 bg-gradient-to-r from-transparent via-[#26a8df]/30 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+            <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-[#26a8df]/5 blur-3xl rounded-full group-hover:bg-[#26a8df]/10 transition-colors duration-500" />
 
             <div className="relative h-56 overflow-hidden">
                 <div className="absolute inset-0 bg-gray-900/10 group-hover:bg-gray-900/0 transition-colors z-10"></div>
@@ -41,24 +43,23 @@ export default function CourseCard({ course }) {
                             <Award size={12} fill="white" /> Popular
                         </div>
                     )}
-                </div>
-
-                <div className="absolute bottom-4 left-4 z-20">
-                    <span className="inline-block px-3 py-1 bg-white/90 backdrop-blur-md text-[#26a8df] text-xs font-bold rounded-lg shadow-sm">
-                        {course.tagline || 'Trending'}
+                    <span className="px-3 py-1 bg-white/80 backdrop-blur-md rounded-full text-[10px] font-black uppercase tracking-widest text-[#26a8df] border border-white shadow-sm flex items-center gap-1.5 w-fit">
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#26a8df] animate-pulse" />
+                        Verified Module
                     </span>
                 </div>
             </div>
 
             <div className="p-6 flex-1 flex flex-col relative bg-white z-20">
-                <div className="flex items-center justify-between mb-3 text-xs text-slate-500 font-medium uppercase tracking-wide">
-                    <div className="flex items-center gap-1">
-                        <User size={14} className="text-[#26a8df]" />
-                        {course.instructorName || 'Expert Team'}
+                <div className="flex items-center gap-3 mb-3">
+                    <div className="p-1 px-2.5 bg-[#26a8df]/10 rounded-full border border-[#26a8df]/10">
+                        <span className="text-[10px] font-black text-[#26a8df] uppercase tracking-widest group-hover:tracking-[0.15em] transition-all">
+                            {course.tagline || 'Course Tagline'}
+                        </span>
                     </div>
                 </div>
 
-                <h3 className="text-xl font-bold text-slate-800 mb-3 leading-snug group-hover:text-[#26a8df] transition-colors">
+                <h3 className="text-xl font-black text-slate-800 mb-3 group-hover:text-[#26a8df] transition-colors line-clamp-2 leading-tight">
                     {course.title}
                 </h3>
 
@@ -89,18 +90,26 @@ export default function CourseCard({ course }) {
                     </div>
                 </div>
 
-                <div className="flex items-center justify-between mt-auto pt-5 border-t border-slate-100">
-                    <div>
-                        <div className="flex flex-col">
-                            <span className="text-xs text-slate-400 font-medium">Course Fee</span>
-                            <span className="text-xl font-extrabold text-slate-800">
-                                {nextBatch && nextBatch.fee ? `Rs.${nextBatch.fee}` : <span className="text-[#26a8df]">View details</span>}
-                            </span>
-                        </div>
+                <div className="flex items-center justify-between mt-auto">
+                    <div className="flex -space-x-2">
+                        {[1, 2, 3].map((i) => (
+                            <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-slate-100 flex items-center justify-center text-[10px] font-bold text-[#26a8df]">
+                                <User size={12} />
+                            </div>
+                        ))}
                     </div>
+                    <motion.div
+                        whileHover={{ x: 3 }}
+                        className="flex items-center gap-1.5 text-xs font-black text-[#26a8df] uppercase tracking-widest"
+                    >
+                        <span>View details</span>
+                        <ArrowUpRight size={14} />
+                    </motion.div>
+                </div>
 
-                    <button className="w-10 h-10 rounded-full bg-[#26a8df]/5 group-hover:bg-[#26a8df] flex items-center justify-center text-[#26a8df] group-hover:text-white transition-all duration-300">
-                        <ArrowRight size={20} />
+                <div className="mt-5">
+                    <button className="w-full py-4 bg-[#0D1641] hover:bg-[#0D1641]/90 text-white font-black uppercase tracking-widest text-xs rounded-2xl shadow-xl shadow-blue-500/10 group-active:scale-95 transition-all">
+                        Join This Cohort
                     </button>
                 </div>
             </div>

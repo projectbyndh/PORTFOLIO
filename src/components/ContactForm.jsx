@@ -130,14 +130,14 @@ const ContactForm = ({ contact, onClose, onSuccess }) => {
             <button
               type="button"
               onClick={onClose}
-              className="px-5 py-2.5 text-sm font-semibold text-[#26a8df] bg-[#26a8df]/10 hover:bg-[#26a8df]/20 rounded-xl transition-all duration-200 border border-[#26a8df]/20"
+              className="px-5 py-2.5 text-sm font-semibold text-[#0D1641] bg-[#0D1641]/10 rounded-xl transition-all"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={loading}
-              className="px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-[#26a8df] to-[#26a8df] hover:from-[#26a8df] hover:to-[#26a8df] disabled:opacity-50 rounded-xl transition-all duration-200 shadow-lg shadow-[#26a8df]/25"
+              className="px-5 py-2.5 text-sm font-semibold text-white bg-[#0D1641] disabled:opacity-50 rounded-xl transition-all shadow-md"
             >
               {loading ? 'Saving...' : (contact ? 'Update' : 'Create')}
             </button>

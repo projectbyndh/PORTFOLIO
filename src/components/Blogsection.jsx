@@ -98,8 +98,8 @@ function Blogsection() {
         <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
           <div className="text-center py-12 sm:py-14 md:py-16 lg:py-20">
             <div className="inline-block">
-              <div className="w-16 h-16 border-4 border-[#26a8df] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-[#26a8df]/80">Loading blogs...</p>
+              <div className="w-16 h-16 border-4 border-[#26a8df]/10 border-t-[#26a8df] rounded-full animate-spin mb-4"></div>
+              <p className="text-[#0D1641]/80">Loading blogs...</p>
             </div>
           </div>
         </div>
@@ -115,7 +115,7 @@ function Blogsection() {
           <div className="text-center py-12 sm:py-14 md:py-16 lg:py-20">
             <div className="inline-block">
               <p className="text-red-500 mb-4">⚠️ {error}</p>
-              <p className="text-[#26a8df]/80">Unable to load blogs from server.</p>
+              <p className="text-[#0D1641]/80">Unable to load blogs from server.</p>
             </div>
           </div>
         </div>
@@ -157,7 +157,7 @@ function Blogsection() {
       <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 relative z-10">
         {/* Enhanced Header */}
         <div className="text-center mb-10 sm:mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-linear-to-r from-[#26a8df]/10 to-[#26a8df]/10 border border-[#26a8df]/20 mb-8 backdrop-blur-sm">
+          <div className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#26a8df]/10 border border-[#26a8df]/20 mb-8 backdrop-blur-sm">
             <div className="flex gap-1">
               <div className="w-2 h-2 rounded-full bg-[#26a8df] animate-pulse"></div>
               <div className="w-2 h-2 rounded-full bg-[#26a8df] animate-pulse" style={{ animationDelay: "0.5s" }}></div>
@@ -167,12 +167,12 @@ function Blogsection() {
           </div>
 
           <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 sm:mb-6 leading-tight" id="blog-heading">
-            <span className="bg-linear-to-r from-[#26a8df] via-[#26a8df] to-[#26a8df] bg-clip-text text-transparent">
+            <span className="text-[#0D1641]">
               Explore Our Latest Blogs
             </span>
           </h2>
 
-          <p className="text-sm xs:text-base sm:text-lg md:text-xl text-[#26a8df]/80 max-w-xl sm:max-w-2xl mx-auto leading-relaxed font-normal">
+          <p className="text-sm xs:text-base sm:text-lg md:text-xl text-[#0D1641]/80 max-w-xl sm:max-w-2xl mx-auto leading-relaxed font-normal">
             Welcome to our knowledge hub! Dive into practical tips, inspiring stories, and the newest trends in tech and business. Whether you’re a curious learner or a seasoned pro, you’ll find something fresh every week.
           </p>
 
@@ -185,16 +185,16 @@ function Blogsection() {
             {/* Navigation Buttons - smaller and repositioned for mobile */}
             <div className="hidden sm:block absolute -left-4 md:-left-8 top-1/2 -translate-y-1/2 z-20">
               <button
-                onClick={prevSlide} aria-label="Previous blog posts" className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#26a8df]/20 hover:bg-[#26a8df] hover:border-[#26a8df] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
+                onClick={prevSlide} aria-label="Previous blog posts" className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-neutral-200 hover:bg-[#0D1641] hover:border-[#0D1641] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
               >
-                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-[#26a8df] group-hover:text-white transition-colors duration-300" />
+                <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-[#0D1641] group-hover:text-white transition-colors duration-300" />
               </button>
             </div>
             <div className="hidden sm:block absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-20">
               <button
-                onClick={nextSlide} aria-label="Next blog posts" className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-[#26a8df]/20 hover:bg-[#26a8df] hover:border-[#26a8df] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
+                onClick={nextSlide} aria-label="Next blog posts" className="group w-10 h-10 md:w-14 md:h-14 rounded-full bg-white/90 backdrop-blur-md border border-neutral-200 hover:bg-[#0D1641] hover:border-[#0D1641] transition-all duration-300 shadow-xl hover:shadow-2xl flex items-center justify-center hover:scale-110"
               >
-                <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#26a8df] group-hover:text-white transition-colors duration-300" />
+                <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-[#0D1641] group-hover:text-white transition-colors duration-300" />
               </button>
             </div>
 
@@ -239,7 +239,7 @@ function Blogsection() {
                         />
                         {/* Gradient overlay on hover */}
                         <div className="absolute inset-0 bg-gradient-to-t from-neutral-900/60 via-neutral-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                        
+
                         {/* Category badge */}
                         <div className="absolute top-3 right-3 px-3 py-1 bg-white/95 backdrop-blur-sm rounded-full text-[10px] font-bold text-neutral-700 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                           Article
@@ -309,7 +309,7 @@ function Blogsection() {
                   aria-label={`Go to slide ${index + 1}`}
                   aria-current={Math.floor(currentIndex / slidesToShow) === index}
                   className={`h-2 sm:h-3 rounded-full transition-all duration-300 ${Math.floor(currentIndex / slidesToShow) === index
-                    ? "bg-linear-to-r from-[#26a8df] to-[#26a8df] w-8 sm:w-12"
+                    ? "bg-[#26a8df] w-8 sm:w-12"
                     : "bg-[#26a8df]/30 hover:bg-[#26a8df]/50 w-2 sm:w-3"
                     }`}
                 />
@@ -323,9 +323,9 @@ function Blogsection() {
           <div className="text-center mt-12 sm:mt-14 md:mt-16">
             <Link
               to="/blog"
-              className="group inline-flex items-center gap-2 sm:gap-2.5 md:gap-3 bg-linear-to-r from-[#26a8df] to-[#26a8df] hover:from-[#26a8df] hover:to-[#26a8df] text-white px-6 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 lg:px-8 lg:py-2.5 rounded-full font-semibold text-sm sm:text-base md:text-base lg:text-sm shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 hover:scale-105">
+              className="inline-flex items-center gap-2 sm:gap-2.5 md:gap-3 bg-[#0D1641] text-white px-6 py-2.5 sm:px-8 sm:py-3 md:px-10 md:py-3.5 lg:px-8 lg:py-2.5 rounded-full font-semibold text-sm sm:text-base md:text-base lg:text-sm shadow-xl transition-all shadow-slate-500/20">
               <span>View All Articles</span>
-              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-4 lg:h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 lg:w-4 lg:h-4" />
             </Link>
           </div>
         )}
@@ -395,7 +395,7 @@ function Blogsection() {
           </div>
         )}
       </div>
-    </section>
+    </section >
   )
 }
 

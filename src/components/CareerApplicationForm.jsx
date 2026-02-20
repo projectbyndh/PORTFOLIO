@@ -208,7 +208,7 @@ export default function CareerApplicationForm({ career, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-6 py-3 text-[#26a8df] bg-[#26a8df]/10 hover:bg-[#26a8df]/20 rounded-xl font-semibold transition-all"
+              className="flex-1 px-6 py-3 text-[#0D1641] bg-[#0D1641]/10 rounded-xl font-semibold transition-all"
               disabled={submitting}
             >
               Cancel
@@ -217,7 +217,7 @@ export default function CareerApplicationForm({ career, onClose }) {
           <button
             type="submit"
             disabled={submitting}
-            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed transition-all"
+            className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-[#0D1641] text-white rounded-xl font-semibold disabled:opacity-50 disabled:cursor-not-allowed transition-all"
           >
             {submitting ? (
               <>

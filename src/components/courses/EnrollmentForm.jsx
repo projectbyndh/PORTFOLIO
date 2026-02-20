@@ -161,7 +161,7 @@ export default function EnrollmentForm({ course, batches = [] }) {
                 <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-gradient-to-r from-[#26a8df] to-[#1d8dbd] text-white rounded-xl font-bold text-lg shadow-lg shadow-[#26a8df]/30 hover:shadow-[#26a8df]/50 transform hover:-translate-y-1 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full py-4 bg-[#0D1641] text-white rounded-xl font-bold text-lg shadow-lg transition-all disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                     {isSubmitting ? (
                         <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>

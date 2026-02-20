@@ -30,7 +30,7 @@ export default function Careers() {
   }
 
 
-  return ( 
+  return (
     <div className="w-full min-h-screen bg-[#FAFAFA] relative pt-20 md:pt-24 lg:pt-28">
       {/* Grain texture */}
       <div className="fixed inset-0 opacity-[0.05] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] pointer-events-none z-0" />
@@ -121,7 +121,7 @@ export default function Careers() {
                 </p>
                 <a
                   href="mailto:careers@ndh.com"
-                  className="inline-flex items-center gap-2 px-5 sm:px-6 md:px-7 lg:px-5 py-2.5 sm:py-3 md:py-3 lg:py-2.5 bg-linear-to-r from-[#26a8df] to-[#26a8df] text-white text-sm sm:text-base md:text-base lg:text-sm font-semibold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center gap-2 px-5 sm:px-6 md:px-7 lg:px-5 py-2.5 sm:py-3 md:py-3 lg:py-2.5 bg-[#0D1641] text-white text-sm sm:text-base md:text-base lg:text-sm font-semibold rounded-full shadow-lg transition-all"
                 >
                   <Mail className="w-4 h-4 sm:w-5 sm:h-5 lg:w-4 lg:h-4" />
                   Send Your CV
@@ -174,7 +174,7 @@ export default function Careers() {
 
                     {/* Apply Button - Always at bottom */}
                     <button
-                      className="w-full py-2.5 sm:py-3 md:py-3 lg:py-2.5 px-4 sm:px-5 md:px-6 lg:px-4 bg-linear-to-r from-[#26a8df] to-[#26a8df] text-white text-sm sm:text-base md:text-base lg:text-sm font-semibold rounded-full hover:shadow-lg transition-all duration-300 hover:scale-105 mt-auto"
+                      className="w-full py-2.5 sm:py-3 md:py-3 lg:py-2.5 px-4 sm:px-5 md:px-6 lg:px-4 bg-[#0D1641] text-white text-sm sm:text-base md:text-base lg:text-sm font-semibold rounded-full shadow-lg transition-all mt-auto"
                       onClick={(e) => {
                         e.stopPropagation();
                         handleApplyNow(career);
@@ -194,7 +194,7 @@ export default function Careers() {
               </p>
               <a
                 href="mailto:careers@ndh.com"
-                className="inline-flex items-center gap-2 px-5 sm:px-6 md:px-7 lg:px-5 py-2.5 sm:py-3 md:py-3 lg:py-2.5 border-2 border-[#26a8df] text-[#26a8df] text-sm sm:text-base md:text-base lg:text-sm font-semibold rounded-full hover:bg-[#26a8df] hover:text-white transition-all duration-300"
+                className="inline-flex items-center gap-2 px-5 sm:px-6 md:px-7 lg:px-5 py-2.5 sm:py-3 md:py-3 lg:py-2.5 bg-[#0D1641] text-white text-sm sm:text-base md:text-base lg:text-sm font-semibold rounded-full shadow-lg transition-all"
               >
                 <Mail className="w-4 h-4 sm:w-5 sm:h-5 lg:w-4 lg:h-4" />
                 Send Your CV

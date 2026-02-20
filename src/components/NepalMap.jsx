@@ -116,9 +116,10 @@ export default function WorldMap() {
       <div className="max-w-6xl mx-auto px-2 sm:px-4 md:px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-sm font-black uppercase tracking-[0.4em] text-[#26a8df] mb-4">Our Global Reach</h2>
-          <h3 className="text-3xl md:text-5xl font-black text-[#26a8df] leading-tight tracking-tighter">
-            Scaling from <br /> <span className="text-brand-primary">Nepal to the World.</span>
-          </h3>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-black text-[#26a8df] tracking-tight leading-none mb-4 sm:mb-6">
+            Our Connectivity <br className="hidden sm:block" />
+            Across Nepal
+          </h2>
         </div>
 
         <div className="relative group">
@@ -130,22 +131,23 @@ export default function WorldMap() {
 
             {/* HQ Floating Pane */}
             <div className="absolute top-8 left-8 p-6 rounded-2xl bg-white/90 backdrop-blur-xl border border-white/60 shadow-2xl z-[1000]">
-              <div className="flex items-center gap-4">
-                <div className="relative">
-                  <div className="w-3 h-3 bg-[#26a8df] rounded-full animate-ping absolute" />
-                  <div className="w-3 h-3 bg-[#26a8df] rounded-full relative" />
-                </div>
+              <div className="flex items-center gap-4 sm:gap-6 pt-4 sm:pt-6">
                 <div>
-                  <p className="text-[10px] font-black text-[#26a8df] uppercase tracking-widest">Headquarters</p>
-                  <p className="text-lg font-bold text-[#26a8df] leading-none">Rupandehi, Nepal</p>
+                  <p className="text-[10px] sm:text-xs font-black text-[#26a8df] uppercase tracking-widest mb-1 sm:mb-2 text-left">Headquarters</p>
+                  <p className="text-sm sm:text-base md:text-lg font-bold text-neutral-800 text-left">Butwal-Manigram, NP</p>
+                </div>
+                <div className="w-px h-10 sm:h-12 bg-neutral-200" />
+                <div>
+                  <p className="text-[10px] sm:text-xs font-black text-[#26a8df] uppercase tracking-widest mb-1 sm:mb-2 text-left">Network</p>
+                  <p className="text-sm sm:text-base md:text-lg font-bold text-neutral-800 text-left">77 Districts Scalable</p>
                 </div>
               </div>
             </div>
 
             {/* Stats Overlay */}
             <div className="absolute bottom-8 right-8 flex gap-4 z-[1000]">
-              <div className="px-5 py-3 rounded-xl bg-white/90 backdrop-blur-md border border-white/60 text-[#26a8df]">
-                <p className="text-xs text-[#26a8df] font-bold uppercase tracking-widest">Network</p>
+              <div className="px-5 py-3 rounded-xl bg-white/90 backdrop-blur-md border border-white/60 text-[#0D1641]">
+                <p className="text-xs text-[#0D1641] font-bold uppercase tracking-widest">Network</p>
                 <p className="text-xl font-bold">10+ Countries</p>
               </div>
             </div>

@@ -97,7 +97,7 @@ export default function ContactAdvanced() {
             <span className="text-[9px] sm:text-[10px] md:text-xs font-black uppercase tracking-[0.2em] sm:tracking-[0.25em] md:tracking-[0.3em] text-[#26a8df]">Global Outreach</span>
             <span className="h-px w-6 sm:w-8 md:w-10 lg:w-12 bg-[#26a8df]" />
           </motion.div>
-          <motion.h1 variants={itemVariants} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-[#26a8df] tracking-tighter mb-3 sm:mb-4 md:mb-5 lg:mb-6">
+          <motion.h1 variants={itemVariants} className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl font-black text-[#0D1641] tracking-tighter mb-3 sm:mb-4 md:mb-5 lg:mb-6">
             Let&apos;s Build the <span className="text-[#26a8df]">Future.</span>
           </motion.h1>
           <motion.p variants={itemVariants} className="text-sm sm:text-base md:text-lg lg:text-xl text-neutral-500 max-w-2xl mx-auto leading-relaxed px-3 sm:px-4">
@@ -190,7 +190,7 @@ export default function ContactAdvanced() {
                     <div className="md:col-span-2">
                       <button
                         disabled={isSubmitting}
-                        className="w-full h-16 bg-[#0D1641] text-white rounded-2xl font-black text-lg flex items-center justify-center gap-3 hover:bg-[#26a8df] transition-all active:scale-[0.98] disabled:opacity-50"
+                        className="w-full h-16 bg-[#0D1641] text-white rounded-2xl font-black text-lg flex items-center justify-center gap-3 transition-all disabled:opacity-50"
                       >
                         {isSubmitting ? "Processing..." : "Initiate Contact"}
                         {!isSubmitting && <ArrowRight size={20} />}

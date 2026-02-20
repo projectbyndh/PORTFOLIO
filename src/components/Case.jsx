@@ -152,11 +152,11 @@ export default function CaseStudies() {
                 <button
                   key={category.id}
                   onClick={() => setActiveFilter(category.id)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                    activeFilter === category.id
-                      ? "bg-gradient-to-r from-[#26a8df] to-[#26a8df] text-white shadow-md"
-                      : "bg-white text-[#26a8df] hover:bg-[#E0F0FF] border border-[#26a8df]/20"
-                  }`}
+                  className={`px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 whitespace-nowrap
+                  ${activeFilter === category.id
+                      ? 'bg-[#0D1641] text-white shadow-[0_10px_20px_rgba(13,22,65,0.3)] scale-105'
+                      : 'bg-white text-slate-500 border-2 border-slate-100 hover:border-[#0D1641]/30 hover:text-[#0D1641]'
+                    }`}
                 >
                   {category.name}
                 </button>
@@ -174,9 +174,8 @@ export default function CaseStudies() {
               <div
                 key={study.id}
                 id={`case-${study.id}`}
-                className={`animate-on-scroll bg-white/70 backdrop-blur-sm rounded-xl overflow-hidden shadow-md border border-[#26a8df]/10 hover:shadow-xl transition-all duration-500 group ${
-                  isAnimated(study.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-                }`}
+                className={`animate-on-scroll bg-white/70 backdrop-blur-sm rounded-xl overflow-hidden shadow-md border border-[#26a8df]/10 hover:shadow-xl transition-all duration-500 group ${isAnimated(study.id) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+                  }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="relative h-56 overflow-hidden">
@@ -235,9 +234,8 @@ export default function CaseStudies() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div
             id="case-10"
-            className={`animate-on-scroll transition-all duration-900 ${
-              isAnimated(10) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+            className={`animate-on-scroll transition-all duration-900 ${isAnimated(10) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
           >
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-[#26a8df] mb-4">Featured Project</h2>
@@ -309,9 +307,8 @@ export default function CaseStudies() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div
             id="case-11"
-            className={`bg-gradient-to-r from-[#26a8df] to-[#26a8df] rounded-2xl p-12 text-center shadow-xl relative overflow-hidden animate-on-scroll transition-all duration-900 ${
-              isAnimated(11) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-            }`}
+            className={`bg-gradient-to-r from-[#26a8df] to-[#26a8df] rounded-2xl p-12 text-center shadow-xl relative overflow-hidden animate-on-scroll transition-all duration-900 ${isAnimated(11) ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+              }`}
           >
             <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
               <div className="absolute top-10 left-10 w-32 h-32 rounded-full bg-white/5 animate-pulse-slow"></div>
@@ -333,7 +330,7 @@ export default function CaseStudies() {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center relative">
               <a
                 href="/contact"
-                className="px-6 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-white text-[#26a8df] font-bold rounded-full text-sm sm:text-base md:text-base lg:text-sm transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                className="px-6 py-2.5 sm:px-7 sm:py-3 md:px-8 md:py-3.5 lg:px-6 lg:py-2.5 bg-[#0D1641] text-white font-bold rounded-full text-sm sm:text-base md:text-base lg:text-sm transition-all shadow-lg"
               >
                 Get Started
               </a>

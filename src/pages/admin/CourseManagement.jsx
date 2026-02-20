@@ -13,11 +13,17 @@ export default function CourseManagement() {
     const [editingCourse, setEditingCourse] = useState(null);
     const [isDeleteOpen, setIsDeleteOpen] = useState(false);
     const [deletingId, setDeletingId] = useState(null);
+    const [searchTerm, setSearchTerm] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
         fetchCourses();
     }, [fetchCourses]);
+
+    const filteredCourses = courses.filter(course =>
+        course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (course.tagline && course.tagline.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
 
     const handleCreate = async (data) => {
         try {
@@ -67,6 +73,18 @@ export default function CourseManagement() {
                     }}
                 />
 
+                {!isFormOpen && (
+                    <div className="mb-6">
+                        <input
+                            type="text"
+                            placeholder="Search courses..."
+                            value={searchTerm}
+                            onChange={(e) => setSearchTerm(e.target.value)}
+                            className="w-full max-w-md px-4 py-2 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#0D1641]/20 focus:border-[#0D1641] transition-all"
+                        />
+                    </div>
+                )}
+
                 {isFormOpen ? (
                     <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 mb-8">
                         <div className="flex justify-between items-center mb-6">
@@ -81,10 +99,10 @@ export default function CourseManagement() {
                     </div>
                 ) : (
                     <div className="grid gap-4">
-                        {courses.length === 0 ? (
-                            <EmptyState title="No courses yet" description="Create your first course to get started." />
+                        {filteredCourses.length === 0 ? (
+                            <EmptyState title={searchTerm ? "No courses match your search" : "No courses yet"} description={searchTerm ? "Try a different search term." : "Create your first course to get started."} />
                         ) : (
-                            courses.map(course => (
+                            filteredCourses.map(course => (
                                 <DataCard key={course.id}>
                                     <div className="flex justify-between items-start">
                                         <div>

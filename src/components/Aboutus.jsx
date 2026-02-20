@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import apiClient from '../api/apiClient';
 import { motion, useScroll, useSpring, useTransform, useInView } from 'framer-motion';
 import { Target, Eye, Compass, Rocket, Zap, Globe, ShieldCheck, ChevronDown } from 'lucide-react';
@@ -398,20 +399,20 @@ function CTASection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center">
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 sm:py-4 bg-white text-[#26a8df] rounded-full font-bold text-base sm:text-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex items-center gap-2 justify-center"
-            >
-              Contact Us <Zap size={20} />
-            </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, boxShadow: '0 20px 40px rgba(0,0,0,0.3)' }}
-              whileTap={{ scale: 0.95 }}
-              className="px-8 py-3 sm:py-4 bg-white/20 text-white border-2 border-white rounded-full font-bold text-base sm:text-lg hover:bg-white/30 transition-all duration-300 flex items-center gap-2 justify-center"
-            >
-              Explore Services <Rocket size={20} />
-            </motion.button>
+            <Link to="/contact">
+              <button
+                className="px-8 py-3 sm:py-4 bg-[#0D1641] text-white rounded-full font-bold text-base sm:text-lg shadow-lg transition-all flex items-center gap-2 justify-center"
+              >
+                Get Free Counseling <Zap size={20} />
+              </button>
+            </Link>
+            <Link to="/contact">
+              <button
+                className="px-8 py-3 sm:py-4 bg-white/20 text-white border-2 border-white rounded-full font-bold text-base sm:text-lg transition-all flex items-center gap-2 justify-center"
+              >
+                Explore Services <Rocket size={20} />
+              </button>
+            </Link>
           </div>
 
           <motion.p
